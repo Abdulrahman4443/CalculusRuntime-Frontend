@@ -2,136 +2,16 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useProgress } from "../context/ProgressContext";
+import { COURSES } from "../data/courses";
 
-const guideCards = [
-  {
-    title: "Calculus and Analytical Geometry",
-    description:
-      "Single-variable foundations: functions, continuity, derivatives, Taylor ideas, and geometric intuition.",
-    path: "/courses/calculus-analytical-geometry",
-    meta: "Course path · Foundations",
-    icon: "ƒ",
-    color: "gold",
-  },
-  {
-    title: "Multi Variable Calculus",
-    description:
-      "Partial derivatives, vector calculus, limits, multiple integrals, Lagrange multipliers, and divergence & curl.",
-    path: "/courses/multivariable-calculus",
-    meta: "Course path · Full study guides",
-    icon: "∂",
-    color: "teal",
-  },
-  {
-    title: "Linear Algebra",
-    description:
-      "Vectors, matrices, linear systems, and the algebraic toolkit used across calculus and data science.",
-    path: "/courses/linear-algebra",
-    meta: "Course path · Modules",
-    icon: "A",
-    color: "blue",
-  },
-  {
-    title: "Probability and Statistics",
-    description:
-      "Probability models, random variables, distributions, and statistical reasoning for science and engineering.",
-    path: "/courses/probability-statistics",
-    meta: "Course path · Modules",
-    icon: "P",
-    color: "purple",
-  },
-  {
-    title: "Simple Concepts",
-    description:
-      "Plain-language notes for dimensions, quadric surfaces, partial derivatives, Taylor ideas, and double or triple integrals.",
-    path: "/simple-concepts",
-    meta: "Syllabus overview · Self-reading notes",
-    icon: "ƒ",
-    color: "gold",
-  },
-  {
-    title: "Partial Derivatives",
-    description:
-      "Limits, continuity, gradients, tangent planes, differentials, and optimization for functions of several variables.",
-    path: "/partial-derivatives/1",
-    meta: "2 parts · MCQ practice · Formula review",
-    icon: "∂",
-    color: "teal",
-  },
-  {
-    title: "Vector Calculus",
-    description:
-      "Vector-valued functions, line integrals, conservative fields, Green's theorem, surfaces, and surface area.",
-    path: "/vector-calculus/1",
-    meta: "2 parts · Worked examples · Quick reference",
-    icon: "∇",
-    color: "blue",
-  },
-{
-    title: "Limits & Continuity",
-    description:
-      "Multivariable limits, path-dependence, the squeeze theorem, and continuity for functions of two or more variables.",
-    path: "/limits-continuity/1",
-    meta: "2 parts · MCQ practice · Path analysis",
-    icon: "lim",
-    color: "purple",
-  },
-
-  {
-  title: "Multiple Integrals",
-  description:
-    "Double and triple integrals, Fubini's theorem, changing order of integration, polar and cylindrical coordinates.",
-  path: "/multiple-integrals/1",
-  meta: "2 parts · MCQ practice · Worked integrals",
-  icon: "\u222c",
-  color: "teal",
-},
-  {
-    title: "Taylor Series",
-    description:
-      "Local linear and higher-order approximations, Maclaurin catalogs, convergence, and error bounds.",
-    path: "/taylor-series/1",
-    meta: "2 parts · MCQ practice · Formula review",
-    icon: "Σ",
-    color: "gold",
-  },
-  {
-    title: "Lagrange Multipliers",
-    description:
-      "Constrained optimization via gradient alignment, dual constraints, and worked applications.",
-    path: "/lagrange-multipliers/1",
-    meta: "2 parts · MCQ practice · Applications",
-    icon: "λ",
-    color: "purple",
-  },
-  {
-    title: "Divergence & Curl",
-    description:
-      "Vector field operators, identities, the divergence theorem, and Stokes connections.",
-    path: "/divergence-curl/1",
-    meta: "2 parts · Theorems · MCQ practice",
-    icon: "∇·",
-    color: "blue",
-  },
-  {
-    title: "Stokes' Theorem",
-    description:
-      "Circulation, oriented surfaces, and Stokes applications (linked with Divergence & Curl).",
-    path: "/stokes-theorem/1",
-    meta: "Study guide · Theorem applications",
-    icon: "∮",
-    color: "teal",
-  },
-  {
-    title: "Practice Section",
-    description:
-      "Focused MCQ arena across Lagrange, divergence, Stokes, Taylor, and related modules.",
-    path: "/practice",
-    meta: "Interactive · Difficulty tiers",
-    icon: "✎",
-    color: "gold",
-  },
-];
+const guideCards = COURSES.map((c) => ({
+  title: c.title,
+  description: c.description,
+  path: c.path,
+  meta: c.meta,
+  icon: c.icon,
+  color: c.color,
+}));
 
 const toolLinks = [
   {
@@ -157,6 +37,24 @@ const toolLinks = [
     path: "/ai-solver",
     icon: "🤖",
     desc: "Neural solver for derivatives, integrals, gradients and more",
+  },
+  {
+    label: "Cheat Sheet",
+    path: "/cheatsheet",
+    icon: "∑",
+    desc: "Formula reference across calculus topics",
+  },
+  {
+    label: "Practice Arena",
+    path: "/practice",
+    icon: "✎",
+    desc: "MCQ drills with Submit to Leaderboard",
+  },
+  {
+    label: "Leaderboard",
+    path: "/leaderboard",
+    icon: "🏆",
+    desc: "Opt-in peer rankings and quiz scores",
   },
 ];
 

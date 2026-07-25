@@ -296,7 +296,9 @@ function setupMcqs(root, { publishQuizToLeaderboard, saveQuizScore, setLeaderboa
   });
 
   const updateScoreDisplay = (section) => {
-    const el = root.querySelector(`#score${section}`);
+    const el =
+      root.querySelector(`#score${section}`) ||
+      root.querySelector(`#score-${section}`);
     if (el) el.textContent = `${scores[section] || 0} / ${totals[section] || 0}`;
   };
 

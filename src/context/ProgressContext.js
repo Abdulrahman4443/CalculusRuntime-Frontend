@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
 import { useAuth } from "./AuthContext";
 
 const ProgressContext = createContext(null);
@@ -74,10 +74,13 @@ export function ProgressProvider({ children }) {
   const { user } = useAuth();
   const [progress, setProgress] = useState(() => loadProgress(user?.username));
   const [isHydrated, setIsHydrated] = useState(false);
+  // Last intentional opt-in write — prevents a slow GET /progress from clobbering it.
+  const leaderboardWriteRef = useRef(null);
 
   useEffect(() => {
     setProgress(loadProgress(user?.username));
     setIsHydrated(false);
+    leaderboardWriteRef.current = null;
   }, [user?.username]);
 
   const persist = useCallback(
@@ -123,17 +126,23 @@ export function ProgressProvider({ children }) {
 
         setProgress((prev) => {
           const server = normalizeProgressPayload(payload);
+          const write = leaderboardWriteRef.current;
+          const writeIsFresh = write && Date.now() - write.at < 15000;
+
+          let mergedOptIn;
+          if (writeIsFresh) {
+            mergedOptIn = Boolean(write.value);
+          } else if (server.leaderboardOptIn !== undefined) {
+            mergedOptIn = Boolean(server.leaderboardOptIn);
+          } else {
+            mergedOptIn = Boolean(prev.leaderboardOptIn);
+          }
+
           const next = {
             ...prev,
             ...server,
-            // Never wipe local quiz scores that haven't synced yet.
             quizScores: mergeQuizScores(prev.quizScores, server.quizScores),
-            // Keep local opt-in if the API omitted the field.
-            leaderboardOptIn:
-              server.leaderboardOptIn !== undefined
-                ? server.leaderboardOptIn
-                : Boolean(prev.leaderboardOptIn),
-            // Preserve client-only fields the API snapshot may omit.
+            leaderboardOptIn: mergedOptIn,
             solverHistory: prev.solverHistory?.length
               ? prev.solverHistory
               : server.solverHistory || [],
@@ -148,6 +157,30 @@ export function ProgressProvider({ children }) {
           persist(next);
           return next;
         });
+
+        // Fresh local opt-in true + snapshot still false → re-push to server.
+        const write = leaderboardWriteRef.current;
+        if (
+          write?.value === true &&
+          Date.now() - write.at < 15000 &&
+          payload &&
+          Object.prototype.hasOwnProperty.call(payload, "leaderboardOptIn") &&
+          !payload.leaderboardOptIn &&
+          user?.accessToken
+        ) {
+          try {
+            await fetch(`${API_URL}/api/progress/leaderboard`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.accessToken}`,
+              },
+              body: JSON.stringify({ opt_in: true }),
+            });
+          } catch {
+            // Keep local opt-in; next visit can retry.
+          }
+        }
       } catch {
         if (!cancelled) {
           setProgress((prev) => ({
@@ -320,6 +353,7 @@ export function ProgressProvider({ children }) {
   const setLeaderboardOptIn = useCallback(
     async (optIn) => {
       const value = Boolean(optIn);
+      leaderboardWriteRef.current = { value, at: Date.now() };
       setProgress((prev) => {
         const next = {
           ...prev,
@@ -333,13 +367,28 @@ export function ProgressProvider({ children }) {
       if (!headers) return;
 
       try {
-        await fetch(`${API_URL}/api/progress/leaderboard`, {
+        const response = await fetch(`${API_URL}/api/progress/leaderboard`, {
           method: "POST",
           headers,
           body: JSON.stringify({ opt_in: value }),
         });
+        if (!response.ok) {
+          throw new Error(`opt-in failed (${response.status})`);
+        }
+        const data = await response.json().catch(() => ({}));
+        if (typeof data.leaderboardOptIn === "boolean") {
+          leaderboardWriteRef.current = {
+            value: data.leaderboardOptIn,
+            at: Date.now(),
+          };
+          setProgress((prev) => {
+            const next = { ...prev, leaderboardOptIn: data.leaderboardOptIn };
+            persist(next);
+            return next;
+          });
+        }
       } catch {
-        // Opt-in remains local until the backend accepts it.
+        // Keep the optimistic local value; user can retry via the toggle.
       }
     },
     [authHeaders, persist]
@@ -348,6 +397,7 @@ export function ProgressProvider({ children }) {
   /** Atomically save a quiz score and opt into the leaderboard (avoids setState races). */
   const publishQuizToLeaderboard = useCallback(
     async (quizId, score, total) => {
+      leaderboardWriteRef.current = { value: true, at: Date.now() };
       setProgress((prev) => {
         const existing = prev.quizScores[quizId];
         const quizScores =
@@ -367,7 +417,7 @@ export function ProgressProvider({ children }) {
       if (!headers) return;
 
       try {
-        await Promise.all([
+        const [quizRes, optRes] = await Promise.all([
           fetch(`${API_URL}/api/quiz/`, {
             method: "POST",
             headers,
@@ -379,6 +429,26 @@ export function ProgressProvider({ children }) {
             body: JSON.stringify({ opt_in: true }),
           }),
         ]);
+
+        // Retry opt-in once if the first attempt failed (common under racey GET).
+        if (!optRes.ok) {
+          await fetch(`${API_URL}/api/progress/leaderboard`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ opt_in: true }),
+          });
+        }
+
+        if (!quizRes.ok && !optRes.ok) {
+          throw new Error("Could not publish quiz to leaderboard");
+        }
+
+        leaderboardWriteRef.current = { value: true, at: Date.now() };
+        setProgress((prev) => {
+          const next = { ...prev, leaderboardOptIn: true };
+          persist(next);
+          return next;
+        });
       } catch {
         // Local progress already updated.
       }
@@ -387,7 +457,7 @@ export function ProgressProvider({ children }) {
   );
 
   const stats = {
-    totalSections: 12,
+    totalSections: 20,
     completedCount: Object.keys(progress.completedSections).length,
     bookmarkCount: progress.bookmarks.length,
     quizzesTaken: Object.keys(progress.quizScores).length,

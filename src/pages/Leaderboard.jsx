@@ -76,6 +76,22 @@ export default function Leaderboard() {
   const { progress, stats, setLeaderboardOptIn } = useProgress();
   const optedIn = Boolean(progress.leaderboardOptIn);
   const [peers, setPeers] = useState([]);
+  const [peersError, setPeersError] = useState("");
+
+  const loadPeers = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/progress/leaderboard`);
+      if (!response.ok) {
+        setPeersError("Could not load peer rankings.");
+        return;
+      }
+      const data = await response.json();
+      setPeers(Array.isArray(data.entries) ? data.entries : []);
+      setPeersError("");
+    } catch {
+      setPeersError("Could not reach the backend for peer rankings.");
+    }
+  };
 
   // Anonymized entries for every opted-in user, fetched from the backend.
   useEffect(() => {
@@ -83,17 +99,22 @@ export default function Leaderboard() {
     (async () => {
       try {
         const response = await fetch(`${API_URL}/api/progress/leaderboard`);
-        if (!response.ok) return;
+        if (!response.ok || cancelled) return;
         const data = await response.json();
-        if (!cancelled) setPeers(Array.isArray(data.entries) ? data.entries : []);
+        if (!cancelled) {
+          setPeers(Array.isArray(data.entries) ? data.entries : []);
+          setPeersError("");
+        }
       } catch {
-        // Backend unreachable — fall back to showing only local stats.
+        if (!cancelled) {
+          setPeersError("Could not reach the backend for peer rankings.");
+        }
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [optedIn]);
+  }, [optedIn, progress.quizScores, stats.completedCount]);
 
   const youStats = useMemo(() => {
     const topics = stats.completedCount || 0;
@@ -108,36 +129,56 @@ export default function Leaderboard() {
   }, [progress.quizScores, stats.completedCount, user?.username]);
 
   const quizCount = Object.keys(progress.quizScores || {}).length;
-  const hasProgress = youStats.topics > 0 || quizCount > 0;
+
+  const sameUser = (peer) => {
+    if (!user) return false;
+    if (user.id != null && peer.userId != null) {
+      return Number(peer.userId) === Number(user.id);
+    }
+    if (user.username && peer.label) {
+      return String(peer.label).toLowerCase() === String(user.username).toLowerCase();
+    }
+    return false;
+  };
 
   // Other users from the backend (your own server entry is replaced by
   // fresher local stats below).
   const peerRows = useMemo(
     () =>
       peers
-        .filter((p) => !user?.id || p.userId !== user.id)
+        .filter((p) => !sameUser(p))
         .map((p) => ({
           id: `user-${p.userId}`,
-          label: p.label,
+          label: p.label || "Learner",
           topics: Number(p.topics) || 0,
           quizPct: Number(p.quizPct) || 0,
           quizCount: Number(p.quizCount) || 0,
           isYou: false,
         })),
-    [peers, user?.id],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [peers, user?.id, user?.username],
   );
 
   const topicRows = useMemo(() => {
     const rows = [...peerRows];
-    if (optedIn && hasProgress) rows.push(youStats);
-    return rows.sort((a, b) => b.topics - a.topics);
-  }, [peerRows, optedIn, hasProgress, youStats]);
+    // Always show your row when opted in so the username is visible.
+    if (optedIn && user) rows.push(youStats);
+    return rows.sort((a, b) => b.topics - a.topics || a.label.localeCompare(b.label));
+  }, [peerRows, optedIn, user, youStats]);
 
   const quizRows = useMemo(() => {
     const rows = peerRows.filter((p) => p.quizCount > 0);
-    if (optedIn && quizCount > 0) rows.push(youStats);
-    return rows.sort((a, b) => b.quizPct - a.quizPct);
-  }, [peerRows, optedIn, quizCount, youStats]);
+    if (optedIn && user && quizCount > 0) rows.push(youStats);
+    return rows.sort((a, b) => b.quizPct - a.quizPct || a.label.localeCompare(b.label));
+  }, [peerRows, optedIn, user, quizCount, youStats]);
+
+  const handleToggle = async (checked) => {
+    await setLeaderboardOptIn(checked);
+    // Give the backend a moment, then refresh peer list so you appear.
+    setTimeout(() => {
+      loadPeers();
+    }, 300);
+  };
 
   return (
     <main className="lb-page">
@@ -147,7 +188,7 @@ export default function Leaderboard() {
         <p className="lb-lead">
           Ranking from real quiz scores and completed topics across all
           learners. Submit a quiz from Practice or any study-guide quiz to
-          appear here.
+          appear here under your username.
         </p>
       </header>
 
@@ -156,7 +197,8 @@ export default function Leaderboard() {
           <h2>Share your progress?</h2>
           <p>
             When enabled, your topic completion and quiz averages appear here
-            under your username. Turn this off anytime.
+            under your username ({user?.username || "sign in required"}). Turn
+            this off anytime.
           </p>
           {!user && (
             <p className="lb-note">
@@ -164,19 +206,21 @@ export default function Leaderboard() {
               with your progress.
             </p>
           )}
-          {quizCount === 0 && (
+          {user && quizCount === 0 && (
             <p className="lb-note">
-              No quiz scores yet. Finish a quiz and tap{" "}
-              <strong>Submit to Leaderboard</strong>, or try{" "}
+              No quiz scores yet — your name can still appear for topics. Finish
+              a quiz and tap <strong>Submit to Leaderboard</strong>, or try{" "}
               <Link to="/practice">Practice</Link>.
             </p>
           )}
+          {peersError ? <p className="lb-note">{peersError}</p> : null}
         </div>
         <label className="lb-toggle">
           <input
             type="checkbox"
             checked={optedIn}
-            onChange={(e) => setLeaderboardOptIn(e.target.checked)}
+            onChange={(e) => handleToggle(e.target.checked)}
+            disabled={!user}
             aria-label="Opt in to the leaderboard"
           />
           <span className="lb-toggle__ui" aria-hidden="true" />
@@ -186,7 +230,16 @@ export default function Leaderboard() {
         </label>
       </section>
 
-      {topicRows.length === 0 && quizRows.length === 0 ? (
+      {!user ? (
+        <div className="lb-empty" role="status">
+          <h2>Sign in required</h2>
+          <p>
+            <Link to="/login">Sign in</Link> or{" "}
+            <Link to="/signup">create an account</Link> so your username and
+            scores can appear on the leaderboard.
+          </p>
+        </div>
+      ) : topicRows.length === 0 && quizRows.length === 0 ? (
         !optedIn ? (
           <div className="lb-empty" role="status">
             <h2>Leaderboard hidden</h2>
@@ -202,7 +255,8 @@ export default function Leaderboard() {
             <h2>No progress yet</h2>
             <p>
               Complete a study-guide section or submit a quiz score — then your
-              real stats will show here. There is no placeholder peer data.
+              stats will show here next to your username{" "}
+              <strong>{user.username}</strong>.
             </p>
           </div>
         )

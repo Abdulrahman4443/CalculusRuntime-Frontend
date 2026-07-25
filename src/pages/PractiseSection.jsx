@@ -764,6 +764,229 @@ const PRACTICE_PROBLEMS = [
     question: 'Evaluate ∫_0^1 ∫_0^{1-x} (x+y) dy dx.',
     options: ['1/6', '1/3', '1/2', '1'],
     correctAnswer: 0, explanation: 'Inner: [xy + y²/2]_0^{1-x} = x(1-x)+(1-x)²/2; integrate in x to get 1/6.'
+  },
+
+  // ==========================================
+  // Linear Algebra (36 problems, 4 topics × 3 difficulties × 3)
+  // ==========================================
+  {
+    id: 121, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: 'The vector (2, −1, 4) belongs to which space?',
+    options: ['R²', 'R³', 'R⁴'],
+    correctAnswer: 1, explanation: 'Three components means a vector in R³.'
+  },
+  {
+    id: 122, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: 'What is ||(3, 4)||?',
+    options: ['5', '7', '12'],
+    correctAnswer: 0, explanation: '√(9+16)=√25=5.'
+  },
+  {
+    id: 123, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: '(1, 0) · (0, 1) equals:',
+    options: ['1', '0', '√2'],
+    correctAnswer: 1, explanation: 'Standard basis vectors are orthogonal.'
+  },
+  {
+    id: 124, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'The span of a single nonzero vector v in R² is:',
+    options: ['All of R²', 'A line through the origin', 'Only {0}'],
+    correctAnswer: 1, explanation: 'Scalar multiples of v fill that line.'
+  },
+  {
+    id: 125, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'Any set containing the zero vector is:',
+    options: ['Linearly independent', 'Linearly dependent', 'A basis of Rⁿ'],
+    correctAnswer: 1, explanation: '1·0 + 0·v₂ + … = 0 is a nontrivial relation.'
+  },
+  {
+    id: 126, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'dim(R³) equals:',
+    options: ['2', '3', '∞'],
+    correctAnswer: 1, explanation: 'The standard basis has three vectors.'
+  },
+  {
+    id: 127, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'Four vectors in R³ must be:',
+    options: ['Independent', 'Dependent', 'Orthogonal'],
+    correctAnswer: 1, explanation: 'More than dim(V) vectors in V are dependent.'
+  },
+  {
+    id: 128, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'Columns of an invertible n×n matrix form:',
+    options: ['A dependent set', 'A basis of Rⁿ', 'Only the zero space'],
+    correctAnswer: 1, explanation: 'Invertibility ⇔ columns form a basis.'
+  },
+  {
+    id: 129, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'If {v₁, v₂, v₃} is a basis of R³ and w is in R³, then w:',
+    options: ['Cannot be written using the vᵢ', 'Has a unique expansion in the vᵢ', 'Must equal v₁'],
+    correctAnswer: 1, explanation: 'Basis ⇒ unique coordinates.'
+  },
+
+  {
+    id: 130, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'A 3×2 matrix represents a map:',
+    options: ['R³ → R²', 'R² → R³', 'R³ → R³'],
+    correctAnswer: 1, explanation: 'm×n maps Rⁿ → Rᵐ.'
+  },
+  {
+    id: 131, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'det([[1,2],[3,4]]) equals:',
+    options: ['−2', '2', '10'],
+    correctAnswer: 0, explanation: '1·4 − 2·3 = −2.'
+  },
+  {
+    id: 132, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'The identity matrix I satisfies:',
+    options: ['AI = A for compatible A', 'AI = 0', 'det I = 0'],
+    correctAnswer: 0, explanation: 'I is the multiplicative identity.'
+  },
+  {
+    id: 133, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: 'det(AB) equals:',
+    options: ['det A + det B', '(det A)(det B)', 'det(A + B)'],
+    correctAnswer: 1, explanation: 'Determinants multiply under products.'
+  },
+  {
+    id: 134, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: 'If det A = 0 then A is:',
+    options: ['Invertible', 'Singular', 'Orthogonal'],
+    correctAnswer: 1, explanation: 'Zero determinant ⇔ not invertible.'
+  },
+  {
+    id: 135, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: '(AB)ᵀ equals:',
+    options: ['AᵀBᵀ', 'BᵀAᵀ', 'AB'],
+    correctAnswer: 1, explanation: 'Transpose reverses order.'
+  },
+  {
+    id: 136, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: '(AB)⁻¹ equals (when invertible):',
+    options: ['A⁻¹B⁻¹', 'B⁻¹A⁻¹', 'AB'],
+    correctAnswer: 1, explanation: 'Inverse reverses product order.'
+  },
+  {
+    id: 137, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: 'Can you multiply a 2×3 matrix by a 2×2 matrix (in that order)?',
+    options: ['Yes', 'No', 'Only if symmetric'],
+    correctAnswer: 1, explanation: 'Inner dimensions 3 ≠ 2.'
+  },
+  {
+    id: 138, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: 'If Ax = b has a unique solution for every b, then A is:',
+    options: ['Singular', 'Invertible', 'Nilpotent'],
+    correctAnswer: 1, explanation: 'Unique solution for all b ⇔ invertible.'
+  },
+
+  {
+    id: 139, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'A linear system over R can have how many solutions?',
+    options: ['Only one', 'Zero, one, or infinitely many', 'Always infinitely many'],
+    correctAnswer: 1, explanation: 'Those are the only three possibilities.'
+  },
+  {
+    id: 140, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'The homogeneous system Ax = 0 always:',
+    options: ['Has no solution', 'Has at least the zero solution', 'Has a unique nonzero solution'],
+    correctAnswer: 1, explanation: 'A0 = 0 always.'
+  },
+  {
+    id: 141, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'Elementary row operations:',
+    options: ['Change the solution set', 'Preserve the solution set', 'Always create inconsistency'],
+    correctAnswer: 1, explanation: 'They produce equivalent systems.'
+  },
+  {
+    id: 142, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'Rank equals the number of:',
+    options: ['Rows always', 'Pivots after reduction', 'Columns always'],
+    correctAnswer: 1, explanation: 'Rank = number of pivots.'
+  },
+  {
+    id: 143, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'A free variable corresponds to a:',
+    options: ['Pivot column', 'Non-pivot column', 'RHS only'],
+    correctAnswer: 1, explanation: 'Non-pivot columns mark free parameters.'
+  },
+  {
+    id: 144, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'If rank(A) < rank([A|b]), the system is:',
+    options: ['Consistent', 'Inconsistent', 'Homogeneous'],
+    correctAnswer: 1, explanation: 'Augmented rank higher means a contradiction like 0 = 1.'
+  },
+  {
+    id: 145, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'A consistent 3×3 system with rank 2 has:',
+    options: ['A unique solution', 'One free variable', 'No solution'],
+    correctAnswer: 1, explanation: 'Free vars = n − r = 1.'
+  },
+  {
+    id: 146, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'If x_p solves Ax = b and v ∈ Nul(A), then x_p + v:',
+    options: ['Fails to solve Ax = b', 'Also solves Ax = b', 'Solves Ax = 0 only'],
+    correctAnswer: 1, explanation: 'A(x_p + v) = b + 0 = b.'
+  },
+  {
+    id: 147, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'Two non-parallel planes in R³ typically intersect in a:',
+    options: ['Point', 'Line', 'Ball'],
+    correctAnswer: 1, explanation: 'Generic intersection of two planes is a line.'
+  },
+
+  {
+    id: 148, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'An eigenvector must be:',
+    options: ['The zero vector', 'Nonzero', 'A matrix'],
+    correctAnswer: 1, explanation: 'By definition eigenvectors are nonzero.'
+  },
+  {
+    id: 149, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'If Av = 3v for v ≠ 0, then 3 is:',
+    options: ['Only a singular value', 'An eigenvalue', 'det(A)'],
+    correctAnswer: 1, explanation: 'That is the definition of eigenvalue 3.'
+  },
+  {
+    id: 150, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'Av = λv rearranges to:',
+    options: ['(A − λI)v = 0', '(A + λI)v = I', 'A⁻¹v = λ'],
+    correctAnswer: 0, explanation: 'Bring terms together: Av − λv = 0.'
+  },
+  {
+    id: 151, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Eigenvalues are roots of:',
+    options: ['det A', 'det(A − λI)', 'Trace only'],
+    correctAnswer: 1, explanation: 'Characteristic equation det(A − λI) = 0.'
+  },
+  {
+    id: 152, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Geometric multiplicity is:',
+    options: ['Number of rows', 'Dimension of the eigenspace', 'Always n'],
+    correctAnswer: 1, explanation: 'Geo. mult. = dim{v : Av = λv}.'
+  },
+  {
+    id: 153, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Trace of a square matrix equals:',
+    options: ['Product of eigenvalues', 'Sum of eigenvalues', 'Only det(A)'],
+    correctAnswer: 1, explanation: 'Trace = sum of eigenvalues (with multiplicity).'
+  },
+  {
+    id: 154, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'In A = PDP⁻¹, columns of P are:',
+    options: ['Rows of A', 'Eigenvectors of A', 'Only zeros'],
+    correctAnswer: 1, explanation: 'Independent eigenvectors form P.'
+  },
+  {
+    id: 155, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'If A has n distinct eigenvalues, then A is:',
+    options: ['Never diagonalizable', 'Diagonalizable', 'Singular'],
+    correctAnswer: 1, explanation: 'Distinct eigenvalues give independent eigenvectors.'
+  },
+  {
+    id: 156, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'For diagonalizable A = PDP⁻¹, Aᵏ equals:',
+    options: ['P Dᵏ P⁻¹', 'Pᵏ D P⁻¹', 'Dᵏ only'],
+    correctAnswer: 0, explanation: 'Powers act on the diagonal factor.'
   }
 ];
 
@@ -777,7 +1000,11 @@ const TOPICS = [
   'Partial Derivatives',
   'Vector Calculus',
   'Limits and Continuity',
-  'Multiple Integrals'
+  'Multiple Integrals',
+  'Vectors & Vector Spaces',
+  'Matrices & Determinants',
+  'Systems of Linear Equations',
+  'Eigenvalues & Eigenvectors',
 ];
 
 export default function PractiseSection() {
