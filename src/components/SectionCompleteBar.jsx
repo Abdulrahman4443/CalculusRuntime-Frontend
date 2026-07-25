@@ -31,11 +31,12 @@ function SectionCompleteBar({ sectionId, nextPath, nextLabel }) {
         <span>
           <Link to="/signup">Create a free account</Link> to track your progress.
         </span>
-        {nextPath && (
+        {nextPath ? (
           <Link to={nextPath} className="scb-next">
-            {nextLabel || "Next"} →
+            {nextLabel || "Continue to next section"}
+            <span aria-hidden="true"> →</span>
           </Link>
-        )}
+        ) : null}
       </div>
     );
   }
@@ -55,11 +56,12 @@ function SectionCompleteBar({ sectionId, nextPath, nextLabel }) {
         </button>
       )}
       {error ? <span className="scb-error">{error}</span> : null}
-      {nextPath && (
+      {nextPath ? (
         <Link to={nextPath} className="scb-next">
-          {nextLabel || "Next"} →
+          {nextLabel || "Continue to next section"}
+          <span aria-hidden="true"> →</span>
         </Link>
-      )}
+      ) : null}
     </div>
   );
 }

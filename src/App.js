@@ -42,6 +42,17 @@ import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
 import Chatbot from "./components/Chatbot/Chatbot";
+import TopicPlaceholder from "./pages/TopicPlaceholder";
+import {
+  VectorsPart1,
+  VectorsPart2,
+  MatricesPart1,
+  MatricesPart2,
+  SystemsPart1,
+  SystemsPart2,
+  EigenPart1,
+  EigenPart2,
+} from "./pages/linearAlgebra/LaParts";
 
 function App() {
   return (
@@ -110,6 +121,23 @@ function App() {
               <Route path="/divergence-curl"   element={<Navigate to="/divergence-curl/1" replace />} />
               <Route path="/divergence-curl/1" element={<Layout body={<DivergencePart1 />} />} />
               <Route path="/divergence-curl/2" element={<Layout body={<DivergencePart2 />} />} />
+
+              {/* Linear Algebra */}
+              <Route path="/linear-algebra/vectors"   element={<Navigate to="/linear-algebra/vectors/1" replace />} />
+              <Route path="/linear-algebra/vectors/1" element={<Layout body={<VectorsPart1 />} />} />
+              <Route path="/linear-algebra/vectors/2" element={<Layout body={<VectorsPart2 />} />} />
+              <Route path="/linear-algebra/matrices"   element={<Navigate to="/linear-algebra/matrices/1" replace />} />
+              <Route path="/linear-algebra/matrices/1" element={<Layout body={<MatricesPart1 />} />} />
+              <Route path="/linear-algebra/matrices/2" element={<Layout body={<MatricesPart2 />} />} />
+              <Route path="/linear-algebra/systems"   element={<Navigate to="/linear-algebra/systems/1" replace />} />
+              <Route path="/linear-algebra/systems/1" element={<Layout body={<SystemsPart1 />} />} />
+              <Route path="/linear-algebra/systems/2" element={<Layout body={<SystemsPart2 />} />} />
+              <Route path="/linear-algebra/eigen"   element={<Navigate to="/linear-algebra/eigen/1" replace />} />
+              <Route path="/linear-algebra/eigen/1" element={<Layout body={<EigenPart1 />} />} />
+              <Route path="/linear-algebra/eigen/2" element={<Layout body={<EigenPart2 />} />} />
+
+              {/* Probability & Statistics placeholders */}
+              <Route path="/probability-statistics/:slug" element={<Layout body={<TopicPlaceholder />} />} />
 
               {/* Tools */}
               <Route path="/test"                  element={<Layout body={<ContinuityFinder />} />} />

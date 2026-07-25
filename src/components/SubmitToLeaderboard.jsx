@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useProgress } from "../context/ProgressContext";
 
 /**
- * Objective 14 — appear after a quiz so learners can publish anonymized scores.
+ * Appear after a quiz so learners can publish scores under their username.
  */
 export default function SubmitToLeaderboard({
   quizId,
@@ -11,6 +12,7 @@ export default function SubmitToLeaderboard({
   total,
   className = "",
 }) {
+  const { user } = useAuth();
   const { publishQuizToLeaderboard, progress } = useProgress();
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
@@ -22,11 +24,15 @@ export default function SubmitToLeaderboard({
 
   const handleSubmit = async () => {
     if (busy) return;
+    if (!user?.accessToken) {
+      setStatus("Sign in first so your username can appear on the leaderboard.");
+      return;
+    }
     setBusy(true);
     try {
       await publishQuizToLeaderboard(quizId, score, total);
       setStatus(
-        `Submitted ${score}/${total} (${pct}%). You now appear on the leaderboard.`
+        `Submitted ${score}/${total} (${pct}%) as ${user.username}. You now appear on the leaderboard.`
       );
     } catch {
       setStatus("Could not reach the server. Your score was saved locally.");
@@ -58,9 +64,15 @@ export default function SubmitToLeaderboard({
         <p className="lb-submit__status" role="status">
           {status}
         </p>
+      ) : !user ? (
+        <p className="lb-submit__hint">
+          <Link to="/login">Sign in</Link> so your username and score appear on
+          the leaderboard.
+        </p>
       ) : (
         <p className="lb-submit__hint">
-          Publishes an anonymized quiz average. You can opt out anytime on the leaderboard page.
+          Publishes your quiz average as <strong>{user.username}</strong>. You
+          can opt out anytime on the leaderboard page.
         </p>
       )}
     </div>

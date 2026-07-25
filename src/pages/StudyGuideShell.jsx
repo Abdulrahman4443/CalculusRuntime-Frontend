@@ -102,9 +102,10 @@ const integrationStyles = `
 }
 
 .partial-derivatives-guide .ch-hdr {
+  /* Warm ink brown with gold pinstripes — matches Vector Calculus guide */
   background:
-    linear-gradient(135deg, rgba(15, 14, 13, 0.97), rgba(39, 53, 64, 0.97)),
-    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200, 146, 42, 0.06) 40px, rgba(200, 146, 42, 0.06) 41px);
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200, 146, 42, 0.06) 40px, rgba(200, 146, 42, 0.06) 41px),
+    #0f0e0d;
   border-bottom: 0;
   color: #faf7f2;
   margin-bottom: 0;
@@ -295,7 +296,9 @@ function setupMcqs(root, { publishQuizToLeaderboard, saveQuizScore, setLeaderboa
   });
 
   const updateScoreDisplay = (section) => {
-    const el = root.querySelector(`#score${section}`);
+    const el =
+      root.querySelector(`#score${section}`) ||
+      root.querySelector(`#score-${section}`);
     if (el) el.textContent = `${scores[section] || 0} / ${totals[section] || 0}`;
   };
 

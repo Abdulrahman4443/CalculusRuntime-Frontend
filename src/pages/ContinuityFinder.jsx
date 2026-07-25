@@ -436,25 +436,19 @@ const ContinuityFinder = () => {
         <div className="app-body">
             <style>{`
                 .app-body {
-                    --continuity-ink: #111317;
-                    --continuity-muted: #665f56;
-                    --continuity-paper: #fbf7ef;
-                    --continuity-card: #fffdf8;
-                    --continuity-line: #ded2bf;
-                    --continuity-teal: #2f746b;
-                    --continuity-blue: #314e73;
-                    --continuity-gold: #c28a2e;
-                    --continuity-plum: #6b4262;
+                    --continuity-ink: #16120a;
+                    --continuity-muted: #5c4f3a;
+                    --continuity-paper: #f4ede0;
+                    --continuity-card: #fdf8f0;
+                    --continuity-line: #d4c4a8;
+                    --continuity-teal: #a0720a;
+                    --continuity-blue: #8a6209;
+                    --continuity-gold: #c89318;
+                    --continuity-plum: #a0720a;
                     --continuity-soft: #f4eee5;
                     --continuity-shadow: 0 18px 52px rgba(28, 24, 18, 0.13);
                     --continuity-shadow-sm: 0 8px 24px rgba(28, 24, 18, 0.08);
-                    background:
-                        radial-gradient(circle at 84% 8%, rgba(107, 66, 98, 0.12), transparent 26rem),
-                        radial-gradient(circle at 8% 18%, rgba(47, 116, 107, 0.14), transparent 24rem),
-                        linear-gradient(90deg, rgba(49, 78, 115, 0.08) 1px, transparent 1px),
-                        linear-gradient(180deg, rgba(49, 78, 115, 0.06) 1px, transparent 1px),
-                        var(--continuity-paper);
-                    background-size: auto, auto, 44px 44px, 44px 44px, auto;
+                    background: var(--continuity-paper);
                     color: var(--continuity-ink);
                     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
                     min-height: 100vh;

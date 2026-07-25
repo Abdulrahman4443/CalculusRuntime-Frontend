@@ -138,7 +138,7 @@
 }
 
 [data-site-theme="partial"] .brand-mark {
-  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  background: linear-gradient(135deg, var(--gold-2), var(--gold)) !important;
   color: #16120a;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(160, 114, 10, 0.35);
@@ -298,6 +298,52 @@
   box-shadow: var(--shadow-sm);
 }
 
+[data-site-theme="partial"] .guide-card::before {
+  background: linear-gradient(180deg, var(--gold), var(--gold-2));
+}
+
+[data-site-theme="partial"] .guide-card::after {
+  background: rgba(160, 114, 10, 0.12);
+  border-color: rgba(160, 114, 10, 0.28);
+  color: var(--gold);
+}
+
+[data-site-theme="partial"] .guide-card:hover {
+  border-color: rgba(160, 114, 10, 0.45);
+}
+
+/* Home hero module panel — warm ink/brown, not cool grey */
+[data-site-theme="partial"] .hero-panel {
+  background:
+    linear-gradient(135deg, #16120a 0%, #2a2216 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 28px,
+      rgba(200, 146, 42, 0.07) 29px
+    );
+  border-color: rgba(200, 146, 42, 0.35);
+}
+
+[data-site-theme="partial"] .hero-panel::before {
+  background: linear-gradient(90deg, var(--gold), var(--gold-2), var(--gold));
+}
+
+[data-site-theme="partial"] .hero-panel::after {
+  border-color: rgba(244, 237, 224, 0.1);
+}
+
+[data-site-theme="partial"] .orbit-grid span {
+  background: rgba(244, 237, 224, 0.08);
+  border-color: rgba(200, 146, 42, 0.28);
+  color: #e8b84b;
+}
+
+[data-site-theme="partial"] .orbit-grid span:hover {
+  background: rgba(200, 146, 42, 0.16);
+  border-color: var(--gold);
+}
+
 [data-site-theme="partial"] .guide-card h3,
 [data-site-theme="partial"] .guide-section h2,
 [data-site-theme="partial"] .tool-strip h2,
@@ -326,10 +372,29 @@
   color: var(--ink);
 }
 
+[data-site-theme="partial"] .primary-action:hover,
+[data-site-theme="partial"] .secondary-action:hover {
+  background: var(--gold-2);
+  border-color: var(--gold-2);
+  color: #16120a;
+}
+
+[data-site-theme="partial"] .eyebrow,
+[data-site-theme="partial"] .section-kicker,
+[data-site-theme="partial"] .hero-progress-note {
+  color: var(--gold) !important;
+}
+
+[data-site-theme="partial"] .eyebrow::before,
+[data-site-theme="partial"] .section-kicker::before {
+  background: var(--gold);
+}
+
 /* Pages that reuse home-page markup (study plan, etc.) — flat guide paper,
    no teal/purple grid overlays from the home hero */
 [data-site-theme="partial"] .home-page {
-  background: var(--paper);
+  background: var(--paper) !important;
+  background-image: none !important;
   color: var(--ink);
 }
 
