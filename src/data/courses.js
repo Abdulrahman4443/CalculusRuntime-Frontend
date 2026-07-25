@@ -9,7 +9,7 @@ export const COURSES = [
     meta: "Foundations · Self-reading notes",
     icon: "ƒ",
     color: "gold",
-    modules: [
+   modules: [
       {
         title: "Simple Concepts",
         description: "Plain-language notes for dimensions, continuity, derivatives, and integrals.",
@@ -19,9 +19,16 @@ export const COURSES = [
       },
       {
         title: "Limits & Continuity",
-        description: "Limits, path-dependence, and continuity for functions of one or more variables.",
+        description: "Multivariable limits, path-dependence, and continuity.",
         path: "/limits-continuity/1",
         meta: "2 parts · Path analysis",
+        icon: "lim",
+      },
+      {
+        title: "Continuity Finder",
+        description: "Interactive tool for checking continuity conditions at a point or over an interval.",
+        path: "/test",
+        meta: "Interactive tool",
         icon: "lim",
       },
       {
@@ -29,6 +36,13 @@ export const COURSES = [
         description: "Local linear and higher-order approximations with Maclaurin catalogs and error bounds.",
         path: "/taylor-series/1",
         meta: "2 parts · MCQ practice",
+        icon: "Σ",
+      },
+      {
+        title: "TaylorX (Derivative Visualizer)",
+        description: "Interactive derivative visualizer that pairs with the Taylor Series guide.",
+        path: "/taylorx",
+        meta: "Interactive tool",
         icon: "Σ",
       },
     ],
