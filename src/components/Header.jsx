@@ -12,6 +12,7 @@ const navLinks = [
   { to: "/stokes-theorem/1",       label: "Stokes",      type: "Guide",     match: "/stokes-theorem" },
   { to: "/divergence-curl/1",      label: "Divergence",  type: "Guide",     match: "/divergence-curl" },
 
+  { to: "/simple-concepts",        label: "Concepts",    type: "Tool" },
   { to: "/extreme",                label: "Extrema",     type: "Tool" },
   { to: "/volumecalculator",       label: "Volume Calc", type: "Tool" },
   { to: "/ai-solver",              label: "AI Solver",   type: "Tool" },
