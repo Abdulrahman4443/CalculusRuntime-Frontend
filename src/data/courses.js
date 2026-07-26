@@ -11,13 +11,6 @@ export const COURSES = [
     color: "gold",
    modules: [
       {
-        title: "Simple Concepts",
-        description: "Plain-language notes for dimensions, continuity, derivatives, and integrals.",
-        path: "/simple-concepts",
-        meta: "Syllabus overview",
-        icon: "ƒ",
-      },
-      {
         title: "Limits & Continuity",
         description: "Multivariable limits, path-dependence, and continuity.",
         path: "/limits-continuity/1",
