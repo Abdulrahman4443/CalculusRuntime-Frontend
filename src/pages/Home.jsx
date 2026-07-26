@@ -15,6 +15,12 @@ const guideCards = COURSES.map((c) => ({
 
 const toolLinks = [
   {
+    label: "Simple Concepts",
+    path: "/simple-concepts",
+    icon: "ƒ",
+    desc: "Plain-language foundations before multivariable calculus",
+  },
+  {
     label: "Continuity Finder",
     path: "/test",
     icon: "≈",
