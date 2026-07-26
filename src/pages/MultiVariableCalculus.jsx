@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./GuidePart.css";
+import "./MultiVariableCalculus.css";
 
 const topics = [
   {
@@ -82,12 +83,14 @@ export default function MultiVariableCalculus() {
         {topics.map((guide) => (
           <div key={guide.path} className={`guide-card guide-card--${guide.color}`}>
             <div className="guide-card-icon">{guide.icon}</div>
-            <span>{guide.meta}</span>
+            <span className="guide-card-meta">{guide.meta}</span>
             <h3>{guide.title}</h3>
             <p>{guide.description}</p>
-            <Link to={guide.path} className="guide-card-button">
-              Open →
-            </Link>
+            <div className="card-button-wrapper">
+              <Link to={guide.path} className="single-card-button">
+                Open →
+              </Link>
+            </div>
           </div>
         ))}
       </div>
