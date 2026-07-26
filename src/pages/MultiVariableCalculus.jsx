@@ -72,7 +72,6 @@ const topics = [
 export default function MultiVariableCalculus() {
   return (
     <div className="guide-page">
-      {/* Explicitly kill all ghost pseudo-elements from GuidePart.css */}
       <style>{`
         .guide-card::after,
         .guide-card::before,
@@ -81,21 +80,24 @@ export default function MultiVariableCalculus() {
           content: none !important;
           display: none !important;
         }
+        .guide-card {
+          border-left: 4px solid #a3925c !important; /* Warm gold left accent */
+        }
         .clean-open-btn {
           display: inline-block !important;
           padding: 6px 16px !important;
           font-size: 0.85rem !important;
           font-weight: 600 !important;
-          color: #2d3748 !important;
-          background-color: #edf2f7 !important;
+          color: #81724a !important; /* Warm gold/brown text */
+          background-color: #f2eee3 !important; /* Warm cream background */
           border-radius: 20px !important;
-          border: 1px solid #cbd5e0 !important;
+          border: 1px solid #e3dbc7 !important; /* Matching soft border */
           text-decoration: none !important;
           transition: all 0.2s ease !important;
         }
         .clean-open-btn:hover {
-          background-color: #e2e8f0 !important;
-          color: #1a202c !important;
+          background-color: #e8e1d3 !important;
+          color: #6b5e3c !important;
         }
       `}</style>
 
