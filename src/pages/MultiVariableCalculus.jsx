@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./GuidePart.css"; // Project ki existing guide styles
+import "./GuidePart.css";
 
 const topics = [
   {
@@ -85,11 +85,9 @@ export default function MultiVariableCalculus() {
             <span>{guide.meta}</span>
             <h3>{guide.title}</h3>
             <p>{guide.description}</p>
-            <div style={{ marginTop: "auto", paddingTop: "15px", textAlign: "right" }}>
-              <Link to={guide.path} className="secondary-action" style={{ padding: "6px 16px", fontSize: "0.85rem" }}>
-                Open →
-              </Link>
-            </div>
+            <Link to={guide.path} className="guide-card-button">
+              Open →
+            </Link>
           </div>
         ))}
       </div>
