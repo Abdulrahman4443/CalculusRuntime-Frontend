@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./GuidePart.css"; // Project ki existing guide styles
+import "./GuidePart.css";
 
 const topics = [
   {
@@ -72,6 +72,33 @@ const topics = [
 export default function MultiVariableCalculus() {
   return (
     <div className="guide-page">
+      {/* Explicitly kill all ghost pseudo-elements from GuidePart.css */}
+      <style>{`
+        .guide-card::after,
+        .guide-card::before,
+        .guide-card *::after,
+        .guide-card *::before {
+          content: none !important;
+          display: none !important;
+        }
+        .clean-open-btn {
+          display: inline-block !important;
+          padding: 6px 16px !important;
+          font-size: 0.85rem !important;
+          font-weight: 600 !important;
+          color: #2d3748 !important;
+          background-color: #edf2f7 !important;
+          border-radius: 20px !important;
+          border: 1px solid #cbd5e0 !important;
+          text-decoration: none !important;
+          transition: all 0.2s ease !important;
+        }
+        .clean-open-btn:hover {
+          background-color: #e2e8f0 !important;
+          color: #1a202c !important;
+        }
+      `}</style>
+
       <div className="guide-hero">
         <p className="eyebrow">Course Path</p>
         <h1>Multi Variable Calculus</h1>
@@ -82,11 +109,11 @@ export default function MultiVariableCalculus() {
         {topics.map((guide) => (
           <div key={guide.path} className={`guide-card guide-card--${guide.color}`}>
             <div className="guide-card-icon">{guide.icon}</div>
-            <span>{guide.meta}</span>
+            <span className="guide-card-meta">{guide.meta}</span>
             <h3>{guide.title}</h3>
             <p>{guide.description}</p>
-            <div style={{ marginTop: "auto", paddingTop: "15px", textAlign: "right" }}>
-              <Link to={guide.path} className="secondary-action" style={{ padding: "6px 16px", fontSize: "0.85rem" }}>
+            <div style={{ marginTop: "auto", display: "flex", justifyContent: "flex-end", paddingTop: "12px" }}>
+              <Link to={guide.path} className="clean-open-btn">
                 Open →
               </Link>
             </div>
