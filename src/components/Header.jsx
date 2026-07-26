@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
 const navLinks = [
-
   { to: "/partial-derivatives/1",  label: "Partials",    type: "Guide",     match: "/partial-derivatives" },
   { to: "/vector-calculus/1",      label: "Vectors",     type: "Guide",     match: "/vector-calculus" },
   { to: "/multiple-integrals/1",   label: "Integrals",   type: "Guide",     match: "/multiple-integrals" },
@@ -12,13 +11,12 @@ const navLinks = [
   { to: "/stokes-theorem/1",       label: "Stokes",      type: "Guide",     match: "/stokes-theorem" },
   { to: "/divergence-curl/1",      label: "Divergence",  type: "Guide",     match: "/divergence-curl" },
 
+  // Global Tools & Workspaces
   { to: "/simple-concepts",        label: "Concepts",    type: "Tool" },
   { to: "/extreme",                label: "Extrema",     type: "Tool" },
   { to: "/volumecalculator",       label: "Volume Calc", type: "Tool" },
   { to: "/ai-solver",              label: "AI Solver",   type: "Tool" },
   { to: "/cheatsheet",             label: "Cheat Sheet", type: "Tool" },
-
-  
   { to: "/practice",               label: "Practice",    type: "Workspace" },
   { to: "/leaderboard",            label: "Leaderboard", type: "Workspace" },
 ];
