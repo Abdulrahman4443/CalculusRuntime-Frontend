@@ -457,7 +457,7 @@ export function ProgressProvider({ children }) {
   );
 
   const stats = {
-    totalSections: 20,
+    totalSections: 30,
     completedCount: Object.keys(progress.completedSections).length,
     bookmarkCount: progress.bookmarks.length,
     quizzesTaken: Object.keys(progress.quizScores).length,
