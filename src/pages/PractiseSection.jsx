@@ -987,7 +987,285 @@ const PRACTICE_PROBLEMS = [
     question: 'For diagonalizable A = PDP⁻¹, Aᵏ equals:',
     options: ['P Dᵏ P⁻¹', 'Pᵏ D P⁻¹', 'Dᵏ only'],
     correctAnswer: 0, explanation: 'Powers act on the diagonal factor.'
-  }
+  },
+
+  // ==========================================
+  // Probability & Statistics (45 problems, 5 topics × 3 difficulties × 3)
+  // ==========================================
+  {
+    id: 157, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'P(Ω) equals:',
+    options: ['1', '0', '1/2'],
+    correctAnswer: 0, explanation: 'The certain event has probability 1.'
+  },
+  {
+    id: 158, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'P(Aᶜ) equals:',
+    options: ['P(A)', '1 − P(A)', 'P(A)²'],
+    correctAnswer: 1, explanation: 'Complement rule.'
+  },
+  {
+    id: 159, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'For equally likely outcomes, P(A) is:',
+    options: ['|A| / |Ω|', '|Ω| / |A|', '|A| + |Ω|'],
+    correctAnswer: 0, explanation: 'Favorable over total.'
+  },
+  {
+    id: 160, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'P(A|B) equals:',
+    options: ['P(A)/P(B)', 'P(A∩B)/P(B)', 'P(A)P(B)'],
+    correctAnswer: 1, explanation: 'Definition of conditional probability.'
+  },
+  {
+    id: 161, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'If A and B are independent, P(A∩B) equals:',
+    options: ['P(A)+P(B)', 'P(A)P(B)', 'P(A|B)'],
+    correctAnswer: 1, explanation: 'Product rule under independence.'
+  },
+  {
+    id: 162, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'Bayes’ theorem updates:',
+    options: ['Priors into posteriors', 'Only means', 'Sample sizes'],
+    correctAnswer: 0, explanation: 'Evidence revises belief.'
+  },
+  {
+    id: 163, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'Disease rate 1%, sensitivity 99%, false positive 2%. After a positive test, P(disease) is closest to:',
+    options: ['99%', '33%', '1%'],
+    correctAnswer: 1, explanation: 'Bayes with total probability ≈ 0.33.'
+  },
+  {
+    id: 164, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'P(A∪B) always equals:',
+    options: ['P(A)+P(B)', 'P(A)+P(B)−P(A∩B)', 'P(A)P(B)'],
+    correctAnswer: 1, explanation: 'Inclusion–exclusion.'
+  },
+  {
+    id: 165, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'A partition for the law of total probability must:',
+    options: ['Overlap freely', 'Cover Ω with disjoint events', 'Be independent of A only'],
+    correctAnswer: 1, explanation: 'Disjoint exhaustive pieces.'
+  },
+
+  {
+    id: 166, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'A PMF must:',
+    options: ['Integrate to 1', 'Sum to 1', 'Be continuous'],
+    correctAnswer: 1, explanation: 'Discrete probabilities sum to 1.'
+  },
+  {
+    id: 167, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'Bernoulli RV takes values:',
+    options: ['Any real', '0 and 1', 'Only integers ≥ 2'],
+    correctAnswer: 1, explanation: 'Success/failure indicator.'
+  },
+  {
+    id: 168, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'For continuous X, P(X = c) is:',
+    options: ['f(c)', '0', '1'],
+    correctAnswer: 1, explanation: 'Points have zero area under a PDF.'
+  },
+  {
+    id: 169, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'E[aX + b] equals:',
+    options: ['aE[X] + b', 'aE[X]', 'E[X] + b'],
+    correctAnswer: 0, explanation: 'Affinity of expectation.'
+  },
+  {
+    id: 170, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'Var(X) equals:',
+    options: ['E[X]²', 'E[X²] − (E[X])²', '(E[X])² − E[X²]'],
+    correctAnswer: 1, explanation: 'Computational variance formula.'
+  },
+  {
+    id: 171, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'Binomial models:',
+    options: ['Waiting times only', 'Number of successes in n trials', 'Only continuous data'],
+    correctAnswer: 1, explanation: 'Fixed n Bernoulli trials.'
+  },
+  {
+    id: 172, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'Linearity of expectation requires independence:',
+    options: ['Always', 'Never (not required)', 'Only for normals'],
+    correctAnswer: 1, explanation: 'Linearity holds regardless of dependence.'
+  },
+  {
+    id: 173, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'Exponential distributions are famous for:',
+    options: ['Memorylessness', 'Being discrete', 'Negative density'],
+    correctAnswer: 0, explanation: 'Past wait does not change future odds.'
+  },
+  {
+    id: 174, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'N(μ, σ²) is determined by:',
+    options: ['Only μ', 'Mean and variance', 'Only the mode'],
+    correctAnswer: 1, explanation: 'Two-parameter family.'
+  },
+
+  {
+    id: 175, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Most outlier-resistant center:',
+    options: ['Mean', 'Median', 'Range'],
+    correctAnswer: 1, explanation: 'Median ignores extreme magnitude.'
+  },
+  {
+    id: 176, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Q₂ is the:',
+    options: ['Mean', 'Median', 'Mode'],
+    correctAnswer: 1, explanation: 'Second quartile = median.'
+  },
+  {
+    id: 177, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Sample mean divides the sum by:',
+    options: ['n − 1', 'n', '2n'],
+    correctAnswer: 1, explanation: 'x̄ = (Σ xᵢ)/n.'
+  },
+  {
+    id: 178, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'Right-skewed data tend to have:',
+    options: ['Mean < median', 'Mean > median', 'Mean = mode always'],
+    correctAnswer: 1, explanation: 'Long right tail pulls the mean up.'
+  },
+  {
+    id: 179, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'Sample variance usually divides by:',
+    options: ['n', 'n − 1', 'n + 1'],
+    correctAnswer: 1, explanation: 'Unbiased s² uses n − 1.'
+  },
+  {
+    id: 180, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'IQR equals:',
+    options: ['Q₃ − Q₁', 'Q₁ + Q₃', 'Max − min'],
+    correctAnswer: 0, explanation: 'Middle 50% width.'
+  },
+  {
+    id: 181, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'A z-score of 0 means the value equals:',
+    options: ['The maximum', 'The mean', 'The SD'],
+    correctAnswer: 1, explanation: 'z = (x − mean)/SD.'
+  },
+  {
+    id: 182, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'Best plot for outliers in one variable:',
+    options: ['Pie chart', 'Boxplot', 'Venn diagram'],
+    correctAnswer: 1, explanation: 'Boxplots flag points beyond fences.'
+  },
+  {
+    id: 183, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'Empirical rule: mean ± 2 SD covers about:',
+    options: ['68%', '95%', '50%'],
+    correctAnswer: 1, explanation: '68–95–99.7 rule.'
+  },
+
+  {
+    id: 184, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'H₀ usually represents:',
+    options: ['The research hope', 'The status-quo / no-effect claim', 'Always μ > 0'],
+    correctAnswer: 1, explanation: 'Null is the claim we challenge.'
+  },
+  {
+    id: 185, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'Significance level α is:',
+    options: ['Power', 'Allowed Type I error rate', 'Always 0.5'],
+    correctAnswer: 1, explanation: 'Long-run false positive rate under H₀.'
+  },
+  {
+    id: 186, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'A p-value is computed assuming:',
+    options: ['H₁ is true', 'H₀ is true', 'Neither'],
+    correctAnswer: 1, explanation: 'Null sampling distribution.'
+  },
+  {
+    id: 187, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'If p = 0.01 and α = 0.05, you:',
+    options: ['Fail to reject H₀', 'Reject H₀', 'Prove H₀'],
+    correctAnswer: 1, explanation: 'p ≤ α ⇒ reject.'
+  },
+  {
+    id: 188, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'SE of x̄ with known σ is:',
+    options: ['σ', 'σ/√n', 'σ n'],
+    correctAnswer: 1, explanation: 'Averaging reduces SD by √n.'
+  },
+  {
+    id: 189, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'df for one-sample t is:',
+    options: ['n', 'n − 1', 'n − 2'],
+    correctAnswer: 1, explanation: 'One mean parameter estimated.'
+  },
+  {
+    id: 190, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Type II error is:',
+    options: ['Reject true H₀', 'Fail to reject false H₀', 'Correct rejection'],
+    correctAnswer: 1, explanation: 'Missed detection.'
+  },
+  {
+    id: 191, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Power equals:',
+    options: ['α', '1 − β', 'β'],
+    correctAnswer: 1, explanation: 'Probability of correctly rejecting a false null.'
+  },
+  {
+    id: 192, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Increasing n typically:',
+    options: ['Lowers power', 'Raises power', 'Forces α = 0'],
+    correctAnswer: 1, explanation: 'More data sharpen the sampling distribution.'
+  },
+
+  {
+    id: 193, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'Range of Pearson r:',
+    options: ['[0, 1]', '[−1, 1]', '(−∞, ∞)'],
+    correctAnswer: 1, explanation: 'Bounded linear association measure.'
+  },
+  {
+    id: 194, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'r = 1 means:',
+    options: ['Random cloud', 'Perfect positive linear fit', 'Causation proven'],
+    correctAnswer: 1, explanation: 'All points on an upward line.'
+  },
+  {
+    id: 195, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'Residual equals:',
+    options: ['ŷ − y', 'y − ŷ', 'y − ȳ'],
+    correctAnswer: 1, explanation: 'Observed minus fitted.'
+  },
+  {
+    id: 196, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'Correlation proves causation:',
+    options: ['Always', 'Never by itself', 'When |r| > 0.5'],
+    correctAnswer: 1, explanation: 'Confounding remains possible.'
+  },
+  {
+    id: 197, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'Least squares minimizes:',
+    options: ['Sum of residuals', 'Sum of squared residuals', 'Only |eᵢ|'],
+    correctAnswer: 1, explanation: 'Squared vertical errors.'
+  },
+  {
+    id: 198, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'The fitted line always goes through:',
+    options: ['(0, 0)', '(x̄, ȳ)', '(1, 1)'],
+    correctAnswer: 1, explanation: 'Centroid property.'
+  },
+  {
+    id: 199, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'If r = 0 then the least-squares slope is:',
+    options: ['Infinite', '0', '1'],
+    correctAnswer: 1, explanation: 'b₁ = r s_y / s_x.'
+  },
+  {
+    id: 200, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'A curved residual plot suggests:',
+    options: ['Perfect fit', 'Nonlinear relationship', 'r must be 1'],
+    correctAnswer: 1, explanation: 'Linear model misses curvature.'
+  },
+  {
+    id: 201, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'Extrapolation is risky because:',
+    options: ['r becomes 2', 'The pattern may not continue outside the data range', 'Residuals become correlations'],
+    correctAnswer: 1, explanation: 'Model is local to observed x.'
+  },
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
@@ -1005,6 +1283,11 @@ const TOPICS = [
   'Matrices & Determinants',
   'Systems of Linear Equations',
   'Eigenvalues & Eigenvectors',
+  'Probability Basics',
+  'Random Variables & Distributions',
+  'Descriptive Statistics',
+  'Hypothesis Testing',
+  'Regression & Correlation',
 ];
 
 export default function PractiseSection() {

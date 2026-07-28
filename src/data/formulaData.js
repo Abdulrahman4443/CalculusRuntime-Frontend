@@ -369,6 +369,276 @@ const formulaData = {
       },
     ],
   },
+
+  "la-vectors": {
+    title: "LA · Vectors & Spaces",
+    color: "#5b8def",
+    formulas: [
+      {
+        name: "Dot Product",
+        formula: "u·v = |u||v| cos θ = Σ u_i v_i",
+        note: "Orthogonal when u·v = 0",
+      },
+      {
+        name: "Cross Product (R³)",
+        formula: "u×v = |u||v| sin θ n̂",
+        note: "Perpendicular to both u and v",
+      },
+      {
+        name: "Linear Independence",
+        formula: "c₁v₁ + … + cₖvₖ = 0 ⇒ all c_i = 0",
+        note: "Basis: independent + spanning set",
+      },
+      {
+        name: "Projection",
+        formula: "proj_v u = ((u·v)/(v·v)) v",
+        note: "Component of u along v",
+      },
+    ],
+  },
+
+  "la-matrices": {
+    title: "LA · Matrices",
+    color: "#3d8bfd",
+    formulas: [
+      {
+        name: "Matrix Multiplication",
+        formula: "(AB)_ij = Σ_k A_ik B_kj",
+        note: "Defined when columns(A) = rows(B)",
+      },
+      {
+        name: "Determinant 2×2",
+        formula: "det [[a,b],[c,d]] = ad − bc",
+        note: "Invertible iff det ≠ 0",
+      },
+      {
+        name: "Inverse 2×2",
+        formula: "A⁻¹ = (1/det A) [[d,−b],[−c,a]]",
+        note: "AA⁻¹ = I",
+      },
+      {
+        name: "Transpose",
+        formula: "(Aᵀ)_ij = A_ji",
+        note: "(AB)ᵀ = BᵀAᵀ",
+      },
+    ],
+  },
+
+  "la-systems": {
+    title: "LA · Linear Systems",
+    color: "#0d6efd",
+    formulas: [
+      {
+        name: "Matrix Form",
+        formula: "Ax = b",
+        note: "A is coefficient matrix, x unknowns",
+      },
+      {
+        name: "Consistency",
+        formula: "rank(A) = rank([A|b])",
+        note: "Unique solution if also = n (full column rank)",
+      },
+      {
+        name: "Row Reduction",
+        formula: "Elementary ops → RREF",
+        note: "Pivot columns = free/basic variables",
+      },
+      {
+        name: "Homogeneous",
+        formula: "Ax = 0 always consistent",
+        note: "Nontrivial solutions iff nullity > 0",
+      },
+    ],
+  },
+
+  "la-eigen": {
+    title: "LA · Eigenvalues",
+    color: "#084298",
+    formulas: [
+      {
+        name: "Eigen-equation",
+        formula: "Av = λv,  v ≠ 0",
+        note: "λ eigenvalue, v eigenvector",
+      },
+      {
+        name: "Characteristic Polynomial",
+        formula: "det(A − λI) = 0",
+        note: "Roots are eigenvalues",
+      },
+      {
+        name: "Diagonalization",
+        formula: "A = PDP⁻¹",
+        note: "Columns of P are independent eigenvectors",
+      },
+      {
+        name: "Trace / Det",
+        formula: "tr(A) = Σ λ_i,  det(A) = Π λ_i",
+        note: "Over algebraic multiplicities",
+      },
+    ],
+  },
+
+  "prob-basics": {
+    title: "Prob · Basics",
+    color: "#9b59b6",
+    formulas: [
+      {
+        name: "Probability Axioms",
+        formula: "0 ≤ P(A) ≤ 1,  P(Ω) = 1",
+        note: "Countable additivity for disjoint events",
+      },
+      {
+        name: "Complement",
+        formula: "P(Aᶜ) = 1 − P(A)",
+        note: "Useful for “at least one” problems",
+      },
+      {
+        name: "Conditional Probability",
+        formula: "P(A|B) = P(A∩B)/P(B)",
+        note: "Requires P(B) > 0",
+      },
+      {
+        name: "Bayes' Theorem",
+        formula: "P(A|B) = P(B|A)P(A)/P(B)",
+        note: "Update beliefs from evidence",
+      },
+    ],
+  },
+
+  "prob-random-vars": {
+    title: "Prob · Random Variables",
+    color: "#8e44ad",
+    formulas: [
+      {
+        name: "Expected Value (discrete)",
+        formula: "E[X] = Σ x P(X=x)",
+        note: "Long-run average value",
+      },
+      {
+        name: "Variance",
+        formula: "Var(X) = E[X²] − (E[X])²",
+        note: "Spread around the mean",
+      },
+      {
+        name: "PDF / CDF",
+        formula: "F(x) = P(X ≤ x) = ∫_{-∞}^x f(t) dt",
+        note: "Continuous case",
+      },
+      {
+        name: "Linearity",
+        formula: "E[aX+bY] = aE[X] + bE[Y]",
+        note: "Always true; independence not required",
+      },
+    ],
+  },
+
+  "prob-descriptive": {
+    title: "Stats · Descriptive",
+    color: "#6f42c1",
+    formulas: [
+      {
+        name: "Sample Mean",
+        formula: "x̄ = (1/n) Σ x_i",
+        note: "Center of the sample",
+      },
+      {
+        name: "Sample Variance",
+        formula: "s² = (1/(n−1)) Σ (x_i − x̄)²",
+        note: "Unbiased estimator",
+      },
+      {
+        name: "Standard Score",
+        formula: "z = (x − μ)/σ",
+        note: "Relative standing in units of σ",
+      },
+      {
+        name: "Median / Quartiles",
+        formula: "Q2 = median; IQR = Q3 − Q1",
+        note: "Robust to outliers vs mean",
+      },
+    ],
+  },
+
+  "prob-hypothesis": {
+    title: "Stats · Hypothesis Tests",
+    color: "#6610f2",
+    formulas: [
+      {
+        name: "Null vs Alternative",
+        formula: "H₀ vs H₁",
+        note: "Reject H₀ when evidence is strong",
+      },
+      {
+        name: "p-value",
+        formula: "P(data as extreme | H₀ true)",
+        note: "Small p ⇒ evidence against H₀",
+      },
+      {
+        name: "Type I / II Errors",
+        formula: "α = P(reject H₀ | true); β = P(fail to reject | false)",
+        note: "Power = 1 − β",
+      },
+      {
+        name: "z-test (mean)",
+        formula: "z = (x̄ − μ₀)/(σ/√n)",
+        note: "Known σ, large n or normal data",
+      },
+    ],
+  },
+
+  "prob-regression": {
+    title: "Stats · Regression",
+    color: "#520dc2",
+    formulas: [
+      {
+        name: "Correlation",
+        formula: "r = Cov(X,Y)/(s_X s_Y)",
+        note: "−1 ≤ r ≤ 1; linear association strength",
+      },
+      {
+        name: "Least Squares Line",
+        formula: "ŷ = b₀ + b₁x",
+        note: "Minimize Σ (y_i − ŷ_i)²",
+      },
+      {
+        name: "Slope",
+        formula: "b₁ = r (s_Y / s_X)",
+        note: "Also Cov(X,Y)/Var(X)",
+      },
+      {
+        name: "Residuals",
+        formula: "e_i = y_i − ŷ_i",
+        note: "Check patterns for model fit",
+      },
+    ],
+  },
+
+  "simple-concepts": {
+    title: "Simple Concepts",
+    color: "#a0720a",
+    formulas: [
+      {
+        name: "Differentiability (1D)",
+        formula: "f'(a) = lim_h→0 [f(a+h)−f(a)]/h",
+        note: "Local linear rate of change",
+      },
+      {
+        name: "Linearization",
+        formula: "L(x) = f(a) + f'(a)(x−a)",
+        note: "Best linear approx near a",
+      },
+      {
+        name: "Quadric (ellipsoid)",
+        formula: "x²/a² + y²/b² + z²/c² = 1",
+        note: "Bounded oval surface",
+      },
+      {
+        name: "Riemann Sum Idea",
+        formula: "Σ f(x_i*) Δx → ∫ f(x) dx",
+        note: "Area / accumulation from rectangles",
+      },
+    ],
+  },
 };
 
 export default formulaData;

@@ -28,11 +28,11 @@ const CURVE_RANGE = [-10, 10];
 const CURVE_POINTS = 500;
 
 const MODE_EXPLANATIONS = {
-  '2d': 'The blue curve is f, green is the derivative f′, and red is the Taylor polynomial. Near the center point, a higher-degree Taylor polynomial hugs the original function more closely.',
+  '2d': 'The gold curve is f, green is the derivative f′, and terracotta is the Taylor polynomial. Near the center point, a higher-degree Taylor polynomial hugs the original function more closely.',
   '3d': 'Each point on the surface shows z = f(x, y). Drag to rotate, scroll to zoom, and hover to read coordinates. Peaks and valleys reveal how the function changes in both directions.',
   contour: 'Contour lines connect points with equal height (level curves). Tighter spacing means a steeper slope. Colors show height — follow a single color band to stay at one level.',
   cross: 'Fixing y = c gives the slice z = f(x, c) (vary x). Fixing x = c gives z = f(c, y) (vary y). These curves show how the surface looks when you cut it with vertical planes.',
-  compare: 'Blue is the true surface; red is the Taylor approximation in the active variable. The approximation is most accurate near the expansion center — watch the red surface peel away farther out.',
+  compare: 'Gold is the true surface; terracotta is the Taylor approximation in the active variable. The approximation is most accurate near the expansion center — watch it peel away farther out.',
 };
 
 const IDLE_ASSISTANT = 'Hi, I’m TaylorX — your interactive instructor for derivatives, Taylor series, and multivariable surfaces. Pick an example or type your own function using mathjs syntax.';
@@ -56,9 +56,9 @@ function useDarkMode() {
 
 function getPlotTheme(isDark) {
   return {
-    text: isDark ? '#e2e8f0' : '#1e293b',
-    grid: isDark ? '#334155' : '#e2e8f0',
-    plotBg: isDark ? 'rgba(15,23,42,0.5)' : 'rgba(248,250,252,0.6)',
+    text: isDark ? '#f4ede0' : '#16120a',
+    grid: isDark ? '#3d3428' : '#d4c4a8',
+    plotBg: isDark ? 'rgba(18,16,12,0.5)' : 'rgba(253,248,240,0.65)',
     paperBg: 'transparent',
   };
 }
@@ -80,11 +80,11 @@ function getModeAssistant(mode, hasData, activeVariable, degree, otherVariables,
     : '';
 
   const assistants = {
-    '2d': `2D view: blue is f, green is ∂/∂${activeVariable}, red is the degree-${degree} Taylor polynomial centered at ${activeVariable} = ${scope[activeVariable] ?? 'a'}.${scopeText} Increase the degree to tighten the fit near the center.`,
+    '2d': `2D view: gold is f, green is ∂/∂${activeVariable}, terracotta is the degree-${degree} Taylor polynomial centered at ${activeVariable} = ${scope[activeVariable] ?? 'a'}.${scopeText} Increase the degree to tighten the fit near the center.`,
     '3d': `This is the graph of z = f(x, y). Rotate to see peaks and valleys, zoom into detail, and hover for coordinates. The surface shows how f changes in both x and y simultaneously.${scopeText}`,
     contour: `Each contour line is a level curve where f(x, y) is constant. Where lines are close together the surface is steep; where they spread out it is flatter. Trace one color band to follow a single height.${scopeText}`,
-    cross: `Cross sections slice the surface: the blue curve fixes y and sweeps x; the green curve fixes x and sweeps y. Compare these slices to the 3D surface to build intuition for partial change.${scopeText}`,
-    compare: `Blue is the original surface; red is the Taylor approximation in ${activeVariable} (degree ${degree}). They agree best near the expansion center — increase n or zoom in to see the match improve.${scopeText}`,
+    cross: `Cross sections slice the surface: the gold curve fixes y and sweeps x; the green curve fixes x and sweeps y. Compare these slices to the 3D surface to build intuition for partial change.${scopeText}`,
+    compare: `Gold is the original surface; terracotta is the Taylor approximation in ${activeVariable} (degree ${degree}). They agree best near the expansion center — increase n or zoom in to see the match improve.${scopeText}`,
   };
 
   return assistants[mode] || IDLE_ASSISTANT;
@@ -296,7 +296,7 @@ function DerivativeTool() {
             y: dataSets.originalData.yValues,
             mode: 'lines',
             name: `f(${activeVariable})`,
-            line: { color: '#2563eb', width: 3, shape: 'spline' },
+            line: { color: '#a0720a', width: 3, shape: 'spline' },
             connectgaps: false,
           },
           {
@@ -304,7 +304,7 @@ function DerivativeTool() {
             y: dataSets.derivativeData.yValues,
             mode: 'lines',
             name: `f'(${activeVariable})`,
-            line: { color: '#16a34a', width: 2, dash: 'dash', shape: 'spline' },
+            line: { color: '#3a5f32', width: 2, dash: 'dash', shape: 'spline' },
             connectgaps: false,
           },
           {
@@ -312,7 +312,7 @@ function DerivativeTool() {
             y: dataSets.taylorData.yValues,
             mode: 'lines',
             name: `Taylor (n=${degree})`,
-            line: { color: '#dc2626', width: 3, dash: 'dot', shape: 'spline' },
+            line: { color: '#7c2f0a', width: 3, dash: 'dot', shape: 'spline' },
             connectgaps: false,
           },
         ],
@@ -340,8 +340,8 @@ function DerivativeTool() {
             y: dataSets.surfaceData.yValues,
             z: dataSets.surfaceData.zValues,
             colorscale: isDark
-              ? [[0, '#1e3a5f'], [0.5, '#2563eb'], [1, '#93c5fd']]
-              : [[0, '#dbeafe'], [0.5, '#2563eb'], [1, '#1e3a8a']],
+              ? [[0, '#3d2e0a'], [0.5, '#c89318'], [1, '#e0b04a']]
+              : [[0, '#f4ede0'], [0.5, '#a0720a'], [1, '#5c4a08']],
             opacity: 0.95,
             name: 'f(x, y)',
             showscale: true,
@@ -373,9 +373,9 @@ function DerivativeTool() {
             x: dataSets.surfaceData.xValues,
             y: dataSets.surfaceData.yValues,
             z: dataSets.surfaceData.zValues,
-            colorscale: isDark ? 'Viridis' : 'Blues',
+            colorscale: isDark ? 'YlOrBr' : 'YlOrBr',
             contours: { showlines: true, coloring: 'fill' },
-            line: { width: 1, color: isDark ? '#e2e8f0' : '#1e293b' },
+            line: { width: 1, color: isDark ? '#f4ede0' : '#16120a' },
             colorbar: { title: 'f(x, y)', tickfont: { color: theme.text } },
             hovertemplate: 'x=%{x:.3f}<br>y=%{y:.3f}<br>f=%{z:.3f}<extra></extra>',
             name: 'Level curves',
@@ -407,7 +407,7 @@ function DerivativeTool() {
             y: crossSectionAtY.yValues,
             mode: 'lines',
             name: `y = ${crossSectionY.toFixed(2)}`,
-            line: { color: '#2563eb', width: 3 },
+            line: { color: '#a0720a', width: 3 },
             connectgaps: false,
             hovertemplate: `${activeVariable}=%{x:.3f}<br>z=%{y:.3f}<extra></extra>`,
           },
@@ -416,7 +416,7 @@ function DerivativeTool() {
             y: crossSectionAtX.yValues,
             mode: 'lines',
             name: `x = ${crossSectionX.toFixed(2)}`,
-            line: { color: '#16a34a', width: 3 },
+            line: { color: '#3a5f32', width: 3 },
             connectgaps: false,
             hovertemplate: 'y=%{x:.3f}<br>z=%{y:.3f}<extra></extra>',
           },
@@ -444,7 +444,7 @@ function DerivativeTool() {
             x: dataSets.surfaceData.xValues,
             y: dataSets.surfaceData.yValues,
             z: dataSets.surfaceData.zValues,
-            colorscale: [[0, '#93c5fd'], [1, '#1d4ed8']],
+            colorscale: [[0, '#e8d9b8'], [1, '#a0720a']],
             opacity: 0.75,
             name: 'Original f(x, y)',
             showscale: false,
@@ -455,7 +455,7 @@ function DerivativeTool() {
             x: dataSets.taylorSurfaceData.xValues,
             y: dataSets.taylorSurfaceData.yValues,
             z: dataSets.taylorSurfaceData.zValues,
-            colorscale: [[0, '#fca5a5'], [1, '#dc2626']],
+            colorscale: [[0, '#e8c4b0'], [1, '#7c2f0a']],
             opacity: 0.55,
             name: `Taylor (n=${degree})`,
             showscale: false,
@@ -531,7 +531,7 @@ function DerivativeTool() {
     '3d': 'Compute a function like sin(x)*cos(y) or x^2 + y^2 to explore its 3D surface.',
     contour: 'Compute a two-variable function to see its contour map and level curves.',
     cross: 'Compute a function, then use the sliders below to slice the surface at x = const and y = const.',
-    compare: 'Compute to compare the true surface (blue) with the Taylor approximation (red).',
+    compare: 'Compute to compare the true surface (gold) with the Taylor approximation (terracotta).',
   };
 
   const showCrossSliders = viewMode === 'cross';

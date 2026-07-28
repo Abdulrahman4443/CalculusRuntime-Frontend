@@ -16,7 +16,17 @@ const TOPIC_PROGRESS_KEYS = {
   "taylor-series":       ["taylor-series/1", "taylor-series/2", "taylor-1", "taylor-2"],
   "lagrange-multipliers": ["lagrange-multipliers/1", "lagrange-multipliers/2", "lagrange-1", "lagrange-2"],
   "stokes-theorem":      ["stokes-theorem/1", "stokes-theorem/2", "stokes-1", "stokes-2"],
-  "divergence-curl":     ["divergence/1", "divergence/2", "divergence-1", "divergence-2"],
+  "divergence-curl":     ["divergence-curl/1", "divergence-curl/2", "divergence/1", "divergence/2"],
+  "la-vectors":          ["linear-algebra/vectors/1", "linear-algebra/vectors/2"],
+  "la-matrices":         ["linear-algebra/matrices/1", "linear-algebra/matrices/2"],
+  "la-systems":          ["linear-algebra/systems/1", "linear-algebra/systems/2"],
+  "la-eigen":            ["linear-algebra/eigen/1", "linear-algebra/eigen/2"],
+  "prob-basics":         ["probability-statistics/probability-basics"],
+  "prob-random-vars":    ["probability-statistics/random-variables"],
+  "prob-descriptive":    ["probability-statistics/descriptive-statistics"],
+  "prob-hypothesis":     ["probability-statistics/hypothesis-testing"],
+  "prob-regression":     ["probability-statistics/regression-correlation"],
+  "simple-concepts":     ["simple-concepts"],
 };
 
 export default function CheatSheet() {

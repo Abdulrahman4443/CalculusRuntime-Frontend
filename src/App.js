@@ -43,7 +43,6 @@ import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
 import Chatbot from "./components/Chatbot/Chatbot";
-import TopicPlaceholder from "./pages/TopicPlaceholder";
 import {
   VectorsPart1,
   VectorsPart2,
@@ -54,6 +53,18 @@ import {
   EigenPart1,
   EigenPart2,
 } from "./pages/linearAlgebra/LaParts";
+import {
+  ProbBasicsPart1,
+  ProbBasicsPart2,
+  RandomVarsPart1,
+  RandomVarsPart2,
+  DescriptivePart1,
+  DescriptivePart2,
+  HypothesisPart1,
+  HypothesisPart2,
+  RegressionPart1,
+  RegressionPart2,
+} from "./pages/probabilityStatistics/PsParts";
 
 function App() {
   return (
@@ -138,8 +149,22 @@ function App() {
               <Route path="/linear-algebra/eigen/1" element={<Layout body={<EigenPart1 />} />} />
               <Route path="/linear-algebra/eigen/2" element={<Layout body={<EigenPart2 />} />} />
 
-              {/* Probability & Statistics placeholders */}
-              <Route path="/probability-statistics/:slug" element={<Layout body={<TopicPlaceholder />} />} />
+              {/* Probability & Statistics */}
+              <Route path="/probability-statistics/probability-basics"   element={<Navigate to="/probability-statistics/probability-basics/1" replace />} />
+              <Route path="/probability-statistics/probability-basics/1" element={<Layout body={<ProbBasicsPart1 />} />} />
+              <Route path="/probability-statistics/probability-basics/2" element={<Layout body={<ProbBasicsPart2 />} />} />
+              <Route path="/probability-statistics/random-variables"   element={<Navigate to="/probability-statistics/random-variables/1" replace />} />
+              <Route path="/probability-statistics/random-variables/1" element={<Layout body={<RandomVarsPart1 />} />} />
+              <Route path="/probability-statistics/random-variables/2" element={<Layout body={<RandomVarsPart2 />} />} />
+              <Route path="/probability-statistics/descriptive-statistics"   element={<Navigate to="/probability-statistics/descriptive-statistics/1" replace />} />
+              <Route path="/probability-statistics/descriptive-statistics/1" element={<Layout body={<DescriptivePart1 />} />} />
+              <Route path="/probability-statistics/descriptive-statistics/2" element={<Layout body={<DescriptivePart2 />} />} />
+              <Route path="/probability-statistics/hypothesis-testing"   element={<Navigate to="/probability-statistics/hypothesis-testing/1" replace />} />
+              <Route path="/probability-statistics/hypothesis-testing/1" element={<Layout body={<HypothesisPart1 />} />} />
+              <Route path="/probability-statistics/hypothesis-testing/2" element={<Layout body={<HypothesisPart2 />} />} />
+              <Route path="/probability-statistics/regression-correlation"   element={<Navigate to="/probability-statistics/regression-correlation/1" replace />} />
+              <Route path="/probability-statistics/regression-correlation/1" element={<Layout body={<RegressionPart1 />} />} />
+              <Route path="/probability-statistics/regression-correlation/2" element={<Layout body={<RegressionPart2 />} />} />
 
               {/* Tools */}
               <Route path="/test"                  element={<Layout body={<ContinuityFinder />} />} />
