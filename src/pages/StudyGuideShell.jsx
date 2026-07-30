@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import renderMathInElement from "katex/contrib/auto-render";
 import "katex/dist/katex.min.css";
 import { useProgress } from "../context/ProgressContext";
 import "../pages/Leaderboard.css";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const integrationStyles = `
 .study-guide-page {
@@ -595,8 +597,45 @@ function StudyGuideShell({
   children,
 }) {
   const rootRef = useRef(null);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const { saveQuizScore, setLeaderboardOptIn, publishQuizToLeaderboard } = useProgress();
   const resolvedClass = guideClass || "partial-derivatives-guide";
+
+  const handleSaveAsPDF = async () => {
+    const element = rootRef.current;
+    if (!element) return;
+    setIsGeneratingPDF(true);
+    try {
+
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+    });
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pageWidth = 210;
+    const pageHeight = 297;
+    const imgHeight = (canvas.height * pageWidth) / canvas.width;
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
+    const fileName = title ? `${title}.pdf` : "study-guide.pdf";
+    pdf.save(fileName);
+  } finally {
+    setIsGeneratingPDF(false);
+  }
+  };
 
   useEffect(() => {
     if (title) {
@@ -656,6 +695,28 @@ function StudyGuideShell({
   return (
     <main className={`study-guide-page ${resolvedClass}`}>
       <style>{styles + integrationStyles}</style>
+      <button
+        type="button"
+        onClick={handleSaveAsPDF}
+        disabled={isGeneratingPDF}
+        className="save-as-pdf-btn"
+        style={{
+          position: "fixed",
+          bottom: "5.5rem",
+          right: "2rem",
+          zIndex: 200,
+          background: "#0f0e0d",
+          color: "#e8b84b",
+          border: "1px solid rgba(200, 146, 42, 0.5)",
+          borderRadius: "6px",
+          padding: "0.6rem 1rem",
+          fontSize: "0.85rem",
+          cursor: isGeneratingPDF ? "wait" : "pointer",
+          opacity: isGeneratingPDF ? 0.7 : 1,
+        }}
+      >
+        {isGeneratingPDF ? "Generating..." : "Save as PDF"}
+      </button>
       {markup ? (
         <div ref={rootRef} suppressHydrationWarning />
       ) : (
