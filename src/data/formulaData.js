@@ -118,6 +118,70 @@ const formulaData = {
     ],
   },
 
+  differentiation: {
+    title: "Differentiation",
+    color: "#c8922a",
+    formulas: [
+      {
+        name: "Definition",
+        formula: "f'(a) = lim_h→0 [f(a+h)−f(a)]/h",
+        note: "Instantaneous rate of change / tangent slope",
+      },
+      {
+        name: "Power / Product / Quotient",
+        formula: "(xⁿ)'=n xⁿ⁻¹ · (uv)'=u'v+uv' · (u/v)'=(u'v−uv')/v²",
+        note: "Build every elementary derivative from these",
+      },
+      {
+        name: "Chain Rule",
+        formula: "(f∘g)'(x) = f'(g(x)) · g'(x)",
+        note: "Differentiate outside, multiply by inside derivative",
+      },
+      {
+        name: "Related Rates",
+        formula: "d/dt F(x(t),y(t),…) via chain rule",
+        note: "Differentiate the linking equation before plugging numbers",
+      },
+      {
+        name: "Mean Value Theorem",
+        formula: "f'(c) = [f(b)−f(a)]/(b−a) for some c∈(a,b)",
+        note: "Requires continuity on [a,b] and differentiability on (a,b)",
+      },
+    ],
+  },
+
+  integration: {
+    title: "Integration",
+    color: "#8b6914",
+    formulas: [
+      {
+        name: "Indefinite Integral",
+        formula: "∫ f(x) dx = F(x) + C where F'=f",
+        note: "Family of antiderivatives",
+      },
+      {
+        name: "Fundamental Theorem",
+        formula: "∫_a^b f = F(b)−F(a) · d/dx ∫_a^x f(t)dt = f(x)",
+        note: "Links derivatives and definite integrals",
+      },
+      {
+        name: "Substitution",
+        formula: "∫ f(g(x)) g'(x) dx = ∫ f(u) du",
+        note: "Reverse of the chain rule",
+      },
+      {
+        name: "Integration by Parts",
+        formula: "∫ u dv = uv − ∫ v du",
+        note: "LIATE hint for choosing u",
+      },
+      {
+        name: "Improper Integral",
+        formula: "∫_a^∞ f = lim_b→∞ ∫_a^b f",
+        note: "Converges only if the limit is finite",
+      },
+    ],
+  },
+
   "multiple-integrals": {
     title: "Multiple Integrals",
     color: "#43e97b",

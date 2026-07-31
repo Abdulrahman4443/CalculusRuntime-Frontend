@@ -1,18 +1,21 @@
 /** Compact MCQ block compatible with StudyGuideShell setupMcqs / leaderboard. */
 export function LaMcqSection({ id, badge, title, scoreId, section, questions }) {
+  const count = questions.length;
   return (
     <section className="mcq-section" id={id}>
       <div className="mcq-section-head">
-        <span className="mcq-section-badge">{badge}</span>
+        <span className="mcq-section-badge">
+          {badge} · {count} question{count === 1 ? "" : "s"}
+        </span>
         <h2 className="mcq-section-title">{title}</h2>
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">Score</span>
         <span className="score-val" id={scoreId}>
-          0 / {questions.length}
+          0 / {count}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: 0.4 }}>
-          Click an option then reveal answer
+          Solve each question to unlock the next
         </span>
       </div>
       {questions.map((q, i) => (
