@@ -4,18 +4,32 @@ export const COURSES = [
     id: "calculus-analytical-geometry",
     title: "Calculus and Analytical Geometry",
     description:
-      "Single-variable foundations: functions, continuity, derivatives, Taylor ideas, and geometric intuition before multivariable work.",
+      "Single-variable foundations: limits, differentiation, integration, Taylor series — certificate-ready theory and examples.",
     path: "/courses/calculus-analytical-geometry",
-    meta: "Foundations · Guides + tools",
+    meta: "4 guides · Tools + practice",
     icon: "ƒ",
     color: "gold",
     modules: [
       {
         title: "Limits & Continuity",
-        description: "Multivariable limits, path-dependence, and continuity.",
+        description: "Limits, path tests, continuity — with certificate-depth theory and worked examples.",
         path: "/limits-continuity/1",
-        meta: "2 parts · Path analysis",
+        meta: "2 parts · 6+ examples each",
         icon: "lim",
+      },
+      {
+        title: "Differentiation",
+        description: "Definition, rules, related rates, extrema, MVT, L'Hôpital — certificate track.",
+        path: "/differentiation/1",
+        meta: "2 parts · 6 examples each",
+        icon: "d/dx",
+      },
+      {
+        title: "Integration",
+        description: "Antiderivatives, FTC, area, techniques, improper integrals — certificate track.",
+        path: "/integration/1",
+        meta: "2 parts · 6 examples each",
+        icon: "∫",
       },
       {
         title: "Continuity Finder",
@@ -26,9 +40,9 @@ export const COURSES = [
       },
       {
         title: "Taylor Series",
-        description: "Local linear and higher-order approximations with Maclaurin catalogs and error bounds.",
+        description: "Local approximations, Maclaurin catalogs, convergence and error — certificate depth.",
         path: "/taylor-series/1",
-        meta: "2 parts · MCQ practice",
+        meta: "2 parts · 6+ examples each",
         icon: "Σ",
       },
       {

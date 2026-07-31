@@ -43,6 +43,7 @@ import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
 import Chatbot from "./components/Chatbot/Chatbot";
+import BackToTop from "./components/BackToTop";
 import {
   VectorsPart1,
   VectorsPart2,
@@ -65,6 +66,12 @@ import {
   RegressionPart1,
   RegressionPart2,
 } from "./pages/probabilityStatistics/PsParts";
+import {
+  DiffPart1,
+  DiffPart2,
+  IntPart1,
+  IntPart2,
+} from "./pages/calculus/CalcParts";
 
 function App() {
   return (
@@ -109,6 +116,16 @@ function App() {
               <Route path="/limits-continuity"   element={<Navigate to="/limits-continuity/1" replace />} />
               <Route path="/limits-continuity/1" element={<Layout body={<LimitsPart1 />} />} />
               <Route path="/limits-continuity/2" element={<Layout body={<LimitsPart2 />} />} />
+
+              {/* Differentiation (Calculus certificate) */}
+              <Route path="/differentiation"   element={<Navigate to="/differentiation/1" replace />} />
+              <Route path="/differentiation/1" element={<Layout body={<DiffPart1 />} />} />
+              <Route path="/differentiation/2" element={<Layout body={<DiffPart2 />} />} />
+
+              {/* Integration (Calculus certificate) */}
+              <Route path="/integration"   element={<Navigate to="/integration/1" replace />} />
+              <Route path="/integration/1" element={<Layout body={<IntPart1 />} />} />
+              <Route path="/integration/2" element={<Layout body={<IntPart2 />} />} />
 
               {/* Multiple Integrals */}
               <Route path="/multiple-integrals"   element={<Navigate to="/multiple-integrals/1" replace />} />
@@ -187,6 +204,7 @@ function App() {
               <Route path="*" element={<Layout body={<NotFound />} />} />
             </Routes>
             <Chatbot />
+            <BackToTop />
           </ErrorBoundary>
         </BrowserRouter>
       </ProgressProvider>

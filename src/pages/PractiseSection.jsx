@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
+import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
-// --- MASTER PROBLEM DATABASE (96 DISTINCT PROBLEM OBJECTS) ---
+// --- MASTER PROBLEM DATABASE ---
 const PRACTICE_PROBLEMS = [
   // ==========================================
   // TOPIC 1: Lagrange Multipliers (12 Problems)
@@ -1266,6 +1267,9 @@ const PRACTICE_PROBLEMS = [
     options: ['r becomes 2', 'The pattern may not continue outside the data range', 'Residuals become correlations'],
     correctAnswer: 1, explanation: 'Model is local to observed x.'
   },
+
+  // Calculus AG certificate track — 15 Easy + 15 Medium + 15 Hard per topic
+  ...CALC_AG_PRACTICE_BANK,
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
@@ -1278,6 +1282,8 @@ const TOPICS = [
   'Partial Derivatives',
   'Vector Calculus',
   'Limits and Continuity',
+  'Differentiation',
+  'Integration',
   'Multiple Integrals',
   'Vectors & Vector Spaces',
   'Matrices & Determinants',
