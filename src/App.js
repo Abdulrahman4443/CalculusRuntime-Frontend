@@ -53,6 +53,7 @@ import {
   EigenPart1,
   EigenPart2,
 } from "./pages/linearAlgebra/LaParts";
+import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
 import {
   ProbBasicsPart1,
   ProbBasicsPart2,
@@ -148,6 +149,7 @@ function App() {
               <Route path="/linear-algebra/eigen"   element={<Navigate to="/linear-algebra/eigen/1" replace />} />
               <Route path="/linear-algebra/eigen/1" element={<Layout body={<EigenPart1 />} />} />
               <Route path="/linear-algebra/eigen/2" element={<Layout body={<EigenPart2 />} />} />
+              <Route path="/linear-algebra/matrix-sandbox" element={<Layout body={<MatrixSandbox />} />} />
 
               {/* Probability & Statistics */}
               <Route path="/probability-statistics/probability-basics"   element={<Navigate to="/probability-statistics/probability-basics/1" replace />} />
