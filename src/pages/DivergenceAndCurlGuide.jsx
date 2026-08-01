@@ -338,6 +338,7 @@ function GuideSidebarPart2() {
       <a className="sb-link" href="#quiz-164">Quiz 16.4</a>
       <a className="sb-link" href="#s165">Core Vector Identities</a>
       <a className="sb-link" href="#quiz-165">Quiz 16.5</a>
+      <a className="sb-link" href="#s165b">Surface Integrals</a>
       <a className="sb-link" href="#s166">Divergence Theorem</a>
       <a className="sb-link" href="#quiz-166">Quiz 16.6</a>
       <a className="sb-link" href="#s167">Stokes Framework</a>
@@ -364,6 +365,7 @@ function TableOfContentsPart2() {
       <div className="toc-grid">
         <a className="toc-a" href="#s164">Physical Mechanics Mapping</a>
         <a className="toc-a" href="#s165">Core Vector Identities</a>
+        <a className="toc-a" href="#s165b">Surface Integrals</a>
         <a className="toc-a" href="#s166">Divergence Theorem</a>
         <a className="toc-a" href="#s167">Stokes Framework</a>
       </div>
@@ -468,6 +470,47 @@ function SectionS165() {
         {"$$\\nabla \\cdot (\\nabla \\times \\mathbf{F}) = 0$$"}
         {"Solving these second-order structures simplifies multi-variable calculations and verifies that the curl of any smooth vector field contains absolutely no net scalar expansion sources."}
       </p>
+    </section>
+  );
+}
+
+function SectionS165b() {
+  return (
+    <section className="section" id="s165b">
+      <div className="sec-badge">{"Section 16.5b"}</div>
+      <h2 className="sec-title">{"Surface Integrals"}</h2>
+      <p>
+        {"Just as a line integral sums values along a curve, a surface integral sums values over a 2D surface sitting in 3D space. There are two kinds: over a scalar field (mass, area-weighted average) and over a vector field (flux — how much of the field passes through the surface)."}
+      </p>
+      <div className="box def">
+        <div className="box-lbl">{"Definition — Surface Integral of a Scalar Field"}</div>
+        <p>{"For a surface $S$ parametrized by $\\mathbf{r}(u,v)$ over region $D$:"}</p>
+        <div className="fml">
+          {"$$\\iint_S f\\,dS = \\iint_D f(\\mathbf{r}(u,v))\\,|\\mathbf{r}_u \\times \\mathbf{r}_v|\\,dA$$"}
+        </div>
+      </div>
+      <div className="box def">
+        <div className="box-lbl">{"Definition — Surface Integral of a Vector Field (Flux)"}</div>
+        <p>{"For a vector field $\\mathbf{F}$ and outward unit normal $\\mathbf{n}$:"}</p>
+        <div className="fml">
+          {"$$\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\iint_S \\mathbf{F}\\cdot\\mathbf{n}\\,dS = \\iint_D \\mathbf{F}(\\mathbf{r}(u,v))\\cdot(\\mathbf{r}_u \\times \\mathbf{r}_v)\\,dA$$"}
+        </div>
+        <p>{"This is exactly the $d\\mathbf{S}$ that appears in the Divergence Theorem and Stokes' Theorem below."}</p>
+      </div>
+      <div className="box exm">
+        <div className="box-lbl">{"Example"}</div>
+        <div className="exm-title">
+          {"Flux of $\\mathbf{F} = (0,0,z)$ through the unit sphere, outward"}
+        </div>
+        <div className="sol">
+          <div className="sol-lbl">{"Solution"}</div>
+          <p>{"Parametrize: $\\mathbf{r}(\\phi,\\theta) = (\\sin\\phi\\cos\\theta, \\sin\\phi\\sin\\theta, \\cos\\phi)$. On the unit sphere, the outward normal is $\\mathbf{r}$ itself, and $|\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta| = \\sin\\phi$."}</p>
+          <p>{"$\\mathbf{F}\\cdot\\mathbf{n} = z\\cdot\\cos\\phi = \\cos^2\\phi$ (since $z=\\cos\\phi$ on the sphere)."}</p>
+          <div className="fml">
+            {"$$\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\int_0^{2\\pi}\\int_0^\\pi \\cos^2\\phi\\sin\\phi\\,d\\phi\\,d\\theta = 2\\pi\\cdot\\frac{2}{3} = \\frac{4\\pi}{3}$$"}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -819,6 +862,8 @@ function DivergenceAndCurlGuide({ section }) {
           <Divider />
           <SectionS165 />
           <QuizMcq165 />
+          <Divider />
+          <SectionS165b />
           <Divider />
           <SectionS166 />
           <QuizMcq166 />

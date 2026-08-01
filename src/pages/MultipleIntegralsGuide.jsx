@@ -32,6 +32,7 @@ function GuideSidebarPart2() {
       <a className="sb-link" href="#mi-4">{"Triple Integrals"}</a>
       <a className="sb-link" href="#mi-5">{"Polar Coordinates"}</a>
       <a className="sb-link" href="#mi-6">{"Cylindrical Coordinates"}</a>
+      <a className="sb-link" href="#mi-7">{"Spherical Coordinates"}</a>
       <a className="sb-link" href="#mi-quiz2">{"Practice Quiz"}</a>
     </nav>
   );
@@ -81,6 +82,7 @@ function TableOfContentsPart2() {
         <a className="toc-a" href="#mi-4">{"Triple Integrals"}</a>
         <a className="toc-a" href="#mi-5">{"Polar Coordinates"}</a>
         <a className="toc-a" href="#mi-6">{"Cylindrical Coordinates"}</a>
+        <a className="toc-a" href="#mi-7">{"Spherical Coordinates"}</a>
         <a className="toc-a" href="#mi-quiz2">{"Practice Quiz"}</a>
       </div>
     </div>
@@ -285,6 +287,48 @@ function SectionMI6() {
   );
 }
 
+function SectionMI7() {
+  return (
+    <section className="section" id="mi-7">
+      <div className="sec-badge">{"Section"}</div>
+      <h2 className="sec-title">{"Spherical Coordinates"}</h2>
+      <p>
+        {"Spherical coordinates $(\\rho, \\theta, \\phi)$ describe a point by its distance from the origin, an azimuthal angle in the $xy$-plane, and a polar angle from the positive $z$-axis. They are the natural choice when a region or integrand has symmetry about a single point (e.g. spheres, cones)."}
+      </p>
+      <div className="box def">
+        <div className="box-lbl">{"Spherical Substitution"}</div>
+        <p>{"Let $x = \\rho\\sin\\phi\\cos\\theta$, $y = \\rho\\sin\\phi\\sin\\theta$, $z = \\rho\\cos\\phi$, where $\\rho \\geq 0$, $0 \\leq \\phi \\leq \\pi$, $0 \\leq \\theta \\leq 2\\pi$. Then:"}</p>
+        <div className="fml">
+          {"$$\\iiint_E f\\,dV = \\int\\!\\!\\int\\!\\!\\int f(\\rho\\sin\\phi\\cos\\theta, \\rho\\sin\\phi\\sin\\theta, \\rho\\cos\\phi)\\,\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$"}
+        </div>
+        <p>{"The factor $\\rho^2\\sin\\phi$ is the Jacobian of the spherical transformation — larger $\\rho$ or $\\phi$ near the equator sweeps out proportionally more volume per unit change in the angles."}</p>
+      </div>
+      <div className="box exm">
+        <div className="box-lbl">{"Example"}</div>
+        <div className="exm-title">
+          {"Find the volume of the solid sphere $x^2+y^2+z^2 \\leq 4$"}
+        </div>
+        <div className="sol">
+          <div className="sol-lbl">{"Solution"}</div>
+          <p>{"In spherical: $0 \\leq \\rho \\leq 2$, $0 \\leq \\phi \\leq \\pi$, $0 \\leq \\theta \\leq 2\\pi$."}</p>
+          <div className="fml">
+            {"$$\\int_0^{2\\pi}\\int_0^\\pi\\int_0^2 \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = 2\\pi\\cdot 2\\cdot\\frac{8}{3} = \\frac{32\\pi}{3}$$"}
+          </div>
+          <p>{"This matches the known sphere volume formula $\\frac{4}{3}\\pi r^3$ with $r=2$."}</p>
+        </div>
+      </div>
+      <div className="box thm">
+        <div className="box-lbl">{"Cylindrical vs. Spherical — When to Use Which"}</div>
+        <ul className="steps">
+          <li>{"Use cylindrical when the solid is symmetric about the $z$-axis (e.g. cylinders, paraboloids opening along $z$)."}</li>
+          <li>{"Use spherical when the solid is symmetric about the origin (e.g. spheres, cones with vertex at the origin)."}</li>
+          <li>{"A cone $z = \\sqrt{x^2+y^2}$ becomes the simple equation $\\phi = \\pi/4$ in spherical — often the deciding factor."}</li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function SectionMIEnrichment() {
   return (
     <section className="section" id="mi-enrich">
@@ -414,6 +458,23 @@ function IntegralsQuiz({ part }) {
             <div className="mcq-explanation">{"Regions that are Type I but not Type II often need to be split so each piece has $x$ bounds as functions of $y$."}</div>
           </div>
         </div>
+        <div className="mcq-card" data-section="integrals-p2" data-q="6" data-answer="B" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">{"6"}</div>
+          <div className="mcq-q-text">{"The volume element $dV$ in spherical coordinates is:"}</div>
+        </div>
+        <div className="mcq-options">
+          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\rho\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\rho^2\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+        </div>
+        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <div className="mcq-explanation">{"The Jacobian of the spherical transformation is $\\rho^2\\sin\\phi$, giving $dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$."}</div>
+        </div>
+      </div>
       </section>
     );
   }
@@ -426,7 +487,7 @@ function IntegralsQuiz({ part }) {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scoreintegrals-p2">{"0 / 5"}</span>
+        <span className="score-val" id="scoreintegrals-p2">{"0 / 6"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
@@ -521,6 +582,23 @@ function IntegralsQuiz({ part }) {
           <div className="mcq-explanation">{"Cylindrical volume element is $r\\,dz\\,dr\\,d\\theta$ (polar area times $dz$)."}</div>
         </div>
       </div>
+      <div className="mcq-card" data-section="integrals-p2" data-q="6" data-answer="B" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">{"6"}</div>
+          <div className="mcq-q-text">{"The volume element $dV$ in spherical coordinates is:"}</div>
+        </div>
+        <div className="mcq-options">
+          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\rho\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\rho^2\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+        </div>
+        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <div className="mcq-explanation">{"The Jacobian of the spherical transformation is $\\rho^2\\sin\\phi$, giving $dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$."}</div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -571,6 +649,8 @@ function IntegralsContent({ part }) {
         <SectionMI5 />
         <Divider />
         <SectionMI6 />
+        <Divider />
+        <SectionMI7 />
         <Divider />
         <SectionMIEnrichment />
         <Divider />
