@@ -70,6 +70,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
               ]}
               result={"$s\\approx 1.63$."}
               check={"Divide by $n-1=3$, not $n$."}
+              mistake={"Dividing by $n=4$ instead of $n-1=3$ — this gives the (biased) population variance formula instead of the unbiased sample variance formula."}
             />
             <WorkedExample
               number={2}
@@ -82,6 +83,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
               ]}
               result={"Exam A is relatively stronger."}
               check={"Compare standardized scores, not raw marks."}
+              mistake={"Comparing raw scores directly (85 > 80, so 'A is better') — this ignores that the two exams have different means and spreads, which z-scores correct for."}
             />
             <WorkedExample
               number={3}
@@ -93,6 +95,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
               ]}
               result={"$40$."}
               check={"Points above 40 flagged as potential outliers."}
+              mistake={"Multiplying $Q_3$ by 1.5 instead of the IQR — the fence formula scales the IQR, not the quartile itself."}
             />
             <WorkedExample
               number={4}
@@ -104,6 +107,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
               ]}
               result={"About 95%."}
               check={"68 / 95 / 99.7 for 1 / 2 / 3 SD."}
+              mistake={"Misreading the interval width — $[40,60]$ is $\\pm 2$ SD (since SD=5), not $\\pm 1$ SD, so the answer is 95%, not 68%."}
             />
           </section>
 
@@ -144,6 +148,47 @@ function DescriptiveStatsGuide({ part = 1 }) {
                 {"Histograms show shape (skew, modality). Boxplots highlight median, IQR, and outliers. Scatterplots preview association before regression."}
               </p>
             </TheoryBox>
+            <TheoremBox title="Outlier fence rule">
+              <p>
+                {"Using quartiles $Q_1,Q_3$ and $\\mathrm{IQR}=Q_3-Q_1$: lower fence $=Q_1-1.5\\,\\mathrm{IQR}$, upper fence $=Q_3+1.5\\,\\mathrm{IQR}$. Points outside the fences are flagged as outliers on a boxplot."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Reading a boxplot / histogram"
+              steps={[
+                "Locate the box: left edge $Q_1$, right edge $Q_3$, line inside is the median.",
+                "Whiskers extend to the most extreme points within the fences.",
+                "Any point beyond a fence is plotted separately as an outlier.",
+                "For a histogram, compare the tail lengths on each side to judge skew direction.",
+                "A long right tail with mean $>$ median signals right (positive) skew, and vice versa.",
+              ]}
+            />
+            <WorkedExample
+              number={1}
+              title="Fence calculation"
+              setup={"A dataset has $Q_1=20$, $Q_3=32$. Find the fences and check if a value of $55$ is an outlier."}
+              steps={[
+                "$\\mathrm{IQR}=32-20=12$.",
+                "Upper fence $=32+1.5(12)=32+18=50$.",
+                "$55>50$, so it lies beyond the upper fence.",
+              ]}
+              result={"$55$ is flagged as an outlier."}
+              check={"Lower fence $=20-18=2$; any value below 2 would also be flagged."}
+              mistake={"Comparing 55 to $Q_3=32$ directly and calling it an outlier — the correct comparison is against the fence (50), not the quartile itself."}
+            />
+            <WorkedExample
+              number={2}
+              title="Reading skew from mean vs. median"
+              setup={"A dataset has mean $=48$, median $=42$. Describe the likely skew and boxplot shape."}
+              steps={[
+                "Mean $>$ median means a few unusually large values are pulling the mean up.",
+                "This is characteristic of right (positive) skew.",
+                "On a boxplot, expect a longer whisker (or more outliers) on the upper side.",
+              ]}
+              result={"Right-skewed distribution."}
+              check={"If mean $<$ median instead, the skew would be left (negative)."}
+              mistake={"Mixing up the direction — some students say 'mean > median means left-skewed'; it's the opposite: a larger mean than median signals a long tail pulling to the right."}
+            />
           </section>
 
           <LaMcqSection
@@ -171,6 +216,12 @@ function DescriptiveStatsGuide({ part = 1 }) {
                 answer: "B",
                 explanation: "Each point is a pair $(x,y)$.",
               },
+              {
+                prompt: "The upper outlier fence is computed as:",
+                options: ["$Q_3+1.5\\,\\mathrm{IQR}$", "$Q_3\\times 1.5$", "Mean$+2\\sigma$"],
+                answer: "A",
+                explanation: "Standard Tukey fence rule using IQR.",
+              },
             ]}
           />
 
@@ -178,6 +229,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
+            <p>{"Real-life use: sports analysts use z-scores to compare players across different eras and scoring scales, quality-control teams flag defective batches using outlier fences on control charts, and schools report percentile ranks (not raw scores) so parents can compare a student against their whole cohort."}</p>
             <p>{"Next: hypothesis testing — deciding when sample evidence is strong enough to challenge a claim."}</p>
           </section>
         </main>
@@ -246,6 +298,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             ]}
             result={"Mean 24, median 5."}
             check={"Median resists the outlier."}
+            mistake={"Reporting the mean (24) as 'typical' when a single outlier dominates it — the median (5) better represents most of this data."}
           />
           <WorkedExample
             number={2}
@@ -257,6 +310,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             ]}
             result={"$5$."}
             check={"Average the two central observations."}
+            mistake={"Picking just one of the two middle values (e.g. saying median = 4) — with an even count, both middle values must be averaged."}
           />
           <WorkedExample
             number={3}
@@ -267,6 +321,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             ]}
             result={"$86$."}
             check={"Weights sum to 1."}
+            mistake={"Computing the plain average $(80+90)/2=85$ instead — that ignores the weights entirely, giving a different (wrong) answer."}
           />
           <WorkedExample
             number={4}
@@ -278,6 +333,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             ]}
             result={"red"}
             check={"Most frequent category."}
+            mistake={"Trying to compute a 'mean' or 'median' of category labels — mode is the only measure of center that makes sense for non-numeric (categorical) data."}
           />
         </section>
 

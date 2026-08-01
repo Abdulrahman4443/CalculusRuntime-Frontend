@@ -68,6 +68,7 @@ function RegressionGuide({ part = 1 }) {
               ]}
               result={"$b_1=2$."}
               check={"Positive r ⇒ positive slope."}
+              mistake={"Writing $b_1=r s_x/s_y$ (spreads flipped) — the formula divides by $s_x$ (the predictor's spread), not $s_y$."}
             />
             <WorkedExample
               number={2}
@@ -79,6 +80,7 @@ function RegressionGuide({ part = 1 }) {
               ]}
               result={"$b_0=4$."}
               check={"Passes through $(3,10)$: $4+6=10$."}
+              mistake={"Adding instead of subtracting: computing $b_0=\\bar y+b_1\\bar x=16$ — the intercept formula subtracts the slope's contribution at $\\bar x$."}
             />
             <WorkedExample
               number={3}
@@ -89,6 +91,7 @@ function RegressionGuide({ part = 1 }) {
               ]}
               result={"$14$."}
               check={"Only trust if $x=5$ is near the observed $x$-range."}
+              mistake={"Plugging in an $x$ value far outside the original data range without flagging it — the linear pattern is only verified within the observed range; predictions outside it are extrapolation."}
             />
             <WorkedExample
               number={4}
@@ -100,6 +103,7 @@ function RegressionGuide({ part = 1 }) {
               ]}
               result={"$e=2$."}
               check={"Observed minus predicted."}
+              mistake={"Computing $\\hat y-y$ instead of $y-\\hat y$ — this flips the sign, which then misleads about whether the point is above or below the line."}
             />
           </section>
 
@@ -140,6 +144,46 @@ function RegressionGuide({ part = 1 }) {
                 {"Ideally: scatter randomly about 0 with constant spread. Patterns (curves, funnels, clumps) warn that linearity, equal variance, or independence may fail."}
               </p>
             </TheoryBox>
+            <TheoremBox title="Coefficient of determination">
+              <p>
+                {"$R^2=1-\\dfrac{\\sum(y_i-\\hat y_i)^2}{\\sum(y_i-\\bar y)^2}$ — the proportion of variance in $y$ explained by the linear fit. For simple linear regression, $R^2=r^2$ (the square of the correlation coefficient)."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Full diagnostic checklist"
+              steps={[
+                "Plot residuals ($y_i-\\hat y_i$) against $x$ or fitted values.",
+                "Check for curvature — if present, a linear model is the wrong shape.",
+                "Check for a funnel shape — spreading residuals signal non-constant variance.",
+                "Compute $R^2$ to quantify overall fit quality, not just visually inspect.",
+                "Never extrapolate $\\hat y$ far outside the observed range of $x$.",
+            ]}
+            />
+            <WorkedExample
+              number={1}
+              title="Computing R-squared"
+              setup={"A regression gives $\\sum(y_i-\\hat y_i)^2=40$ and $\\sum(y_i-\\bar y)^2=200$. Find $R^2$ and interpret it."}
+              steps={[
+                "$R^2=1-40/200=1-0.2=0.8$.",
+                "This means 80% of the variability in $y$ is explained by the linear relationship with $x$.",
+              ]}
+              result={"$R^2=0.8$ — a strong linear fit."}
+              check={"$R^2$ always lies in $[0,1]$; higher means a better-fitting line."}
+              mistake={"Computing $R^2$ as $\\sum(y_i-\\hat y_i)^2/\\sum(y_i-\\bar y)^2$ directly (forgetting the $1-$) — that gives the unexplained proportion, not $R^2$ itself."}
+            />
+            <WorkedExample
+              number={2}
+              title="Spotting a bad fit from a residual plot"
+              setup={"A residual plot shows points forming a clear U-shape (curving up on both ends) rather than a random scatter. What does this indicate, and what should be done?"}
+              steps={[
+                "A curved residual pattern means the true relationship is nonlinear.",
+                "A straight-line model is systematically wrong at the extremes even if $R^2$ looks decent.",
+                "Fix: consider a quadratic or transformed model rather than trusting the linear fit.",
+              ]}
+              result={"The linear model is misspecified; a curved/transformed model is needed."}
+              check={"A high $R^2$ can still hide a curved residual pattern — always plot residuals, don't rely on $R^2$ alone."}
+              mistake={"Trusting a high $R^2$ alone as proof the linear model is 'good' — $R^2$ can look strong even while the residual plot clearly shows the model is the wrong shape."}
+            />
           </section>
 
           <LaMcqSection
@@ -167,6 +211,12 @@ function RegressionGuide({ part = 1 }) {
                 answer: "B",
                 explanation: "Model is local to observed $x$.",
               },
+              {
+                prompt: "For simple linear regression, $R^2$ is:",
+                options: ["Always negative", "Equal to $r^2$", "Unrelated to $r$"],
+                answer: "B",
+                explanation: "R-squared is the square of the correlation coefficient in the simple linear case.",
+              },
             ]}
           />
 
@@ -174,6 +224,7 @@ function RegressionGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Course module complete</h2>
+            <p>{"Real-life use: agriculture researchers use regression to link fertilizer dosage to crop yield and find the optimal amount, real-estate platforms predict house prices from square footage and location using a fitted regression line, and economists use correlation and regression to study how minimum wage changes relate to employment levels."}</p>
             <p>{"You finished Probability & Statistics study guides — return to the course hub or drill in Practice Arena."}</p>
           </section>
         </main>
@@ -242,6 +293,7 @@ function RegressionGuide({ part = 1 }) {
             ]}
             result={"Strong negative linear association."}
             check={"Always pair $r$ with a plot."}
+            mistake={"Saying 'video games cause lower scores' — correlation this strong still doesn't establish causation; a lurking variable (e.g. less study time overall) could explain both."}
           />
           <WorkedExample
             number={2}
@@ -253,6 +305,7 @@ function RegressionGuide({ part = 1 }) {
             ]}
             result={"$r$ near 0 despite clear pattern."}
             check={"Plot first."}
+            mistake={"Concluding 'no relationship exists' just because $r\\approx 0$ — $r$ only detects linear association; a strong nonlinear (e.g. quadratic) relationship can still be present."}
           />
           <WorkedExample
             number={3}
@@ -264,6 +317,7 @@ function RegressionGuide({ part = 1 }) {
             ]}
             result={"$r$ same; regression of $y$ on $x$ ≠ $x$ on $y$."}
             check={"Correlation ≠ slope."}
+            mistake={"Assuming the regression line for predicting $y$ from $x$ is the same line as predicting $x$ from $y$ — they're generally different lines, even though $r$ itself doesn't change."}
           />
           <WorkedExample
             number={4}
@@ -275,6 +329,7 @@ function RegressionGuide({ part = 1 }) {
             ]}
             result={"$r$ is outlier-sensitive."}
             check={"Robustness check is good practice."}
+            mistake={"Trusting a headline $r$ value without checking whether a single point is driving it — always inspect the scatterplot, not just the number."}
           />
         </section>
 

@@ -36,7 +36,7 @@ export function ProcedureBox({ title, steps }) {
   );
 }
 
-export function WorkedExample({ number, title, setup, steps, result, check }) {
+export function WorkedExample({ number, title, setup, steps, result, check, mistake }) {
   return (
     <div className="box exm">
       <div className="box-lbl">Large worked example {number}</div>
@@ -64,6 +64,12 @@ export function WorkedExample({ number, title, setup, steps, result, check }) {
           </p>
         ) : null}
       </div>
+      {mistake ? (
+        <div className="box warn" style={{ marginTop: "0.9rem", marginBottom: 0 }}>
+          <div className="box-lbl">Common mistake</div>
+          <p style={{ lineHeight: 1.55, marginBottom: 0 }}>{mistake}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
