@@ -3532,7 +3532,10 @@ function PartialDerivativesContent({ part = 1 }) {
 
 function PartialDerivativesGuide({ part = 1 }) {
   return (
-    <StudyGuideShell guideClass="partial-derivatives-guide">
+    <StudyGuideShell
+      guideClass="partial-derivatives-guide"
+      title={`Partial Derivatives — Part ${part}`}
+    >
       <PartialDerivativesContent part={part} />
     </StudyGuideShell>
   );

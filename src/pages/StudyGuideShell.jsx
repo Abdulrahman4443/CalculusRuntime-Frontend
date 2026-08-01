@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { saveExample, unsaveExample, isExampleSaved } from "../utils/saveForLaterStorage";
 import renderMathInElement from "katex/contrib/auto-render";
 import "katex/dist/katex.min.css";
 import { useProgress } from "../context/ProgressContext";
@@ -251,6 +252,30 @@ const integrationStyles = `
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+`;
+
+const saveForLaterStyles = `
+.box.exm {
+  position: relative;
+}
+.save-example-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #ffffff;
+  border: 1px solid rgba(200, 146, 42, 0.4);
+  color: #3d4f6b;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  z-index: 5;
+}
+.save-example-btn.saved {
+  background: #e8b84b;
+  color: #0f0e0d;
+  border-color: #e8b84b;
 }
 `;
 
@@ -589,6 +614,67 @@ function setupSidebar(root) {
   return () => cleanups.forEach((cleanup) => cleanup());
 }
 
+function setupSaveForLater(root, { guideTitle } = {}) {
+  const examples = Array.from(root.querySelectorAll(".box.exm"));
+  if (!examples.length) return () => {};
+
+  const cleanups = [];
+  const getMeta = (example) => {
+    const titleEl = example.querySelector(".exm-title");
+    let exampleTitle = "Untitled example";
+    if (titleEl) {
+      const clone = titleEl.cloneNode(true);
+      clone.querySelectorAll(".katex-mathml").forEach((el) => el.remove());
+      exampleTitle = clone.textContent.trim();
+    }
+    const sectionEl = example.closest("section[id]");
+    const sectionId = sectionEl ? sectionEl.id : "unknown-section";
+    return { exampleTitle, sectionId };
+  };
+
+  examples.forEach((example, index) => {
+    if (example.querySelector(".save-example-btn")) return;
+
+    example.style.position = example.style.position || "relative";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "save-example-btn";
+    btn.setAttribute("aria-label", "Save for later");
+    btn.dataset.exampleIndex = String(index);
+
+    const { exampleTitle, sectionId } = getMeta(example);
+    const alreadySaved = isExampleSaved(sectionId, exampleTitle);
+    if (alreadySaved) btn.classList.add("saved");
+    btn.textContent = alreadySaved ? "★ Saved" : "☆ Save";
+
+    example.appendChild(btn);
+    cleanups.push(() => btn.remove());
+  });
+
+  const onClick = (event) => {
+    const btn = event.target.closest(".save-example-btn");
+    if (!btn || !root.contains(btn)) return;
+    const example = btn.closest(".box.exm");
+    if (!example) return;
+
+    const { exampleTitle, sectionId } = getMeta(example);
+    const isSaved = btn.classList.toggle("saved");
+    btn.textContent = isSaved ? "★ Saved" : "☆ Save";
+
+    if (isSaved) {
+      saveExample({ sectionId, exampleTitle, guideTitle });
+    } else {
+      unsaveExample(sectionId, exampleTitle);
+    }
+  };
+
+  root.addEventListener("click", onClick);
+  cleanups.push(() => root.removeEventListener("click", onClick));
+
+  return () => cleanups.forEach((cleanup) => cleanup());
+}
+
 function StudyGuideShell({
   guideClass = "partial-derivatives-guide",
   title,
@@ -667,6 +753,7 @@ function StudyGuideShell({
     const wire = () => {
       if (cancelled || !rootRef.current) return;
       cleanups.forEach((cleanup) => cleanup());
+      renderLatex(rootRef.current);
       cleanups = [
         ...setupMcqs(rootRef.current, {
           publishQuizToLeaderboard,
@@ -674,12 +761,12 @@ function StudyGuideShell({
           setLeaderboardOptIn,
         }),
         setupSidebar(rootRef.current),
+        setupSaveForLater(rootRef.current, { guideTitle: title }),
       ];
       const topButton = rootRef.current.querySelector("#top-btn");
       const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
       topButton?.addEventListener("click", scrollTop);
       cleanups.push(() => topButton?.removeEventListener("click", scrollTop));
-      renderLatex(rootRef.current);
     };
 
     // Defer one frame so React finishes committing Partials-style children.
@@ -690,11 +777,11 @@ function StudyGuideShell({
       window.cancelAnimationFrame(raf);
       cleanups.forEach((cleanup) => cleanup());
     };
-  }, [markup, publishQuizToLeaderboard, saveQuizScore, setLeaderboardOptIn]);
+  }, [markup, publishQuizToLeaderboard, saveQuizScore, setLeaderboardOptIn, title]);
 
   return (
     <main className={`study-guide-page ${resolvedClass}`}>
-      <style>{styles + integrationStyles}</style>
+      <style>{styles + integrationStyles + saveForLaterStyles}</style>
       <button
         type="button"
         onClick={handleSaveAsPDF}

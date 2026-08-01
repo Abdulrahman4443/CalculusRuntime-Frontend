@@ -42,6 +42,7 @@ import DerivativeTool from "./components/DerivativeTool";
 import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
+import SavedForLater from "./pages/SavedForLater";
 import Chatbot from "./components/Chatbot/Chatbot";
 import {
   VectorsPart1,
@@ -182,6 +183,9 @@ function App() {
 
               {/* Objective 14 — Opt-in peer leaderboard */}
               <Route path="/leaderboard" element={<Layout body={<Leaderboard />} />} />
+
+              {/* Objective 4 — Save for Later */}
+              <Route path="/saved-for-later" element={<Layout body={<SavedForLater />} />} />
 
               {/* Catch-all */}
               <Route path="*" element={<Layout body={<NotFound />} />} />
