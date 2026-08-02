@@ -820,6 +820,26 @@ function QuizChallengeDivCurl() {
   );
 }
 
+function SectionRealWorld() {
+  return (
+    <section className="section" id="divcurl-real-world">
+      <div className="sec-badge">{"Applications"}</div>
+      <h2 className="sec-title">{"Where This Shows Up in Real Life"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Real-World Use"}</div>
+        <p>
+          {"Divergence and curl aren't abstract operators \u2014 they're literally two of "}
+          <strong>{"Maxwell's Equations"}</strong>
+          {", the four equations that govern all of classical electromagnetism. $\\nabla\\cdot\\mathbf{B}=0$ (zero divergence of the magnetic field) is precisely the statement that magnetic monopoles don't exist, and $\\nabla\\times\\mathbf{E}$ relates directly to how a changing magnetic field induces an electric current \u2014 the working principle behind every electric generator and transformer."}
+        </p>
+        <p>
+          {"Meteorologists use divergence and curl on wind-vector satellite data to identify high/low pressure systems and spot the rotation signature of a forming hurricane before it's visible to the eye. Aerospace engineers use curl to compute vorticity around an aircraft wing \u2014 the same rotational flow that generates lift \u2014 and civil engineers checking whether a fluid system (like a city's water network) has any unaccounted-for sources or leaks use exactly the divergence test from this guide: $\\nabla\\cdot\\mathbf{v}=0$ confirms conservation, anything else flags a problem."}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function SectionSummary() {
   return (
     <section className="section summary-box">
@@ -876,6 +896,8 @@ function DivergenceAndCurlGuide({ section }) {
           <DivCurlExtendedPart2 />
           <Divider />
           <QuizChallengeDivCurl />
+          <Divider />
+          <SectionRealWorld />
           <Divider />
           <SectionSummary />
         </main>

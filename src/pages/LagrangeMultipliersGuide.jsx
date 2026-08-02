@@ -795,6 +795,28 @@ function QuizChallengeLagrange() {
   );
 }
 
+function SectionRealWorld() {
+  return (
+    <section className="section" id="lagrange-real-world">
+      <div className="sec-badge">{"Applications"}</div>
+      <h2 className="sec-title">{"Where This Shows Up in Real Life"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Real-World Use"}</div>
+        <p>
+          {"Lagrange multipliers are the mathematical engine behind almost every "}
+          <strong>{"constrained optimization"}</strong>
+          {" problem in engineering and economics. Airlines use them to maximize seating revenue subject to fuel-weight limits; portfolio managers maximize expected return subject to a fixed risk budget; and structural engineers minimize material cost subject to a required load-bearing strength."}
+        </p>
+        <p>
+          {"In machine learning, Support Vector Machines \u2014 a widely used classification algorithm \u2014 are trained by solving a Lagrange multiplier problem: maximizing the margin between classes subject to every data point being correctly classified. And the $\\lambda$ we computed throughout this guide is exactly what economists call a "}
+          <strong>{"shadow price"}</strong>
+          {" \u2014 the value of relaxing a constraint by one unit, which is precisely how a factory manager decides whether it's worth buying more raw material or a government decides whether to loosen a regulatory limit."}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function SectionSummary() {
   return (
     <section className="section summary-box">
@@ -842,6 +864,8 @@ function LagrangeMultipliersGuide({ section }) {
           <LagrangeExtendedPart2 />
           <Divider />
           <QuizChallengeLagrange />
+          <Divider />
+          <SectionRealWorld />
           <Divider />
           <SectionSummary />
         </main>

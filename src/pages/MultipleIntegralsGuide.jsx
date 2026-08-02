@@ -458,23 +458,6 @@ function IntegralsQuiz({ part }) {
             <div className="mcq-explanation">{"Regions that are Type I but not Type II often need to be split so each piece has $x$ bounds as functions of $y$."}</div>
           </div>
         </div>
-        <div className="mcq-card" data-section="integrals-p2" data-q="6" data-answer="B" data-difficulty="medium">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"6"}</div>
-          <div className="mcq-q-text">{"The volume element $dV$ in spherical coordinates is:"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\rho\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\rho^2\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-        </div>
-        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"The Jacobian of the spherical transformation is $\\rho^2\\sin\\phi$, giving $dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$."}</div>
-        </div>
-      </div>
       </section>
     );
   }
@@ -603,6 +586,26 @@ function IntegralsQuiz({ part }) {
   );
 }
 
+function SectionRealWorld() {
+  return (
+    <section className="section" id="mi-real-world">
+      <div className="sec-badge">{"Applications"}</div>
+      <h2 className="sec-title">{"Where This Shows Up in Real Life"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Real-World Use"}</div>
+        <p>
+          {"Double and triple integrals are how engineers compute "}
+          <strong>{"mass, center of mass, and moments of inertia"}</strong>
+          {" for irregularly shaped objects \u2014 a car's crankshaft, an aircraft wing, a bridge girder \u2014 by integrating density over the exact 3D region, exactly the setup we used for volume."}
+        </p>
+        <p>
+          {"In probability and statistics, a joint probability density function over two or more variables is integrated over a region to find the probability of an event \u2014 the same double-integral machinery from this guide, just with a density function instead of $1$. CAD and 3D-printing software use triple integrals in cylindrical and spherical coordinates constantly, since so many manufactured parts (pipes, domes, gears) have exactly that kind of rotational symmetry."}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function GuideFooter() {
   return (
     <div className="pg-foot">
@@ -657,6 +660,8 @@ function IntegralsContent({ part }) {
         <IntegralsExtendedPart2 />
         <Divider />
         <IntegralsQuiz part={2} />
+        <Divider />
+        <SectionRealWorld />
         <GuideFooter />
       </main>
     </>

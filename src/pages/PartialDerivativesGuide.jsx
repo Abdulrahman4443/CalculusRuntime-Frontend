@@ -2408,6 +2408,28 @@ function SectionSummary() {
   );
 }
 
+function SectionRealWorld() {
+  return (
+    <section className="section" id="pd-real-world">
+      <div className="sec-badge">{"Applications"}</div>
+      <h2 className="sec-title">{"Where This Shows Up in Real Life"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Real-World Use"}</div>
+        <p>
+          {"Partial derivatives and gradients aren't just textbook exercises \u2014 they're the working machinery behind everyday technology. A weather app's "}
+          <strong>{"heat map"}</strong>
+          {" is literally a function of two variables (latitude, longitude), and the gradient at any point tells meteorologists the direction and rate of fastest temperature change \u2014 exactly the $\\nabla f$ we computed in this guide."}
+        </p>
+        <p>
+          {"Surveying and GPS terrain-fitting software uses partial derivatives to build smooth elevation models from scattered sensor readings, finding the best-fit surface the same way we found tangent planes. And in "}
+          <strong>{"machine learning"}</strong>
+          {", the gradient descent algorithm that trains nearly every modern AI model is nothing more than repeatedly stepping in the direction of $-\\nabla f$ \u2014 steepest descent \u2014 across a loss function with thousands or millions of variables instead of just two."}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function QuizMcq143() {
   return (
     <section className="mcq-section" id="mcq143">
@@ -3524,6 +3546,8 @@ function PartialDerivativesContent({ part = 1 }) {
         <QuizMcq147 />
         <Divider />
         <PartialsExtendedPart2 />
+        <Divider />
+        <SectionRealWorld />
         <GuideFooter />
       </main>
     </>
