@@ -59,8 +59,6 @@ import {
 
 import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
 
-
- main
 import {
   ProbBasicsPart1,
   ProbBasicsPart2,
