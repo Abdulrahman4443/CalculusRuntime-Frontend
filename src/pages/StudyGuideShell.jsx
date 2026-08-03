@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import renderMathInElement from "katex/contrib/auto-render";
 import "katex/dist/katex.min.css";
 import { useProgress } from "../context/ProgressContext";
@@ -7,35 +7,52 @@ import "../pages/Leaderboard.css";
 const integrationStyles = `
 .study-guide-page {
   min-height: 100vh;
-  overflow-x: clip;
+  overflow: visible;
+}
+
+/* Left vertical guide nav — stays visible while scrolling */
+.partial-derivatives-guide {
+  display: block;
 }
 
 .partial-derivatives-guide .sidebar {
-  align-items: center;
+  position: fixed !important;
+  top: calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px)) !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 240px !important;
+  max-width: 240px !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.15rem;
   background: #0f0e0d;
-  border-bottom: 1px solid rgba(200, 146, 42, 0.3);
-  border-right: 0;
-  display: flex;
-  gap: 0;
-  height: auto;
-  inset: auto;
-  left: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0 2rem;
-  position: sticky;
-  right: 0;
-  scrollbar-width: none;
-  top: var(--header-h, 72px);
-  width: 100%;
-  z-index: 120;
-  -ms-overflow-style: none;
-  overscroll-behavior-x: contain;
+  border-right: 1px solid rgba(200, 146, 42, 0.35) !important;
+  border-bottom: 0 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem 0.75rem 2rem !important;
+  z-index: 115 !important;
+  scrollbar-width: thin;
+  overscroll-behavior-y: contain;
+  box-shadow: 4px 0 18px rgba(0, 0, 0, 0.18);
+}
+
+.partial-derivatives-guide .guide-nav-spacer {
+  display: none !important;
 }
 
 .partial-derivatives-guide .sidebar::-webkit-scrollbar {
-  display: none;
-  height: 0;
+  width: 4px;
+  height: auto;
+}
+
+.partial-derivatives-guide .sidebar::-webkit-scrollbar-thumb {
+  background: rgba(200, 146, 42, 0.55);
+  border-radius: 2px;
 }
 
 .vector-calculus-guide nav {
@@ -47,11 +64,11 @@ const integrationStyles = `
 }
 
 .partial-derivatives-guide .sb-brand {
-  border-bottom: 0;
-  border-right: 1px solid rgba(200, 146, 42, 0.3);
   flex: 0 0 auto;
-  margin-right: 0.5rem;
-  padding: 0.65rem 1.1rem 0.65rem 0;
+  border-bottom: 1px solid rgba(200, 146, 42, 0.3) !important;
+  border-right: 0 !important;
+  margin: 0 0 0.65rem;
+  padding: 0.35rem 0.55rem 0.85rem !important;
 }
 
 .partial-derivatives-guide .sb-sub {
@@ -60,9 +77,10 @@ const integrationStyles = `
 
 .partial-derivatives-guide .sb-title {
   color: #e8b84b;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-style: normal;
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.35;
 }
 
 .partial-derivatives-guide .sb-group {
@@ -70,36 +88,77 @@ const integrationStyles = `
 }
 
 .partial-derivatives-guide .sb-link {
-  border-bottom: 2px solid transparent;
-  border-left: 0;
-  color: rgba(250, 247, 242, 0.76);
   flex: 0 0 auto;
+  display: block !important;
+  border-left: 3px solid transparent !important;
+  border-bottom: 0 !important;
+  border-radius: 6px;
+  color: rgba(250, 247, 242, 0.76);
   font-family: 'Source Sans 3', system-ui, sans-serif;
   font-size: 0.78rem;
-  letter-spacing: 0.05em;
-  padding: 0.85rem 0.8rem;
-  text-transform: uppercase;
-  white-space: nowrap;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  white-space: normal;
+  padding: 0.55rem 0.65rem !important;
+  line-height: 1.35;
+  background: transparent;
 }
 
 .partial-derivatives-guide .sb-link:hover,
 .partial-derivatives-guide .sb-link.active {
-  background: transparent;
-  border-bottom-color: #c8922a;
-  border-left-color: transparent;
+  background: rgba(200, 146, 42, 0.12) !important;
+  border-left-color: #c8922a !important;
+  border-bottom-color: transparent !important;
   color: #e8b84b;
 }
 
 .partial-derivatives-guide .sb-link .sn {
   color: #c8922a;
   font-size: 0.68rem;
+  margin-right: 0.35em;
 }
 
 .partial-derivatives-guide .main {
-  margin-left: 0;
+  margin-left: 240px !important;
   max-width: none;
   padding: 0;
+  min-width: 0;
+  width: auto;
 }
+
+/* Sequential quiz unlock */
+.partial-derivatives-guide .mcq-card.mcq-locked {
+  display: none !important;
+}
+
+.partial-derivatives-guide .mcq-section.mcq-section-locked {
+  position: relative;
+  opacity: 0.55;
+  pointer-events: none;
+  filter: grayscale(0.25);
+}
+
+.partial-derivatives-guide .mcq-section.mcq-section-locked::before {
+  content: attr(data-lock-hint);
+  display: block;
+  margin: 0 2rem 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1px dashed rgba(200, 146, 42, 0.55);
+  background: rgba(200, 146, 42, 0.08);
+  color: #7a5a12;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.partial-derivatives-guide .mcq-unlock-hint {
+  margin: 0.35rem 0 1rem;
+  color: #7a7268;
+  font-size: 0.88rem;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+}
+
 
 .partial-derivatives-guide .ch-hdr {
   /* Warm ink brown with gold pinstripes — matches Vector Calculus guide */
@@ -185,6 +244,7 @@ const integrationStyles = `
   background: transparent;
   padding-left: 2rem;
   padding-right: 2rem;
+  scroll-margin-top: calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px) + 3.5rem);
 }
 
 .partial-derivatives-guide .sec-badge,
@@ -221,7 +281,56 @@ const integrationStyles = `
 
 @media (max-width: 920px) {
   .partial-derivatives-guide .sidebar {
-    top: var(--header-h, 72px);
+    top: calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0 1rem !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(200, 146, 42, 0.35) !important;
+  }
+
+  .partial-derivatives-guide .sb-brand {
+    border-bottom: 0 !important;
+    border-right: 1px solid rgba(200, 146, 42, 0.3) !important;
+    margin: 0 0.5rem 0 0;
+    padding: 0.65rem 1rem 0.65rem 0 !important;
+  }
+
+  .partial-derivatives-guide .sb-title {
+    white-space: nowrap;
+  }
+
+  .partial-derivatives-guide .sb-link {
+    white-space: nowrap;
+    border-left: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0;
+    text-transform: uppercase;
+    padding: 0.85rem 0.8rem !important;
+  }
+
+  .partial-derivatives-guide .sb-link:hover,
+  .partial-derivatives-guide .sb-link.active {
+    border-left-color: transparent !important;
+    border-bottom-color: #c8922a !important;
+    background: transparent !important;
+  }
+
+  .partial-derivatives-guide .main {
+    margin-left: 0 !important;
+  }
+
+  .partial-derivatives-guide .guide-nav-spacer {
+    display: block !important;
+    width: 100%;
+    height: 52px;
   }
 
   .vector-calculus-guide nav {
@@ -230,10 +339,6 @@ const integrationStyles = `
 }
 
 @media (max-width: 640px) {
-  .partial-derivatives-guide .sidebar {
-    padding: 0 1rem;
-  }
-
   .partial-derivatives-guide .sb-brand {
     display: none;
   }
@@ -403,6 +508,67 @@ function setupMcqs(root, { publishQuizToLeaderboard, saveQuizScore, setLeaderboa
     refreshSubmitVisibility(section);
   });
 
+  const quizSections = Array.from(root.querySelectorAll(".mcq-section")).filter((sec) =>
+    sec.querySelector(".mcq-card[data-answer]"),
+  );
+
+  const applySequentialUnlock = () => {
+    quizSections.forEach((sec, secIndex) => {
+      const sectionCards = Array.from(sec.querySelectorAll(".mcq-card[data-answer]")).filter(
+        isWiredCard,
+      );
+      const prevSection = secIndex > 0 ? quizSections[secIndex - 1] : null;
+      const prevCards = prevSection
+        ? Array.from(prevSection.querySelectorAll(".mcq-card[data-answer]")).filter(isWiredCard)
+        : [];
+      const prevSectionDone =
+        !prevSection ||
+        (prevCards.length > 0 &&
+          prevCards.every((c) => answered[cardKey(c)]));
+
+      if (!prevSectionDone) {
+        sec.classList.add("mcq-section-locked");
+        sec.setAttribute(
+          "data-lock-hint",
+          `Locked — finish Quiz ${secIndex} (all questions) to unlock Quiz ${secIndex + 1}`,
+        );
+        sectionCards.forEach((card) => card.classList.add("mcq-locked"));
+        return;
+      }
+
+      sec.classList.remove("mcq-section-locked");
+      sec.removeAttribute("data-lock-hint");
+
+      sectionCards.forEach((card, i) => {
+        if (i === 0) {
+          card.classList.remove("mcq-locked");
+          return;
+        }
+        const prevKey = cardKey(sectionCards[i - 1]);
+        if (answered[prevKey]) card.classList.remove("mcq-locked");
+        else card.classList.add("mcq-locked");
+      });
+
+      let hint = sec.querySelector(".mcq-unlock-hint");
+      if (!hint) {
+        hint = document.createElement("p");
+        hint.className = "mcq-unlock-hint";
+        const head = sec.querySelector(".mcq-score-strip");
+        if (head) head.insertAdjacentElement("afterend", hint);
+        else sec.prepend(hint);
+      }
+      const unlockedCount =
+        1 + sectionCards.filter((c, i) => i > 0 && answered[cardKey(sectionCards[i - 1])]).length;
+      const visible = Math.min(unlockedCount, sectionCards.length);
+      hint.textContent = `Quiz progress: question ${Math.min(
+        visible,
+        sectionCards.length,
+      )} of ${sectionCards.length} unlocked — solve each question to reveal the next.`;
+    });
+  };
+
+  applySequentialUnlock();
+
   // Event delegation on the stable root — survives React child re-renders.
   const onRootClick = (event) => {
     const revealButton = event.target.closest(".mcq-reveal-btn");
@@ -448,6 +614,7 @@ function setupMcqs(root, { publishQuizToLeaderboard, saveQuizScore, setLeaderboa
       answeredCount[section] = (answeredCount[section] || 0) + 1;
       updateScoreDisplay(section);
       refreshSubmitVisibility(section);
+      applySequentialUnlock();
 
       if (
         saveQuizScore &&
@@ -507,6 +674,72 @@ function setupMcqs(root, { publishQuizToLeaderboard, saveQuizScore, setLeaderboa
   return cleanups;
 }
 
+function setupPinnedGuideNav(root) {
+  const sidebar = root.querySelector(".sidebar");
+  if (!sidebar) return () => {};
+
+  let spacer = root.querySelector(".guide-nav-spacer");
+  if (!spacer) {
+    spacer = document.createElement("div");
+    spacer.className = "guide-nav-spacer";
+    spacer.setAttribute("aria-hidden", "true");
+    sidebar.insertAdjacentElement("afterend", spacer);
+  }
+
+  const sync = () => {
+    const headerH =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--header-h"),
+      ) || 64;
+    const topbar = document.querySelector(".guide-part-topbar");
+    const topbarH = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--guide-topbar-h", `${topbarH}px`);
+    const mobile = window.matchMedia("(max-width: 920px)").matches;
+
+    sidebar.style.position = "fixed";
+    sidebar.style.top = `${headerH + topbarH}px`;
+    sidebar.style.left = "0";
+    sidebar.style.zIndex = "115";
+
+    if (mobile) {
+      sidebar.style.right = "0";
+      sidebar.style.bottom = "auto";
+      sidebar.style.width = "100%";
+      sidebar.style.height = "auto";
+      spacer.style.display = "block";
+      spacer.style.height = `${Math.ceil(sidebar.getBoundingClientRect().height || 52)}px`;
+    } else {
+      sidebar.style.right = "auto";
+      sidebar.style.bottom = "0";
+      sidebar.style.width = "240px";
+      sidebar.style.height = "auto";
+      spacer.style.display = "none";
+      spacer.style.height = "0";
+    }
+  };
+
+  sync();
+  const onResize = () => sync();
+  window.addEventListener("resize", onResize);
+  window.addEventListener("scroll", sync, { passive: true });
+
+  let ro;
+  if (typeof ResizeObserver !== "undefined") {
+    ro = new ResizeObserver(sync);
+    ro.observe(sidebar);
+    const topbar = document.querySelector(".guide-part-topbar");
+    if (topbar) ro.observe(topbar);
+  }
+
+  return () => {
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("scroll", sync);
+    ro?.disconnect();
+    spacer.remove();
+    document.documentElement.style.removeProperty("--guide-topbar-h");
+  };
+}
+
 function setupSidebar(root) {
   const sections = Array.from(root.querySelectorAll(".section[id], .mcq-section[id]"));
   const links = Array.from(
@@ -520,15 +753,31 @@ function setupSidebar(root) {
     const linkBox = link.getBoundingClientRect();
     const sidebarBox = sidebar.getBoundingClientRect();
     const padding = 24;
+    const mobile = window.matchMedia("(max-width: 920px)").matches;
 
-    if (linkBox.left < sidebarBox.left + padding) {
+    if (mobile) {
+      if (linkBox.left < sidebarBox.left + padding) {
+        sidebar.scrollTo({
+          left: sidebar.scrollLeft - (sidebarBox.left + padding - linkBox.left),
+          behavior: "smooth",
+        });
+      } else if (linkBox.right > sidebarBox.right - padding) {
+        sidebar.scrollTo({
+          left: sidebar.scrollLeft + (linkBox.right - sidebarBox.right + padding),
+          behavior: "smooth",
+        });
+      }
+      return;
+    }
+
+    if (linkBox.top < sidebarBox.top + padding) {
       sidebar.scrollTo({
-        left: sidebar.scrollLeft - (sidebarBox.left + padding - linkBox.left),
+        top: sidebar.scrollTop - (sidebarBox.top + padding - linkBox.top),
         behavior: "smooth",
       });
-    } else if (linkBox.right > sidebarBox.right - padding) {
+    } else if (linkBox.bottom > sidebarBox.bottom - padding) {
       sidebar.scrollTo({
-        left: sidebar.scrollLeft + (linkBox.right - sidebarBox.right + padding),
+        top: sidebar.scrollTop + (linkBox.bottom - sidebarBox.bottom + padding),
         behavior: "smooth",
       });
     }
@@ -544,11 +793,17 @@ function setupSidebar(root) {
     const headerHeight = parseFloat(
       getComputedStyle(document.documentElement).getPropertyValue("--header-h"),
     ) || 72;
-    const sidebarHeight = sidebar ? sidebar.getBoundingClientRect().height : 0;
+    const topbarH = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--guide-topbar-h"),
+    ) || 0;
+    const mobile = window.matchMedia("(max-width: 920px)").matches;
+    const sidebarHeight =
+      mobile && sidebar ? sidebar.getBoundingClientRect().height : 0;
     const top =
       target.getBoundingClientRect().top +
       window.scrollY -
       headerHeight -
+      topbarH -
       sidebarHeight -
       14;
 
@@ -634,6 +889,7 @@ function StudyGuideShell({
           saveQuizScore,
           setLeaderboardOptIn,
         }),
+        setupPinnedGuideNav(rootRef.current),
         setupSidebar(rootRef.current),
       ];
       const topButton = rootRef.current.querySelector("#top-btn");
@@ -652,6 +908,14 @@ function StudyGuideShell({
       cleanups.forEach((cleanup) => cleanup());
     };
   }, [markup, publishQuizToLeaderboard, saveQuizScore, setLeaderboardOptIn]);
+
+  // Children-mode guides: progress/visit re-renders restore raw `$...$` text nodes.
+  // useLayoutEffect runs before paint so users never see broken raw LaTeX.
+  useLayoutEffect(() => {
+    if (markup) return;
+    const root = rootRef.current;
+    if (root) renderLatex(root);
+  });
 
   return (
     <main className={`study-guide-page ${resolvedClass}`}>

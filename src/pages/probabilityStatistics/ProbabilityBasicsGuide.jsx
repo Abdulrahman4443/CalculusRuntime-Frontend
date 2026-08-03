@@ -388,7 +388,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <h2 className="sec-title">Equally likely outcomes &amp; counting</h2>
           <TheoryBox title="Classical probability">
             <p>
-              {"When all outcomes are equally likely, $P(A)=|A|/|\\Omega|$. Combinations $\\binom{n}{k}$ and permutations $P(n,k)$ build $|\Omega|$ and $|A|$ for cards, committees, and passwords."}
+              {String.raw`When all outcomes are equally likely, $P(A)=|A|/|\Omega|$. Combinations $\binom{n}{k}$ and permutations $P(n,k)$ build $|\Omega|$ and $|A|$ for cards, committees, and passwords.`}
             </p>
           </TheoryBox>
         </section>

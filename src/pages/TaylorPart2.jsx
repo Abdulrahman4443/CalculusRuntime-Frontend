@@ -32,6 +32,7 @@ function TaylorPart2() {
         sectionId="taylor-2"
         nextPath="/lagrange-multipliers/1"
         nextLabel="Next: Lagrange Multipliers"
+        courseId="calculus-analytical-geometry"
       />
     </div>
   );
