@@ -201,6 +201,13 @@ export const COURSES = [
         icon: "P",
       },
       {
+        title: "Bayes Lab",
+        description: "Interactive screening calculator for P(disease | positive test).",
+        path: "/probability-statistics/bayes-lab",
+        meta: "Interactive tool",
+        icon: "B",
+      },
+      {
         title: "Random Variables & Distributions",
         description: "Discrete and continuous RVs, PMFs, PDFs, and named families.",
         path: "/probability-statistics/random-variables/1",

@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse } from "../linearAlgebra/LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -36,6 +36,11 @@ function DescriptiveStatsGuide({ part = 1 }) {
                 {"Sample variance $s^2=\\frac{1}{n-1}\\sum(x_i-\\bar x)^2$ (unbiased). SD $s=\\sqrt{s^2}$. A z-score $z=(x-\\bar x)/s$ says how many SDs above/below the mean."}
               </p>
             </TheoryBox>
+            <PracticalTheory title="Reading displays quickly">
+              <p>
+                {"Ask what the picture emphasizes: shape (histogram), five-number summary (boxplot), or ranking (percentiles). Flag outliers with the 1.5×IQR fence before trusting a mean."}
+              </p>
+            </PracticalTheory>
             <TheoremBox title="IQR robustness">
               <p>
                 {"IQR $=Q_3-Q_1$ resists outliers better than SD. Outlier fences often use $Q_1-1.5\\,\\mathrm{IQR}$ and $Q_3+1.5\\,\\mathrm{IQR}$."}
@@ -48,11 +53,11 @@ function DescriptiveStatsGuide({ part = 1 }) {
             <ProcedureBox
               title="Standardize a value"
               steps={[
-                { text: "Compute mean and SD of the reference sample (or use population $\\mu,\\sigma$).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Subtract the center from $x$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Divide by the SD to get $z$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Interpret: $|z|>2$ is often unusual; $|z|>3$ is extreme.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "For displays: choose histogram/boxplot to match the question (shape vs outliers).", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Compute mean and SD of the reference sample (or use population $\\mu,\\sigma$).", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Subtract the center from $x$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Divide by the SD to get $z$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Interpret: $|z|>2$ is often unusual; $|z|>3$ is extreme.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "For displays: choose histogram/boxplot to match the question (shape vs outliers).", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
             />
           </section>
@@ -64,9 +69,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Sample SD"
               setup={"Data: 2, 4, 4, 6. Find $s$."}
               steps={[
-                { text: "$\\bar x=4$.", why: "Translate the problem into symbols and known facts." },
-                { text: "Deviations: $-2,0,0,2$; squares: $4,0,0,4$; sum $8$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "$s^2=8/3$, $s=\\sqrt{8/3}\\approx 1.63$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$\\bar x=4$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Deviations: $-2,0,0,2$; squares: $4,0,0,4$; sum $8$.", why: "Count equally likely outcomes in the conditioning set carefully (order matters for dice)." },
+                { text: "$s^2=8/3$, $s=\\sqrt{8/3}\\approx 1.63$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
               result={"$s\\approx 1.63$."}
               check={"Divide by $n-1=3$, not $n$."}
@@ -77,9 +82,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="z-score compare"
               setup={"Exam A: score 85, mean 70, SD 10. Exam B: 80, mean 60, SD 15. Which is relatively better?"}
               steps={[
-                { text: "$z_A=(85-70)/10=1.5$.", why: "Translate the problem into symbols and known facts." },
-                { text: "$z_B=(80-60)/15\\approx 1.33$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "A is farther above its mean in SD units.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$z_A=(85-70)/10=1.5$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$z_B=(80-60)/15\\approx 1.33$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "A is farther above its mean in SD units.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"Exam A is relatively stronger."}
               check={"Compare standardized scores, not raw marks."}
@@ -90,8 +95,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="IQR fences"
               setup={"$Q_1=10$, $Q_3=22$. Find upper fence."}
               steps={[
-                { text: "IQR $=12$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Upper fence $=22+1.5\\times 12=40$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "IQR $=12$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Upper fence $=22+1.5\\times 12=40$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"$40$."}
               check={"Points above 40 flagged as potential outliers."}
@@ -102,8 +107,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Empirical rule"
               setup={"Approx. normal data, mean 50, SD 5. About what percent lie in $[40,60]$?"}
               steps={[
-                { text: "$[40,60]$ is mean ± 2 SD.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Empirical rule ≈ 95%.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$[40,60]$ is mean ± 2 SD.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Empirical rule ≈ 95%.", why: "Finish the arithmetic and state the conclusion in the problem's units." }
               ]}
               result={"About 95%."}
               check={"68 / 95 / 99.7 for 1 / 2 / 3 SD."}
@@ -156,11 +161,11 @@ function DescriptiveStatsGuide({ part = 1 }) {
             <ProcedureBox
               title="Reading a boxplot / histogram"
               steps={[
-                { text: "Locate the box: left edge $Q_1$, right edge $Q_3$, line inside is the median.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Whiskers extend to the most extreme points within the fences.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Any point beyond a fence is plotted separately as an outlier.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "For a histogram, compare the tail lengths on each side to judge skew direction.", why: "State the exact condition or formula you will test." },
-                { text: "A long right tail with mean $>$ median signals right (positive) skew, and vice versa.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Locate the box: left edge $Q_1$, right edge $Q_3$, line inside is the median.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Whiskers extend to the most extreme points within the fences.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Any point beyond a fence is plotted separately as an outlier.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "For a histogram, compare the tail lengths on each side to judge skew direction.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "A long right tail with mean $>$ median signals right (positive) skew, and vice versa.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             />
             <WorkedExample
@@ -168,9 +173,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Fence calculation"
               setup={"A dataset has $Q_1=20$, $Q_3=32$. Find the fences and check if a value of $55$ is an outlier."}
               steps={[
-                { text: "$\\mathrm{IQR}=32-20=12$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Upper fence $=32+1.5(12)=32+18=50$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$55>50$, so it lies beyond the upper fence.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$\\mathrm{IQR}=32-20=12$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Upper fence $=32+1.5(12)=32+18=50$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$55>50$, so it lies beyond the upper fence.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"$55$ is flagged as an outlier."}
               check={"Lower fence $=20-18=2$; any value below 2 would also be flagged."}
@@ -181,9 +186,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Reading skew from mean vs. median"
               setup={"A dataset has mean $=48$, median $=42$. Describe the likely skew and boxplot shape."}
               steps={[
-                { text: "Mean $>$ median means a few unusually large values are pulling the mean up.", why: "State the exact condition or formula you will test." },
-                { text: "This is characteristic of right (positive) skew.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "On a boxplot, expect a longer whisker (or more outliers) on the upper side.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Mean $>$ median means a few unusually large values are pulling the mean up.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "This is characteristic of right (positive) skew.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "On a boxplot, expect a longer whisker (or more outliers) on the upper side.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
               result={"Right-skewed distribution."}
               check={"If mean $<$ median instead, the skew would be left (negative)."}
@@ -264,6 +269,11 @@ function DescriptiveStatsGuide({ part = 1 }) {
               {"Sample mean $\\bar x=\\frac1n\\sum x_i$ uses all values (sensitive to outliers). Median is the middle order statistic (robust). Mode is the most frequent value (useful for categories)."}
             </p>
           </TheoryBox>
+          <PracticalTheory title="Picking a center and a spread">
+            <p>
+              {"Skewed or outlier-heavy data: prefer median and IQR. Symmetric mound: mean and sd are fine. Report units, and never compare raw scores across different exams without z-scores."}
+            </p>
+          </PracticalTheory>
           <TheoremBox title="Skew and center">
             <p>
               {"Right skew: mean $>$ median. Left skew: mean $<$ median. Symmetric unimodal: mean ≈ median ≈ mode."}
@@ -276,11 +286,11 @@ function DescriptiveStatsGuide({ part = 1 }) {
           <ProcedureBox
             title="Compute center"
             steps={[
-                { text: "Sort the data for median / quartiles.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Mean: sum ÷ $n$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Odd $n$: median is middle value; even $n$: average of two middle values.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Report units and sample size with every summary.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Note outliers before trusting the mean alone.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Sort the data for median / quartiles.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Mean: sum ÷ $n$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Odd $n$: median is middle value; even $n$: average of two middle values.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Report units and sample size with every summary.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Note outliers before trusting the mean alone.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
           />
         </section>
@@ -292,9 +302,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Mean vs median"
             setup={"Data: 3, 5, 5, 7, 100. Compare mean and median."}
             steps={[
-                { text: "Mean $=(3+5+5+7+100)/5=24$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Sorted already; median $=5$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Outlier 100 pulled the mean far above the median.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Mean $=(3+5+5+7+100)/5=24$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Sorted already; median $=5$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Outlier 100 pulled the mean far above the median.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             result={"Mean 24, median 5."}
             check={"Median resists the outlier."}
@@ -305,8 +315,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Even-count median"
             setup={"Data: 2, 4, 6, 10. Median?"}
             steps={[
-                { text: "Two middle values: 4 and 6.", why: "Translate the problem into symbols and known facts." },
-                { text: "Median $=(4+6)/2=5$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Two middle values: 4 and 6.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Median $=(4+6)/2=5$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             result={"$5$."}
             check={"Average the two central observations."}
@@ -317,7 +327,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Weighted idea"
             setup={"Scores 80 and 90 with weights 0.4 and 0.6. Weighted mean?"}
             steps={[
-                { text: "$0.4\\cdot 80+0.6\\cdot 90=32+54=86$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$0.4\\cdot 80+0.6\\cdot 90=32+54=86$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
             result={"$86$."}
             check={"Weights sum to 1."}
@@ -328,8 +338,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Mode"
             setup={"Categories: red, blue, red, green, red. Mode?"}
             steps={[
-                { text: "Red appears three times; others once.", why: "Translate the problem into symbols and known facts." },
-                { text: "Mode = red.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Red appears three times; others once.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Mode = red.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
             result={"red"}
             check={"Most frequent category."}

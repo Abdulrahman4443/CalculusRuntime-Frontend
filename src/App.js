@@ -58,6 +58,7 @@ import {
 } from "./pages/linearAlgebra/LaParts";
 
 import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
+import BayesLab from "./pages/probabilityStatistics/BayesLab";
 
 import {
   ProbBasicsPart1,
@@ -191,6 +192,7 @@ function App() {
               <Route path="/probability-statistics/regression-correlation" element={<Navigate to="/probability-statistics/regression-correlation/1" replace />} />
               <Route path="/probability-statistics/regression-correlation/1" element={<Layout body={<RegressionPart1 />} />} />
               <Route path="/probability-statistics/regression-correlation/2" element={<Layout body={<RegressionPart2 />} />} />
+              <Route path="/probability-statistics/bayes-lab" element={<Layout body={<BayesLab />} />} />
 
               {/* Tools */}
               <Route path="/test" element={<Layout body={<ContinuityFinder />} />} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
 import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
+import { PS_PRACTICE_BANK } from '../data/psPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
@@ -1270,6 +1271,8 @@ const PRACTICE_PROBLEMS = [
 
   // Calculus AG certificate track — 15 Easy + 15 Medium + 15 Hard per topic
   ...CALC_AG_PRACTICE_BANK,
+  // Probability & Statistics — 15 Easy + 15 Medium + 15 Hard per topic
+  ...PS_PRACTICE_BANK,
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
