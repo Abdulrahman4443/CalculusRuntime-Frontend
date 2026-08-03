@@ -53,6 +53,7 @@ const ROUTE_MAP = [
   { match: /\/probability-statistics\/probability-basics\/2/, topic: "Probability Basics Part 2", detail: "conditional probability, independence, Bayes theorem" },
   { match: /\/probability-statistics\/probability-basics\/1/, topic: "Probability Basics Part 1", detail: "sample spaces, axioms, equally likely outcomes" },
   { match: /\/probability-statistics\/probability-basics/, topic: "Probability Basics", detail: "foundations of probability" },
+  { match: /\/probability-statistics\/bayes-lab/, topic: "Bayes Lab", detail: "interactive Bayes screening calculator for P(D|+), PPV, base rates" },
   { match: /\/probability-statistics\/random-variables\/2/, topic: "Random Variables Part 2", detail: "continuous RVs, PDFs, named distributions" },
   { match: /\/probability-statistics\/random-variables\/1/, topic: "Random Variables Part 1", detail: "discrete RVs, PMFs, expectation and variance" },
   { match: /\/probability-statistics\/random-variables/, topic: "Random Variables & Distributions", detail: "random variables and distributions" },

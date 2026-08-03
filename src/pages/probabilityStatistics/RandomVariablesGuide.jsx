@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse } from "../linearAlgebra/LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -37,6 +37,11 @@ function RandomVariablesGuide({ part = 1 }) {
                 {"A continuous RV has a PDF $f$ with $f(x)\\ge 0$ and $\\int_{-\\infty}^{\\infty} f(x)\\,dx=1$. Then $P(a\\le X\\le b)=\\int_a^b f$. Point probabilities are zero: $P(X=c)=0$."}
               </p>
             </TheoryBox>
+            <PracticalTheory title="Named families under exam pressure">
+              <p>
+                {"Match the story: fixed trials → Binomial; rare counts → Poisson; waiting with memoryless → Exponential/Geometric; bell mound → Normal. Write mean/variance formulas before plugging numbers."}
+              </p>
+            </PracticalTheory>
             <TheoremBox title="CDF and expectation">
               <p>
                 {"$F(x)=P(X\\le x)=\\int_{-\\infty}^x f$. For continuous $X$, $E[X]=\\int x f(x)\\,dx$ and $\\mathrm{Var}(X)=E[X^2]-(E[X])^2$."}
@@ -49,11 +54,11 @@ function RandomVariablesGuide({ part = 1 }) {
             <ProcedureBox
               title="Working with a PDF"
               steps={[
-                { text: "Verify $\\int f=1$ (normalize if needed).", why: "Translate the problem into symbols and known facts." },
-                { text: "Probabilities = areas under $f$ between bounds.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Use $F$ when cumulative questions appear.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Compute $E[X]$ and $E[X^2]$ by integration for mean/variance.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Match named families by support and shape (uniform, exponential, normal).", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Verify $\\int f=1$ (normalize if needed).", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "Probabilities = areas under $f$ between bounds.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Use $F$ when cumulative questions appear.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Compute $E[X]$ and $E[X^2]$ by integration for mean/variance.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Match named families by support and shape (uniform, exponential, normal).", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." }
               ]}
             />
           </section>
@@ -65,9 +70,9 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Uniform on [0,2]"
               setup={"$X\\sim\\mathrm{Unif}[0,2]$. Find $P(0.5\\le X\\le 1.5)$ and $E[X]$."}
               steps={[
-                { text: "$f(x)=1/2$ on $[0,2]$.", why: "Translate the problem into symbols and known facts." },
-                { text: "$P=\\int_{0.5}^{1.5}(1/2)\\,dx=1/2$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "$E[X]=(0+2)/2=1$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$f(x)=1/2$ on $[0,2]$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$P=\\int_{0.5}^{1.5}(1/2)\\,dx=1/2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$E[X]=(0+2)/2=1$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"Probability $1/2$, mean $1$."}
               check={"Length of interval over length of support."}
@@ -78,8 +83,8 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Exponential waiting time"
               setup={"$f(x)=\\lambda e^{-\\lambda x}$ for $x>0$, $\\lambda=2$. Find $P(X>1)$."}
               steps={[
-                { text: "$P(X>1)=\\int_1^{\\infty} 2e^{-2x}\\,dx=e^{-2}$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "Memoryless: $P(X>s+t\\mid X>s)=P(X>t)$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$P(X>1)=\\int_1^{\\infty} 2e^{-2x}\\,dx=e^{-2}$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Memoryless: $P(X>s+t\\mid X>s)=P(X>t)$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
               result={"$e^{-2}\\approx 0.135$."}
               check={"Survival function $e^{-\\lambda x}$."}
@@ -90,8 +95,8 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Standard normal"
               setup={"$Z\\sim N(0,1)$. Interpret $P(|Z|\\le 1)$."}
               steps={[
-                { text: "About 68% of mass lies within one SD of the mean.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Within two SDs ≈ 95%; three ≈ 99.7% (empirical rule).", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "About 68% of mass lies within one SD of the mean.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Within two SDs ≈ 95%; three ≈ 99.7% (empirical rule).", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"≈ 0.68."}
               check={"68–95–99.7 rule for bell curves."}
@@ -102,8 +107,8 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Normalize a density"
               setup={"$f(x)=c x$ on $[0,1]$. Find $c$ and $P(X>1/2)$."}
               steps={[
-                { text: "$\\int_0^1 c x\\,dx=c/2=1$ ⇒ $c=2$.", why: "Translate the problem into symbols and known facts." },
-                { text: "$P(X>1/2)=\\int_{1/2}^1 2x\\,dx=[x^2]_{1/2}^1=1-1/4=3/4$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$\\int_0^1 c x\\,dx=c/2=1$ ⇒ $c=2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$P(X>1/2)=\\int_{1/2}^1 2x\\,dx=[x^2]_{1/2}^1=1-1/4=3/4$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
               result={"$c=2$, probability $3/4$."}
               check={"Integral of PDF is 1."}
@@ -156,11 +161,11 @@ function RandomVariablesGuide({ part = 1 }) {
             <ProcedureBox
               title="How to match a word problem to a family"
               steps={[
-                { text: "Fixed number of independent yes/no trials, counting successes → Binomial$(n,p)$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Events occurring randomly over a fixed interval at a constant average rate → Poisson$(\\lambda)$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Equally likely outcomes over a continuous range → Uniform.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Time or distance until the next random event, with the memoryless property → Exponential.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Sum/average of many independent effects, or bell-shaped data → Normal (justified by the CLT).", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Fixed number of independent yes/no trials, counting successes → Binomial$(n,p)$.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "Events occurring randomly over a fixed interval at a constant average rate → Poisson$(\\lambda)$.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "Equally likely outcomes over a continuous range → Uniform.", why: "Count equally likely outcomes in the conditioning set carefully (order matters for dice)." },
+                { text: "Time or distance until the next random event, with the memoryless property → Exponential.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "Sum/average of many independent effects, or bell-shaped data → Normal (justified by the CLT).", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." }
               ]}
             />
           </section>
@@ -173,9 +178,9 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Poisson — call center"
               setup={"A call center receives calls at an average rate of $\\lambda=4$ per minute. Find $P(X=2)$ in a given minute."}
               steps={[
-                { text: "Poisson PMF: $P(X=k)=e^{-\\lambda}\\lambda^k/k!$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$P(X=2)=e^{-4}(4^2)/2!=e^{-4}(16)/2=8e^{-4}$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$8e^{-4}\\approx 0.1465$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Poisson PMF: $P(X=k)=e^{-\\lambda}\\lambda^k/k!$.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "$P(X=2)=e^{-4}(4^2)/2!=e^{-4}(16)/2=8e^{-4}$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$8e^{-4}\\approx 0.1465$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
               result={"$\\approx 0.1465$."}
               check={"Mean and variance both equal $\\lambda=4$, matching the Poisson rule."}
@@ -186,9 +191,9 @@ function RandomVariablesGuide({ part = 1 }) {
               title="Binomial mean/variance — quality control"
               setup={"A factory line has a 5% defect rate. In a batch of $n=200$ items, find $E[X]$ and $\\mathrm{Var}(X)$ for the number of defects."}
               steps={[
-                { text: "$X\\sim\\mathrm{Bin}(n=200,p=0.05)$.", why: "Translate the problem into symbols and known facts." },
-                { text: "$E[X]=np=200(0.05)=10$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$\\mathrm{Var}(X)=np(1-p)=200(0.05)(0.95)=9.5$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$X\\sim\\mathrm{Bin}(n=200,p=0.05)$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$E[X]=np=200(0.05)=10$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$\\mathrm{Var}(X)=np(1-p)=200(0.05)(0.95)=9.5$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"Mean $10$ defects, variance $9.5$."}
               check={"$np(1-p)$ is always less than $np$ since $(1-p)<1$."}
@@ -269,6 +274,11 @@ function RandomVariablesGuide({ part = 1 }) {
               {"A discrete RV $X$ takes countable values with PMF $p(x)=P(X=x)$, $\\sum_x p(x)=1$. The CDF $F(x)=P(X\\le x)$ jumps at those values."}
             </p>
           </TheoryBox>
+          <PracticalTheory title="Choosing PMF vs PDF language">
+            <p>
+              {"Discrete questions want sums and p(x); continuous questions want integrals and densities. Always check normalization first (sum/integral = 1) before computing means or probabilities of intervals."}
+            </p>
+          </PracticalTheory>
           <TheoremBox title="Linearity of expectation">
             <p>
               {"$E[aX+bY]=aE[X]+bE[Y]$ always — independence not required. Variance needs care: $\\mathrm{Var}(X+Y)=\\mathrm{Var}X+\\mathrm{Var}Y$ if uncorrelated."}
@@ -281,11 +291,11 @@ function RandomVariablesGuide({ part = 1 }) {
           <ProcedureBox
             title="Discrete checklist"
             steps={[
-                { text: "List possible values of $X$.", why: "Translate the problem into symbols and known facts." },
-                { text: "Assign / derive $p(x)$ and verify sum 1.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$E[X]=\\sum x p(x)$; $E[g(X)]=\\sum g(x)p(x)$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$\\mathrm{Var}(X)=E[X^2]-(E[X])^2$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Use CDF for 'at most / at least' questions.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "List possible values of $X$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Assign / derive $p(x)$ and verify sum 1.", why: "Count equally likely outcomes in the conditioning set carefully (order matters for dice)." },
+                { text: "$E[X]=\\sum x p(x)$; $E[g(X)]=\\sum g(x)p(x)$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$\\mathrm{Var}(X)=E[X^2]-(E[X])^2$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "Use CDF for 'at most / at least' questions.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
           />
         </section>
@@ -297,9 +307,9 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Fair die as RV"
             setup={"$X=$ face of a fair die. Find $E[X]$ and $P(X\\ge 5)$."}
             steps={[
-                { text: "$p(x)=1/6$ for $x=1..6$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$E[X]=(1+\\cdots+6)/6=3.5$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$P(X\\ge 5)=P(5)+P(6)=1/3$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$p(x)=1/6$ for $x=1..6$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$E[X]=(1+\\cdots+6)/6=3.5$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$P(X\\ge 5)=P(5)+P(6)=1/3$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
               ]}
             result={"Mean $3.5$, probability $1/3$."}
             check={"Symmetric around 3.5."}
@@ -310,9 +320,9 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Bernoulli"
             setup={"$X\\sim\\mathrm{Bern}(p)$ with $p=0.3$. Find $E[X]$ and $\\mathrm{Var}(X)$."}
             steps={[
-                { text: "$E[X]=p=0.3$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$E[X^2]=p$ (since $X^2=X$).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$\\mathrm{Var}=p-p^2=0.3\\cdot 0.7=0.21$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$E[X]=p=0.3$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$E[X^2]=p$ (since $X^2=X$).", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$\\mathrm{Var}=p-p^2=0.3\\cdot 0.7=0.21$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             result={"Mean $0.3$, variance $0.21$."}
             check={"Formula $p(1-p)$."}
@@ -323,8 +333,8 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Binomial count"
             setup={"$X\\sim\\mathrm{Bin}(n=5,p=1/2)$. Find $P(X=2)$."}
             steps={[
-                { text: "$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "$\\binom{5}{2}(1/2)^5=10/32=5/16$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." },
+                { text: "$\\binom{5}{2}(1/2)^5=10/32=5/16$.", why: "Invoke the named distribution's PMF/PDF or its mean/variance formula." }
               ]}
             result={"$5/16$."}
             check={"Binomial coefficients count sequences."}
@@ -335,9 +345,9 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Variance shortcut"
             setup={"$P(X=0)=0.2$, $P(X=1)=0.5$, $P(X=2)=0.3$. Find $\\mathrm{Var}(X)$."}
             steps={[
-                { text: "$E[X]=0(0.2)+1(0.5)+2(0.3)=1.1$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$E[X^2]=0+1(0.5)+4(0.3)=1.7$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "$\\mathrm{Var}=1.7-1.1^2=1.7-1.21=0.49$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "$E[X]=0(0.2)+1(0.5)+2(0.3)=1.1$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$E[X^2]=0+1(0.5)+4(0.3)=1.7$.", why: "Plug into the matching center/spread formula for this data type." },
+                { text: "$\\mathrm{Var}=1.7-1.1^2=1.7-1.21=0.49$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             result={"$0.49$."}
             check={"Uses $E[X^2]-(E[X])^2$."}
