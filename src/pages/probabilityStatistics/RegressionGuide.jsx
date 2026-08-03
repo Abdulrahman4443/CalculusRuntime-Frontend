@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample } from "../linearAlgebra/LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse } from "../linearAlgebra/LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -48,11 +48,11 @@ function RegressionGuide({ part = 1 }) {
             <ProcedureBox
               title="Fit and check"
               steps={[
-                "Plot the scatterplot first — look for linearity.",
-                "Compute $r$, then $b_1=r s_y/s_x$, $b_0=\\bar y-b_1\\bar x$.",
-                "Predict with $\\hat y=b_0+b_1 x$ (avoid wild extrapolation).",
-                "Residuals $e_i=y_i-\\hat y_i$; plot $e$ vs $\\hat y$ for patterns.",
-                "If curved or fan-shaped residuals, linear model is inadequate.",
+                { text: "Plot the scatterplot first — look for linearity.", why: "Translate the problem into symbols and known facts." },
+                { text: "Compute $r$, then $b_1=r s_y/s_x$, $b_0=\\bar y-b_1\\bar x$.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Predict with $\\hat y=b_0+b_1 x$ (avoid wild extrapolation).", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Residuals $e_i=y_i-\\hat y_i$; plot $e$ vs $\\hat y$ for patterns.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "If curved or fan-shaped residuals, linear model is inadequate.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
             />
           </section>
@@ -64,7 +64,7 @@ function RegressionGuide({ part = 1 }) {
               title="Slope from r"
               setup={"$r=0.8$, $s_x=2$, $s_y=5$. Find $b_1$."}
               steps={[
-                "$b_1=r s_y/s_x=0.8\\cdot 5/2=2$.",
+                { text: "$b_1=r s_y/s_x=0.8\\cdot 5/2=2$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$b_1=2$."}
               check={"Positive r ⇒ positive slope."}
@@ -75,8 +75,8 @@ function RegressionGuide({ part = 1 }) {
               title="Intercept"
               setup={"$\\bar x=3$, $\\bar y=10$, $b_1=2$. Find $b_0$."}
               steps={[
-                "$b_0=\\bar y-b_1\\bar x=10-2\\cdot 3=4$.",
-                "Line: $\\hat y=4+2x$.",
+                { text: "$b_0=\\bar y-b_1\\bar x=10-2\\cdot 3=4$.", why: "Translate the problem into symbols and known facts." },
+                { text: "Line: $\\hat y=4+2x$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$b_0=4$."}
               check={"Passes through $(3,10)$: $4+6=10$."}
@@ -87,7 +87,7 @@ function RegressionGuide({ part = 1 }) {
               title="Prediction"
               setup={"$\\hat y=4+2x$. Predict at $x=5$."}
               steps={[
-                "$\\hat y=4+10=14$.",
+                { text: "$\\hat y=4+10=14$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$14$."}
               check={"Only trust if $x=5$ is near the observed $x$-range."}
@@ -98,8 +98,8 @@ function RegressionGuide({ part = 1 }) {
               title="Residual"
               setup={"Observed $y=16$ at $x=5$, $\\hat y=14$. Residual?"}
               steps={[
-                "$e=y-\\hat y=16-14=2$.",
-                "Positive residual ⇒ point above the line.",
+                { text: "$e=y-\\hat y=16-14=2$.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Positive residual ⇒ point above the line.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$e=2$."}
               check={"Observed minus predicted."}
@@ -152,20 +152,20 @@ function RegressionGuide({ part = 1 }) {
             <ProcedureBox
               title="Full diagnostic checklist"
               steps={[
-                "Plot residuals ($y_i-\\hat y_i$) against $x$ or fitted values.",
-                "Check for curvature — if present, a linear model is the wrong shape.",
-                "Check for a funnel shape — spreading residuals signal non-constant variance.",
-                "Compute $R^2$ to quantify overall fit quality, not just visually inspect.",
-                "Never extrapolate $\\hat y$ far outside the observed range of $x$.",
-            ]}
+                { text: "Plot residuals ($y_i-\\hat y_i$) against $x$ or fitted values.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Check for curvature — if present, a linear model is the wrong shape.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Check for a funnel shape — spreading residuals signal non-constant variance.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
+                { text: "Compute $R^2$ to quantify overall fit quality, not just visually inspect.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Never extrapolate $\\hat y$ far outside the observed range of $x$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             />
             <WorkedExample
               number={1}
               title="Computing R-squared"
               setup={"A regression gives $\\sum(y_i-\\hat y_i)^2=40$ and $\\sum(y_i-\\bar y)^2=200$. Find $R^2$ and interpret it."}
               steps={[
-                "$R^2=1-40/200=1-0.2=0.8$.",
-                "This means 80% of the variability in $y$ is explained by the linear relationship with $x$.",
+                { text: "$R^2=1-40/200=1-0.2=0.8$.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "This means 80% of the variability in $y$ is explained by the linear relationship with $x$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$R^2=0.8$ — a strong linear fit."}
               check={"$R^2$ always lies in $[0,1]$; higher means a better-fitting line."}
@@ -176,9 +176,9 @@ function RegressionGuide({ part = 1 }) {
               title="Spotting a bad fit from a residual plot"
               setup={"A residual plot shows points forming a clear U-shape (curving up on both ends) rather than a random scatter. What does this indicate, and what should be done?"}
               steps={[
-                "A curved residual pattern means the true relationship is nonlinear.",
-                "A straight-line model is systematically wrong at the extremes even if $R^2$ looks decent.",
-                "Fix: consider a quadratic or transformed model rather than trusting the linear fit.",
+                { text: "A curved residual pattern means the true relationship is nonlinear.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
+                { text: "A straight-line model is systematically wrong at the extremes even if $R^2$ looks decent.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Fix: consider a quadratic or transformed model rather than trusting the linear fit.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"The linear model is misspecified; a curved/transformed model is needed."}
               check={"A high $R^2$ can still hide a curved residual pattern — always plot residuals, don't rely on $R^2$ alone."}
@@ -224,7 +224,7 @@ function RegressionGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Course module complete</h2>
-            <p>{"Real-life use: agriculture researchers use regression to link fertilizer dosage to crop yield and find the optimal amount, real-estate platforms predict house prices from square footage and location using a fitted regression line, and economists use correlation and regression to study how minimum wage changes relate to employment levels."}</p>
+            <RealLifeUse>{"Agriculture researchers use regression to link fertilizer dosage to crop yield and find the optimal amount, real-estate platforms predict house prices from square footage and location using a fitted regression line, and economists use correlation and regression to study how minimum wage changes relate to employment levels."}</RealLifeUse>
             <p>{"You finished Probability & Statistics study guides — return to the course hub or drill in Practice Arena."}</p>
           </section>
         </main>
@@ -271,12 +271,12 @@ function RegressionGuide({ part = 1 }) {
           <ProcedureBox
             title="Assess association"
             steps={[
-              "Draw the scatterplot before trusting any number.",
-              "Compute $r$ (or read it from software).",
-              "Describe direction, form (linear?), and strength.",
-              "Flag outliers and subgroups.",
-              "Only then move to fitting a regression line.",
-            ]}
+                { text: "Draw the scatterplot before trusting any number.", why: "Start from the given data and name the events or quantities." },
+                { text: "Compute $r$ (or read it from software).", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Describe direction, form (linear?), and strength.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Flag outliers and subgroups.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Only then move to fitting a regression line.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
           />
         </section>
 
@@ -287,10 +287,10 @@ function RegressionGuide({ part = 1 }) {
             title="Interpret r"
             setup={"$r=-0.85$ between study hours of video games and exam score."}
             steps={[
-              "Negative: more games ↔ lower scores on average.",
-              "$|r|=0.85$ is strong linear association.",
-              "Does not prove games cause lower scores.",
-            ]}
+                { text: "Negative: more games ↔ lower scores on average.", why: "Translate the problem into symbols and known facts." },
+                { text: "$|r|=0.85$ is strong linear association.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Does not prove games cause lower scores.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"Strong negative linear association."}
             check={"Always pair $r$ with a plot."}
             mistake={"Saying 'video games cause lower scores' — correlation this strong still doesn't establish causation; a lurking variable (e.g. less study time overall) could explain both."}
@@ -300,9 +300,9 @@ function RegressionGuide({ part = 1 }) {
             title="r = 0"
             setup={"A perfect U-shaped curve of $y$ vs $x$. What can $r$ be?"}
             steps={[
-              "Linear correlation can be near 0.",
-              "Strong nonlinear association is invisible to $r$.",
-            ]}
+                { text: "Linear correlation can be near 0.", why: "Apply the regression or correlation identity for these summaries." },
+                { text: "Strong nonlinear association is invisible to $r$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$r$ near 0 despite clear pattern."}
             check={"Plot first."}
             mistake={"Concluding 'no relationship exists' just because $r\\approx 0$ — $r$ only detects linear association; a strong nonlinear (e.g. quadratic) relationship can still be present."}
@@ -312,9 +312,9 @@ function RegressionGuide({ part = 1 }) {
             title="Swap axes"
             setup={"If you swap $x$ and $y$, what happens to $r$?"}
             steps={[
-              "$r$ is unchanged — it is symmetric.",
-              "Regression slope would change (different roles).",
-            ]}
+                { text: "$r$ is unchanged — it is symmetric.", why: "Translate the problem into symbols and known facts." },
+                { text: "Regression slope would change (different roles).", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$r$ same; regression of $y$ on $x$ ≠ $x$ on $y$."}
             check={"Correlation ≠ slope."}
             mistake={"Assuming the regression line for predicting $y$ from $x$ is the same line as predicting $x$ from $y$ — they're generally different lines, even though $r$ itself doesn't change."}
@@ -324,9 +324,9 @@ function RegressionGuide({ part = 1 }) {
             title="Outlier effect"
             setup={"Cloud with $r\\approx 0.2$, plus one far outlier aligning the cloud. Effect?"}
             steps={[
-              "Outlier can push $r$ much higher.",
-              "Report $r$ with and without the point; show the plot.",
-            ]}
+                { text: "Outlier can push $r$ much higher.", why: "Translate the problem into symbols and known facts." },
+                { text: "Report $r$ with and without the point; show the plot.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$r$ is outlier-sensitive."}
             check={"Robustness check is good practice."}
             mistake={"Trusting a headline $r$ value without checking whether a single point is driving it — always inspect the scatterplot, not just the number."}

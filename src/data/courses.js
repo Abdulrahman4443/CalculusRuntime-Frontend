@@ -154,6 +154,13 @@ export const COURSES = [
         icon: "M",
       },
       {
+        title: "Matrix Sandbox",
+        description: "Interactive matrix arithmetic, determinants, and inverse checks.",
+        path: "/linear-algebra/matrix-sandbox",
+        meta: "Interactive tool",
+        icon: "▣",
+      },
+      {
         title: "Systems of Linear Equations",
         description: "Row reduction, rank, and consistency of linear systems.",
         path: "/linear-algebra/systems/1",
