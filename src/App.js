@@ -42,6 +42,7 @@ import DerivativeTool from "./components/DerivativeTool";
 import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
+import Certificate from "./pages/calculus/Certificate";
 import Chatbot from "./components/Chatbot/Chatbot";
 import BackToTop from "./components/BackToTop";
 
@@ -139,6 +140,8 @@ function App() {
               <Route path="/taylor-series" element={<Navigate to="/taylor-series/1" replace />} />
               <Route path="/taylor-series/1" element={<Layout body={<TaylorPart1 />} />} />
               <Route path="/taylor-series/2" element={<Layout body={<TaylorPart2 />} />} />
+
+              <Route path="/certificate/:courseId" element={<Layout body={<Certificate />} />} />
 
               {/* Lagrange Multipliers */}
               <Route path="/lagrange-multipliers" element={<Navigate to="/lagrange-multipliers/1" replace />} />
