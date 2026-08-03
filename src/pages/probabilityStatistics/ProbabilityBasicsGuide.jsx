@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample } from "../linearAlgebra/LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse } from "../linearAlgebra/LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -52,11 +52,11 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             <ProcedureBox
               title="Checklist"
               steps={[
-                "Identify the event you condition on (the new information).",
-                "Write $P(A\\cap B)$ carefully — often via a tree or table.",
-                "Divide by $P(B)$; never skip the denominator.",
-                "For Bayes: compute $P(B\\mid A)$ from $P(A\\mid B)P(B)/P(A)$, using total probability for $P(A)$.",
-                "Sanity-check: answers must lie in $[0,1]$.",
+                { text: "Identify the event you condition on (the new information).", why: "Start from the given data and name the events or quantities." },
+                { text: "Write $P(A\\cap B)$ carefully — often via a tree or table.", why: "Start from the given data and name the events or quantities." },
+                { text: "Divide by $P(B)$; never skip the denominator.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "For Bayes: compute $P(B\\mid A)$ from $P(A\\mid B)P(B)/P(A)$, using total probability for $P(A)$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "Sanity-check: answers must lie in $[0,1]$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
             />
           </section>
@@ -69,9 +69,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Cards given a red card"
               setup={"Draw one card from a 52-card deck. Let $A=$ ace, $B=$ red. Find $P(A\\mid B)$."}
               steps={[
-                "$B$ has 26 red cards; among them 2 are aces (hearts, diamonds).",
-                "So $P(A\\mid B)=2/26=1/13$.",
-                "Note $P(A)=4/52=1/13$ as well — here $A$ and $B$ are independent.",
+                { text: "$B$ has 26 red cards; among them 2 are aces (hearts, diamonds).", why: "State the exact condition or formula you will test." },
+                { text: "So $P(A\\mid B)=2/26=1/13$.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "Note $P(A)=4/52=1/13$ as well — here $A$ and $B$ are independent.", why: "State the exact condition or formula you will test." }
               ]}
               result={"$P(A\\mid B)=1/13$."}
               check={"$P(A\\cap B)=(2/52)$, $P(B)=26/52$, ratio $2/26$."}
@@ -82,9 +82,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Two dice, given sum ≥ 10"
               setup={"Fair dice. $A=$ sum is 11, $B=$ sum ≥ 10. Find $P(A\\mid B)$."}
               steps={[
-                "Sums ≥ 10: (4,6),(5,5),(5,6),(6,4),(6,5),(6,6) → 6 outcomes.",
-                "Sum 11: (5,6),(6,5) → 2 outcomes.",
-                "$P(A\\mid B)=2/6=1/3$.",
+                { text: "Sums ≥ 10: (4,6),(5,5),(5,6),(6,4),(6,5),(6,6) → 6 outcomes.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "Sum 11: (5,6),(6,5) → 2 outcomes.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "$P(A\\mid B)=2/6=1/3$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$1/3$."}
               check={"Equally likely outcomes restricted to $B$."}
@@ -95,9 +95,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Medical test (Bayes)"
               setup={"Disease rate 1%. Test: sensitivity 99%, false positive 2%. Given positive test, find $P(\\text{disease})$."}
               steps={[
-                "Let $D=$ disease, $+=$ positive. $P(D)=0.01$, $P(+\\mid D)=0.99$, $P(+\\mid D^c)=0.02$.",
-                "$P(+)=0.99(0.01)+0.02(0.99)=0.0099+0.0198=0.0297$.",
-                "$P(D\\mid +)=0.0099/0.0297\\approx 0.333$.",
+                { text: "Let $D=$ disease, $+=$ positive. $P(D)=0.01$, $P(+\\mid D)=0.99$, $P(+\\mid D^c)=0.02$.", why: "Start from the given data and name the events or quantities." },
+                { text: "$P(+)=0.99(0.01)+0.02(0.99)=0.0099+0.0198=0.0297$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$P(D\\mid +)=0.0099/0.0297\\approx 0.333$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"About $33\\%$ — still more likely healthy than sick after one positive."}
               check={"Most positives come from the large healthy population."}
@@ -108,9 +108,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Independence check"
               setup={"$P(A)=0.4$, $P(B)=0.5$, $P(A\\cap B)=0.2$. Are $A,B$ independent?"}
               steps={[
-                "Need $P(A\\cap B)=P(A)P(B)=0.20$.",
-                "Observed intersection is also $0.2$.",
-                "Yes — independent. Also $P(A\\mid B)=0.2/0.5=0.4=P(A)$.",
+                { text: "Need $P(A\\cap B)=P(A)P(B)=0.20$.", why: "State the exact condition or formula you will test." },
+                { text: "Observed intersection is also $0.2$.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "Yes — independent. Also $P(A\\mid B)=0.2/0.5=0.4=P(A)$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Independent."}
               check={"Product rule holds exactly."}
@@ -163,11 +163,11 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             <ProcedureBox
               title="Multi-hypothesis Bayes checklist"
               steps={[
-                "List every mutually exclusive cause $B_1,\\ldots,B_k$ and their priors $P(B_i)$.",
-                "Write the likelihood $P(A\\mid B_i)$ for each cause.",
-                "Compute the total probability $P(A)=\\sum_j P(A\\mid B_j)P(B_j)$ — the shared denominator.",
-                "Divide the numerator for the cause you care about by this denominator.",
-                "Sanity-check: all resulting posteriors $P(B_i\\mid A)$ must sum to 1.",
+                { text: "List every mutually exclusive cause $B_1,\\ldots,B_k$ and their priors $P(B_i)$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "Write the likelihood $P(A\\mid B_i)$ for each cause.", why: "Start from the given data and name the events or quantities." },
+                { text: "Compute the total probability $P(A)=\\sum_j P(A\\mid B_j)P(B_j)$ — the shared denominator.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "Divide the numerator for the cause you care about by this denominator.", why: "State the exact condition or formula you will test." },
+                { text: "Sanity-check: all resulting posteriors $P(B_i\\mid A)$ must sum to 1.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
             />
             <WorkedExample
@@ -175,9 +175,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Three factories, one defective part"
               setup={"Factories $F_1,F_2,F_3$ supply $50\\%,30\\%,20\\%$ of parts, with defect rates $2\\%,5\\%,1\\%$. A part is defective — find $P(F_2\\mid \\text{defective})$."}
               steps={[
-                "$P(D)=0.5(0.02)+0.3(0.05)+0.2(0.01)=0.010+0.015+0.002=0.027$.",
-                "$P(F_2\\mid D)=P(D\\mid F_2)P(F_2)/P(D)=0.015/0.027$.",
-                "$0.015/0.027\\approx 0.556$.",
+                { text: "$P(D)=0.5(0.02)+0.3(0.05)+0.2(0.01)=0.010+0.015+0.002=0.027$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$P(F_2\\mid D)=P(D\\mid F_2)P(F_2)/P(D)=0.015/0.027$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$0.015/0.027\\approx 0.556$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"About $55.6\\%$ — despite supplying only 30% of parts, $F_2$'s higher defect rate makes it the most likely source."}
               check={"Posteriors for all three factories sum to 1: check $0.010/0.027+0.015/0.027+0.002/0.027=1$."}
@@ -188,9 +188,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Spam filter"
               setup={"20% of emails are spam. A filter flags 90% of spam and 5% of non-spam as 'flagged'. Given an email is flagged, find $P(\\text{spam})$."}
               steps={[
-                "$P(\\text{flagged})=0.2(0.9)+0.8(0.05)=0.18+0.04=0.22$.",
-                "$P(\\text{spam}\\mid \\text{flagged})=0.18/0.22$.",
-                "$\\approx 0.818$.",
+                { text: "$P(\\text{flagged})=0.2(0.9)+0.8(0.05)=0.18+0.04=0.22$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$P(\\text{spam}\\mid \\text{flagged})=0.18/0.22$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$\\approx 0.818$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"About $81.8\\%$ chance a flagged email is truly spam."}
               check={"Even a 5% false-positive rate on the large 'non-spam' group contributes meaningfully to flagged emails — the same rare-disease-style effect as the medical test earlier."}
@@ -236,7 +236,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
-            <p>{"Real-life use: insurers price policies using axioms and conditional probability, doctors interpret diagnostic tests with Bayes' theorem, and fraud-detection systems flag transactions by updating probabilities as new evidence (location, amount, device) arrives — the same Bayes machinery from this guide."}</p>
+            <RealLifeUse>{"Insurers price policies using axioms and conditional probability, doctors interpret diagnostic tests with Bayes' theorem, and fraud-detection systems flag transactions by updating probabilities as new evidence (location, amount, device) arrives — the same Bayes machinery from this guide."}</RealLifeUse>
             <p>{"Next: random variables turn events into numbers you can average and model with distributions."}</p>
           </section>
         </main>
@@ -290,12 +290,12 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <ProcedureBox
             title="Setup checklist"
             steps={[
-              "Define $\\Omega$ clearly (what counts as one outcome?).",
-              "Decide if outcomes are equally likely; if yes, $P(A)=|A|/|\\Omega|$.",
-              "Otherwise assign probabilities that sum to 1.",
-              "Translate the word problem into unions, intersections, complements.",
-              "Use axioms and identities — avoid inventing new rules mid-problem.",
-            ]}
+                { text: "Define $\\Omega$ clearly (what counts as one outcome?).", why: "Translate the problem into symbols and known facts." },
+                { text: "Decide if outcomes are equally likely; if yes, $P(A)=|A|/|\\Omega|$.", why: "State the exact condition or formula you will test." },
+                { text: "Otherwise assign probabilities that sum to 1.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Translate the word problem into unions, intersections, complements.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Use axioms and identities — avoid inventing new rules mid-problem.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
           />
         </section>
 
@@ -307,10 +307,10 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Fair die"
             setup={"Roll a fair six-sided die. Find $P(\\text{even})$ and $P(\\text{at least }5)$."}
             steps={[
-              "$\\Omega=\\{1,2,3,4,5,6\\}$, each probability $1/6$.",
-              "Even: $\\{2,4,6\\}$ → $3/6=1/2$.",
-              "At least 5: $\\{5,6\\}$ → $2/6=1/3$.",
-            ]}
+                { text: "$\\Omega=\\{1,2,3,4,5,6\\}$, each probability $1/6$.", why: "Translate the problem into symbols and known facts." },
+                { text: "Even: $\\{2,4,6\\}$ → $3/6=1/2$.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "At least 5: $\\{5,6\\}$ → $2/6=1/3$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$1/2$ and $1/3$."}
             check={"Counts over 6 equally likely faces."}
             mistake={"Reading 'at least 5' as only $\\{5\\}$ — 'at least' includes the endpoint and everything above it, so 6 belongs too."}
@@ -320,9 +320,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Complement"
             setup={"$P(A)=0.35$. Find $P(A^c)$."}
             steps={[
-              "Axiom: $P(A)+P(A^c)=1$.",
-              "$P(A^c)=1-0.35=0.65$.",
-            ]}
+                { text: "Axiom: $P(A)+P(A^c)=1$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$P(A^c)=1-0.35=0.65$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$0.65$."}
             check={"Sums with $P(A)$ to 1."}
             mistake={"Multiplying instead of subtracting (e.g. writing $P(A^c)=1\\times 0.35$) — the complement rule is additive, not multiplicative."}
@@ -332,9 +332,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Inclusion–exclusion"
             setup={"$P(A)=0.4$, $P(B)=0.5$, $P(A\\cap B)=0.15$. Find $P(A\\cup B)$."}
             steps={[
-              "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$.",
-              "$=0.4+0.5-0.15=0.75$.",
-            ]}
+                { text: "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
+                { text: "$=0.4+0.5-0.15=0.75$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$0.75$."}
             check={"Intersection was subtracted once to avoid double-counting."}
             mistake={"Forgetting to subtract $P(A\\cap B)$ at all, giving $0.9$ — this double-counts the overlap region."}
@@ -344,10 +344,10 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Two coins"
             setup={"Two fair coins. Find $P(\\text{exactly one head})$."}
             steps={[
-              "$\\Omega=\\{HH,HT,TH,TT\\}$, each $1/4$.",
-              "Exactly one head: $\\{HT,TH\\}$.",
-              "Probability $2/4=1/2$.",
-            ]}
+                { text: "$\\Omega=\\{HH,HT,TH,TT\\}$, each $1/4$.", why: "Translate the problem into symbols and known facts." },
+                { text: "Exactly one head: $\\{HT,TH\\}$.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Probability $2/4=1/2$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$1/2$."}
             check={"Not $1/3$ — outcomes are equally likely only if listed this way."}
             mistake={"Treating outcomes as {0 heads, 1 head, 2 heads} and giving each 1/3 — those three outcomes are not equally likely; HT and TH must be counted separately."}

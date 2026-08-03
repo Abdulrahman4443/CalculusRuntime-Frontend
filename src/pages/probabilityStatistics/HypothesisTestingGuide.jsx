@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample } from "../linearAlgebra/LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse } from "../linearAlgebra/LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -48,11 +48,11 @@ function HypothesisTestingGuide({ part = 1 }) {
             <ProcedureBox
               title="From statistic to decision"
               steps={[
-                "Compute the test statistic (z, t, …).",
-                "Find the p-value from the null sampling distribution (one- or two-sided as designed).",
-                "Compare to $\\alpha$; state reject / fail to reject in context.",
-                "Report effect size and CI when possible — significance ≠ importance.",
-                "Discuss Type I/II risk if the decision has real costs.",
+                { text: "Compute the test statistic (z, t, …).", why: "Translate the problem into symbols and known facts." },
+                { text: "Find the p-value from the null sampling distribution (one- or two-sided as designed).", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Compare to $\\alpha$; state reject / fail to reject in context.", why: "State the exact condition or formula you will test." },
+                { text: "Report effect size and CI when possible — significance ≠ importance.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Discuss Type I/II risk if the decision has real costs.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
             />
           </section>
@@ -64,8 +64,8 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Two-sided z-test"
               setup={"$H_0:\\mu=100$, $n$ large, $z=2.1$, $\\alpha=0.05$. Decision?"}
               steps={[
-                "Two-sided p ≈ $2(1-\\Phi(2.1))\\approx 0.036$.",
-                "$0.036<0.05$ ⇒ reject $H_0$.",
+                { text: "Two-sided p ≈ $2(1-\\Phi(2.1))\\approx 0.036$.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "$0.036<0.05$ ⇒ reject $H_0$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Reject $H_0$ at 5%."}
               check={"Critical values ±1.96; $|2.1|>1.96$."}
@@ -76,8 +76,8 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Fail to reject"
               setup={"Same setup but $z=1.2$, $\\alpha=0.05$."}
               steps={[
-                "Two-sided p ≈ 0.23 > 0.05.",
-                "Do not reject $H_0$ — evidence is weak, not proof that $H_0$ is true.",
+                { text: "Two-sided p ≈ 0.23 > 0.05.", why: "Combine the previous lines into the numerical or logical conclusion." },
+                { text: "Do not reject $H_0$ — evidence is weak, not proof that $H_0$ is true.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Fail to reject $H_0$."}
               check={"Absence of evidence ≠ evidence of absence."}
@@ -88,8 +88,8 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Type I vs II"
               setup={"Drug is truly ineffective ($H_0$ true) but you reject $H_0$. Error type?"}
               steps={[
-                "False positive: rejecting a true null.",
-                "That is a Type I error; rate controlled by $\\alpha$.",
+                { text: "False positive: rejecting a true null.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "That is a Type I error; rate controlled by $\\alpha$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Type I error."}
               check={"Type II = failing to reject a false $H_0$."}
@@ -100,8 +100,8 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Power"
               setup={"Power is 0.80 at a specific alternative. What is $\\beta$?"}
               steps={[
-                "Power $=1-\\beta$.",
-                "$\\beta=1-0.80=0.20$.",
+                { text: "Power $=1-\\beta$.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "$\\beta=1-0.80=0.20$.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"$\\beta=0.20$."}
               check={"Power rises with $n$, effect size, and $\\alpha$."}
@@ -154,11 +154,11 @@ function HypothesisTestingGuide({ part = 1 }) {
             <ProcedureBox
               title="Diagnosing a hypothesis test's error profile"
               steps={[
-                "State what a Type I error means in context (false alarm) and a Type II error (missed effect).",
-                "Identify which error is more costly for this specific problem.",
-                "Choose $\\alpha$ accordingly — smaller $\\alpha$ if false alarms are worse.",
-                "If power is too low, the fix is usually a larger sample size, not a looser $\\alpha$.",
-                "Report power alongside p-values when planning a study, not just after the fact.",
+                { text: "State what a Type I error means in context (false alarm) and a Type II error (missed effect).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
+                { text: "Identify which error is more costly for this specific problem.", why: "Start from the given data and name the events or quantities." },
+                { text: "Choose $\\alpha$ accordingly — smaller $\\alpha$ if false alarms are worse.", why: "State the exact condition or formula you will test." },
+                { text: "If power is too low, the fix is usually a larger sample size, not a looser $\\alpha$.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Report power alongside p-values when planning a study, not just after the fact.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
             />
             <WorkedExample
@@ -166,9 +166,9 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Identifying the errors in context"
               setup={"A court trial tests $H_0:$ defendant is innocent. Describe what a Type I and Type II error mean here."}
               steps={[
-                "Type I error: reject $H_0$ when true — convict an innocent person.",
-                "Type II error: fail to reject $H_0$ when false — acquit a guilty person.",
-                "Courts set a very small $\\alpha$ (\"beyond reasonable doubt\") because Type I is judged far costlier.",
+                { text: "Type I error: reject $H_0$ when true — convict an innocent person.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Type II error: fail to reject $H_0$ when false — acquit a guilty person.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Courts set a very small $\\alpha$ (\"beyond reasonable doubt\") because Type I is judged far costlier.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Type I = wrongful conviction; Type II = wrongful acquittal."}
               check={"The asymmetric cost of errors, not just probability, drives the choice of $\\alpha$."}
@@ -179,9 +179,9 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Effect of sample size on power"
               setup={"A drug trial has 68% power to detect a true effect with $n=50$. Explain qualitatively what happens to power if $n$ is increased to 200, all else equal."}
               steps={[
-                "Larger $n$ shrinks the standard error of the sampling distribution.",
-                "A shrunken sampling distribution separates more clearly from $H_0$ for a true effect.",
-                "This increases the probability of correctly rejecting $H_0$ — i.e., power rises above 68%.",
+                { text: "Larger $n$ shrinks the standard error of the sampling distribution.", why: "Translate the problem into symbols and known facts." },
+                { text: "A shrunken sampling distribution separates more clearly from $H_0$ for a true effect.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "This increases the probability of correctly rejecting $H_0$ — i.e., power rises above 68%.", why: "Combine the previous lines into the numerical or logical conclusion." }
               ]}
               result={"Power increases with larger $n$ (commonly toward 80%+ in practice, the typical target)."}
               check={"This is why underpowered studies (small $n$) often fail to detect real effects — not because the effect is absent."}
@@ -227,7 +227,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
-            <p>{"Real-life use: a pharmaceutical company runs a hypothesis test to confirm a new drug outperforms a placebo before seeking approval, A/B testing teams at tech companies decide whether a new feature really improved conversion or the change was just noise, and courts effectively require 'beyond reasonable doubt' — an intentionally very small $\\alpha$ — before convicting."}</p>
+            <RealLifeUse>{"A pharmaceutical company runs a hypothesis test to confirm a new drug outperforms a placebo before seeking approval, A/B testing teams at tech companies decide whether a new feature really improved conversion or the change was just noise, and courts effectively require 'beyond reasonable doubt' — an intentionally very small $\\alpha$ — before convicting."}</RealLifeUse>
             <p>{"Next: regression and correlation — quantifying linear relationships between variables."}</p>
           </section>
         </main>
@@ -274,12 +274,12 @@ function HypothesisTestingGuide({ part = 1 }) {
           <ProcedureBox
             title="Test workflow"
             steps={[
-              "State $H_0$ and $H_1$ in symbols and words.",
-              "Choose test (z / t / …) matching design and assumptions.",
-              "Fix $\\alpha$ and the rejection region direction.",
-              "Compute the statistic from the sample.",
-              "Decide and interpret in the problem’s context.",
-            ]}
+                { text: "State $H_0$ and $H_1$ in symbols and words.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Choose test (z / t / …) matching design and assumptions.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Fix $\\alpha$ and the rejection region direction.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Compute the statistic from the sample.", why: "This calculation follows from the previous step and the problem data." },
+                { text: "Decide and interpret in the problem’s context.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
           />
         </section>
 
@@ -290,9 +290,9 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="State hypotheses"
             setup={"Claim: average battery life is still 10 hours. Researchers suspect it dropped."}
             steps={[
-              "$H_0:\\mu=10$.",
-              "$H_1:\\mu<10$ (one-sided lower).",
-            ]}
+                { text: "$H_0:\\mu=10$.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "$H_1:\\mu<10$ (one-sided lower).", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"Lower-tailed test for a decrease."}
             check={"Alternative matches the scientific suspicion."}
             mistake={"Writing $H_1:\\mu\\ne 10$ (two-sided) when the research question specifically suspects a decrease — the direction of $H_1$ should be chosen before looking at the data, based on the suspicion stated."}
@@ -302,8 +302,8 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="z-statistic"
             setup={"$\\bar x=9.6$, $\\mu_0=10$, $\\sigma=2$, $n=100$. Compute $z$."}
             steps={[
-              "$z=(\\bar x-\\mu_0)/(\\sigma/\\sqrt n)=(9.6-10)/(2/10)=-2$.",
-            ]}
+                { text: "$z=(\\bar x-\\mu_0)/(\\sigma/\\sqrt n)=(9.6-10)/(2/10)=-2$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"$z=-2$."}
             check={"SE $=\\sigma/\\sqrt n=0.2$."}
             mistake={"Dividing by $\\sigma$ directly instead of the standard error $\\sigma/\\sqrt n$ — that would give $z=-0.2$, ignoring how sample size shrinks the spread of $\\bar x$."}
@@ -313,9 +313,9 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="When to use t"
             setup={"$\\sigma$ unknown, $n=20$, roughly normal data. Which test?"}
             steps={[
-              "Use one-sample t with $df=n-1=19$.",
-              "Replace $\\sigma$ by sample $s$ in the SE.",
-            ]}
+                { text: "Use one-sample t with $df=n-1=19$.", why: "Translate the problem into symbols and known facts." },
+                { text: "Replace $\\sigma$ by sample $s$ in the SE.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"t-test, df 19."}
             check={"z needs known $\\sigma$ or very large $n$."}
             mistake={"Defaulting to a z-test just because $n=20$ 'feels large enough' — with $\\sigma$ unknown and a modest sample, t is the correct choice, not z."}
@@ -325,9 +325,9 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="Critical value"
             setup={"Two-sided $\\alpha=0.05$ normal test. Critical values?"}
             steps={[
-              "Split $\\alpha/2=0.025$ in each tail.",
-              "Reject if $|z|>1.96$.",
-            ]}
+                { text: "Split $\\alpha/2=0.025$ in each tail.", why: "Follow the hypothesis-testing decision rule for this alternative." },
+                { text: "Reject if $|z|>1.96$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+              ]}
             result={"±1.96."}
             check={"Standard normal quantiles."}
             mistake={"Using the one-sided critical value 1.645 for a two-sided test — a two-sided test splits $\\alpha$ across both tails, giving ±1.96, not a single-tail cutoff."}
