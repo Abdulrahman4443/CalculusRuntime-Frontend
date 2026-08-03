@@ -258,6 +258,11 @@ function MatricesGuide({ part = 1 }) {
             <p>
               Continue with the gold bar: <strong>Next: Systems of Linear Equations</strong>.
             </p>
+            <p>
+              {"Want to practice these operations interactively? Try the "}
+              <a href="/linear-algebra/matrix-sandbox"><strong>Matrix Sandbox</strong></a>
+              {" — enter your own matrix and step through RREF, determinant, inverse, and transpose."}
+            </p>
           </section>
         </main>
       </StudyGuideShell>

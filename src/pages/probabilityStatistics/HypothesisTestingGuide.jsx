@@ -69,6 +69,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               ]}
               result={"Reject $H_0$ at 5%."}
               check={"Critical values ±1.96; $|2.1|>1.96$."}
+              mistake={"Forgetting to double the one-tailed probability for a two-sided test — using $1-\\Phi(2.1)\\approx 0.018$ alone understates the true p-value."}
             />
             <WorkedExample
               number={2}
@@ -80,6 +81,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               ]}
               result={"Fail to reject $H_0$."}
               check={"Absence of evidence ≠ evidence of absence."}
+              mistake={"Concluding 'we proved $H_0$ is true' — failing to reject only means the evidence wasn't strong enough, never that the null has been confirmed."}
             />
             <WorkedExample
               number={3}
@@ -91,6 +93,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               ]}
               result={"Type I error."}
               check={"Type II = failing to reject a false $H_0$."}
+              mistake={"Swapping the two error types — remembering it as 'Type I = you did something (rejected), Type II = you did nothing (failed to reject)' helps keep them straight."}
             />
             <WorkedExample
               number={4}
@@ -102,6 +105,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               ]}
               result={"$\\beta=0.20$."}
               check={"Power rises with $n$, effect size, and $\\alpha$."}
+              mistake={"Confusing power with $\\alpha$ — power (0.80) and significance level $\\alpha$ (often 0.05) are independent choices, not the same number."}
             />
           </section>
 
@@ -142,6 +146,47 @@ function HypothesisTestingGuide({ part = 1 }) {
                 {"Lower $\\alpha$ reduces Type I errors but can increase Type II errors (lower power) unless you gather more data. Design studies for adequate power at scientifically meaningful effects."}
               </p>
             </TheoryBox>
+            <TheoremBox title="Power and sample size">
+              <p>
+                {"Power $=1-\\beta=P(\\text{reject }H_0\\mid H_0\\text{ false})$. For a fixed effect size, power increases with larger sample size $n$, larger true effect, larger $\\alpha$, and smaller population variance."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Diagnosing a hypothesis test's error profile"
+              steps={[
+                "State what a Type I error means in context (false alarm) and a Type II error (missed effect).",
+                "Identify which error is more costly for this specific problem.",
+                "Choose $\\alpha$ accordingly — smaller $\\alpha$ if false alarms are worse.",
+                "If power is too low, the fix is usually a larger sample size, not a looser $\\alpha$.",
+                "Report power alongside p-values when planning a study, not just after the fact.",
+              ]}
+            />
+            <WorkedExample
+              number={1}
+              title="Identifying the errors in context"
+              setup={"A court trial tests $H_0:$ defendant is innocent. Describe what a Type I and Type II error mean here."}
+              steps={[
+                "Type I error: reject $H_0$ when true — convict an innocent person.",
+                "Type II error: fail to reject $H_0$ when false — acquit a guilty person.",
+                "Courts set a very small $\\alpha$ (\"beyond reasonable doubt\") because Type I is judged far costlier.",
+              ]}
+              result={"Type I = wrongful conviction; Type II = wrongful acquittal."}
+              check={"The asymmetric cost of errors, not just probability, drives the choice of $\\alpha$."}
+              mistake={"Assuming both error types are equally bad by default — in reality the acceptable trade-off is a judgment call specific to the situation, not a fixed 50/50 split."}
+            />
+            <WorkedExample
+              number={2}
+              title="Effect of sample size on power"
+              setup={"A drug trial has 68% power to detect a true effect with $n=50$. Explain qualitatively what happens to power if $n$ is increased to 200, all else equal."}
+              steps={[
+                "Larger $n$ shrinks the standard error of the sampling distribution.",
+                "A shrunken sampling distribution separates more clearly from $H_0$ for a true effect.",
+                "This increases the probability of correctly rejecting $H_0$ — i.e., power rises above 68%.",
+              ]}
+              result={"Power increases with larger $n$ (commonly toward 80%+ in practice, the typical target)."}
+              check={"This is why underpowered studies (small $n$) often fail to detect real effects — not because the effect is absent."}
+              mistake={"Assuming a non-significant result with small $n$ means 'there's no effect' — it may simply mean the study was underpowered to detect the effect that's actually there."}
+            />
           </section>
 
           <LaMcqSection
@@ -169,6 +214,12 @@ function HypothesisTestingGuide({ part = 1 }) {
                 answer: "B",
                 explanation: "More data sharpen the sampling distribution.",
               },
+              {
+                prompt: "If Type I errors are far more costly than Type II, you should:",
+                options: ["Raise $\\alpha$", "Lower $\\alpha$", "Ignore $\\alpha$ entirely"],
+                answer: "B",
+                explanation: "A stricter significance threshold guards against false alarms at the cost of some power.",
+              },
             ]}
           />
 
@@ -176,6 +227,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
+            <p>{"Real-life use: a pharmaceutical company runs a hypothesis test to confirm a new drug outperforms a placebo before seeking approval, A/B testing teams at tech companies decide whether a new feature really improved conversion or the change was just noise, and courts effectively require 'beyond reasonable doubt' — an intentionally very small $\\alpha$ — before convicting."}</p>
             <p>{"Next: regression and correlation — quantifying linear relationships between variables."}</p>
           </section>
         </main>
@@ -243,6 +295,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             ]}
             result={"Lower-tailed test for a decrease."}
             check={"Alternative matches the scientific suspicion."}
+            mistake={"Writing $H_1:\\mu\\ne 10$ (two-sided) when the research question specifically suspects a decrease — the direction of $H_1$ should be chosen before looking at the data, based on the suspicion stated."}
           />
           <WorkedExample
             number={2}
@@ -253,6 +306,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             ]}
             result={"$z=-2$."}
             check={"SE $=\\sigma/\\sqrt n=0.2$."}
+            mistake={"Dividing by $\\sigma$ directly instead of the standard error $\\sigma/\\sqrt n$ — that would give $z=-0.2$, ignoring how sample size shrinks the spread of $\\bar x$."}
           />
           <WorkedExample
             number={3}
@@ -264,6 +318,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             ]}
             result={"t-test, df 19."}
             check={"z needs known $\\sigma$ or very large $n$."}
+            mistake={"Defaulting to a z-test just because $n=20$ 'feels large enough' — with $\\sigma$ unknown and a modest sample, t is the correct choice, not z."}
           />
           <WorkedExample
             number={4}
@@ -275,6 +330,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             ]}
             result={"±1.96."}
             check={"Standard normal quantiles."}
+            mistake={"Using the one-sided critical value 1.645 for a two-sided test — a two-sided test splits $\\alpha$ across both tails, giving ±1.96, not a single-tail cutoff."}
           />
         </section>
 

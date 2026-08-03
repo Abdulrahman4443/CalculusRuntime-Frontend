@@ -1,0 +1,13 @@
+diff a/src/pages/linearAlgebra/SystemsGuide.jsx b/src/pages/linearAlgebra/SystemsGuide.jsx	(rejected hunks)
+@@ -254,6 +254,11 @@ function SystemsGuide({ part = 1 }) {
+             <p>
+               Continue with the gold bar: <strong>Next: Eigenvalues and Eigenvectors</strong>.
+             </p>
++            <p>
++              {"Want to row-reduce your own system? Try the "}
++              <a href="/linear-algebra/matrix-sandbox"><strong>Matrix Sandbox</strong></a>
++              {" — enter the augmented matrix and step through Gaussian elimination to RREF."}
++            </p>
+           </section>
+         </main>
+       </StudyGuideShell>

@@ -18,6 +18,7 @@ function RandomVariablesGuide({ part = 1 }) {
           <a className="sb-link" href="#ps-rv-ex-p2">Examples</a>
           <a className="sb-link" href="#quiz-ps-rv-cont">Quiz</a>
           <a className="sb-link" href="#ps-rv-named">Named families</a>
+          <a className="sb-link" href="#ps-rv-named-ex">Examples</a>
           <a className="sb-link" href="#quiz-ps-rv-named">Quiz</a>
         </nav>
         <main className="main">
@@ -70,6 +71,7 @@ function RandomVariablesGuide({ part = 1 }) {
               ]}
               result={"Probability $1/2$, mean $1$."}
               check={"Length of interval over length of support."}
+              mistake={"Using $f(x)=1$ instead of $1/2$ — the density on $[0,2]$ must integrate to 1 over that length-2 interval, so height is $1/(2-0)$, not 1."}
             />
             <WorkedExample
               number={2}
@@ -81,6 +83,7 @@ function RandomVariablesGuide({ part = 1 }) {
               ]}
               result={"$e^{-2}\\approx 0.135$."}
               check={"Survival function $e^{-\\lambda x}$."}
+              mistake={"Confusing the rate $\\lambda$ with the mean — for Exponential$(\\lambda)$ the mean is $1/\\lambda$, not $\\lambda$ itself."}
             />
             <WorkedExample
               number={3}
@@ -92,6 +95,7 @@ function RandomVariablesGuide({ part = 1 }) {
               ]}
               result={"≈ 0.68."}
               check={"68–95–99.7 rule for bell curves."}
+              mistake={"Applying the 68-95-99.7 rule to any bell-shaped data without checking it's actually (approximately) normal — a skewed or heavy-tailed distribution won't follow these percentages."}
             />
             <WorkedExample
               number={4}
@@ -103,6 +107,7 @@ function RandomVariablesGuide({ part = 1 }) {
               ]}
               result={"$c=2$, probability $3/4$."}
               check={"Integral of PDF is 1."}
+              mistake={"Skipping the normalization step and assuming $c=1$ by default — every PDF must be solved for the constant that makes the total area exactly 1."}
             />
           </section>
 
@@ -143,6 +148,52 @@ function RandomVariablesGuide({ part = 1 }) {
                 {"Bernoulli/Binomial (counts of successes), Poisson (rare events), Uniform (flat), Exponential (waiting), Normal (sums / CLT). Learn support, mean, and variance for each."}
               </p>
             </TheoryBox>
+            <TheoremBox title="Mean and variance by family">
+              <p>
+                {"Bernoulli$(p)$: $E[X]=p$, $\\mathrm{Var}(X)=p(1-p)$. Binomial$(n,p)$: $E[X]=np$, $\\mathrm{Var}(X)=np(1-p)$. Poisson$(\\lambda)$: $E[X]=\\mathrm{Var}(X)=\\lambda$. Uniform$[a,b]$: $E[X]=(a+b)/2$. Exponential$(\\lambda)$: $E[X]=1/\\lambda$, $\\mathrm{Var}(X)=1/\\lambda^2$. Normal$(\\mu,\\sigma^2)$: $E[X]=\\mu$, $\\mathrm{Var}(X)=\\sigma^2$."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="How to match a word problem to a family"
+              steps={[
+                "Fixed number of independent yes/no trials, counting successes → Binomial$(n,p)$.",
+                "Events occurring randomly over a fixed interval at a constant average rate → Poisson$(\\lambda)$.",
+                "Equally likely outcomes over a continuous range → Uniform.",
+                "Time or distance until the next random event, with the memoryless property → Exponential.",
+                "Sum/average of many independent effects, or bell-shaped data → Normal (justified by the CLT).",
+              ]}
+            />
+          </section>
+
+          <section className="section" id="ps-rv-named-ex">
+            <div className="sec-badge">Worked examples</div>
+            <h2 className="sec-title">Two detailed examples</h2>
+            <WorkedExample
+              number={1}
+              title="Poisson — call center"
+              setup={"A call center receives calls at an average rate of $\\lambda=4$ per minute. Find $P(X=2)$ in a given minute."}
+              steps={[
+                "Poisson PMF: $P(X=k)=e^{-\\lambda}\\lambda^k/k!$.",
+                "$P(X=2)=e^{-4}(4^2)/2!=e^{-4}(16)/2=8e^{-4}$.",
+                "$8e^{-4}\\approx 0.1465$.",
+              ]}
+              result={"$\\approx 0.1465$."}
+              check={"Mean and variance both equal $\\lambda=4$, matching the Poisson rule."}
+              mistake={"Using $P(X\\le 2)$ (cumulative) instead of $P(X=2)$ (exact) — the question asks for a single value, so don't sum over $k=0,1,2$."}
+            />
+            <WorkedExample
+              number={2}
+              title="Binomial mean/variance — quality control"
+              setup={"A factory line has a 5% defect rate. In a batch of $n=200$ items, find $E[X]$ and $\\mathrm{Var}(X)$ for the number of defects."}
+              steps={[
+                "$X\\sim\\mathrm{Bin}(n=200,p=0.05)$.",
+                "$E[X]=np=200(0.05)=10$.",
+                "$\\mathrm{Var}(X)=np(1-p)=200(0.05)(0.95)=9.5$.",
+              ]}
+              result={"Mean $10$ defects, variance $9.5$."}
+              check={"$np(1-p)$ is always less than $np$ since $(1-p)<1$."}
+              mistake={"Using the Poisson formula ($\\mathrm{Var}=\\lambda$) here by mistake — this is Binomial, so variance is $np(1-p)$, not just $np$."}
+            />
           </section>
 
           <LaMcqSection
@@ -170,6 +221,12 @@ function RandomVariablesGuide({ part = 1 }) {
                 answer: "A",
                 explanation: "Past waiting time does not change future odds.",
               },
+              {
+                prompt: "For Poisson$(\\lambda)$, the mean and variance are:",
+                options: ["Both equal to $\\lambda$", "Mean $\\lambda$, variance $\\lambda^2$", "Always 0 and 1"],
+                answer: "A",
+                explanation: "A defining property of the Poisson family.",
+              },
             ]}
           />
 
@@ -177,6 +234,7 @@ function RandomVariablesGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
+            <p>{"Real-life use: a bank models loan defaults with a random variable and its distribution to price risk, a call center uses the Poisson distribution to staff shifts around expected call volume, and manufacturers use the Binomial distribution to set acceptable defect-rate thresholds on a production line."}</p>
             <p>{"Next: descriptive statistics — summarizing real samples with means, spreads, and plots."}</p>
           </section>
         </main>
@@ -245,6 +303,7 @@ function RandomVariablesGuide({ part = 1 }) {
             ]}
             result={"Mean $3.5$, probability $1/3$."}
             check={"Symmetric around 3.5."}
+            mistake={"Expecting $E[X]$ to be an achievable outcome — 3.5 is never rolled; the mean is a long-run average, not a possible value."}
           />
           <WorkedExample
             number={2}
@@ -257,6 +316,7 @@ function RandomVariablesGuide({ part = 1 }) {
             ]}
             result={"Mean $0.3$, variance $0.21$."}
             check={"Formula $p(1-p)$."}
+            mistake={"Computing $E[X^2]=p^2$ instead of $p$ — since $X\\in\\{0,1\\}$, $X^2=X$ always, so $E[X^2]=E[X]=p$, not $(E[X])^2$."}
           />
           <WorkedExample
             number={3}
@@ -268,6 +328,7 @@ function RandomVariablesGuide({ part = 1 }) {
             ]}
             result={"$5/16$."}
             check={"Binomial coefficients count sequences."}
+            mistake={"Forgetting the $\\binom{n}{k}$ factor and just computing $p^k(1-p)^{n-k}$ — that only gives the probability of one specific ordering of successes/failures, not all of them."}
           />
           <WorkedExample
             number={4}
@@ -280,6 +341,7 @@ function RandomVariablesGuide({ part = 1 }) {
             ]}
             result={"$0.49$."}
             check={"Uses $E[X^2]-(E[X])^2$."}
+            mistake={"Squaring first and averaging second, i.e. computing $E[(X-\\bar X)]^2$ instead of $E[X^2]-(E[X])^2$ — order of operations changes the answer."}
           />
         </section>
 

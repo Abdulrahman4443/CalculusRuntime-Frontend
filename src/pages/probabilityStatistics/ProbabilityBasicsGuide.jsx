@@ -75,6 +75,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               ]}
               result={"$P(A\\mid B)=1/13$."}
               check={"$P(A\\cap B)=(2/52)$, $P(B)=26/52$, ratio $2/26$."}
+              mistake={"Dividing by 52 instead of 26 — once you condition on $B$, the denominator shrinks to $B$'s own count, not the full sample space."}
             />
             <WorkedExample
               number={2}
@@ -87,6 +88,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               ]}
               result={"$1/3$."}
               check={"Equally likely outcomes restricted to $B$."}
+              mistake={"Forgetting that (5,6) and (6,5) are two distinct outcomes, not one — treating dice as unordered undercounts the sample space."}
             />
             <WorkedExample
               number={3}
@@ -99,6 +101,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               ]}
               result={"About $33\\%$ — still more likely healthy than sick after one positive."}
               check={"Most positives come from the large healthy population."}
+              mistake={"Assuming a positive result means 99% chance of disease (confusing $P(+\\mid D)$ with $P(D\\mid +)$) — these are not the same quantity."}
             />
             <WorkedExample
               number={4}
@@ -111,6 +114,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               ]}
               result={"Independent."}
               check={"Product rule holds exactly."}
+              mistake={"Assuming disjoint ($A\\cap B=\\varnothing$) means independent — the two ideas are unrelated; disjoint events with nonzero probability are actually always dependent."}
             />
           </section>
 
@@ -151,6 +155,47 @@ function ProbabilityBasicsGuide({ part = 1 }) {
                 {"$P(B\\mid A)=P(A\\mid B)P(B)/P(A)$. Prior $P(B)$ becomes posterior $P(B\\mid A)$ after observing $A$."}
               </p>
             </TheoryBox>
+            <TheoremBox title="Bayes with several hypotheses">
+              <p>
+                {"If $B_1,\\ldots,B_k$ partition $\\Omega$ (mutually exclusive causes), then $P(B_i\\mid A)=\\dfrac{P(A\\mid B_i)P(B_i)}{\\sum_j P(A\\mid B_j)P(B_j)}$. The denominator is the law of total probability applied to $A$."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Multi-hypothesis Bayes checklist"
+              steps={[
+                "List every mutually exclusive cause $B_1,\\ldots,B_k$ and their priors $P(B_i)$.",
+                "Write the likelihood $P(A\\mid B_i)$ for each cause.",
+                "Compute the total probability $P(A)=\\sum_j P(A\\mid B_j)P(B_j)$ — the shared denominator.",
+                "Divide the numerator for the cause you care about by this denominator.",
+                "Sanity-check: all resulting posteriors $P(B_i\\mid A)$ must sum to 1.",
+              ]}
+            />
+            <WorkedExample
+              number={1}
+              title="Three factories, one defective part"
+              setup={"Factories $F_1,F_2,F_3$ supply $50\\%,30\\%,20\\%$ of parts, with defect rates $2\\%,5\\%,1\\%$. A part is defective — find $P(F_2\\mid \\text{defective})$."}
+              steps={[
+                "$P(D)=0.5(0.02)+0.3(0.05)+0.2(0.01)=0.010+0.015+0.002=0.027$.",
+                "$P(F_2\\mid D)=P(D\\mid F_2)P(F_2)/P(D)=0.015/0.027$.",
+                "$0.015/0.027\\approx 0.556$.",
+              ]}
+              result={"About $55.6\\%$ — despite supplying only 30% of parts, $F_2$'s higher defect rate makes it the most likely source."}
+              check={"Posteriors for all three factories sum to 1: check $0.010/0.027+0.015/0.027+0.002/0.027=1$."}
+              mistake={"Picking $F_2$ just because it has the highest defect rate, ignoring its market share — Bayes weighs both the likelihood and the prior together."}
+            />
+            <WorkedExample
+              number={2}
+              title="Spam filter"
+              setup={"20% of emails are spam. A filter flags 90% of spam and 5% of non-spam as 'flagged'. Given an email is flagged, find $P(\\text{spam})$."}
+              steps={[
+                "$P(\\text{flagged})=0.2(0.9)+0.8(0.05)=0.18+0.04=0.22$.",
+                "$P(\\text{spam}\\mid \\text{flagged})=0.18/0.22$.",
+                "$\\approx 0.818$.",
+              ]}
+              result={"About $81.8\\%$ chance a flagged email is truly spam."}
+              check={"Even a 5% false-positive rate on the large 'non-spam' group contributes meaningfully to flagged emails — the same rare-disease-style effect as the medical test earlier."}
+              mistake={"Reading '90% of spam gets flagged' as 'if flagged, 90% chance it's spam' — that swaps $P(\\text{flagged}\\mid\\text{spam})$ for $P(\\text{spam}\\mid\\text{flagged})$."}
+            />
           </section>
 
           <LaMcqSection
@@ -178,6 +223,12 @@ function ProbabilityBasicsGuide({ part = 1 }) {
                 answer: "B",
                 explanation: "Marginalize over partitions of the cause.",
               },
+              {
+                prompt: "With several hypotheses $B_1,\\ldots,B_k$, the posteriors $P(B_i\\mid A)$ must:",
+                options: ["Each equal $P(B_i)$", "Sum to 1 across all $i$", "Always be equal to each other"],
+                answer: "B",
+                explanation: "The $B_i$ partition the sample space, so their posteriors form a complete distribution.",
+              },
             ]}
           />
 
@@ -185,6 +236,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
+            <p>{"Real-life use: insurers price policies using axioms and conditional probability, doctors interpret diagnostic tests with Bayes' theorem, and fraud-detection systems flag transactions by updating probabilities as new evidence (location, amount, device) arrives — the same Bayes machinery from this guide."}</p>
             <p>{"Next: random variables turn events into numbers you can average and model with distributions."}</p>
           </section>
         </main>
@@ -261,6 +313,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             ]}
             result={"$1/2$ and $1/3$."}
             check={"Counts over 6 equally likely faces."}
+            mistake={"Reading 'at least 5' as only $\\{5\\}$ — 'at least' includes the endpoint and everything above it, so 6 belongs too."}
           />
           <WorkedExample
             number={2}
@@ -272,6 +325,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             ]}
             result={"$0.65$."}
             check={"Sums with $P(A)$ to 1."}
+            mistake={"Multiplying instead of subtracting (e.g. writing $P(A^c)=1\\times 0.35$) — the complement rule is additive, not multiplicative."}
           />
           <WorkedExample
             number={3}
@@ -283,6 +337,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             ]}
             result={"$0.75$."}
             check={"Intersection was subtracted once to avoid double-counting."}
+            mistake={"Forgetting to subtract $P(A\\cap B)$ at all, giving $0.9$ — this double-counts the overlap region."}
           />
           <WorkedExample
             number={4}
@@ -295,6 +350,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             ]}
             result={"$1/2$."}
             check={"Not $1/3$ — outcomes are equally likely only if listed this way."}
+            mistake={"Treating outcomes as {0 heads, 1 head, 2 heads} and giving each 1/3 — those three outcomes are not equally likely; HT and TH must be counted separately."}
           />
         </section>
 
