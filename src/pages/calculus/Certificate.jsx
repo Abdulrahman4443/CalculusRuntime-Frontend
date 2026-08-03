@@ -9,20 +9,36 @@ import {
 } from "../../data/courseCompletion";
 import "./Certificate.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
+
 /**
- * Builds a short, shareable certificate id from user + course + date.
- * This is a local, deterministic stand-in so the view works with no
- * backend. Swap this (and the setTimeout "issue" step below) for a real
- * `GET /api/certificates/:courseId` call once Developer 2's endpoint exists —
- * everything else on this page (states, layout, QR) stays the same.
+ * Calls the backend to issue a signed certificate + QR code for a
+ * completed course. Backend: POST /api/certificates/generate
+ * (see routers/certificates.py — Dev 3).
  */
-function buildCertificateId(username, courseId, completedAt) {
-  const raw = `${username}|${courseId}|${completedAt}`;
-  let hash = 0;
-  for (let i = 0; i < raw.length; i++) {
-    hash = (hash * 31 + raw.charCodeAt(i)) >>> 0;
+async function requestCertificate(accessToken, courseId, courseTitle, username) {
+  const response = await fetch(`${API_URL}/api/certificates/generate`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      course_id: courseId,
+      course_title: courseTitle,
+      username,
+    }),
+  });
+
+  if (!response.ok) {
+    let detail = "";
+    try {
+      detail = (await response.json()).detail || "";
+    } catch {}
+    throw new Error(detail || `Certificate request failed (${response.status}).`);
   }
-  return `CR-${hash.toString(36).toUpperCase()}`;
+
+  return response.json();
 }
 
 function formatDate(ts) {
@@ -68,26 +84,34 @@ function Certificate() {
     const timestamps = Object.values(progress.completedSectionTimestamps || {});
     const completedAt = timestamps.length ? Math.max(...timestamps) : Date.now();
 
-    // Small delay so the loading state is visible — this is also exactly
-    // where a real fetch() to the backend would go.
-    const timer = setTimeout(() => {
+    let cancelled = false;
+
+    (async () => {
       try {
-        const certId = buildCertificateId(user.username, courseId, completedAt);
-        const verifyUrl = `${window.location.origin}/certificate/verify/${certId}`;
+        const data = await requestCertificate(
+          user.accessToken,
+          courseId,
+          courseTitle,
+          user.username
+        );
+        if (cancelled) return;
         setCertificate({
-          id: certId,
+          id: data.cert_id,
           courseTitle,
           studentName: user.username,
           completedAt,
-          verifyUrl,
+          verifyUrl: data.verify_url,
+          qrImage: data.qr_png_base64,
         });
         setStatus("success");
       } catch {
-        setStatus("failed");
+        if (!cancelled) setStatus("failed");
       }
-    }, 500);
+    })();
 
-    return () => clearTimeout(timer);
+    return () => {
+      cancelled = true;
+    };
   }, [
     courseId,
     user,
@@ -97,11 +121,7 @@ function Certificate() {
     courseTitle,
   ]);
 
-  const qrSrc = certificate
-    ? `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
-        certificate.verifyUrl
-      )}`
-    : null;
+  const qrSrc = certificate?.qrImage || null;
 
   return (
     <div className="cert-page">
