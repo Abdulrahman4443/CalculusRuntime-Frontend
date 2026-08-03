@@ -5,8 +5,9 @@ import { useProgress } from "../../context/ProgressContext";
 import {
   getCourseTitle,
   isCourseCertificateEligible,
-  getRemainingSections,
+  getRequiredSections,
 } from "../../data/courseCompletion";
+import { runBackgroundVerification } from "../../services/verificationAPI";
 import "./Certificate.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
@@ -74,19 +75,35 @@ function Certificate() {
       return undefined;
     }
 
-    const remaining = getRemainingSections(courseId, progress.completedSections);
-    if (remaining.length > 0) {
-      setStatus("incomplete");
-      return undefined;
-    }
-
     setStatus("loading");
-    const timestamps = Object.values(progress.completedSectionTimestamps || {});
-    const completedAt = timestamps.length ? Math.max(...timestamps) : Date.now();
-
     let cancelled = false;
 
     (async () => {
+      // Ask Dev 2's verification service whether this course is actually
+      // complete before issuing anything — single source of truth instead
+      // of a local ad-hoc check.
+      const userProgress = {
+        userId: user.id,
+        completedSections: Object.keys(progress.completedSections || {}).filter(
+          (id) => progress.completedSections[id]
+        ),
+      };
+      const courseData = {
+        id: courseId,
+        requiredSections: getRequiredSections(courseId),
+      };
+
+      const verification = await runBackgroundVerification(userProgress, courseData);
+      if (cancelled) return;
+
+      if (!verification.verified) {
+        setStatus("incomplete");
+        return;
+      }
+
+      const timestamps = Object.values(progress.completedSectionTimestamps || {});
+      const completedAt = timestamps.length ? Math.max(...timestamps) : Date.now();
+
       try {
         const data = await requestCertificate(
           user.accessToken,
