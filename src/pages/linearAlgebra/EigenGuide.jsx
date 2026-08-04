@@ -45,7 +45,7 @@ function EigenGuide({ part = 1 }) {
             </TheoryBox>
             <PracticalTheory title="Eigen workflow that stays organized">
               <p>
-                {"Compute $p(\lambda)=\det(A-\lambda I)$, factor for eigenvalues, then for each $\lambda$ row-reduce $(A-\lambda I)$ to read the eigenspace. If you need powers or a decoupled basis, check whether you have $n$ independent eigenvectors (diagonalizable). For symmetric $A$, expect an orthonormal eigenbasis."}
+                {"Compute $p(\\lambda)=\\det(A-\\lambda I)$, factor for eigenvalues, then for each $\\lambda$ row-reduce $(A-\\lambda I)$ to read the eigenspace. If you need powers or a decoupled basis, check whether you have $n$ independent eigenvectors (diagonalizable). For symmetric $A$, expect an orthonormal eigenbasis."}
               </p>
             </PracticalTheory>
             <TheoremBox title="Enough eigenvectors">
@@ -94,10 +94,10 @@ function EigenGuide({ part = 1 }) {
               setup={"$A=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}$."}
               steps={[
                 { text: "Triangular ⇒ eigenvalues are diagonal entries $\\lambda=2$ and $\\lambda=3$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
-                { text: "For $\\lambda=2$: $A-2I=\\begin{pmatrix}0&1\\\\0&1\\end{pmatrix}$. Equation $v_2=0$. Take $v_1=(1,0)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "For $\\lambda=3$: $A-3I=\\begin{pmatrix}-1&1\\\\0&0\\end{pmatrix}$. Equation $-v_1+v_2=0$. Take $v_2=(1,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "For $\\lambda=2$: $A-2I=\\begin{pmatrix}0&1\\\\0&1\\end{pmatrix}$. Equation $v_2=0$. Take $v_1=(1,0)$." },
+                { text: "For $\\lambda=3$: $A-3I=\\begin{pmatrix}-1&1\\\\0&0\\end{pmatrix}$. Equation $-v_1+v_2=0$. Take $v_2=(1,1)$." },
                 { text: "Two independent eigenvectors ⇒ diagonalizable.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
-                { text: "Set $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $D=\\mathrm{diag}(2,3)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Set $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $D=\\mathrm{diag}(2,3)$." },
                 { text: "Check $AP=PD$: both sides equal $\\begin{pmatrix}2&3\\\\0&3\\end{pmatrix}$.", why: "Confirm with a second method or by substituting back." }
               ]}
               result={"$A=PDP^{-1}$ with $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, $D=\\mathrm{diag}(2,3)$."}
@@ -109,7 +109,7 @@ function EigenGuide({ part = 1 }) {
               setup={"Same $A$ as Example 1. Find $A^5$ using $P,D$."}
               steps={[
                 { text: "$A^5=P D^5 P^{-1}$.", why: "Diagonalize when possible so powers become trivial on D." },
-                { text: "$D^5=\\mathrm{diag}(2^5,3^5)=\\mathrm{diag}(32,243)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$D^5=\\mathrm{diag}(2^5,3^5)=\\mathrm{diag}(32,243)$." },
                 { text: "From Example 1, $P=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$, so $P^{-1}=\\begin{pmatrix}1&-1\\\\0&1\\end{pmatrix}$.", why: "Diagonalize when possible so powers become trivial on D." },
                 { text: "First $D^5 P^{-1}=\\begin{pmatrix}32&-32\\\\0&243\\end{pmatrix}$.", why: "Diagonalize when possible so powers become trivial on D." },
                 { text: "Then $A^5=P(D^5 P^{-1})=\\begin{pmatrix}32&211\\\\0&243\\end{pmatrix}$.", why: "Diagonalize when possible so powers become trivial on D." },
@@ -123,7 +123,7 @@ function EigenGuide({ part = 1 }) {
               title="Not every matrix diagonalizes over R"
               setup={"Rotation by $90^\\circ$: $R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$."}
               steps={[
-                { text: "$R-\\lambda I=\\begin{pmatrix}-\\lambda&-1\\\\1&-\\lambda\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$R-\\lambda I=\\begin{pmatrix}-\\lambda&-1\\\\1&-\\lambda\\end{pmatrix}$." },
                 { text: "$\\det=\\lambda^2+1=0\\Rightarrow\\lambda=\\pm i$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "No real eigenvalues ⇒ no real eigenvectors ⇒ not diagonalizable over $\\mathbb{R}$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Over $\\mathbb{C}$ it does diagonalize, with complex conjugate eigenpairs.", why: "Diagonalize when possible so powers become trivial on D." },
@@ -141,7 +141,7 @@ function EigenGuide({ part = 1 }) {
                 { text: "$\\det(S-\\lambda I)=(2-\\lambda)^2-1=\\lambda^2-4\\lambda+3=(\\lambda-1)(\\lambda-3)$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "Eigenvalues $\\lambda=1$ and $\\lambda=3$ (real, as promised for symmetric matrices).", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "For $\\lambda=1$: $(S-I)=\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}\\Rightarrow v_1+v_2=0$. Unit vector $u_1=\\frac{1}{\\sqrt{2}}(1,-1)$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
-                { text: "For $\\lambda=3$: $(S-3I)=\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}\\Rightarrow -v_1+v_2=0$. Unit $u_2=\\frac{1}{\\sqrt{2}}(1,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "For $\\lambda=3$: $(S-3I)=\\begin{pmatrix}-1&1\\\\1&-1\\end{pmatrix}\\Rightarrow -v_1+v_2=0$. Unit $u_2=\\frac{1}{\\sqrt{2}}(1,1)$." },
                 { text: "These are orthonormal; $Q=[u_1\\ u_2]$ is orthogonal and $S=Q\\Lambda Q^T$ with $\\Lambda=\\mathrm{diag}(1,3)$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Dot product $u_1\\cdot u_2=0$ illustrates orthogonality of distinct eigenspaces.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." }
               ]}
@@ -154,11 +154,11 @@ function EigenGuide({ part = 1 }) {
               setup={"$N=\\begin{pmatrix}2&1\\\\0&2\\end{pmatrix}$. Show it fails to diagonalize."}
               steps={[
                 { text: "Characteristic polynomial $(\\lambda-2)^2$; algebraic multiplicity of $2$ is $2$.", why: "Eigenvalues are roots of det(A−λI)=0." },
-                { text: "$N-2I=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$; solutions satisfy $v_2=0$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$N-2I=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$; solutions satisfy $v_2=0$." },
                 { text: "Eigenspace is $\\mathrm{Span}\\{(1,0)\\}$ — geometric multiplicity $1<2$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Only one independent eigenvector ⇒ cannot build invertible $P$ of eigenvectors.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Hence $N$ is not diagonalizable (Jordan block structure).", why: "Diagonalize when possible so powers become trivial on D." },
-                { text: "Contrast with Example 1, where the off-diagonal $1$ sat with unequal diagonal entries and two eigenlines appeared.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "Contrast with Example 1, where the off-diagonal $1$ sat with unequal diagonal entries and two eigenlines appeared." }
               ]}
               result={"$N$ is defective: not diagonalizable."}
               check={"Any supposed eigenbasis would need two independent vectors for $\\lambda=2$, but $\\dim\\mathrm{Nul}(N-2I)=1$."}
@@ -172,7 +172,7 @@ function EigenGuide({ part = 1 }) {
                 { text: "Then $Ax=P D c$: in eigen-coordinates, $A$ simply multiplies each coordinate $c_i$ by $\\lambda_i$.", why: "Interpret Ax as a combination of the columns of A." },
                 { text: "Finally $P$ maps those scaled coordinates back to the standard basis.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
                 { text: "For $x=(1,0)^T$ (already an eigenvector): $c=(1,0)$, $Dc=(2,0)$, $PDc=(2,0)=Ax$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
-                { text: "For $x=(1,1)^T$: $c=(0,1)$, $Dc=(0,3)$, $PDc=(3,3)=3x$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "For $x=(1,1)^T$: $c=(0,1)$, $Dc=(0,3)$, $PDc=(3,3)=3x$." },
                 { text: "Diagonalization is exactly “change to eigenbasis, stretch, change back.”", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." }
               ]}
               result={"$A$ acts as independent scalings in the eigenbasis of $P$."}
@@ -350,7 +350,7 @@ function EigenGuide({ part = 1 }) {
                 { text: "Compute $Av=(3,0)$.", why: "Carry out the computation justified by the setup." },
                 { text: "Compute $3v=(3,0)$.", why: "Carry out the computation justified by the setup." },
                 { text: "They match, so $v$ is an eigenvector for $\\lambda=3$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
-                { text: "Similarly $e_2=(0,1)$ satisfies $Ae_2=(0,1)=1\\cdot e_2$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Similarly $e_2=(0,1)$ satisfies $Ae_2=(0,1)=1\\cdot e_2$." },
                 { text: "Diagonal matrices always have the standard basis as eigenvectors, with diagonal entries as eigenvalues.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Eigenspace for $\\lambda=3$ is $\\mathrm{Span}\\{e_1\\}$; for $\\lambda=1$ it is $\\mathrm{Span}\\{e_2\\}$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." }
               ]}
@@ -364,7 +364,7 @@ function EigenGuide({ part = 1 }) {
             steps={[
                 { text: "Form $A-\\lambda I=\\begin{pmatrix}4-\\lambda&1\\\\2&3-\\lambda\\end{pmatrix}$.", why: "Eigenvalues are roots of det(A−λI)=0." },
                 { text: "Determinant: $(4-\\lambda)(3-\\lambda)-2=\\lambda^2-7\\lambda+12-2=\\lambda^2-7\\lambda+10$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
-                { text: "Factor: $(\\lambda-5)(\\lambda-2)=0$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Factor: $(\\lambda-5)(\\lambda-2)=0$." },
                 { text: "Eigenvalues $\\lambda=5$ and $\\lambda=2$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Check trace: $4+3=7=5+2$.", why: "Confirm with a second method or by substituting back." },
                 { text: "Check det: $12-2=10=5\\cdot 2$.", why: "Compute det with a formula or elimination while tracking signs and scales." }
@@ -377,7 +377,7 @@ function EigenGuide({ part = 1 }) {
             title="Find an eigenvector for λ=2"
             setup={"Same $A$ as Example 2. Find $v$ for $\\lambda=2$."}
             steps={[
-                { text: "$A-2I=\\begin{pmatrix}2&1\\\\2&1\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$A-2I=\\begin{pmatrix}2&1\\\\2&1\\end{pmatrix}$." },
                 { text: "Rows are dependent; the only independent equation is $2x+y=0$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
                 { text: "So $y=-2x$. Free variable $x=t$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
                 { text: "Take $t=1$: eigenvector $v=(1,-2)$.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
@@ -392,9 +392,9 @@ function EigenGuide({ part = 1 }) {
             title="Eigenvector for λ=5 and basis check"
             setup={"Continue with $A$ from Example 2; find a vector for $\\lambda=5$."}
             steps={[
-                { text: "$A-5I=\\begin{pmatrix}-1&1\\\\2&-2\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Equation $-x+y=0\\Rightarrow y=x$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Take $w=(1,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$A-5I=\\begin{pmatrix}-1&1\\\\2&-2\\end{pmatrix}$." },
+                { text: "Equation $-x+y=0\\Rightarrow y=x$." },
+                { text: "Take $w=(1,1)$." },
                 { text: "Verify: $Aw=(4+1,\\,2+3)=(5,5)=5w$.", why: "Confirm with a second method or by substituting back." },
                 { text: "Together $v=(1,-2)$ and $w=(1,1)$ are independent (matrix with those columns has $\\det=3\\neq 0$).", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "So they form an eigenbasis of $\\mathbb{R}^2$ — $A$ will be diagonalizable.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." }
@@ -423,9 +423,9 @@ function EigenGuide({ part = 1 }) {
             setup={"$R=\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$. Show there is no real eigenpair."}
             steps={[
                 { text: "$\\det(R-\\lambda I)=\\lambda^2+1$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
-                { text: "Roots $\\lambda=\\pm i$ are not real.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Suppose $Rv=\\lambda v$ for real $v\\neq 0$ and real $\\lambda$. Then $R$ would scale $v$, but $R$ rotates by $90^\\circ$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "A $90^\\circ$ rotation never preserves a real line through the origin.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Roots $\\lambda=\\pm i$ are not real." },
+                { text: "Suppose $Rv=\\lambda v$ for real $v\\neq 0$ and real $\\lambda$. Then $R$ would scale $v$, but $R$ rotates by $90^\\circ$." },
+                { text: "A $90^\\circ$ rotation never preserves a real line through the origin." },
                 { text: "Therefore no real eigenvectors exist, even though $R$ is invertible.", why: "Use (A−λI)v=0 for each eigenvalue and read the nullspace." },
                 { text: "Over $\\mathbb{C}$ the story continues; over $\\mathbb{R}$ you need a different normal form (rotation-scaling blocks).", why: "Use dots and norms for length, angle, and orthogonal projection." }
               ]}

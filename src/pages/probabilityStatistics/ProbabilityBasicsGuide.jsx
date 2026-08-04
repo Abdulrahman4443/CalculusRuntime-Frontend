@@ -59,11 +59,11 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             <ProcedureBox
               title="Checklist"
               steps={[
-                { text: "Identify the event you condition on (the new information).", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Write $P(A\\cap B)$ carefully — often via a tree or table.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Divide by $P(B)$; never skip the denominator.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Identify the event you condition on (the new information)." },
+                { text: "Write $P(A\\cap B)$ carefully — often via a tree or table." },
+                { text: "Divide by $P(B)$; never skip the denominator." },
                 { text: "For Bayes: compute $P(B\\mid A)$ from $P(A\\mid B)P(B)/P(A)$, using total probability for $P(A)$.", why: "Build the marginal of the evidence with the law of total probability." },
-                { text: "Sanity-check: answers must lie in $[0,1]$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Sanity-check: answers must lie in $[0,1]$." }
               ]}
             />
           </section>
@@ -170,7 +170,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             <ProcedureBox
               title="Multi-hypothesis Bayes checklist"
               steps={[
-                { text: "List every mutually exclusive cause $B_1,\\ldots,B_k$ and their priors $P(B_i)$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "List every mutually exclusive cause $B_1,\\ldots,B_k$ and their priors $P(B_i)$." },
                 { text: "Write the likelihood $P(A\\mid B_i)$ for each cause.", why: "Apply Bayes: posterior ∝ likelihood × prior, then normalize." },
                 { text: "Compute the total probability $P(A)=\\sum_j P(A\\mid B_j)P(B_j)$ — the shared denominator.", why: "Build the marginal of the evidence with the law of total probability." },
                 { text: "Divide the numerator for the cause you care about by this denominator.", why: "Finish the arithmetic and state the conclusion in the problem's units." },
@@ -184,7 +184,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               steps={[
                 { text: "$P(D)=0.5(0.02)+0.3(0.05)+0.2(0.01)=0.010+0.015+0.002=0.027$.", why: "Build the marginal of the evidence with the law of total probability." },
                 { text: "$P(F_2\\mid D)=P(D\\mid F_2)P(F_2)/P(D)=0.015/0.027$.", why: "Build the marginal of the evidence with the law of total probability." },
-                { text: "$0.015/0.027\\approx 0.556$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$0.015/0.027\\approx 0.556$." }
               ]}
               result={"About $55.6\\%$ — despite supplying only 30% of parts, $F_2$'s higher defect rate makes it the most likely source."}
               check={"Posteriors for all three factories sum to 1: check $0.010/0.027+0.015/0.027+0.002/0.027=1$."}
@@ -195,9 +195,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
               title="Spam filter"
               setup={"20% of emails are spam. A filter flags 90% of spam and 5% of non-spam as 'flagged'. Given an email is flagged, find $P(\\text{spam})$."}
               steps={[
-                { text: "$P(\\text{flagged})=0.2(0.9)+0.8(0.05)=0.18+0.04=0.22$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$P(\\text{spam}\\mid \\text{flagged})=0.18/0.22$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$\\approx 0.818$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$P(\\text{flagged})=0.2(0.9)+0.8(0.05)=0.18+0.04=0.22$." },
+                { text: "$P(\\text{spam}\\mid \\text{flagged})=0.18/0.22$." },
+                { text: "$\\approx 0.818$." }
               ]}
               result={"About $81.8\\%$ chance a flagged email is truly spam."}
               check={"Even a 5% false-positive rate on the large 'non-spam' group contributes meaningfully to flagged emails — the same rare-disease-style effect as the medical test earlier."}
@@ -305,8 +305,8 @@ function ProbabilityBasicsGuide({ part = 1 }) {
                 { text: "Define $\\Omega$ clearly (what counts as one outcome?).", why: "Name the events/parameters exactly as the problem states them." },
                 { text: "Decide if outcomes are equally likely; if yes, $P(A)=|A|/|\\Omega|$.", why: "State the precise criterion (independence product, hypotheses, or decision rule) before computing." },
                 { text: "Otherwise assign probabilities that sum to 1.", why: "Count equally likely outcomes in the conditioning set carefully (order matters for dice)." },
-                { text: "Translate the word problem into unions, intersections, complements.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Use axioms and identities — avoid inventing new rules mid-problem.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Translate the word problem into unions, intersections, complements." },
+                { text: "Use axioms and identities — avoid inventing new rules mid-problem." }
               ]}
           />
         </section>
@@ -319,9 +319,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Fair die"
             setup={"Roll a fair six-sided die. Find $P(\\text{even})$ and $P(\\text{at least }5)$."}
             steps={[
-                { text: "$\\Omega=\\{1,2,3,4,5,6\\}$, each probability $1/6$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Even: $\\{2,4,6\\}$ → $3/6=1/2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "At least 5: $\\{5,6\\}$ → $2/6=1/3$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$\\Omega=\\{1,2,3,4,5,6\\}$, each probability $1/6$." },
+                { text: "Even: $\\{2,4,6\\}$ → $3/6=1/2$." },
+                { text: "At least 5: $\\{5,6\\}$ → $2/6=1/3$." }
               ]}
             result={"$1/2$ and $1/3$."}
             check={"Counts over 6 equally likely faces."}
@@ -332,8 +332,8 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Complement"
             setup={"$P(A)=0.35$. Find $P(A^c)$."}
             steps={[
-                { text: "Axiom: $P(A)+P(A^c)=1$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$P(A^c)=1-0.35=0.65$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Axiom: $P(A)+P(A^c)=1$." },
+                { text: "$P(A^c)=1-0.35=0.65$." }
               ]}
             result={"$0.65$."}
             check={"Sums with $P(A)$ to 1."}
@@ -344,8 +344,8 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Inclusion–exclusion"
             setup={"$P(A)=0.4$, $P(B)=0.5$, $P(A\\cap B)=0.15$. Find $P(A\\cup B)$."}
             steps={[
-                { text: "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$=0.4+0.5-0.15=0.75$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$." },
+                { text: "$=0.4+0.5-0.15=0.75$." }
               ]}
             result={"$0.75$."}
             check={"Intersection was subtracted once to avoid double-counting."}
@@ -356,9 +356,9 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Two coins"
             setup={"Two fair coins. Find $P(\\text{exactly one head})$."}
             steps={[
-                { text: "$\\Omega=\\{HH,HT,TH,TT\\}$, each $1/4$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Exactly one head: $\\{HT,TH\\}$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Probability $2/4=1/2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$\\Omega=\\{HH,HT,TH,TT\\}$, each $1/4$." },
+                { text: "Exactly one head: $\\{HT,TH\\}$." },
+                { text: "Probability $2/4=1/2$." }
               ]}
             result={"$1/2$."}
             check={"Not $1/3$ — outcomes are equally likely only if listed this way."}

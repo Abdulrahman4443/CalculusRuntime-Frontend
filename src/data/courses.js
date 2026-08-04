@@ -56,7 +56,7 @@ export const COURSES = [
   },
   {
     id: "multivariable-calculus",
-    title: "Multi Variable Calculus",
+    title: "Multivariable Calculus",
     description:
       "Partial derivatives, vector calculus, multiple integrals, Lagrange multipliers, divergence & curl, and Stokes.",
     path: "/courses/multivariable-calculus",

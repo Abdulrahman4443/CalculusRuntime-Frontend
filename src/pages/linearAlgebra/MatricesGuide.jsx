@@ -44,7 +44,7 @@ function MatricesGuide({ part = 1 }) {
             </TheoryBox>
             <PracticalTheory title="Matrix arithmetic without size traps">
               <p>
-                {"Always write the size chain before multiplying. Think of $Ax$ as weighting columns, $AB$ as composition ($B$ first), and $\det$ as oriented volume — so row swaps flip sign and dependent columns force $\det=0$. Prefer triangular form or a zero-heavy row for hand determinants."}
+                {"Always write the size chain before multiplying. Think of $Ax$ as weighting columns, $AB$ as composition ($B$ first), and $\\det$ as oriented volume — so row swaps flip sign and dependent columns force $\\det=0$. Prefer triangular form or a zero-heavy row for hand determinants."}
               </p>
             </PracticalTheory>
             <TheoremBox title="Product, transpose, and invertibility">
@@ -73,7 +73,7 @@ function MatricesGuide({ part = 1 }) {
               title="How to evaluate det(A) and use it"
               steps={[
                 { text: "If $A$ is $2\\times 2$, use $ad-bc$ immediately.", why: "Compute det with a formula or elimination while tracking signs and scales." },
-                { text: "If $A$ is triangular (upper or lower), multiply the diagonal entries.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "If $A$ is triangular (upper or lower), multiply the diagonal entries." },
                 { text: "Otherwise, row-reduce toward triangular form, tracking sign flips from row swaps and scale factors from row multiplications. Adding a multiple of one row to another does not change $\\det$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
                 { text: "Alternatively, expand along a row/column with many zeros using cofactors.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "Read off invertibility: $\\det A\\neq 0$ iff $A$ is invertible iff columns (and rows) are linearly independent.", why: "Compute det with a formula or elimination while tracking signs and scales." },
@@ -125,7 +125,7 @@ function MatricesGuide({ part = 1 }) {
                 { text: "The alternating property says each transposition of two rows multiplies $\\det$ by $-1$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "Therefore $\\det A'=-4$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "If you swap those two rows again, you return to $A$ and restore $\\det=4$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
-                { text: "Two distinct swaps (four rows involved, or the same pair twice) accumulate $(-1)$ once per swap.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Two distinct swaps (four rows involved, or the same pair twice) accumulate $(-1)$ once per swap." },
                 { text: "In elimination, count every row interchange so you do not lose the sign of $\\det$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
                 { text: "Scaling is separate: if you also multiply a row by $2$, multiply $\\det$ by $2$ as well.", why: "Compute det with a formula or elimination while tracking signs and scales." }
               ]}
@@ -153,8 +153,8 @@ function MatricesGuide({ part = 1 }) {
               setup={"Compute $\\det C$ for $C=\\begin{pmatrix}1&2&1\\\\2&3&1\\\\0&1&2\\end{pmatrix}$."}
               steps={[
                 { text: "Start with $C$. No swap needed; pivot $1$ in position $(1,1)$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
-                { text: "R2 ← R2−2 R1: new row 2 is $(0,\\,-1,\\,-1)$. Matrix becomes $\\begin{pmatrix}1&2&1\\\\0&-1&-1\\\\0&1&2\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "R3 ← R3+R2: new row 3 is $(0,\\,0,\\,1)$. Now upper triangular $\\begin{pmatrix}1&2&1\\\\0&-1&-1\\\\0&0&1\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "R2 ← R2−2 R1: new row 2 is $(0,\\,-1,\\,-1)$. Matrix becomes $\\begin{pmatrix}1&2&1\\\\0&-1&-1\\\\0&1&2\\end{pmatrix}$." },
+                { text: "R3 ← R3+R2: new row 3 is $(0,\\,0,\\,1)$. Now upper triangular $\\begin{pmatrix}1&2&1\\\\0&-1&-1\\\\0&0&1\\end{pmatrix}$." },
                 { text: "No row swaps and no row scalings were used that change $\\det$ beyond the triangular product.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "$\\det C=1\\cdot(-1)\\cdot 1=-1$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "Since $\\det\\neq 0$, $C$ is invertible.", why: "Compute det with a formula or elimination while tracking signs and scales." }
@@ -167,8 +167,8 @@ function MatricesGuide({ part = 1 }) {
               title="Singular matrix from dependent columns"
               setup={"$D=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\0&1&1\\end{pmatrix}$. Predict $\\det D$ without expanding fully."}
               steps={[
-                { text: "Column 2 looks related to column 1: $(2,4,1)$ vs $(1,2,0)$ — not exactly a multiple because of the third entry.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Notice column 3 = column 1 + column 2: $(1,2,0)+(2,4,1)=(3,6,1)$. Yes.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Column 2 looks related to column 1: $(2,4,1)$ vs $(1,2,0)$ — not exactly a multiple because of the third entry." },
+                { text: "Notice column 3 = column 1 + column 2: $(1,2,0)+(2,4,1)=(3,6,1)$. Yes." },
                 { text: "Dependent columns ⇒ $\\det D=0$ immediately.", why: "Compute det with a formula or elimination while tracking signs and scales." },
                 { text: "Row reduction would produce a zero row and confirm singularity.", why: "Invertibility matches nonzero det and a full set of pivots." },
                 { text: "The linear map $x\\mapsto Dx$ collapses volume to zero (image is at most 2-dimensional).", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
@@ -339,7 +339,7 @@ function MatricesGuide({ part = 1 }) {
                 { text: "Interpret $AB$ as composition: apply $B$ first, then $A$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
                 { text: "Compute $(AB)^T=B^T A^T$ when you need the transpose of a product.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
                 { text: "Never assume $AB=BA$; check sizes and, when both exist, compare explicitly on a small example.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
-                { text: "Use $I$ as the do-nothing map and $O$ as the collapse-to-zero map when simplifying expressions.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "Use $I$ as the do-nothing map and $O$ as the collapse-to-zero map when simplifying expressions." }
               ]}
           />
         </section>
@@ -369,11 +369,11 @@ function MatricesGuide({ part = 1 }) {
             setup={"$A=\\begin{pmatrix}1&0\\\\2&3\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&1\\end{pmatrix}$. Form $A+B$ and $2A$."}
             steps={[
                 { text: "Sizes match ($2\\times 2$), so addition is allowed.", why: "Record matrix shape (domain/codomain) before arithmetic." },
-                { text: "$A+B=\\begin{pmatrix}1+0&0+1\\\\2+1&3+1\\end{pmatrix}=\\begin{pmatrix}1&1\\\\3&4\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$2A=\\begin{pmatrix}2&0\\\\4&6\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$A+B=\\begin{pmatrix}1+0&0+1\\\\2+1&3+1\\end{pmatrix}=\\begin{pmatrix}1&1\\\\3&4\\end{pmatrix}$." },
+                { text: "$2A=\\begin{pmatrix}2&0\\\\4&6\\end{pmatrix}$." },
                 { text: "As maps: $(A+B)x=Ax+Bx$ and $(2A)x=2(Ax)$.", why: "Interpret Ax as a combination of the columns of A." },
                 { text: "If sizes differed, $A+B$ would be undefined — always check shape first.", why: "Record matrix shape (domain/codomain) before arithmetic." },
-                { text: "Note $A+B=B+A$ (addition is commutative), unlike multiplication.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "Note $A+B=B+A$ (addition is commutative), unlike multiplication." }
               ]}
             result={"$A+B=\\begin{pmatrix}1&1\\\\3&4\\end{pmatrix}$, $2A=\\begin{pmatrix}2&0\\\\4&6\\end{pmatrix}$."}
             check={"Entry $(2,1)$ of $A+B$ is $2+1=3$."}
@@ -385,9 +385,9 @@ function MatricesGuide({ part = 1 }) {
             steps={[
                 { text: "For $AB$: inner dimensions $3=3$, so $AB$ exists and is $2\\times 2$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
                 { text: "For $BA$: inner dimensions $2=2$, so $BA$ exists and is $3\\times 3$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
-                { text: "Both products exist, but they live in different spaces of matrices — they cannot be equal.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Both products exist, but they live in different spaces of matrices — they cannot be equal." },
                 { text: "Composition view: $AB$ maps $\\mathbb{R}^2\\to\\mathbb{R}^2$; $BA$ maps $\\mathbb{R}^3\\to\\mathbb{R}^3$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
-                { text: "If instead $B$ were $2\\times 2$, then $AB$ would be undefined because $3\\neq 2$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "If instead $B$ were $2\\times 2$, then $AB$ would be undefined because $3\\neq 2$." },
                 { text: "Always write the size chain before multiplying.", why: "Record matrix shape (domain/codomain) before arithmetic." }
               ]}
             result={"$AB$ is $2\\times 2$; $BA$ is $3\\times 3$; products need not commute or even share a size."}
@@ -398,8 +398,8 @@ function MatricesGuide({ part = 1 }) {
             title="Explicit 2×2 multiplication and noncommutativity"
             setup={"$A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$, $B=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$. Compare $AB$ and $BA$."}
             steps={[
-                { text: "Row1·Col1 for $AB$: $1\\cdot 0+2\\cdot 1=2$. Row1·Col2: $1\\cdot 1+2\\cdot 0=1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Row2·Col1: $3\\cdot 0+4\\cdot 1=4$. Row2·Col2: $3\\cdot 1+4\\cdot 0=3$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Row1·Col1 for $AB$: $1\\cdot 0+2\\cdot 1=2$. Row1·Col2: $1\\cdot 1+2\\cdot 0=1$." },
+                { text: "Row2·Col1: $3\\cdot 0+4\\cdot 1=4$. Row2·Col2: $3\\cdot 1+4\\cdot 0=3$." },
                 { text: "Thus $AB=\\begin{pmatrix}2&1\\\\4&3\\end{pmatrix}$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
                 { text: "Now $BA$: $B$ swaps rows of $A$, giving $BA=\\begin{pmatrix}3&4\\\\1&2\\end{pmatrix}$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
                 { text: "Clearly $AB\\neq BA$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
@@ -415,10 +415,10 @@ function MatricesGuide({ part = 1 }) {
             steps={[
                 { text: "From before, $AB=\\begin{pmatrix}2&1\\\\4&3\\end{pmatrix}$, so $(AB)^T=\\begin{pmatrix}2&4\\\\1&3\\end{pmatrix}$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
                 { text: "$B^T=B$ because $B$ is symmetric (it equals its transpose).", why: "Real symmetric matrices admit an orthonormal eigenbasis." },
-                { text: "$A^T=\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$A^T=\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}$." },
                 { text: "Compute $B^T A^T=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}1&3\\\\2&4\\end{pmatrix}=\\begin{pmatrix}2&4\\\\1&3\\end{pmatrix}$.", why: "Carry out the computation justified by the setup." },
                 { text: "Matches $(AB)^T$.", why: "Check sizes, multiply as composition, and reverse order under transpose." },
-                { text: "The order reversal is mandatory: $A^T B^T$ would be wrong in general.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "The order reversal is mandatory: $A^T B^T$ would be wrong in general." }
               ]}
             result={"$(AB)^T=B^T A^T=\\begin{pmatrix}2&4\\\\1&3\\end{pmatrix}$."}
             check={"Entry $(1,2)$ on both sides is $4$."}
@@ -431,9 +431,9 @@ function MatricesGuide({ part = 1 }) {
                 { text: "Columns: $c_1=(1,-1)$, $c_2=(0,3)$, $c_3=(2,1)$.", why: "Solve for the coefficients in the linear combination." },
                 { text: "$Mx=2c_1+(-1)c_2+4c_3$.", why: "Solve for the coefficients in the linear combination." },
                 { text: "$2c_1=(2,-2)$, $-c_2=(0,-3)$, $4c_3=(8,4)$.", why: "Solve for the coefficients in the linear combination." },
-                { text: "Sum: $(2+0+8,\\,-2-3+4)=(10,-1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Direct multiply: row1 gives $1\\cdot 2+0\\cdot(-1)+2\\cdot 4=10$; row2 gives $-1\\cdot 2+3\\cdot(-1)+1\\cdot 4=-1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Same answer; the column picture is what proves $\\mathrm{range}(M)=\\mathrm{Col}(M)$.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "Sum: $(2+0+8,\\,-2-3+4)=(10,-1)$." },
+                { text: "Direct multiply: row1 gives $1\\cdot 2+0\\cdot(-1)+2\\cdot 4=10$; row2 gives $-1\\cdot 2+3\\cdot(-1)+1\\cdot 4=-1$." },
+                { text: "Same answer; the column picture is what proves $\\mathrm{range}(M)=\\mathrm{Col}(M)$." }
               ]}
             result={"$Mx=(10,-1)^T$."}
             check={"Both methods agree on each coordinate."}

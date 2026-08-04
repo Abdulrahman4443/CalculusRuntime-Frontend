@@ -112,8 +112,8 @@ function VectorsGuide({ part = 1 }) {
                 { text: "Solve $c_1(1,1)+c_2(1,-1)=(4,2)$.", why: "Solve for the coefficients in the linear combination." },
                 { text: "Equations: $c_1+c_2=4$ and $c_1-c_2=2$.", why: "Solve for the coefficients in the linear combination." },
                 { text: "Add them: $2c_1=6\\Rightarrow c_1=3$.", why: "Solve for the coefficients in the linear combination." },
-                { text: "Subtract: $2c_2=2\\Rightarrow c_2=1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Therefore $[x]_B=(3,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Subtract: $2c_2=2\\Rightarrow c_2=1$." },
+                { text: "Therefore $[x]_B=(3,1)$." },
                 { text: "Interpretation: $x$ is three of the first basis vector plus one of the second.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." }
               ]}
               result={"$[x]_B=(3,1)$."}
@@ -124,7 +124,7 @@ function VectorsGuide({ part = 1 }) {
               title="Remove redundancy from a spanning set"
               setup={"$S=\\{(1,2),(2,4),(0,1)\\}$ in $\\mathbb{R}^2$. Find a basis for $\\mathrm{Span}(S)$."}
               steps={[
-                { text: "Notice $(2,4)=2(1,2)$, so the second vector is redundant.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Notice $(2,4)=2(1,2)$, so the second vector is redundant." },
                 { text: "Form matrix with columns $(1,2)$, $(2,4)$, $(0,1)$ and row-reduce.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
                 { text: "After elimination you get pivots in columns 1 and 3 (column 2 has no new pivot).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
                 { text: "So an independent spanning subset is $\\{(1,2),(0,1)\\}$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
@@ -305,8 +305,8 @@ function VectorsGuide({ part = 1 }) {
             title="Everyday calculation checklist"
             steps={[
                 { text: "Write vectors as rows or columns — stay consistent within a problem.", why: "Set up the matrix or system cleanly before computing." },
-                { text: "To add: add matching components. To scale: multiply every component by the scalar.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Length: square components, add, take square root. Never forget the square root.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "To add: add matching components. To scale: multiply every component by the scalar." },
+                { text: "Length: square components, add, take square root. Never forget the square root." },
                 { text: "Unit vector: divide $v$ by $\\|v\\|$ (only if $v\\neq 0$).", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Dot product: multiply matching components, then add those products.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Angle: use $\\cos\\theta=(u\\cdot v)/(\\|u\\|\\|v\\|)$. Orthogonal means dot product $0$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
@@ -325,8 +325,8 @@ function VectorsGuide({ part = 1 }) {
             title="Length, unit vector, and scaling"
             setup={"Let $v=(6,-8)$. Find $\\|v\\|$, the unit vector $\\hat v$, and $-\\tfrac12 v$."}
             steps={[
-                { text: "Squares: $6^2=36$, $(-8)^2=64$, sum $100$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$\\|v\\|=\\sqrt{100}=10$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Squares: $6^2=36$, $(-8)^2=64$, sum $100$." },
+                { text: "$\\|v\\|=\\sqrt{100}=10$." },
                 { text: "Unit vector $\\hat v=v/10=(0.6,-0.8)$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Scaling: $-\\tfrac12 v=(-3,4)$.", why: "Solve for the coefficients in the linear combination." },
                 { text: "Length of the scaled vector: $\\|-\\tfrac12 v\\|=\\tfrac12\\|v\\|=5$ (absolute value of the scalar).", why: "Solve for the coefficients in the linear combination." }
@@ -339,10 +339,10 @@ function VectorsGuide({ part = 1 }) {
             title="Parallelogram addition in R²"
             setup={"$u=(2,1)$, $w=(-1,3)$. Compute $u+w$, $u-w$, and interpret."}
             steps={[
-                { text: "$u+w=(2-1,\\,1+3)=(1,4)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$u-w=(2-(-1),\\,1-3)=(3,-2)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$u+w=(2-1,\\,1+3)=(1,4)$." },
+                { text: "$u-w=(2-(-1),\\,1-3)=(3,-2)$." },
                 { text: "Geometrically $u+w$ is the diagonal of the parallelogram spanned by $u$ and $w$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
-                { text: "$u-w$ goes from the tip of $w$ to the tip of $u$ if both start at the origin.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$u-w$ goes from the tip of $w$ to the tip of $u$ if both start at the origin." },
                 { text: "Triangle inequality: $\\|u+w\\|=\\sqrt{17}\\approx 4.12$ while $\\|u\\|+\\|w\\|=\\sqrt{5}+\\sqrt{10}\\approx 5.4>4.12$.", why: "Use dots and norms for length, angle, and orthogonal projection." }
               ]}
             result={"$u+w=(1,4)$, $u-w=(3,-2)$."}
@@ -355,8 +355,8 @@ function VectorsGuide({ part = 1 }) {
             steps={[
                 { text: "Dot product: $a\\cdot b=1\\cdot 2+2\\cdot 1+2\\cdot(-2)=2+2-4=0$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Already the vectors are orthogonal — angle is $\\pi/2$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
-                { text: "For completeness: $\\|a\\|=3$, $\\|b\\|=3$, so $\\cos\\theta=0/(9)=0$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Thus $\\theta=90^\\circ$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "For completeness: $\\|a\\|=3$, $\\|b\\|=3$, so $\\cos\\theta=0/(9)=0$." },
+                { text: "Thus $\\theta=90^\\circ$." },
                 { text: "Orthogonal vectors are extremely useful bases and in projections (error perpendicular to the line).", why: "Use dots and norms for length, angle, and orthogonal projection." }
               ]}
             result={"$a\\perp b$; angle $=90^\\circ$."}
@@ -367,10 +367,10 @@ function VectorsGuide({ part = 1 }) {
             title="Non-right angle with cosine"
             setup={"$p=(1,0)$, $q=(1,1)$. Find $\\theta$ between them."}
             steps={[
-                { text: "$p\\cdot q=1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$\\|p\\|=1$, $\\|q\\|=\\sqrt{2}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$\\cos\\theta=1/\\sqrt{2}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$\\theta=\\pi/4$ radians $=45^\\circ$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$p\\cdot q=1$." },
+                { text: "$\\|p\\|=1$, $\\|q\\|=\\sqrt{2}$." },
+                { text: "$\\cos\\theta=1/\\sqrt{2}$." },
+                { text: "$\\theta=\\pi/4$ radians $=45^\\circ$." },
                 { text: "Sketch: $q$ is the diagonal of the unit square; the angle with the $x$-axis is indeed $45^\\circ$.", why: "Interpret Ax as a combination of the columns of A." }
               ]}
             result={"$\\theta=45^\\circ$."}
@@ -382,8 +382,8 @@ function VectorsGuide({ part = 1 }) {
             setup={"Project $b=(3,4)$ onto the line spanned by $a=(1,1)$."}
             steps={[
                 { text: "Formula: $\\mathrm{proj}_a b=\\dfrac{a\\cdot b}{a\\cdot a}a$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
-                { text: "$a\\cdot b=3+4=7$, $a\\cdot a=1+1=2$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Scalar factor $7/2$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "$a\\cdot b=3+4=7$, $a\\cdot a=1+1=2$." },
+                { text: "Scalar factor $7/2$." },
                 { text: "Projection vector $\\mathrm{proj}_a b=\\tfrac72(1,1)=(\\tfrac72,\\tfrac72)$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Error / perpendicular component: $b-\\mathrm{proj}= (3-3.5,\\,4-3.5)=(-0.5,0.5)$.", why: "Use dots and norms for length, angle, and orthogonal projection." },
                 { text: "Check orthogonality: $(\\tfrac72,\\tfrac72)\\cdot(-1/2,1/2)= -7/4+7/4=0$.", why: "Use dots and norms for length, angle, and orthogonal projection." }
@@ -396,12 +396,12 @@ function VectorsGuide({ part = 1 }) {
             title="Worked combination problem"
             setup={"Given $u=(1,-1,2)$, $v=(0,3,1)$, compute $\\|2u-v\\|$ and decide if $2u-v$ is longer than $u$."}
             steps={[
-                { text: "First form $2u=(2,-2,4)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Then $2u-v=(2,-2-3,\\,4-1)=(2,-5,3)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Length: $\\sqrt{4+25+9}=\\sqrt{38}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "$\\|u\\|=\\sqrt{1+1+4}=\\sqrt{6}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Compare $\\sqrt{38}>\\sqrt{6}$, so $2u-v$ is longer than $u$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
-                { text: "Optional: $\\sqrt{38}\\approx 6.16$, $\\sqrt{6}\\approx 2.45$.", why: "Justify this line with the matching linear-algebra definition or theorem." }
+                { text: "First form $2u=(2,-2,4)$." },
+                { text: "Then $2u-v=(2,-2-3,\\,4-1)=(2,-5,3)$." },
+                { text: "Length: $\\sqrt{4+25+9}=\\sqrt{38}$." },
+                { text: "$\\|u\\|=\\sqrt{1+1+4}=\\sqrt{6}$." },
+                { text: "Compare $\\sqrt{38}>\\sqrt{6}$, so $2u-v$ is longer than $u$." },
+                { text: "Optional: $\\sqrt{38}\\approx 6.16$, $\\sqrt{6}\\approx 2.45$." }
               ]}
             result={"$\\|2u-v\\|=\\sqrt{38}$."}
             check={"Expand ||2u-v||^2=(2u-v)·(2u-v) if you prefer an algebraic verification."}

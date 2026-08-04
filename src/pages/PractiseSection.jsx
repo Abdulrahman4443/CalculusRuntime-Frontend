@@ -27,7 +27,7 @@ const PRACTICE_PROBLEMS = [
     id: 3, topic: 'Lagrange Multipliers', difficulty: 'Easy',
     question: 'True or False: The Lagrange multiplier method can locate boundary extrema even if the constraint gradient ∇g equals zero.',
     options: ['True, because ∇f dominates the equation.', 'False, because the equation ∇f = λ∇g becomes undefined or invalid when ∇g = 0.', 'True, if the function f is linear.', 'False, because λ must also be zero.'],
-    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary boundary path.'
+    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary path.'
   },
   {
     id: 4, topic: 'Lagrange Multipliers', difficulty: 'Easy',
