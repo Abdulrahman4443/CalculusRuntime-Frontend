@@ -223,7 +223,7 @@ const VectorFieldVisualizer = () => {
     };
 
     return (
-        <div style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', minHeight: '100vh', padding: '20px' }}>
+        <div style={{ fontFamily: "'Source Sans 3', system-ui, sans-serif", background: 'var(--paper, #f4ede0)', minHeight: '100vh', padding: '20px' }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
                 <h1 style={{ textAlign: 'center', color: 'white', fontSize: '3em', fontWeight: 700, marginBottom: '10px', textShadow: '2px 4px 6px rgba(0,0,0,0.2)' }}>

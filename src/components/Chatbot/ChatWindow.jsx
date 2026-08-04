@@ -13,7 +13,7 @@ import { getContextString, getTopicContext, getPageUrl } from "../../utils/route
 import Message, { MessageFeedback, renderLatexSegments } from "./Message";
 import SuggestedQuestions from "./SuggestedQuestions";
 import MathSymbolPicker from "./MathSymbolPicker";
-import { IconClose, IconHistory, IconSigma, IconPlus, IconSend, IconDownload } from "./Icons";
+import { IconDownload } from "./Icons";
 
 const WELCOME_PROMPTS = [
   "How do I find ∂f/∂x?",

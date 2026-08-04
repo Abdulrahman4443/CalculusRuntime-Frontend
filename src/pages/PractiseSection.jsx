@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
+import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
+import { PS_PRACTICE_BANK } from '../data/psPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
-// --- MASTER PROBLEM DATABASE (120 DISTINCT PROBLEM OBJECTS) ---
+// --- MASTER PROBLEM DATABASE ---
 const PRACTICE_PROBLEMS = [
   // ==========================================
   // TOPIC 1: Lagrange Multipliers (12 Problems)
@@ -764,7 +766,513 @@ const PRACTICE_PROBLEMS = [
     question: 'Evaluate ∫_0^1 ∫_0^{1-x} (x+y) dy dx.',
     options: ['1/6', '1/3', '1/2', '1'],
     correctAnswer: 0, explanation: 'Inner: [xy + y²/2]_0^{1-x} = x(1-x)+(1-x)²/2; integrate in x to get 1/6.'
-  }
+  },
+
+  // ==========================================
+  // Linear Algebra (36 problems, 4 topics × 3 difficulties × 3)
+  // ==========================================
+  {
+    id: 121, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: 'The vector (2, −1, 4) belongs to which space?',
+    options: ['R²', 'R³', 'R⁴'],
+    correctAnswer: 1, explanation: 'Three components means a vector in R³.'
+  },
+  {
+    id: 122, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: 'What is ||(3, 4)||?',
+    options: ['5', '7', '12'],
+    correctAnswer: 0, explanation: '√(9+16)=√25=5.'
+  },
+  {
+    id: 123, topic: 'Vectors & Vector Spaces', difficulty: 'Easy',
+    question: '(1, 0) · (0, 1) equals:',
+    options: ['1', '0', '√2'],
+    correctAnswer: 1, explanation: 'Standard basis vectors are orthogonal.'
+  },
+  {
+    id: 124, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'The span of a single nonzero vector v in R² is:',
+    options: ['All of R²', 'A line through the origin', 'Only {0}'],
+    correctAnswer: 1, explanation: 'Scalar multiples of v fill that line.'
+  },
+  {
+    id: 125, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'Any set containing the zero vector is:',
+    options: ['Linearly independent', 'Linearly dependent', 'A basis of Rⁿ'],
+    correctAnswer: 1, explanation: '1·0 + 0·v₂ + … = 0 is a nontrivial relation.'
+  },
+  {
+    id: 126, topic: 'Vectors & Vector Spaces', difficulty: 'Medium',
+    question: 'dim(R³) equals:',
+    options: ['2', '3', '∞'],
+    correctAnswer: 1, explanation: 'The standard basis has three vectors.'
+  },
+  {
+    id: 127, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'Four vectors in R³ must be:',
+    options: ['Independent', 'Dependent', 'Orthogonal'],
+    correctAnswer: 1, explanation: 'More than dim(V) vectors in V are dependent.'
+  },
+  {
+    id: 128, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'Columns of an invertible n×n matrix form:',
+    options: ['A dependent set', 'A basis of Rⁿ', 'Only the zero space'],
+    correctAnswer: 1, explanation: 'Invertibility ⇔ columns form a basis.'
+  },
+  {
+    id: 129, topic: 'Vectors & Vector Spaces', difficulty: 'Hard',
+    question: 'If {v₁, v₂, v₃} is a basis of R³ and w is in R³, then w:',
+    options: ['Cannot be written using the vᵢ', 'Has a unique expansion in the vᵢ', 'Must equal v₁'],
+    correctAnswer: 1, explanation: 'Basis ⇒ unique coordinates.'
+  },
+
+  {
+    id: 130, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'A 3×2 matrix represents a map:',
+    options: ['R³ → R²', 'R² → R³', 'R³ → R³'],
+    correctAnswer: 1, explanation: 'm×n maps Rⁿ → Rᵐ.'
+  },
+  {
+    id: 131, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'det([[1,2],[3,4]]) equals:',
+    options: ['−2', '2', '10'],
+    correctAnswer: 0, explanation: '1·4 − 2·3 = −2.'
+  },
+  {
+    id: 132, topic: 'Matrices & Determinants', difficulty: 'Easy',
+    question: 'The identity matrix I satisfies:',
+    options: ['AI = A for compatible A', 'AI = 0', 'det I = 0'],
+    correctAnswer: 0, explanation: 'I is the multiplicative identity.'
+  },
+  {
+    id: 133, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: 'det(AB) equals:',
+    options: ['det A + det B', '(det A)(det B)', 'det(A + B)'],
+    correctAnswer: 1, explanation: 'Determinants multiply under products.'
+  },
+  {
+    id: 134, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: 'If det A = 0 then A is:',
+    options: ['Invertible', 'Singular', 'Orthogonal'],
+    correctAnswer: 1, explanation: 'Zero determinant ⇔ not invertible.'
+  },
+  {
+    id: 135, topic: 'Matrices & Determinants', difficulty: 'Medium',
+    question: '(AB)ᵀ equals:',
+    options: ['AᵀBᵀ', 'BᵀAᵀ', 'AB'],
+    correctAnswer: 1, explanation: 'Transpose reverses order.'
+  },
+  {
+    id: 136, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: '(AB)⁻¹ equals (when invertible):',
+    options: ['A⁻¹B⁻¹', 'B⁻¹A⁻¹', 'AB'],
+    correctAnswer: 1, explanation: 'Inverse reverses product order.'
+  },
+  {
+    id: 137, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: 'Can you multiply a 2×3 matrix by a 2×2 matrix (in that order)?',
+    options: ['Yes', 'No', 'Only if symmetric'],
+    correctAnswer: 1, explanation: 'Inner dimensions 3 ≠ 2.'
+  },
+  {
+    id: 138, topic: 'Matrices & Determinants', difficulty: 'Hard',
+    question: 'If Ax = b has a unique solution for every b, then A is:',
+    options: ['Singular', 'Invertible', 'Nilpotent'],
+    correctAnswer: 1, explanation: 'Unique solution for all b ⇔ invertible.'
+  },
+
+  {
+    id: 139, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'A linear system over R can have how many solutions?',
+    options: ['Only one', 'Zero, one, or infinitely many', 'Always infinitely many'],
+    correctAnswer: 1, explanation: 'Those are the only three possibilities.'
+  },
+  {
+    id: 140, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'The homogeneous system Ax = 0 always:',
+    options: ['Has no solution', 'Has at least the zero solution', 'Has a unique nonzero solution'],
+    correctAnswer: 1, explanation: 'A0 = 0 always.'
+  },
+  {
+    id: 141, topic: 'Systems of Linear Equations', difficulty: 'Easy',
+    question: 'Elementary row operations:',
+    options: ['Change the solution set', 'Preserve the solution set', 'Always create inconsistency'],
+    correctAnswer: 1, explanation: 'They produce equivalent systems.'
+  },
+  {
+    id: 142, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'Rank equals the number of:',
+    options: ['Rows always', 'Pivots after reduction', 'Columns always'],
+    correctAnswer: 1, explanation: 'Rank = number of pivots.'
+  },
+  {
+    id: 143, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'A free variable corresponds to a:',
+    options: ['Pivot column', 'Non-pivot column', 'RHS only'],
+    correctAnswer: 1, explanation: 'Non-pivot columns mark free parameters.'
+  },
+  {
+    id: 144, topic: 'Systems of Linear Equations', difficulty: 'Medium',
+    question: 'If rank(A) < rank([A|b]), the system is:',
+    options: ['Consistent', 'Inconsistent', 'Homogeneous'],
+    correctAnswer: 1, explanation: 'Augmented rank higher means a contradiction like 0 = 1.'
+  },
+  {
+    id: 145, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'A consistent 3×3 system with rank 2 has:',
+    options: ['A unique solution', 'One free variable', 'No solution'],
+    correctAnswer: 1, explanation: 'Free vars = n − r = 1.'
+  },
+  {
+    id: 146, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'If x_p solves Ax = b and v ∈ Nul(A), then x_p + v:',
+    options: ['Fails to solve Ax = b', 'Also solves Ax = b', 'Solves Ax = 0 only'],
+    correctAnswer: 1, explanation: 'A(x_p + v) = b + 0 = b.'
+  },
+  {
+    id: 147, topic: 'Systems of Linear Equations', difficulty: 'Hard',
+    question: 'Two non-parallel planes in R³ typically intersect in a:',
+    options: ['Point', 'Line', 'Ball'],
+    correctAnswer: 1, explanation: 'Generic intersection of two planes is a line.'
+  },
+
+  {
+    id: 148, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'An eigenvector must be:',
+    options: ['The zero vector', 'Nonzero', 'A matrix'],
+    correctAnswer: 1, explanation: 'By definition eigenvectors are nonzero.'
+  },
+  {
+    id: 149, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'If Av = 3v for v ≠ 0, then 3 is:',
+    options: ['Only a singular value', 'An eigenvalue', 'det(A)'],
+    correctAnswer: 1, explanation: 'That is the definition of eigenvalue 3.'
+  },
+  {
+    id: 150, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Easy',
+    question: 'Av = λv rearranges to:',
+    options: ['(A − λI)v = 0', '(A + λI)v = I', 'A⁻¹v = λ'],
+    correctAnswer: 0, explanation: 'Bring terms together: Av − λv = 0.'
+  },
+  {
+    id: 151, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Eigenvalues are roots of:',
+    options: ['det A', 'det(A − λI)', 'Trace only'],
+    correctAnswer: 1, explanation: 'Characteristic equation det(A − λI) = 0.'
+  },
+  {
+    id: 152, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Geometric multiplicity is:',
+    options: ['Number of rows', 'Dimension of the eigenspace', 'Always n'],
+    correctAnswer: 1, explanation: 'Geo. mult. = dim{v : Av = λv}.'
+  },
+  {
+    id: 153, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Medium',
+    question: 'Trace of a square matrix equals:',
+    options: ['Product of eigenvalues', 'Sum of eigenvalues', 'Only det(A)'],
+    correctAnswer: 1, explanation: 'Trace = sum of eigenvalues (with multiplicity).'
+  },
+  {
+    id: 154, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'In A = PDP⁻¹, columns of P are:',
+    options: ['Rows of A', 'Eigenvectors of A', 'Only zeros'],
+    correctAnswer: 1, explanation: 'Independent eigenvectors form P.'
+  },
+  {
+    id: 155, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'If A has n distinct eigenvalues, then A is:',
+    options: ['Never diagonalizable', 'Diagonalizable', 'Singular'],
+    correctAnswer: 1, explanation: 'Distinct eigenvalues give independent eigenvectors.'
+  },
+  {
+    id: 156, topic: 'Eigenvalues & Eigenvectors', difficulty: 'Hard',
+    question: 'For diagonalizable A = PDP⁻¹, Aᵏ equals:',
+    options: ['P Dᵏ P⁻¹', 'Pᵏ D P⁻¹', 'Dᵏ only'],
+    correctAnswer: 0, explanation: 'Powers act on the diagonal factor.'
+  },
+
+  // ==========================================
+  // Probability & Statistics (45 problems, 5 topics × 3 difficulties × 3)
+  // ==========================================
+  {
+    id: 157, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'P(Ω) equals:',
+    options: ['1', '0', '1/2'],
+    correctAnswer: 0, explanation: 'The certain event has probability 1.'
+  },
+  {
+    id: 158, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'P(Aᶜ) equals:',
+    options: ['P(A)', '1 − P(A)', 'P(A)²'],
+    correctAnswer: 1, explanation: 'Complement rule.'
+  },
+  {
+    id: 159, topic: 'Probability Basics', difficulty: 'Easy',
+    question: 'For equally likely outcomes, P(A) is:',
+    options: ['|A| / |Ω|', '|Ω| / |A|', '|A| + |Ω|'],
+    correctAnswer: 0, explanation: 'Favorable over total.'
+  },
+  {
+    id: 160, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'P(A|B) equals:',
+    options: ['P(A)/P(B)', 'P(A∩B)/P(B)', 'P(A)P(B)'],
+    correctAnswer: 1, explanation: 'Definition of conditional probability.'
+  },
+  {
+    id: 161, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'If A and B are independent, P(A∩B) equals:',
+    options: ['P(A)+P(B)', 'P(A)P(B)', 'P(A|B)'],
+    correctAnswer: 1, explanation: 'Product rule under independence.'
+  },
+  {
+    id: 162, topic: 'Probability Basics', difficulty: 'Medium',
+    question: 'Bayes’ theorem updates:',
+    options: ['Priors into posteriors', 'Only means', 'Sample sizes'],
+    correctAnswer: 0, explanation: 'Evidence revises belief.'
+  },
+  {
+    id: 163, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'Disease rate 1%, sensitivity 99%, false positive 2%. After a positive test, P(disease) is closest to:',
+    options: ['99%', '33%', '1%'],
+    correctAnswer: 1, explanation: 'Bayes with total probability ≈ 0.33.'
+  },
+  {
+    id: 164, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'P(A∪B) always equals:',
+    options: ['P(A)+P(B)', 'P(A)+P(B)−P(A∩B)', 'P(A)P(B)'],
+    correctAnswer: 1, explanation: 'Inclusion–exclusion.'
+  },
+  {
+    id: 165, topic: 'Probability Basics', difficulty: 'Hard',
+    question: 'A partition for the law of total probability must:',
+    options: ['Overlap freely', 'Cover Ω with disjoint events', 'Be independent of A only'],
+    correctAnswer: 1, explanation: 'Disjoint exhaustive pieces.'
+  },
+
+  {
+    id: 166, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'A PMF must:',
+    options: ['Integrate to 1', 'Sum to 1', 'Be continuous'],
+    correctAnswer: 1, explanation: 'Discrete probabilities sum to 1.'
+  },
+  {
+    id: 167, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'Bernoulli RV takes values:',
+    options: ['Any real', '0 and 1', 'Only integers ≥ 2'],
+    correctAnswer: 1, explanation: 'Success/failure indicator.'
+  },
+  {
+    id: 168, topic: 'Random Variables & Distributions', difficulty: 'Easy',
+    question: 'For continuous X, P(X = c) is:',
+    options: ['f(c)', '0', '1'],
+    correctAnswer: 1, explanation: 'Points have zero area under a PDF.'
+  },
+  {
+    id: 169, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'E[aX + b] equals:',
+    options: ['aE[X] + b', 'aE[X]', 'E[X] + b'],
+    correctAnswer: 0, explanation: 'Affinity of expectation.'
+  },
+  {
+    id: 170, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'Var(X) equals:',
+    options: ['E[X]²', 'E[X²] − (E[X])²', '(E[X])² − E[X²]'],
+    correctAnswer: 1, explanation: 'Computational variance formula.'
+  },
+  {
+    id: 171, topic: 'Random Variables & Distributions', difficulty: 'Medium',
+    question: 'Binomial models:',
+    options: ['Waiting times only', 'Number of successes in n trials', 'Only continuous data'],
+    correctAnswer: 1, explanation: 'Fixed n Bernoulli trials.'
+  },
+  {
+    id: 172, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'Linearity of expectation requires independence:',
+    options: ['Always', 'Never (not required)', 'Only for normals'],
+    correctAnswer: 1, explanation: 'Linearity holds regardless of dependence.'
+  },
+  {
+    id: 173, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'Exponential distributions are famous for:',
+    options: ['Memorylessness', 'Being discrete', 'Negative density'],
+    correctAnswer: 0, explanation: 'Past wait does not change future odds.'
+  },
+  {
+    id: 174, topic: 'Random Variables & Distributions', difficulty: 'Hard',
+    question: 'N(μ, σ²) is determined by:',
+    options: ['Only μ', 'Mean and variance', 'Only the mode'],
+    correctAnswer: 1, explanation: 'Two-parameter family.'
+  },
+
+  {
+    id: 175, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Most outlier-resistant center:',
+    options: ['Mean', 'Median', 'Range'],
+    correctAnswer: 1, explanation: 'Median ignores extreme magnitude.'
+  },
+  {
+    id: 176, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Q₂ is the:',
+    options: ['Mean', 'Median', 'Mode'],
+    correctAnswer: 1, explanation: 'Second quartile = median.'
+  },
+  {
+    id: 177, topic: 'Descriptive Statistics', difficulty: 'Easy',
+    question: 'Sample mean divides the sum by:',
+    options: ['n − 1', 'n', '2n'],
+    correctAnswer: 1, explanation: 'x̄ = (Σ xᵢ)/n.'
+  },
+  {
+    id: 178, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'Right-skewed data tend to have:',
+    options: ['Mean < median', 'Mean > median', 'Mean = mode always'],
+    correctAnswer: 1, explanation: 'Long right tail pulls the mean up.'
+  },
+  {
+    id: 179, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'Sample variance usually divides by:',
+    options: ['n', 'n − 1', 'n + 1'],
+    correctAnswer: 1, explanation: 'Unbiased s² uses n − 1.'
+  },
+  {
+    id: 180, topic: 'Descriptive Statistics', difficulty: 'Medium',
+    question: 'IQR equals:',
+    options: ['Q₃ − Q₁', 'Q₁ + Q₃', 'Max − min'],
+    correctAnswer: 0, explanation: 'Middle 50% width.'
+  },
+  {
+    id: 181, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'A z-score of 0 means the value equals:',
+    options: ['The maximum', 'The mean', 'The SD'],
+    correctAnswer: 1, explanation: 'z = (x − mean)/SD.'
+  },
+  {
+    id: 182, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'Best plot for outliers in one variable:',
+    options: ['Pie chart', 'Boxplot', 'Venn diagram'],
+    correctAnswer: 1, explanation: 'Boxplots flag points beyond fences.'
+  },
+  {
+    id: 183, topic: 'Descriptive Statistics', difficulty: 'Hard',
+    question: 'Empirical rule: mean ± 2 SD covers about:',
+    options: ['68%', '95%', '50%'],
+    correctAnswer: 1, explanation: '68–95–99.7 rule.'
+  },
+
+  {
+    id: 184, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'H₀ usually represents:',
+    options: ['The research hope', 'The status-quo / no-effect claim', 'Always μ > 0'],
+    correctAnswer: 1, explanation: 'Null is the claim we challenge.'
+  },
+  {
+    id: 185, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'Significance level α is:',
+    options: ['Power', 'Allowed Type I error rate', 'Always 0.5'],
+    correctAnswer: 1, explanation: 'Long-run false positive rate under H₀.'
+  },
+  {
+    id: 186, topic: 'Hypothesis Testing', difficulty: 'Easy',
+    question: 'A p-value is computed assuming:',
+    options: ['H₁ is true', 'H₀ is true', 'Neither'],
+    correctAnswer: 1, explanation: 'Null sampling distribution.'
+  },
+  {
+    id: 187, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'If p = 0.01 and α = 0.05, you:',
+    options: ['Fail to reject H₀', 'Reject H₀', 'Prove H₀'],
+    correctAnswer: 1, explanation: 'p ≤ α ⇒ reject.'
+  },
+  {
+    id: 188, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'SE of x̄ with known σ is:',
+    options: ['σ', 'σ/√n', 'σ n'],
+    correctAnswer: 1, explanation: 'Averaging reduces SD by √n.'
+  },
+  {
+    id: 189, topic: 'Hypothesis Testing', difficulty: 'Medium',
+    question: 'df for one-sample t is:',
+    options: ['n', 'n − 1', 'n − 2'],
+    correctAnswer: 1, explanation: 'One mean parameter estimated.'
+  },
+  {
+    id: 190, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Type II error is:',
+    options: ['Reject true H₀', 'Fail to reject false H₀', 'Correct rejection'],
+    correctAnswer: 1, explanation: 'Missed detection.'
+  },
+  {
+    id: 191, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Power equals:',
+    options: ['α', '1 − β', 'β'],
+    correctAnswer: 1, explanation: 'Probability of correctly rejecting a false null.'
+  },
+  {
+    id: 192, topic: 'Hypothesis Testing', difficulty: 'Hard',
+    question: 'Increasing n typically:',
+    options: ['Lowers power', 'Raises power', 'Forces α = 0'],
+    correctAnswer: 1, explanation: 'More data sharpen the sampling distribution.'
+  },
+
+  {
+    id: 193, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'Range of Pearson r:',
+    options: ['[0, 1]', '[−1, 1]', '(−∞, ∞)'],
+    correctAnswer: 1, explanation: 'Bounded linear association measure.'
+  },
+  {
+    id: 194, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'r = 1 means:',
+    options: ['Random cloud', 'Perfect positive linear fit', 'Causation proven'],
+    correctAnswer: 1, explanation: 'All points on an upward line.'
+  },
+  {
+    id: 195, topic: 'Regression & Correlation', difficulty: 'Easy',
+    question: 'Residual equals:',
+    options: ['ŷ − y', 'y − ŷ', 'y − ȳ'],
+    correctAnswer: 1, explanation: 'Observed minus fitted.'
+  },
+  {
+    id: 196, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'Correlation proves causation:',
+    options: ['Always', 'Never by itself', 'When |r| > 0.5'],
+    correctAnswer: 1, explanation: 'Confounding remains possible.'
+  },
+  {
+    id: 197, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'Least squares minimizes:',
+    options: ['Sum of residuals', 'Sum of squared residuals', 'Only |eᵢ|'],
+    correctAnswer: 1, explanation: 'Squared vertical errors.'
+  },
+  {
+    id: 198, topic: 'Regression & Correlation', difficulty: 'Medium',
+    question: 'The fitted line always goes through:',
+    options: ['(0, 0)', '(x̄, ȳ)', '(1, 1)'],
+    correctAnswer: 1, explanation: 'Centroid property.'
+  },
+  {
+    id: 199, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'If r = 0 then the least-squares slope is:',
+    options: ['Infinite', '0', '1'],
+    correctAnswer: 1, explanation: 'b₁ = r s_y / s_x.'
+  },
+  {
+    id: 200, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'A curved residual plot suggests:',
+    options: ['Perfect fit', 'Nonlinear relationship', 'r must be 1'],
+    correctAnswer: 1, explanation: 'Linear model misses curvature.'
+  },
+  {
+    id: 201, topic: 'Regression & Correlation', difficulty: 'Hard',
+    question: 'Extrapolation is risky because:',
+    options: ['r becomes 2', 'The pattern may not continue outside the data range', 'Residuals become correlations'],
+    correctAnswer: 1, explanation: 'Model is local to observed x.'
+  },
+
+  // Calculus AG certificate track — 15 Easy + 15 Medium + 15 Hard per topic
+  ...CALC_AG_PRACTICE_BANK,
+  // Probability & Statistics — 15 Easy + 15 Medium + 15 Hard per topic
+  ...PS_PRACTICE_BANK,
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
@@ -777,7 +1285,18 @@ const TOPICS = [
   'Partial Derivatives',
   'Vector Calculus',
   'Limits and Continuity',
-  'Multiple Integrals'
+  'Differentiation',
+  'Integration',
+  'Multiple Integrals',
+  'Vectors & Vector Spaces',
+  'Matrices & Determinants',
+  'Systems of Linear Equations',
+  'Eigenvalues & Eigenvectors',
+  'Probability Basics',
+  'Random Variables & Distributions',
+  'Descriptive Statistics',
+  'Hypothesis Testing',
+  'Regression & Correlation',
 ];
 
 export default function PractiseSection() {

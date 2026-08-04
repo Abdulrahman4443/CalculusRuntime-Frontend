@@ -676,11 +676,11 @@ export default function DoubleIntegralSolver() {
     }
 
     return (
-        <div className="cv-app" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '40px 20px' }}>
-            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        <div className="cv-app volume-calc-page">
+            <div className="volume-calc-inner">
 
                 {/* ── Page title ── */}
-                <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <div className="volume-calc-hero">
                     <h1 style={{ fontSize: '3em', fontWeight: '900', color: 'white', textShadow: '0 4px 12px rgba(0,0,0,0.3)', margin: '0 0 12px' }}>
                         ∬ Double Integral Solver
                     </h1>

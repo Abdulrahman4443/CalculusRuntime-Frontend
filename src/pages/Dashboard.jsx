@@ -137,8 +137,6 @@ function ProgressChart({ curriculum, progress }) {
   }, 0);
   const notStarted = totalParts - completedParts;
 
-  const completedPct = totalParts > 0 ? (completedParts / totalParts) * 100 : 0;
-
   return (
     <div className="db-chart-wrapper">
       <h3 className="db-chart-title">Progress Overview</h3>

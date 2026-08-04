@@ -4,17 +4,36 @@ import { useAuth } from "../context/AuthContext";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
 const navLinks = [
-  // Developer 1 Topics (Jab Dev 1 migrate karega toh woh inhe hatayega)
-  { to: "/simple-concepts",        label: "Concepts",    type: "Guide",     match: "/simple-concepts" },
-  { to: "/taylor-series/1",        label: "Taylor",      type: "Guide",     match: "/taylor-series" },
-  { to: "/test",                   label: "Continuity",  type: "Tool" },
-  { to: "/taylorx",                label: "TaylorX",     type: "Tool" },
-
-  // Global Tools & Workspaces
-  { to: "/ai-solver",              label: "AI Solver",   type: "Tool" },
-  { to: "/cheatsheet",             label: "Cheat Sheet", type: "Tool" },
-  { to: "/practice",               label: "Practice",    type: "Workspace" },
-  { to: "/leaderboard",            label: "Leaderboard", type: "Workspace" },
+  {
+    to: "/courses/calculus-analytical-geometry",
+    label: "Calc & Geometry",
+    type: "Course",
+    match: "/courses/calculus-analytical-geometry",
+  },
+  {
+    to: "/courses/multivariable-calculus",
+    label: "Multivariable",
+    type: "Course",
+    match: "/courses/multivariable-calculus",
+  },
+  {
+    to: "/courses/linear-algebra",
+    label: "Linear Algebra",
+    type: "Course",
+    match: "/courses/linear-algebra",
+  },
+  {
+    to: "/courses/probability-statistics",
+    label: "Prob & Stats",
+    type: "Course",
+    match: "/courses/probability-statistics",
+  },
+  // General (site-wide) tools
+  { to: "/simple-concepts", label: "Concepts",    type: "General" },
+  { to: "/ai-solver",       label: "AI Solver",   type: "General" },
+  { to: "/cheatsheet",      label: "Cheat Sheet", type: "General" },
+  { to: "/practice",        label: "Practice",    type: "General" },
+  { to: "/leaderboard",     label: "Leaderboard", type: "General" },
 ];
 
 function Header({ darkMode, onToggleDark }) {
@@ -112,17 +131,12 @@ function Header({ darkMode, onToggleDark }) {
             <Link
               to="/login"
               className="header-login"
-              style={{ color: darkMode ? undefined : "#1a1a1a" }}
             >
               Sign in
             </Link>
             <Link
               to="/signup"
               className="header-signup"
-              style={{
-                color: darkMode ? undefined : "#ffffff",
-                backgroundColor: darkMode ? undefined : "#1a1a1a",
-              }}
             >
               Sign up
             </Link>
@@ -180,14 +194,12 @@ function Header({ darkMode, onToggleDark }) {
             <Link
               to="/login"
               onClick={() => setMenuOpen(false)}
-              style={{ color: darkMode ? undefined : "#1a1a1a" }}
             >
               Sign in
             </Link>
             <Link
               to="/signup"
               onClick={() => setMenuOpen(false)}
-              style={{ color: darkMode ? undefined : "#1a1a1a" }}
             >
               Sign up
             </Link>

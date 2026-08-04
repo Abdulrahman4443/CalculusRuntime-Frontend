@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/theme.css';
 import './styles/responsive.css';
+import './styles/partial-theme.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
