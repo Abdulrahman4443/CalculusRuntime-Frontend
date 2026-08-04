@@ -53,10 +53,10 @@ function HypothesisTestingGuide({ part = 1 }) {
             <ProcedureBox
               title="From statistic to decision"
               steps={[
-                { text: "Compute the test statistic (z, t, …).", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Compute the test statistic (z, t, …)." },
                 { text: "Find the p-value from the null sampling distribution (one- or two-sided as designed).", why: "Name the events/parameters exactly as the problem states them." },
                 { text: "Compare to $\\alpha$; state reject / fail to reject in context.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." },
-                { text: "Report effect size and CI when possible — significance ≠ importance.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Report effect size and CI when possible — significance ≠ importance." },
                 { text: "Discuss Type I/II risk if the decision has real costs.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." }
               ]}
             />
@@ -106,7 +106,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               setup={"Power is 0.80 at a specific alternative. What is $\\beta$?"}
               steps={[
                 { text: "Power $=1-\\beta$.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." },
-                { text: "$\\beta=1-0.80=0.20$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$\\beta=1-0.80=0.20$." }
               ]}
               result={"$\\beta=0.20$."}
               check={"Power rises with $n$, effect size, and $\\alpha$."}
@@ -160,7 +160,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Diagnosing a hypothesis test's error profile"
               steps={[
                 { text: "State what a Type I error means in context (false alarm) and a Type II error (missed effect).", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "Identify which error is more costly for this specific problem.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Identify which error is more costly for this specific problem." },
                 { text: "Choose $\\alpha$ accordingly — smaller $\\alpha$ if false alarms are worse.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." },
                 { text: "If power is too low, the fix is usually a larger sample size, not a looser $\\alpha$.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." },
                 { text: "Report power alongside p-values when planning a study, not just after the fact.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." }
@@ -184,7 +184,7 @@ function HypothesisTestingGuide({ part = 1 }) {
               title="Effect of sample size on power"
               setup={"A drug trial has 68% power to detect a true effect with $n=50$. Explain qualitatively what happens to power if $n$ is increased to 200, all else equal."}
               steps={[
-                { text: "Larger $n$ shrinks the standard error of the sampling distribution.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Larger $n$ shrinks the standard error of the sampling distribution." },
                 { text: "A shrunken sampling distribution separates more clearly from $H_0$ for a true effect.", why: "State the precise criterion (independence product, hypotheses, or decision rule) before computing." },
                 { text: "This increases the probability of correctly rejecting $H_0$ — i.e., power rises above 68%.", why: "State the precise criterion (independence product, hypotheses, or decision rule) before computing." }
               ]}
@@ -285,10 +285,10 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="Test workflow"
             steps={[
                 { text: "State $H_0$ and $H_1$ in symbols and words.", why: "State the precise criterion (independence product, hypotheses, or decision rule) before computing." },
-                { text: "Choose test (z / t / …) matching design and assumptions.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Choose test (z / t / …) matching design and assumptions." },
                 { text: "Fix $\\alpha$ and the rejection region direction.", why: "Carry out the hypothesis-testing decision using α and the correct tail(s)." },
-                { text: "Compute the statistic from the sample.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Decide and interpret in the problem’s context.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Compute the statistic from the sample." },
+                { text: "Decide and interpret in the problem’s context." }
               ]}
           />
         </section>
@@ -312,7 +312,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="z-statistic"
             setup={"$\\bar x=9.6$, $\\mu_0=10$, $\\sigma=2$, $n=100$. Compute $z$."}
             steps={[
-                { text: "$z=(\\bar x-\\mu_0)/(\\sigma/\\sqrt n)=(9.6-10)/(2/10)=-2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$z=(\\bar x-\\mu_0)/(\\sigma/\\sqrt n)=(9.6-10)/(2/10)=-2$." }
               ]}
             result={"$z=-2$."}
             check={"SE $=\\sigma/\\sqrt n=0.2$."}
@@ -323,8 +323,8 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="When to use t"
             setup={"$\\sigma$ unknown, $n=20$, roughly normal data. Which test?"}
             steps={[
-                { text: "Use one-sample t with $df=n-1=19$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Replace $\\sigma$ by sample $s$ in the SE.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Use one-sample t with $df=n-1=19$." },
+                { text: "Replace $\\sigma$ by sample $s$ in the SE." }
               ]}
             result={"t-test, df 19."}
             check={"z needs known $\\sigma$ or very large $n$."}

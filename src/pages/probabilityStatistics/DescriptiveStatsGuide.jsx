@@ -54,10 +54,10 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Standardize a value"
               steps={[
                 { text: "Compute mean and SD of the reference sample (or use population $\\mu,\\sigma$).", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "Subtract the center from $x$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Subtract the center from $x$." },
                 { text: "Divide by the SD to get $z$.", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "Interpret: $|z|>2$ is often unusual; $|z|>3$ is extreme.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "For displays: choose histogram/boxplot to match the question (shape vs outliers).", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Interpret: $|z|>2$ is often unusual; $|z|>3$ is extreme." },
+                { text: "For displays: choose histogram/boxplot to match the question (shape vs outliers)." }
               ]}
             />
           </section>
@@ -69,9 +69,9 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="Sample SD"
               setup={"Data: 2, 4, 4, 6. Find $s$."}
               steps={[
-                { text: "$\\bar x=4$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$\\bar x=4$." },
                 { text: "Deviations: $-2,0,0,2$; squares: $4,0,0,4$; sum $8$.", why: "Count equally likely outcomes in the conditioning set carefully (order matters for dice)." },
-                { text: "$s^2=8/3$, $s=\\sqrt{8/3}\\approx 1.63$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$s^2=8/3$, $s=\\sqrt{8/3}\\approx 1.63$." }
               ]}
               result={"$s\\approx 1.63$."}
               check={"Divide by $n-1=3$, not $n$."}
@@ -82,8 +82,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
               title="z-score compare"
               setup={"Exam A: score 85, mean 70, SD 10. Exam B: 80, mean 60, SD 15. Which is relatively better?"}
               steps={[
-                { text: "$z_A=(85-70)/10=1.5$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$z_B=(80-60)/15\\approx 1.33$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$z_A=(85-70)/10=1.5$." },
+                { text: "$z_B=(80-60)/15\\approx 1.33$." },
                 { text: "A is farther above its mean in SD units.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
               result={"Exam A is relatively stronger."}
@@ -164,7 +164,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
                 { text: "Locate the box: left edge $Q_1$, right edge $Q_3$, line inside is the median.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "Whiskers extend to the most extreme points within the fences.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "Any point beyond a fence is plotted separately as an outlier.", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "For a histogram, compare the tail lengths on each side to judge skew direction.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "For a histogram, compare the tail lengths on each side to judge skew direction." },
                 { text: "A long right tail with mean $>$ median signals right (positive) skew, and vice versa.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             />
@@ -187,8 +187,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
               setup={"A dataset has mean $=48$, median $=42$. Describe the likely skew and boxplot shape."}
               steps={[
                 { text: "Mean $>$ median means a few unusually large values are pulling the mean up.", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "This is characteristic of right (positive) skew.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "On a boxplot, expect a longer whisker (or more outliers) on the upper side.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "This is characteristic of right (positive) skew." },
+                { text: "On a boxplot, expect a longer whisker (or more outliers) on the upper side." }
               ]}
               result={"Right-skewed distribution."}
               check={"If mean $<$ median instead, the skew would be left (negative)."}
@@ -289,7 +289,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
                 { text: "Sort the data for median / quartiles.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "Mean: sum ÷ $n$.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "Odd $n$: median is middle value; even $n$: average of two middle values.", why: "Plug into the matching center/spread formula for this data type." },
-                { text: "Report units and sample size with every summary.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Report units and sample size with every summary." },
                 { text: "Note outliers before trusting the mean alone.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
           />
@@ -315,7 +315,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Even-count median"
             setup={"Data: 2, 4, 6, 10. Median?"}
             steps={[
-                { text: "Two middle values: 4 and 6.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Two middle values: 4 and 6." },
                 { text: "Median $=(4+6)/2=5$.", why: "Plug into the matching center/spread formula for this data type." }
               ]}
             result={"$5$."}
@@ -327,7 +327,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Weighted idea"
             setup={"Scores 80 and 90 with weights 0.4 and 0.6. Weighted mean?"}
             steps={[
-                { text: "$0.4\\cdot 80+0.6\\cdot 90=32+54=86$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$0.4\\cdot 80+0.6\\cdot 90=32+54=86$." }
               ]}
             result={"$86$."}
             check={"Weights sum to 1."}
@@ -338,8 +338,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Mode"
             setup={"Categories: red, blue, red, green, red. Mode?"}
             steps={[
-                { text: "Red appears three times; others once.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Mode = red.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Red appears three times; others once." },
+                { text: "Mode = red." }
               ]}
             result={"red"}
             check={"Most frequent category."}

@@ -133,7 +133,7 @@ function QuizMcq161() {
       <div className="mcq-card" data-section="field-concept" data-q="3" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"3"}</div>
-          <div className="mcq-q-text">{"Which mathematical component inside $\\mathbf{F}(x,y) = P(x,y)\\mathbf{i} + Q(x,y)\\mathbf{j}$ determines the vertical vertical scalar velocity component?"}</div>
+          <div className="mcq-q-text">{"Which mathematical component inside $\\mathbf{F}(x,y) = P(x,y)\\mathbf{i} + Q(x,y)\\mathbf{j}$ determines the vertical scalar velocity component?"}</div>
         </div>
         <div className="mcq-options">
           <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The scalar component function $Q(x,y)$ paired with the $\\mathbf{j}$ unit vector axis."}</div>

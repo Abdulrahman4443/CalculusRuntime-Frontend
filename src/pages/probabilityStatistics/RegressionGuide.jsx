@@ -53,8 +53,8 @@ function RegressionGuide({ part = 1 }) {
             <ProcedureBox
               title="Fit and check"
               steps={[
-                { text: "Plot the scatterplot first — look for linearity.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Compute $r$, then $b_1=r s_y/s_x$, $b_0=\\bar y-b_1\\bar x$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Plot the scatterplot first — look for linearity." },
+                { text: "Compute $r$, then $b_1=r s_y/s_x$, $b_0=\\bar y-b_1\\bar x$." },
                 { text: "Predict with $\\hat y=b_0+b_1 x$ (avoid wild extrapolation).", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
                 { text: "Residuals $e_i=y_i-\\hat y_i$; plot $e$ vs $\\hat y$ for patterns.", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
                 { text: "If curved or fan-shaped residuals, linear model is inadequate.", why: "Apply the least-squares / correlation identity that matches the asked quantity." }
@@ -69,7 +69,7 @@ function RegressionGuide({ part = 1 }) {
               title="Slope from r"
               setup={"$r=0.8$, $s_x=2$, $s_y=5$. Find $b_1$."}
               steps={[
-                { text: "$b_1=r s_y/s_x=0.8\\cdot 5/2=2$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "$b_1=r s_y/s_x=0.8\\cdot 5/2=2$." }
               ]}
               result={"$b_1=2$."}
               check={"Positive r ⇒ positive slope."}
@@ -80,7 +80,7 @@ function RegressionGuide({ part = 1 }) {
               title="Intercept"
               setup={"$\\bar x=3$, $\\bar y=10$, $b_1=2$. Find $b_0$."}
               steps={[
-                { text: "$b_0=\\bar y-b_1\\bar x=10-2\\cdot 3=4$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$b_0=\\bar y-b_1\\bar x=10-2\\cdot 3=4$." },
                 { text: "Line: $\\hat y=4+2x$.", why: "Apply the least-squares / correlation identity that matches the asked quantity." }
               ]}
               result={"$b_0=4$."}
@@ -158,7 +158,7 @@ function RegressionGuide({ part = 1 }) {
               title="Full diagnostic checklist"
               steps={[
                 { text: "Plot residuals ($y_i-\\hat y_i$) against $x$ or fitted values.", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
-                { text: "Check for curvature — if present, a linear model is the wrong shape.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Check for curvature — if present, a linear model is the wrong shape." },
                 { text: "Check for a funnel shape — spreading residuals signal non-constant variance.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "Compute $R^2$ to quantify overall fit quality, not just visually inspect.", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
                 { text: "Never extrapolate $\\hat y$ far outside the observed range of $x$.", why: "Apply the least-squares / correlation identity that matches the asked quantity." }
@@ -183,7 +183,7 @@ function RegressionGuide({ part = 1 }) {
               steps={[
                 { text: "A curved residual pattern means the true relationship is nonlinear.", why: "Plug into the matching center/spread formula for this data type." },
                 { text: "A straight-line model is systematically wrong at the extremes even if $R^2$ looks decent.", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
-                { text: "Fix: consider a quadratic or transformed model rather than trusting the linear fit.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Fix: consider a quadratic or transformed model rather than trusting the linear fit." }
               ]}
               result={"The linear model is misspecified; a curved/transformed model is needed."}
               check={"A high $R^2$ can still hide a curved residual pattern — always plot residuals, don't rely on $R^2$ alone."}
@@ -282,9 +282,9 @@ function RegressionGuide({ part = 1 }) {
             title="Assess association"
             steps={[
                 { text: "Draw the scatterplot before trusting any number.", why: "Name the events/parameters exactly as the problem states them." },
-                { text: "Compute $r$ (or read it from software).", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Describe direction, form (linear?), and strength.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Flag outliers and subgroups.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "Compute $r$ (or read it from software)." },
+                { text: "Describe direction, form (linear?), and strength." },
+                { text: "Flag outliers and subgroups." },
                 { text: "Only then move to fitting a regression line.", why: "Apply the least-squares / correlation identity that matches the asked quantity." }
               ]}
           />
@@ -297,9 +297,9 @@ function RegressionGuide({ part = 1 }) {
             title="Interpret r"
             setup={"$r=-0.85$ between study hours of video games and exam score."}
             steps={[
-                { text: "Negative: more games ↔ lower scores on average.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "$|r|=0.85$ is strong linear association.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Does not prove games cause lower scores.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Negative: more games ↔ lower scores on average." },
+                { text: "$|r|=0.85$ is strong linear association." },
+                { text: "Does not prove games cause lower scores." }
               ]}
             result={"Strong negative linear association."}
             check={"Always pair $r$ with a plot."}
@@ -311,7 +311,7 @@ function RegressionGuide({ part = 1 }) {
             setup={"A perfect U-shaped curve of $y$ vs $x$. What can $r$ be?"}
             steps={[
                 { text: "Linear correlation can be near 0.", why: "Apply the least-squares / correlation identity that matches the asked quantity." },
-                { text: "Strong nonlinear association is invisible to $r$.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Strong nonlinear association is invisible to $r$." }
               ]}
             result={"$r$ near 0 despite clear pattern."}
             check={"Plot first."}
@@ -322,7 +322,7 @@ function RegressionGuide({ part = 1 }) {
             title="Swap axes"
             setup={"If you swap $x$ and $y$, what happens to $r$?"}
             steps={[
-                { text: "$r$ is unchanged — it is symmetric.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
+                { text: "$r$ is unchanged — it is symmetric." },
                 { text: "Regression slope would change (different roles).", why: "Apply the least-squares / correlation identity that matches the asked quantity." }
               ]}
             result={"$r$ same; regression of $y$ on $x$ ≠ $x$ on $y$."}
@@ -334,8 +334,8 @@ function RegressionGuide({ part = 1 }) {
             title="Outlier effect"
             setup={"Cloud with $r\\approx 0.2$, plus one far outlier aligning the cloud. Effect?"}
             steps={[
-                { text: "Outlier can push $r$ much higher.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." },
-                { text: "Report $r$ with and without the point; show the plot.", why: "Use the rule that matches this line's symbols; keep algebra fully expanded." }
+                { text: "Outlier can push $r$ much higher." },
+                { text: "Report $r$ with and without the point; show the plot." }
               ]}
             result={"$r$ is outlier-sensitive."}
             check={"Robustness check is good practice."}

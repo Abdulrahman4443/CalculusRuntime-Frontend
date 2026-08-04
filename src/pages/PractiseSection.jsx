@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
 import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
 import { PS_PRACTICE_BANK } from '../data/psPracticeBank';
+import { LA_PRACTICE_BANK } from '../data/laPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
@@ -26,7 +27,7 @@ const PRACTICE_PROBLEMS = [
     id: 3, topic: 'Lagrange Multipliers', difficulty: 'Easy',
     question: 'True or False: The Lagrange multiplier method can locate boundary extrema even if the constraint gradient ∇g equals zero.',
     options: ['True, because ∇f dominates the equation.', 'False, because the equation ∇f = λ∇g becomes undefined or invalid when ∇g = 0.', 'True, if the function f is linear.', 'False, because λ must also be zero.'],
-    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary boundary path.'
+    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary path.'
   },
   {
     id: 4, topic: 'Lagrange Multipliers', difficulty: 'Easy',
@@ -1273,6 +1274,8 @@ const PRACTICE_PROBLEMS = [
   ...CALC_AG_PRACTICE_BANK,
   // Probability & Statistics — 15 Easy + 15 Medium + 15 Hard per topic
   ...PS_PRACTICE_BANK,
+  // Linear Algebra — 15 Easy + 15 Medium + 15 Hard per topic (Dev 3)
+  ...LA_PRACTICE_BANK,
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
