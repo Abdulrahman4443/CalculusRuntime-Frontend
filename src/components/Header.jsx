@@ -34,6 +34,7 @@ const navLinks = [
   { to: "/cheatsheet",      label: "Cheat Sheet", type: "General" },
   { to: "/practice",        label: "Practice",    type: "General" },
   { to: "/leaderboard",     label: "Leaderboard", type: "General" },
+  { to: "/saved-for-later", label: "Saved",       type: "General" },
 ];
 
 function Header({ darkMode, onToggleDark }) {

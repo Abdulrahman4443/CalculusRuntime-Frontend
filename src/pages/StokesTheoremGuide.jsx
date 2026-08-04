@@ -454,6 +454,26 @@ function QuizPart2() {
   );
 }
 
+function SectionRealWorld() {
+  return (
+    <section className="section" id="stokes-real-world">
+      <div className="sec-badge">{"Applications"}</div>
+      <h2 className="sec-title">{"Where This Shows Up in Real Life"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Real-World Use"}</div>
+        <p>
+          {"Stokes' Theorem is the mathematical backbone of "}
+          <strong>{"Faraday's Law of Induction"}</strong>
+          {" \u2014 the principle that a changing magnetic flux through a loop induces an electric current around it. Every electric generator, transformer, and induction motor works because of exactly the circulation-equals-curl-flux relationship developed in this guide, just applied to a coil of wire instead of an abstract curve $C$."}
+        </p>
+        <p>
+          {"Aerodynamicists use Stokes' Theorem to relate the circulation of air around an airfoil (which determines lift, via the Kutta\u2013Joukowski theorem) to the curl of the velocity field over the wing's surface \u2014 letting them compute lift from whichever integral is easier to evaluate. And the freedom to swap a complicated spanning surface for a simple flat disk \u2014 the core practical trick in this guide \u2014 is exactly how engineers simplify otherwise intractable circulation calculations in fluid dynamics and electromagnetic simulations."}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Part1Complete() {
   return (
     <section id="summary1" className="section">
@@ -488,6 +508,8 @@ function StokesTheoremGuide({ section = 1 }) {
           <StokesExtendedPart2 />
           <Divider />
           <QuizPart2 />
+          <Divider />
+          <SectionRealWorld />
         </main>
       </StudyGuideShell>
     );
