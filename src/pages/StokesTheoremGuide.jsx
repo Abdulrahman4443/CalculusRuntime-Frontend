@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   StokesExtendedPart1,
   StokesExtendedPart2,
@@ -152,6 +153,10 @@ function SectionST2() {
           {"the boundary direction and changes the sign of both sides of the identity."}
         </p>
       </div>
+      <RealLifeUse>
+        Ampere's law in magnetostatics is Stokes in physical clothing: circulation of the magnetic field around a wire loop equals the current flux through any surface the loop bounds.
+      </RealLifeUse>
+
     </section>
   );
 }
@@ -298,6 +303,10 @@ function SectionST4() {
           {"integrate over the flat disk bounded by $C$ instead of a bulging hemisphere."}
         </p>
       </div>
+      <RealLifeUse>
+        Engineers measuring circulation around a closed path often switch to an easier flat cap surface — Stokes guarantees the answer matches the original 3D rim.
+      </RealLifeUse>
+
     </section>
   );
 }

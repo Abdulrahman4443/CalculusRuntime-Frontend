@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   LagrangeExtendedPart1,
   LagrangeExtendedPart2,
@@ -167,6 +168,10 @@ function SectionS152() {
         </div>
         {"Where the scalar variable parameter $\\lambda$ (Lambda) is called the Lagrange Multiplier."}
       </div>
+      <RealLifeUse>
+        Budget caps, material limits, and production quotas are constraints $g=c$; Lagrange multipliers find the best design on that boundary — optimize under a fixed budget.
+      </RealLifeUse>
+
       <p>
         {"To solve this practically, we break this vector identity down into individual component algebraic equations. For a standard 2D space coordinate tracking system, this expands into a set of three independent equations with three variables ($x, y, \\lambda$):"}
       </p>
@@ -396,6 +401,10 @@ function SectionS154() {
         {"$$x^2 + x^2 = 8 \\quad \\Rightarrow \\quad 2x^2 = 8 \\quad \\Rightarrow \\quad x^2 = 4 \\quad \\Rightarrow \\quad x = \\pm 2$$"}
         <p>{"This yields four distinct critical coordinate points to check: $(2,2), (2,-2), (-2,2),$ and $(-2,-2)$."}</p>
       </div>
+      <RealLifeUse>
+        Packing the most volume into a shipping crate with a fixed surface-area budget, or maximizing utility under income constraints in economics, uses this exact single-constraint workflow.
+      </RealLifeUse>
+
     </section>
   );
 }
