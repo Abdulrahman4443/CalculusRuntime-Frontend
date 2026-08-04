@@ -155,7 +155,7 @@ export const COURSES = [
       },
       {
         title: "Matrix Sandbox",
-        description: "Interactive matrix arithmetic, determinants, and inverse checks.",
+        description: "Up to 10 matrices: multiply, add, powers, eigenvalues, RREF, and more.",
         path: "/linear-algebra/matrix-sandbox",
         meta: "Interactive tool",
         icon: "▣",

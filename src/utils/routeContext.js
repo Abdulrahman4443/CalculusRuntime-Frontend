@@ -43,7 +43,7 @@ const ROUTE_MAP = [
   { match: /\/linear-algebra\/matrices\/2/, topic: "Matrices & Determinants Part 2", detail: "determinants, invertibility, inverse matrices" },
   { match: /\/linear-algebra\/matrices\/1/, topic: "Matrices & Determinants Part 1", detail: "matrix operations, linear maps, transpose" },
   { match: /\/linear-algebra\/matrices/, topic: "Matrices & Determinants", detail: "matrices, determinants, and inverses" },
-  { match: /\/linear-algebra\/matrix-sandbox/, topic: "Matrix Sandbox", detail: "interactive matrix arithmetic, determinants, inverses, and linear-algebra checks" },
+  { match: /\/linear-algebra\/matrix-sandbox/, topic: "Matrix Sandbox", detail: "up to 10 matrices: multiply, add, powers, eigenvalues, RREF, and more" },
   { match: /\/linear-algebra\/systems\/2/, topic: "Systems of Linear Equations Part 2", detail: "rank, consistency, nullspace geometry" },
   { match: /\/linear-algebra\/systems\/1/, topic: "Systems of Linear Equations Part 1", detail: "augmented matrices, Gaussian elimination, pivots" },
   { match: /\/linear-algebra\/systems/, topic: "Systems of Linear Equations", detail: "solving Ax=b by row reduction" },
