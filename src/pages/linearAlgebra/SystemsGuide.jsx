@@ -1,7 +1,7 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
-import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample } from "./LaBlocks";
+import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
 function Divider() {
   return <hr className="divider" />;
@@ -42,16 +42,28 @@ function SystemsGuide({ part = 1 }) {
                 {"The system $Ax=b$ is consistent if and only if $\\mathrm{rank}(A)=\\mathrm{rank}([A\\mid b])$. If the augmented matrix gains an extra pivot in the RHS column, you have created a contradictory equation $0=c$ with $c\\neq 0$."}
               </p>
             </TheoryBox>
+            <PracticalTheory title="Solve, classify, then write the general solution">
+              <p>
+                {"Form $[A\mid b]$, reduce, then branch: inconsistent row means no solution; full pivots on a square system means unique; free variables give the infinite family particular solution plus nullspace. For overdetermined data, switch to least squares via the normal equations instead of forcing an exact solve."}
+              </p>
+            </PracticalTheory>
             <TheoremBox title="Free variables and uniqueness">
               <p>
                 {"For a consistent system with $n$ unknowns and $r=\\mathrm{rank}(A)$, there are exactly $n-r$ free variables. The solution set is an affine subspace of dimension $n-r$. Unique solution occurs precisely when $r=n$ (for square $A$, that means full rank / invertible). If $r<n$, infinitely many solutions appear as soon as consistency holds."}
               </p>
             </TheoremBox>
+            <RealLifeUse>{"Circuit laws and structural force balances are linear systems; recommendation engines solve large sparse least-squares fits; GPS receivers solve multilateration systems; chemical engineers balance reaction networks with stoichiometry matrices."}</RealLifeUse>
             <TheoryBox title="Nullity and rank–nullity">
               <p>
                 {"$\\dim\\mathrm{Nul}(A)=n-r$ (rank–nullity theorem). The nullspace is the solution set of the homogeneous system $Ax=0$. Nonhomogeneous solutions, when they exist, are one particular solution plus every nullspace vector: $x=x_p+v$ with $Av=0$."}
               </p>
             </TheoryBox>
+            <PracticalTheory title="Hand-calculation habits">
+              <p>
+                {"Name the objects (vectors, matrix size, unknowns) before computing. Prefer a method you can check: a second expansion, a substitution back into $Ax=b$, or a quick rank/$\\det$ sanity test."}
+              </p>
+            </PracticalTheory>
+            <RealLifeUse>{"The same checklist shows up in engineering solvers, spreadsheet models, and any pipeline that turns measurements into a linear map — clear setup prevents silent size and dependence bugs."}</RealLifeUse>
           </section>
 
           <section className="section" id="la-s-proc2">
@@ -60,14 +72,14 @@ function SystemsGuide({ part = 1 }) {
             <ProcedureBox
               title="How to classify Ax=b from RREF"
               steps={[
-                { text: "Form $[A\\mid b]$ and row-reduce to RREF (or at least echelon form).", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "Count pivots in the coefficient part: that number is $r=\\mathrm{rank}(A)$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Check consistency: if a row is $[0\\ \\cdots\\ 0\\mid c]$ with $c\\neq 0$, stop — inconsistent ($\\mathrm{rank}([A\\mid b])>r$).", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "Identify free variables: one for each non-pivot column among the $n$ unknowns.", why: "Start from the given data and name the events or quantities." },
-                { text: "Express basic (pivot) variables in terms of free parameters $t_1,\\ldots,t_{n-r}$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Write the general solution as $x=x_p+t_1 v_1+\\cdots+t_{n-r} v_{n-r}$, where the $v_j$ form a basis of $\\mathrm{Nul}(A)$.", why: "Start from the given data and name the events or quantities." },
-                { text: "For the homogeneous case $b=0$, take $x_p=0$; the solution set is exactly $\\mathrm{Nul}(A)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Sanity check: $\\dim\\mathrm{Nul}(A)$ should equal $n-r$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Form $[A\\mid b]$ and row-reduce to RREF (or at least echelon form).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Count pivots in the coefficient part: that number is $r=\\mathrm{rank}(A)$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Check consistency: if a row is $[0\\ \\cdots\\ 0\\mid c]$ with $c\\neq 0$, stop — inconsistent ($\\mathrm{rank}([A\\mid b])>r$).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Identify free variables: one for each non-pivot column among the $n$ unknowns.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Express basic (pivot) variables in terms of free parameters $t_1,\\ldots,t_{n-r}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Write the general solution as $x=x_p+t_1 v_1+\\cdots+t_{n-r} v_{n-r}$, where the $v_j$ form a basis of $\\mathrm{Nul}(A)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "For the homogeneous case $b=0$, take $x_p=0$; the solution set is exactly $\\mathrm{Nul}(A)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Sanity check: $\\dim\\mathrm{Nul}(A)$ should equal $n-r$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." }
               ]}
             />
           </section>
@@ -81,12 +93,12 @@ function SystemsGuide({ part = 1 }) {
               title="Inconsistent system via rank"
               setup={"$x+y=1$, $2x+2y=3$. Show inconsistency with ranks."}
               steps={[
-                { text: "Augmented matrix: $\\begin{pmatrix}1&1&1\\\\2&2&3\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "R2 ← R2−2 R1 yields $\\begin{pmatrix}1&1&1\\\\0&0&1\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Bottom row says $0=1$ — impossible.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Coefficient matrix has one pivot ⇒ $\\mathrm{rank}(A)=1$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Augmented matrix has two pivots ⇒ $\\mathrm{rank}([A\\mid b])=2$.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "Since ranks differ, the system is inconsistent.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Augmented matrix: $\\begin{pmatrix}1&1&1\\\\2&2&3\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "R2 ← R2−2 R1 yields $\\begin{pmatrix}1&1&1\\\\0&0&1\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Bottom row says $0=1$ — impossible.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Coefficient matrix has one pivot ⇒ $\\mathrm{rank}(A)=1$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Augmented matrix has two pivots ⇒ $\\mathrm{rank}([A\\mid b])=2$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Since ranks differ, the system is inconsistent.", why: "An impossible row means the system has no solution." }
               ]}
               result={"No solution (inconsistent)."}
               check={"The second equation claims twice the left side of the first equals $3$, but twice the right side is $2$."}
@@ -96,12 +108,12 @@ function SystemsGuide({ part = 1 }) {
               title="Infinite solutions (a line)"
               setup={"$x+y=2$, $2x+2y=4$."}
               steps={[
-                { text: "Second equation is exactly twice the first — redundant, not contradictory.", why: "Translate the problem into symbols and known facts." },
-                { text: "Augmented RREF is essentially $\\begin{pmatrix}1&1&2\\\\0&0&0\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "One pivot, $n=2$, so one free variable. Let $y=t$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Then $x=2-t$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "General solution: $(x,y)=(2-t,\\,t)=(2,0)+t(-1,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Geometrically this is a line in $\\mathbb{R}^2$: particular point $(2,0)$ plus nullspace direction $(-1,1)$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Second equation is exactly twice the first — redundant, not contradictory.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Augmented RREF is essentially $\\begin{pmatrix}1&1&2\\\\0&0&0\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "One pivot, $n=2$, so one free variable. Let $y=t$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Then $x=2-t$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "General solution: $(x,y)=(2-t,\\,t)=(2,0)+t(-1,1)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Geometrically this is a line in $\\mathbb{R}^2$: particular point $(2,0)$ plus nullspace direction $(-1,1)$.", why: "Write the general solution as particular plus nullspace directions." }
               ]}
               result={"Solution set: $(2-t,\\,t)$ for all $t\\in\\mathbb{R}$."}
               check={"Plug in: $(2-t)+t=2$ and $2(2-t)+2t=4$."}
@@ -111,12 +123,12 @@ function SystemsGuide({ part = 1 }) {
               title="Unique 2×2 solve"
               setup={"$x+y=5$, $x-y=1$."}
               steps={[
-                { text: "Add the equations: $2x=6\\Rightarrow x=3$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "From $x+y=5$: $y=2$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Matrix $A=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ has $\\det A=-2\\neq 0$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Full rank $r=2=n$ ⇒ unique solution.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Rank of augmented matrix is also $2$ (consistent and determined).", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Geometry: two nonparallel lines in $\\mathbb{R}^2$ meet at one point.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Add the equations: $2x=6\\Rightarrow x=3$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "From $x+y=5$: $y=2$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Matrix $A=\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}$ has $\\det A=-2\\neq 0$.", why: "Compute det with a formula or elimination while tracking signs and scales." },
+                { text: "Full rank $r=2=n$ ⇒ unique solution.", why: "Invertibility matches nonzero det and a full set of pivots." },
+                { text: "Rank of augmented matrix is also $2$ (consistent and determined).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Geometry: two nonparallel lines in $\\mathbb{R}^2$ meet at one point.", why: "Read the geometric meaning of the algebraic result." }
               ]}
               result={"Unique solution $(3,2)$."}
               check={"$3+2=5$ and $3-2=1$."}
@@ -126,12 +138,12 @@ function SystemsGuide({ part = 1 }) {
               title="Nullspace basis from free variables"
               setup={"$A=\\begin{pmatrix}1&2&3\\\\0&0&0\\end{pmatrix}$. Find a basis for $\\mathrm{Nul}(A)$."}
               steps={[
-                { text: "Only equation: $x+2y+3z=0$, so $x=-2y-3z$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Free variables: $y=s$, $z=t$ (columns 2 and 3 have no pivots).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Then $x=-2s-3t$, so $\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=s\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix}$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "The two special solutions are independent (neither is a multiple of the other).", why: "State the exact condition or formula you will test." },
-                { text: "Rank $r=1$, $n=3$, so nullity $n-r=2$ — matches the two free variables.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Those two vectors form a basis of $\\mathrm{Nul}(A)$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Only equation: $x+2y+3z=0$, so $x=-2y-3z$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Free variables: $y=s$, $z=t$ (columns 2 and 3 have no pivots).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Then $x=-2s-3t$, so $\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}=s\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "The two special solutions are independent (neither is a multiple of the other).", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
+                { text: "Rank $r=1$, $n=3$, so nullity $n-r=2$ — matches the two free variables.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Those two vectors form a basis of $\\mathrm{Nul}(A)$.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." }
               ]}
               result={"Basis of $\\mathrm{Nul}(A)$: $(-2,1,0)$ and $(-3,0,1)$; $\\dim=2$."}
               check={"$A(-2,1,0)^T=0$ and $A(-3,0,1)^T=0$."}
@@ -141,12 +153,12 @@ function SystemsGuide({ part = 1 }) {
               title="Particular + nullspace for nonhomogeneous"
               setup={"Solve $x+2y+3z=6$ (one equation)."}
               steps={[
-                { text: "Particular solution: try free vars $y=z=0$, then $x=6$. So $x_p=(6,0,0)$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Homogeneous: $x+2y+3z=0$ as in Example 4.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Nullspace basis $v_1=(-2,1,0)$, $v_2=(-3,0,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "General solution: $x=(6,0,0)+s(-2,1,0)+t(-3,0,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Equivalently $(x,y,z)=(6-2s-3t,\\,s,\\,t)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "This is an affine plane: translate the nullspace plane by $x_p$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Particular solution: try free vars $y=z=0$, then $x=6$. So $x_p=(6,0,0)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Homogeneous: $x+2y+3z=0$ as in Example 4.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Nullspace basis $v_1=(-2,1,0)$, $v_2=(-3,0,1)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "General solution: $x=(6,0,0)+s(-2,1,0)+t(-3,0,1)$.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Equivalently $(x,y,z)=(6-2s-3t,\\,s,\\,t)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "This is an affine plane: translate the nullspace plane by $x_p$.", why: "Write the general solution as particular plus nullspace directions." }
               ]}
               result={"$x=(6,0,0)+s(-2,1,0)+t(-3,0,1)$."}
               check={"For $s=t=0$: $6=6$. For $s=1,t=0$: $4+2+0=6$."}
@@ -156,12 +168,12 @@ function SystemsGuide({ part = 1 }) {
               title="Compare ranks on a 3×3"
               setup={"$A=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\1&1&1\\end{pmatrix}$, $b=(6,12,3)^T$. Is $Ax=b$ consistent? Unique?"}
               steps={[
-                { text: "Row2 = 2·Row1 in $A$, so those rows are dependent.", why: "State the exact condition or formula you will test." },
-                { text: "R2 ← R2−2 R1 on $[A\\mid b]$: RHS becomes $12-12=0$, good so far.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "R3 ← R3−R1: coefficient row $(0,-1,-2)$ and RHS $3-6=-3$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Continue: you get two pivots (columns 1 and 2), no inconsistent row.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "$\\mathrm{rank}(A)=\\mathrm{rank}([A\\mid b])=2<3=n$, so consistent with one free variable.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "Infinitely many solutions (a line in $\\mathbb{R}^3$), not unique.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Row2 = 2·Row1 in $A$, so those rows are dependent.", why: "Use independence and spanning (via rank/pivots) to decide bases and membership." },
+                { text: "R2 ← R2−2 R1 on $[A\\mid b]$: RHS becomes $12-12=0$, good so far.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "R3 ← R3−R1: coefficient row $(0,-1,-2)$ and RHS $3-6=-3$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Continue: you get two pivots (columns 1 and 2), no inconsistent row.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "$\\mathrm{rank}(A)=\\mathrm{rank}([A\\mid b])=2<3=n$, so consistent with one free variable.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Infinitely many solutions (a line in $\\mathbb{R}^3$), not unique.", why: "Justify this line with the matching linear-algebra definition or theorem." }
               ]}
               result={"Consistent with one free variable; solution set is a line."}
               check={"$b=3(1,2,1)^T$ lies in $\\mathrm{Col}(A)$ since column 3 is not needed; ranks match."}
@@ -316,14 +328,14 @@ function SystemsGuide({ part = 1 }) {
           <ProcedureBox
             title="How to solve a linear system with Gaussian elimination"
             steps={[
-                { text: "Write the system as an augmented matrix $[A\\mid b]$.", why: "Start from the given data and name the events or quantities." },
-                { text: "Use elementary row operations to reach echelon (triangular) form: create zeros below each pivot.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "If a row $[0\\ \\cdots\\ 0\\mid c]$ with $c\\neq 0$ appears, conclude inconsistency and stop.", why: "Apply the matching probability rule (definition, product, total probability, or Bayes)." },
-                { text: "Identify pivot columns (basic variables) and non-pivot columns (free variables).", why: "Start from the given data and name the events or quantities." },
-                { text: "Assign parameters to free variables (e.g. $t,s,\\ldots$).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Back-substitute from the bottom pivot upward to express basic variables in terms of the parameters (or numbers, if none).", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Write the solution in vector form; optionally split into particular + nullspace directions.", why: "Start from the given data and name the events or quantities." },
-                { text: "Substitute back into the original equations as a check.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Write the system as an augmented matrix $[A\\mid b]$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Use elementary row operations to reach echelon (triangular) form: create zeros below each pivot.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "If a row $[0\\ \\cdots\\ 0\\mid c]$ with $c\\neq 0$ appears, conclude inconsistency and stop.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Identify pivot columns (basic variables) and non-pivot columns (free variables).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Assign parameters to free variables (e.g. $t,s,\\ldots$).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Back-substitute from the bottom pivot upward to express basic variables in terms of the parameters (or numbers, if none).", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Write the solution in vector form; optionally split into particular + nullspace directions.", why: "Write the general solution as particular plus nullspace directions." },
+                { text: "Substitute back into the original equations as a check.", why: "Confirm with a second method or by substituting back." }
               ]}
           />
         </section>
@@ -337,12 +349,12 @@ function SystemsGuide({ part = 1 }) {
             title="Write the augmented matrix"
             setup={"$2x-y=0$, $x+3y=5$. Encode as $[A\\mid b]$."}
             steps={[
-                { text: "Unknown order: $x$ then $y$.", why: "Translate the problem into symbols and known facts." },
-                { text: "First equation coefficients: $2,\\,-1$ with RHS $0$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Second equation: $1,\\,3$ with RHS $5$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Augmented matrix $\\begin{pmatrix}2&-1&0\\\\1&3&5\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Each row is one equation; the bar separates coefficients from the constant term.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Do not forget the sign of $-y$: the $(1,2)$ entry is $-1$, not $1$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Unknown order: $x$ then $y$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "First equation coefficients: $2,\\,-1$ with RHS $0$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Second equation: $1,\\,3$ with RHS $5$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Augmented matrix $\\begin{pmatrix}2&-1&0\\\\1&3&5\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Each row is one equation; the bar separates coefficients from the constant term.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Do not forget the sign of $-y$: the $(1,2)$ entry is $-1$, not $1$.", why: "Compute det with a formula or elimination while tracking signs and scales." }
               ]}
             result={"$[A\\mid b]=\\begin{pmatrix}2&-1&0\\\\1&3&5\\end{pmatrix}$."}
             check={"Row 1 reconstructs $2x-y=0$."}
@@ -352,12 +364,12 @@ function SystemsGuide({ part = 1 }) {
             title="Eliminate to triangular form"
             setup={"Same system as Example 1. Solve completely."}
             steps={[
-                { text: "Optional: swap rows so a $1$ leads, or keep order. Scale R1 by $1/2$: $\\begin{pmatrix}1&-1/2&0\\\\1&3&5\\end{pmatrix}$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "R2 ← R2−R1: $\\begin{pmatrix}1&-1/2&0\\\\0&7/2&5\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "From R2: $(7/2)y=5\\Rightarrow y=10/7$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Back-substitute into R1: $x-(1/2)(10/7)=0\\Rightarrow x=5/7$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "So $(x,y)=(5/7,\\,10/7)$.", why: "Combine the previous lines into the numerical or logical conclusion." },
-                { text: "This is the unique solution because two pivots appear for two unknowns.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Optional: swap rows so a $1$ leads, or keep order. Scale R1 by $1/2$: $\\begin{pmatrix}1&-1/2&0\\\\1&3&5\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "R2 ← R2−R1: $\\begin{pmatrix}1&-1/2&0\\\\0&7/2&5\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "From R2: $(7/2)y=5\\Rightarrow y=10/7$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Back-substitute into R1: $x-(1/2)(10/7)=0\\Rightarrow x=5/7$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "So $(x,y)=(5/7,\\,10/7)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "This is the unique solution because two pivots appear for two unknowns.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." }
               ]}
             result={"$x=5/7$, $y=10/7$."}
             check={"$2(5/7)-(10/7)=0$ and $5/7+3(10/7)=35/7=5$."}
@@ -367,12 +379,12 @@ function SystemsGuide({ part = 1 }) {
             title="Recognize a free variable early"
             setup={"$x+2y+z=1$ (one equation, three unknowns)."}
             steps={[
-                { text: "Only one independent equation ⇒ at most one pivot.", why: "Translate the problem into symbols and known facts." },
-                { text: "Choose free variables $y=s$, $z=t$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Solve for the basic variable: $x=1-2s-t$.", why: "Use the descriptive-stat or random-variable formula that fits this setup." },
-                { text: "Vector form: $(x,y,z)=(1,0,0)+s(-2,1,0)+t(-1,0,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "The solution set is a plane (2-parameter flat) in $\\mathbb{R}^3$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Homogeneous directions $(-2,1,0)$ and $(-1,0,1)$ span the nullspace of the $1\\times 3$ coefficient row.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Only one independent equation ⇒ at most one pivot.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Choose free variables $y=s$, $z=t$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Solve for the basic variable: $x=1-2s-t$.", why: "Carry out the computation justified by the setup." },
+                { text: "Vector form: $(x,y,z)=(1,0,0)+s(-2,1,0)+t(-1,0,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "The solution set is a plane (2-parameter flat) in $\\mathbb{R}^3$.", why: "Read the geometric meaning of the algebraic result." },
+                { text: "Homogeneous directions $(-2,1,0)$ and $(-1,0,1)$ span the nullspace of the $1\\times 3$ coefficient row.", why: "Write the general solution as particular plus nullspace directions." }
               ]}
             result={"A 2-parameter family: $(1-2s-t,\\,s,\\,t)$."}
             check={"$(1-2s-t)+2s+t=1$ for all $s,t$."}
@@ -382,12 +394,12 @@ function SystemsGuide({ part = 1 }) {
             title="Back-substitution carefully"
             setup={"After elimination: $x+y+z=6$, $y+2z=3$, $z=1$."}
             steps={[
-                { text: "Start at the bottom: $z=1$.", why: "Translate the problem into symbols and known facts." },
-                { text: "Second equation: $y+2(1)=3\\Rightarrow y=1$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "First: $x+1+1=6\\Rightarrow x=4$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Solution $(x,y,z)=(4,1,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Three pivots, three unknowns ⇒ unique solution.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "This is the payoff of echelon form: each equation introduces one new unknown from the bottom up.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Start at the bottom: $z=1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Second equation: $y+2(1)=3\\Rightarrow y=1$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "First: $x+1+1=6\\Rightarrow x=4$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Solution $(x,y,z)=(4,1,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Three pivots, three unknowns ⇒ unique solution.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "This is the payoff of echelon form: each equation introduces one new unknown from the bottom up.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." }
               ]}
             result={"$(4,1,1)$."}
             check={"$4+1+1=6$, $1+2=3$, $z=1$."}
@@ -397,12 +409,12 @@ function SystemsGuide({ part = 1 }) {
             title="3×3 elimination with a swap"
             setup={"Solve $y+z=1$, $x+y=2$, $x+z=2$."}
             steps={[
-                { text: "Augmented matrix $\\begin{pmatrix}0&1&1&1\\\\1&1&0&2\\\\1&0&1&2\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Swap R1 and R2 to get a nonzero pivot in $(1,1)$: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\1&0&1&2\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "R3 ← R3−R1: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\0&-1&1&0\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "R3 ← R3+R2: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\0&0&2&1\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Back-substitute: $z=1/2$, then $y+1/2=1\\Rightarrow y=1/2$, then $x+1/2=2\\Rightarrow x=3/2$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "Unique solution $(3/2,\\,1/2,\\,1/2)$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Augmented matrix $\\begin{pmatrix}0&1&1&1\\\\1&1&0&2\\\\1&0&1&2\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Swap R1 and R2 to get a nonzero pivot in $(1,1)$: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\1&0&1&2\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "R3 ← R3−R1: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\0&-1&1&0\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "R3 ← R3+R2: $\\begin{pmatrix}1&1&0&2\\\\0&1&1&1\\\\0&0&2&1\\end{pmatrix}$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Back-substitute: $z=1/2$, then $y+1/2=1\\Rightarrow y=1/2$, then $x+1/2=2\\Rightarrow x=3/2$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "Unique solution $(3/2,\\,1/2,\\,1/2)$.", why: "Justify this line with the matching linear-algebra definition or theorem." }
               ]}
             result={"$(x,y,z)=(3/2,\\,1/2,\\,1/2)$."}
             check={"$1/2+1/2=1$, $3/2+1/2=2$, $3/2+1/2=2$."}
@@ -412,12 +424,12 @@ function SystemsGuide({ part = 1 }) {
             title="Spot inconsistency mid-elimination"
             setup={"$x+y+z=1$, $2x+2y+2z=3$, $x-y=0$."}
             steps={[
-                { text: "Augmented: $\\begin{pmatrix}1&1&1&1\\\\2&2&2&3\\\\1&-1&0&0\\end{pmatrix}$.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "R2 ← R2−2 R1 produces $(0,0,0,\\,1)$.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "That row is $0=1$ — inconsistent, regardless of the third equation.", why: "Carry out the linear-algebra operation justified by the current matrix form." },
-                { text: "You can stop immediately; further operations cannot repair a contradiction.", why: "This calculation follows from the previous step and the problem data." },
-                { text: "Geometrically the first two planes are parallel and distinct (same normal, different constants).", why: "State the exact condition or formula you will test." },
-                { text: "Rank story: $\\mathrm{rank}(A)<\\mathrm{rank}([A\\mid b])$.", why: "Combine the previous lines into the numerical or logical conclusion." }
+                { text: "Augmented: $\\begin{pmatrix}1&1&1&1\\\\2&2&2&3\\\\1&-1&0&0\\end{pmatrix}$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." },
+                { text: "R2 ← R2−2 R1 produces $(0,0,0,\\,1)$.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "That row is $0=1$ — inconsistent, regardless of the third equation.", why: "An impossible row means the system has no solution." },
+                { text: "You can stop immediately; further operations cannot repair a contradiction.", why: "Justify this line with the matching linear-algebra definition or theorem." },
+                { text: "Geometrically the first two planes are parallel and distinct (same normal, different constants).", why: "Use dots and norms for length, angle, and orthogonal projection." },
+                { text: "Rank story: $\\mathrm{rank}(A)<\\mathrm{rank}([A\\mid b])$.", why: "Row-reduce and read pivots, free variables, and consistency from the echelon form." }
               ]}
             result={"No solution."}
             check={"Twice the first LHS equals the second LHS, but $2\\neq 3$ on the RHS."}
