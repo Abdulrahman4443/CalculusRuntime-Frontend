@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import * as math from "mathjs";
 
-const MAX_SIZE = 5;
+const MAX_SIZE = 10;
 const MIN_SIZE = 1;
 const MAX_MATRICES = 10;
 const MIN_MATRICES = 1;
@@ -131,7 +131,14 @@ function MatrixGrid({ grid, onChange, editable = true, label, highlightCol = -1 
   return (
     <div className="ms-matrix">
       {label ? <div className="ms-matrix-label">{label}</div> : null}
-      <div className="ms-grid" style={{ gridTemplateColumns: `repeat(${cols}, minmax(3.2rem, 1fr))` }}>
+      <div
+        className="ms-grid"
+        style={{
+          gridTemplateColumns: `repeat(${cols}, minmax(${cols >= 8 ? "2.4rem" : "3.2rem"}, 1fr))`,
+          maxWidth: "100%",
+          overflowX: "auto",
+        }}
+      >
         {grid.map((row, i) =>
           row.map((val, j) => (
             <input
