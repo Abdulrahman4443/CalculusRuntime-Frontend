@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   DivCurlExtendedPart1,
   DivCurlExtendedPart2,
@@ -167,6 +168,10 @@ function SectionS162() {
         </div>
         {"Expanded definition interpretation: It measures the net outward flux of a vector field per unit volume about a point local coordinate point position."}
       </div>
+      <RealLifeUse>
+        Weather models track divergence of wind to spot rising air and storm development; positive divergence means fluid spreading outward from a point.
+      </RealLifeUse>
+
     </section>
   );
 }
@@ -388,6 +393,10 @@ function SectionS164() {
           <li>{"Solenoidal Magnetic Properties: $\\nabla \\cdot \\mathbf{B} = 0$ (Absence of isolated magnetic monopole sources)"}</li>
         </ul>
       </div>
+      <RealLifeUse>
+        Curl of velocity is vorticity — tornado cores and whirlpools; Maxwell's equations package divergence and curl as the language of electric and magnetic fields in engineering.
+      </RealLifeUse>
+
     </section>
   );
 }
