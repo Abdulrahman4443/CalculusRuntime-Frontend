@@ -90,3 +90,25 @@
   color: #fff !important;
   opacity: 1;
 }
+
+.scb-cert-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  color: #fff !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 2.4rem;
+  padding: 0.55rem 1.2rem;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.scb-cert-cta:hover {
+  opacity: 0.85;
+}

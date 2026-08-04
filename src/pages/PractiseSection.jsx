@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
+import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
+import { PS_PRACTICE_BANK } from '../data/psPracticeBank';
+import { LA_PRACTICE_BANK } from '../data/laPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
-// --- MASTER PROBLEM DATABASE (96 DISTINCT PROBLEM OBJECTS) ---
+// --- MASTER PROBLEM DATABASE ---
 const PRACTICE_PROBLEMS = [
   // ==========================================
   // TOPIC 1: Lagrange Multipliers (12 Problems)
@@ -24,7 +27,7 @@ const PRACTICE_PROBLEMS = [
     id: 3, topic: 'Lagrange Multipliers', difficulty: 'Easy',
     question: 'True or False: The Lagrange multiplier method can locate boundary extrema even if the constraint gradient ∇g equals zero.',
     options: ['True, because ∇f dominates the equation.', 'False, because the equation ∇f = λ∇g becomes undefined or invalid when ∇g = 0.', 'True, if the function f is linear.', 'False, because λ must also be zero.'],
-    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary boundary path.'
+    correctAnswer: 1, explanation: 'The Lagrange method requires ∇g ≠ 0 at the extremum because if ∇g = 0, the constraint curve does not form a smooth surface or boundary path.'
   },
   {
     id: 4, topic: 'Lagrange Multipliers', difficulty: 'Easy',
@@ -1266,6 +1269,13 @@ const PRACTICE_PROBLEMS = [
     options: ['r becomes 2', 'The pattern may not continue outside the data range', 'Residuals become correlations'],
     correctAnswer: 1, explanation: 'Model is local to observed x.'
   },
+
+  // Calculus AG certificate track — 15 Easy + 15 Medium + 15 Hard per topic
+  ...CALC_AG_PRACTICE_BANK,
+  // Probability & Statistics — 15 Easy + 15 Medium + 15 Hard per topic
+  ...PS_PRACTICE_BANK,
+  // Linear Algebra — 15 Easy + 15 Medium + 15 Hard per topic (Dev 3)
+  ...LA_PRACTICE_BANK,
 ];
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
@@ -1278,6 +1288,10 @@ const TOPICS = [
   'Partial Derivatives',
   'Vector Calculus',
   'Limits and Continuity',
+  'Differentiation',
+  'Integration',
+  'Sequences and Infinite Series',
+  'Conic Sections and Analytic Geometry',
   'Multiple Integrals',
   'Vectors & Vector Spaces',
   'Matrices & Determinants',
@@ -1299,9 +1313,10 @@ export default function PractiseSection() {
 
   // --- CORE GAMEPLAY STATE ---
   const [poolProblems, setPoolProblems] = useState([]);
-  const [currentProblem, setCurrentProblem] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isQuizCompleted, setIsQuizCompleted] = useState(false);
 
   // --- RUNNING SCORE PERSISTENCE ---
   const [score, setScore] = useState(() => {
@@ -1320,11 +1335,8 @@ export default function PractiseSection() {
         p => p.difficulty === chosenDifficulty && p.topic === chosenTopic
       );
       setPoolProblems(filtered);
-      if (filtered.length > 0) {
-        setCurrentProblem(filtered[0]);
-      } else {
-        setCurrentProblem(null);
-      }
+      setCurrentIndex(0);
+      setIsQuizCompleted(false);
       resetQuizTurn();
     }
   }, [chosenDifficulty, chosenTopic]);
@@ -1337,8 +1349,9 @@ export default function PractiseSection() {
   const handleSelectionReset = () => {
     setChosenDifficulty(null);
     setChosenTopic(null);
-    setCurrentProblem(null);
     setPoolProblems([]);
+    setCurrentIndex(0);
+    setIsQuizCompleted(false);
     resetQuizTurn();
   };
 
@@ -1349,6 +1362,7 @@ export default function PractiseSection() {
 
   const handleSubmit = () => {
     if (selectedAnswer === null || isSubmitted) return;
+    const currentProblem = poolProblems[currentIndex];
     const correct = selectedAnswer === currentProblem.correctAnswer;
     setScore(prev => ({
       correct: prev.correct + (correct ? 1 : 0),
@@ -1357,26 +1371,17 @@ export default function PractiseSection() {
     setIsSubmitted(true);
   };
 
-  // RANDOM GENERATOR LOGIC
-  const handleTriggerRandom = () => {
-    if (poolProblems.length <= 1) return;
-    let nextIndex;
-    do {
-      nextIndex = Math.floor(Math.random() * poolProblems.length);
-    } while (poolProblems[nextIndex].id === currentProblem?.id);
-    setCurrentProblem(poolProblems[nextIndex]);
-    resetQuizTurn();
+  // PROGRESSIVE QUIZ FLOW: Move to the next question or complete quiz
+  const handleNextQuestion = () => {
+    if (currentIndex < poolProblems.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+      resetQuizTurn();
+    } else {
+      setIsQuizCompleted(true);
+    }
   };
 
-  const handleNextInSequence = () => {
-    const currentIndex = poolProblems.findIndex(p => p.id === currentProblem.id);
-    if (currentIndex !== -1 && currentIndex < poolProblems.length - 1) {
-      setCurrentProblem(poolProblems[currentIndex + 1]);
-    } else {
-      setCurrentProblem(poolProblems[0]); // Loop back to the start of the pool
-    }
-    resetQuizTurn();
-  };
+  const currentProblem = poolProblems[currentIndex] || null;
 
   return (
     <div className="practice-page">
@@ -1460,26 +1465,26 @@ export default function PractiseSection() {
             <div className="practice-toolbar-actions">
               <button
                 type="button"
-                className="practice-tool-btn practice-tool-btn--accent"
-                onClick={handleTriggerRandom}
-                disabled={poolProblems.length <= 1}
-              >
-                Randomize Question
-              </button>
-              <button
-                type="button"
                 className="practice-tool-btn"
                 onClick={handleSelectionReset}
               >
-                Change Rules
+                Change Topic
               </button>
             </div>
           </div>
 
           <div className="practice-panel">
-            {currentProblem ? (
+            {!isQuizCompleted && currentProblem ? (
               <div>
-                <p className="practice-kicker">Question Workspace</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <p className="practice-kicker" style={{ margin: 0 }}>
+                    Question Workspace
+                  </p>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--accent)' }}>
+                    Question {currentIndex + 1} of {poolProblems.length}
+                  </span>
+                </div>
+
                 <h2 className="practice-question">{currentProblem.question}</h2>
 
                 <div className="practice-options" role="listbox" aria-label="Answer choices">
@@ -1518,22 +1523,22 @@ export default function PractiseSection() {
                 </div>
 
                 <div className="practice-actions">
-                  <button
-                    type="button"
-                    className="practice-submit"
-                    onClick={handleSubmit}
-                    disabled={selectedAnswer === null || isSubmitted}
-                  >
-                    Submit Verification
-                  </button>
-
-                  {isSubmitted && (
+                  {!isSubmitted ? (
+                    <button
+                      type="button"
+                      className="practice-submit"
+                      onClick={handleSubmit}
+                      disabled={selectedAnswer === null}
+                    >
+                      Submit Verification
+                    </button>
+                  ) : (
                     <button
                       type="button"
                       className="practice-next"
-                      onClick={handleNextInSequence}
+                      onClick={handleNextQuestion}
                     >
-                      Next Problem →
+                      {currentIndex < poolProblems.length - 1 ? 'Next Question →' : 'Finish Quiz & View Score'}
                     </button>
                   )}
                 </div>
@@ -1544,14 +1549,26 @@ export default function PractiseSection() {
                     <p>{currentProblem.explanation}</p>
                   </div>
                 )}
-
-                {isSubmitted && currentProblem && (
+              </div>
+            ) : isQuizCompleted ? (
+              <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+                <h2>Quiz Complete!</h2>
+                <p>You have finished all questions for <strong>{chosenTopic}</strong> ({chosenDifficulty}).</p>
+                <div style={{ margin: '1.5rem 0' }}>
                   <SubmitToLeaderboard
                     quizId={`practice-${chosenTopic}-${chosenDifficulty}`}
                     score={score.correct}
                     total={Math.max(score.total, 1)}
                   />
-                )}
+                </div>
+                <button
+                  type="button"
+                  className="practice-tool-btn practice-tool-btn--accent"
+                  onClick={handleSelectionReset}
+                  style={{ marginTop: '1rem' }}
+                >
+                  Choose Another Topic
+                </button>
               </div>
             ) : (
               <div className="practice-empty">

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   DivCurlExtendedPart1,
   DivCurlExtendedPart2,
@@ -133,7 +134,7 @@ function QuizMcq161() {
       <div className="mcq-card" data-section="field-concept" data-q="3" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"3"}</div>
-          <div className="mcq-q-text">{"Which mathematical component inside $\\mathbf{F}(x,y) = P(x,y)\\mathbf{i} + Q(x,y)\\mathbf{j}$ determines the vertical vertical scalar velocity component?"}</div>
+          <div className="mcq-q-text">{"Which mathematical component inside $\\mathbf{F}(x,y) = P(x,y)\\mathbf{i} + Q(x,y)\\mathbf{j}$ determines the vertical scalar velocity component?"}</div>
         </div>
         <div className="mcq-options">
           <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The scalar component function $Q(x,y)$ paired with the $\\mathbf{j}$ unit vector axis."}</div>
@@ -209,6 +210,10 @@ function SectionS162() {
           {": $\\partial P/\\partial x$, $\\partial Q/\\partial y$, $\\partial R/\\partial z$ \u2014 never $\\partial P/\\partial y$ or $\\partial Q/\\partial z$. Those mismatched partials belong to curl, not divergence."}
         </p>
       </div>
+      <RealLifeUse>
+        Weather models track divergence of wind to spot rising air and storm development; positive divergence means fluid spreading outward from a point.
+      </RealLifeUse>
+
     </section>
   );
 }
@@ -477,6 +482,10 @@ function SectionS164() {
           <li>{"Solenoidal Magnetic Properties: $\\nabla \\cdot \\mathbf{B} = 0$ (Absence of isolated magnetic monopole sources)"}</li>
         </ul>
       </div>
+      <RealLifeUse>
+        Curl of velocity is vorticity — tornado cores and whirlpools; Maxwell's equations package divergence and curl as the language of electric and magnetic fields in engineering.
+      </RealLifeUse>
+
     </section>
   );
 }

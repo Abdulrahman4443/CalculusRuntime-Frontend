@@ -1,5 +1,6 @@
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   PartialsExtendedPart1,
   PartialsExtendedPart2,
@@ -59,6 +60,10 @@ function SectionS141() {
         </strong>
         {".\n      "}
       </div>
+
+      <RealLifeUse>
+        Temperature maps $T(x,y)$, terrain elevation $h(x,y)$, and image brightness are everyday functions of two variables — weather apps and topographic maps are literally graphs of $z=f(x,y)$.
+      </RealLifeUse>
       <h3 className="subsec">
         {"Finding the Natural Domain"}
       </h3>
@@ -942,6 +947,10 @@ function SectionS144() {
         </div>
         {"\n        If $z=f(x,y)$ is differentiable and $x=x(t)$, $y=y(t)$ are differentiable, then $z$ is a differentiable function\n        of $t$ and:\n        $$\\frac{dz}{dt} = \\frac{\\partial f}{\\partial x}\\frac{dx}{dt}+\\frac{\\partial f}{\\partial y}\\frac{dy}{dt}$$\n      "}
       </div>
+      <RealLifeUse>
+        A robot arm's tip position depends on joint angles that themselves change with time — the multivariable chain rule is how engineers convert motor speeds into tip velocity.
+      </RealLifeUse>
+
       <div className="box exm">
         <div className="box-lbl">
           {"Example"}
@@ -3509,6 +3518,10 @@ function PartialDerivativesContent({ part = 1 }) {
           <QuizMcq143 />
           <Divider />
           <PartialsExtendedPart1 />
+          <RealLifeUse>
+            Partial derivatives power weather models, finance Greeks, and machine-learning gradients — anytime a quantity depends on several inputs and you ask what happens if one input shifts.
+          </RealLifeUse>
+
           <section id="summary1" className="section">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 1 Key Formulas</h2>

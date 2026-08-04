@@ -4,18 +4,46 @@ export const COURSES = [
     id: "calculus-analytical-geometry",
     title: "Calculus and Analytical Geometry",
     description:
-      "Single-variable foundations: functions, continuity, derivatives, Taylor ideas, and geometric intuition before multivariable work.",
+      "Limits, differentiation, integration, Taylor series, infinite series, and conic sections — certificate-ready theory and examples.",
     path: "/courses/calculus-analytical-geometry",
-    meta: "Foundations · Guides + tools",
+    meta: "6 guides · Tools + practice",
     icon: "ƒ",
     color: "gold",
     modules: [
       {
         title: "Limits & Continuity",
-        description: "Multivariable limits, path-dependence, and continuity.",
+        description: "Limits, path tests, continuity — with certificate-depth theory and worked examples.",
         path: "/limits-continuity/1",
-        meta: "2 parts · Path analysis",
+        meta: "2 parts · 6+ examples each",
         icon: "lim",
+      },
+      {
+        title: "Differentiation",
+        description: "Definition, rules, related rates, extrema, MVT, L'Hôpital — certificate track.",
+        path: "/differentiation/1",
+        meta: "2 parts · 6 examples each",
+        icon: "d/dx",
+      },
+      {
+        title: "Integration",
+        description: "Antiderivatives, FTC, area, techniques, improper integrals — certificate track.",
+        path: "/integration/1",
+        meta: "2 parts · 6 examples each",
+        icon: "∫",
+      },
+      {
+        title: "Sequences & Infinite Series",
+        description: "Sequences, geometric and p-series, ratio/root/AST, power series — with real-life examples.",
+        path: "/sequences-series/1",
+        meta: "2 parts · 8 examples · 10 quiz Qs each",
+        icon: "Σ",
+      },
+      {
+        title: "Conic Sections & Analytic Geometry",
+        description: "Circles, parabola, ellipse, hyperbola, eccentricity, orbits and optics applications.",
+        path: "/conic-sections/1",
+        meta: "2 parts · 8 examples · 10 quiz Qs each",
+        icon: "◯",
       },
       {
         title: "Continuity Finder",
@@ -26,9 +54,9 @@ export const COURSES = [
       },
       {
         title: "Taylor Series",
-        description: "Local linear and higher-order approximations with Maclaurin catalogs and error bounds.",
+        description: "Local approximations, Maclaurin catalogs, convergence and error — certificate depth.",
         path: "/taylor-series/1",
-        meta: "2 parts · MCQ practice",
+        meta: "2 parts · 6+ examples each",
         icon: "Σ",
       },
       {
@@ -42,7 +70,7 @@ export const COURSES = [
   },
   {
     id: "multivariable-calculus",
-    title: "Multi Variable Calculus",
+    title: "Multivariable Calculus",
     description:
       "Partial derivatives, vector calculus, multiple integrals, Lagrange multipliers, divergence & curl, and Stokes.",
     path: "/courses/multivariable-calculus",
@@ -140,6 +168,13 @@ export const COURSES = [
         icon: "M",
       },
       {
+        title: "Matrix Sandbox",
+        description: "Up to 10 matrices: multiply, add, powers, eigenvalues, RREF, and more.",
+        path: "/linear-algebra/matrix-sandbox",
+        meta: "Interactive tool",
+        icon: "▣",
+      },
+      {
         title: "Systems of Linear Equations",
         description: "Row reduction, rank, and consistency of linear systems.",
         path: "/linear-algebra/systems/1",
@@ -178,6 +213,13 @@ export const COURSES = [
         path: "/probability-statistics/probability-basics/1",
         meta: "2 parts · MCQ practice",
         icon: "P",
+      },
+      {
+        title: "Bayes Lab",
+        description: "Interactive screening calculator for P(disease | positive test).",
+        path: "/probability-statistics/bayes-lab",
+        meta: "Interactive tool",
+        icon: "B",
       },
       {
         title: "Random Variables & Distributions",

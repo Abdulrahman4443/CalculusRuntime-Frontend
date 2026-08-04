@@ -111,7 +111,7 @@ export default function MultiVariableCalculus() {
 
       <div className="guide-hero">
         <p className="eyebrow">Course Path</p>
-        <h1>Multi Variable Calculus</h1>
+        <h1>Multivariable Calculus</h1>
         <p>Explore partial derivatives, multiple integrals, vector fields, and key theorems.</p>
       </div>
 

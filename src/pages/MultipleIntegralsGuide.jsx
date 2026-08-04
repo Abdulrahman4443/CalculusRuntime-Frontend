@@ -1,5 +1,6 @@
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
+import { RealLifeUse } from "./calculus/CalcBlocks";
 import {
   IntegralsExtendedPart1,
   IntegralsExtendedPart2,
@@ -109,10 +110,15 @@ function SectionMI1() {
           {"where $\\Delta A = \\Delta x\\,\\Delta y$ is the area of each small rectangle."}
         </p>
       </div>
+
+      <RealLifeUse>
+        Double integrals compute mass from density on a plate, average rainfall over a region, and totals in image processing — volume under $z=f(x,y)$ is the geometric picture.
+      </RealLifeUse>
       <h3 className="subsec">{"Geometric Interpretation"}</h3>
       <p>
         {"If $f(x,y) \\geq 0$, the double integral $\\iint_R f(x,y)\\,dA$ represents the volume of the solid that lies above the rectangle $R$ and below the surface $z = f(x,y)$."}
       </p>
+
       <div className="box exm">
         <div className="box-lbl">{"Example"}</div>
         <div className="exm-title">
@@ -205,6 +211,9 @@ function SectionMI4() {
           {"$$\\iiint_E f(x,y,z)\\,dV = \\int_a^b\\int_{g_1(x)}^{g_2(x)}\\int_{h_1(x,y)}^{h_2(x,y)} f(x,y,z)\\,dz\\,dy\\,dx$$"}
         </div>
       </div>
+      <RealLifeUse>
+        Triple integrals weigh a 3D ore body from density $\rho(x,y,z)$, compute center of mass of a machine part, and accumulate charge in a volume — density times volume, added up.
+      </RealLifeUse>
       <div className="box exm">
         <div className="box-lbl">{"Example"}</div>
         <div className="exm-title">

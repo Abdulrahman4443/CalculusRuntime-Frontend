@@ -1,10 +1,35 @@
-/** Shared theory / procedure / worked-example blocks for Linear Algebra & P&S guides. */
+/** Shared certificate-ready blocks for Calculus guides. */
 
+import { Children, cloneElement, isValidElement } from "react";
 import { mixedMathToHtml } from "../../utils/mixedMath";
 
-function MathLine({ text }) {
+function MathLine({ text, style, as: Tag = "span" }) {
   if (text == null || text === "") return null;
-  return <span dangerouslySetInnerHTML={{ __html: mixedMathToHtml(text) }} />;
+  return (
+    <Tag
+      style={style}
+      dangerouslySetInnerHTML={{ __html: mixedMathToHtml(text) }}
+    />
+  );
+}
+
+/** Turn string / <p>string</p> children into KaTeX-safe markup. */
+function withMath(children) {
+  return Children.map(children, (child) => {
+    if (typeof child === "string") {
+      return <MathLine text={child} />;
+    }
+    if (
+      isValidElement(child) &&
+      child.type === "p" &&
+      typeof child.props.children === "string"
+    ) {
+      return cloneElement(child, {
+        children: <MathLine text={child.props.children} />,
+      });
+    }
+    return child;
+  });
 }
 
 export function TheoryBox({ title, children }) {
@@ -16,21 +41,7 @@ export function TheoryBox({ title, children }) {
           <MathLine text={title} />
         </div>
       ) : null}
-      {children}
-    </div>
-  );
-}
-
-export function TheoremBox({ title, children }) {
-  return (
-    <div className="box thm">
-      <div className="box-lbl">Key fact</div>
-      {title ? (
-        <div className="exm-title">
-          <MathLine text={title} />
-        </div>
-      ) : null}
-      {children}
+      {withMath(children)}
     </div>
   );
 }
@@ -44,18 +55,17 @@ export function PracticalTheory({ title, children }) {
           <MathLine text={title} />
         </div>
       ) : null}
-      {children}
+      {withMath(children)}
     </div>
   );
 }
 
 export function RealLifeUse({ children }) {
-  const text = typeof children === "string" ? children : null;
   return (
     <div className="box tip" style={{ marginTop: "1.25rem" }}>
       <div className="box-lbl">Real-life use</div>
       <p style={{ lineHeight: 1.65, margin: 0 }}>
-        {text ? <MathLine text={text} /> : children}
+        {typeof children === "string" ? <MathLine text={children} /> : children}
       </p>
     </div>
   );
@@ -71,32 +81,39 @@ export function ProcedureBox({ title, steps }) {
         </div>
       ) : null}
       <ol style={{ margin: "0.5rem 0 0 1.15rem", padding: 0 }}>
-        {steps.map((step, i) => {
-          const text = typeof step === "string" ? step : step?.text || "";
-          const why = typeof step === "string" ? null : step?.why;
-          const line = why ? `${why} ${text}` : text;
-          return (
-            <li key={i} style={{ marginBottom: "0.55rem", lineHeight: 1.55 }}>
-              <MathLine text={line} />
-            </li>
-          );
-        })}
+        {steps.map((step, i) => (
+          <li key={i} style={{ marginBottom: "0.55rem", lineHeight: 1.55 }}>
+            {typeof step === "string" ? <MathLine text={step} /> : step}
+          </li>
+        ))}
       </ol>
     </div>
   );
 }
 
 /**
+ * Certificate example: problem + mathematical steps.
  * steps: string[] | { text: string, why?: string }[]
- * If why is present, it is shown inline before the step (same line), no "Why:" label.
+ * If why is present, it is shown inline before the step (same line), with no "Why:" label.
  */
-export function WorkedExample({ number, title, setup, steps, result, check, mistake }) {
+export function CertificateExample({
+  number,
+  tier = "Medium",
+  title,
+  setup,
+  steps,
+  result,
+  check,
+  mistake,
+}) {
   const normalized = (steps || []).map((step) =>
     typeof step === "string" ? { text: step } : step,
   );
   return (
     <div className="box exm">
-      <div className="box-lbl">Worked example {number}</div>
+      <div className="box-lbl">
+        Worked example {number} - {tier}
+      </div>
       <div className="exm-title">{title}</div>
       {setup ? (
         <p style={{ lineHeight: 1.6 }}>
@@ -124,20 +141,27 @@ export function WorkedExample({ number, title, setup, steps, result, check, mist
           </p>
         ) : null}
         {check ? (
-          <p style={{ marginTop: "0.45rem", lineHeight: 1.55, opacity: 0.92 }}>
+          <p style={{ marginTop: "0.45rem", lineHeight: 1.55 }}>
             <strong>Check: </strong>
             <MathLine text={check} />
           </p>
         ) : null}
-      </div>
-      {mistake ? (
-        <div className="box warn" style={{ marginTop: "0.9rem", marginBottom: 0 }}>
-          <div className="box-lbl">Common mistake</div>
-          <p style={{ lineHeight: 1.55, marginBottom: 0 }}>
+        {mistake ? (
+          <p
+            style={{
+              marginTop: "0.65rem",
+              lineHeight: 1.55,
+              padding: "0.55rem 0.75rem",
+              borderRadius: 8,
+              background: "rgba(124, 47, 10, 0.08)",
+              border: "1px solid rgba(124, 47, 10, 0.25)",
+            }}
+          >
+            <strong>Common mistake: </strong>
             <MathLine text={mistake} />
           </p>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
   TaylorExtendedPart1,
   TaylorExtendedPart2,
 } from "./GuideExtendedMaterials";
+import { TaylorCertificateBoost } from "./calculus/CertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -39,6 +40,7 @@ function GuideSidebarPart1() {
       <a className="sb-link" href="#quiz-172">Quiz 17.2</a>
       <a className="sb-link" href="#s173">Maclaurin Reductions</a>
       <a className="sb-link" href="#quiz-173">Quiz 17.3</a>
+      <a className="sb-link" href="#taylor-cert-p1">Certificate examples</a>
     </nav>
   );
 }
@@ -334,6 +336,7 @@ function GuideSidebarPart2() {
       <a className="sb-link" href="#quiz-176">Quiz 17.6</a>
       <a className="sb-link" href="#s177">Engineering Computations</a>
       <a className="sb-link" href="#quiz-177">Quiz 17.7</a>
+      <a className="sb-link" href="#taylor-cert-p2">Certificate examples</a>
     </nav>
   );
 }
@@ -809,6 +812,8 @@ function TaylorSeriesGuide({ section }) {
           <Divider />
           <TaylorExtendedPart2 />
           <Divider />
+          <TaylorCertificateBoost part={2} />
+          <Divider />
           <QuizChallengeTaylor />
           <Divider />
           <SectionSummary />
@@ -841,6 +846,8 @@ function TaylorSeriesGuide({ section }) {
         <SectionObj18Enrichment />
         <Divider />
         <TaylorExtendedPart1 />
+        <Divider />
+        <TaylorCertificateBoost part={1} />
         <Divider />
         <QuizChallengeTaylor />
         <Divider />
