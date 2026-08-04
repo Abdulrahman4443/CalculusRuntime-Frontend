@@ -90,3 +90,55 @@ export const LIMITS_P2_QUIZ = [
   { prompt: "Hard: EVT says continuous $f$ on $[a,b]$ attains:", options: ["Abs max and min", "Only a root", "$f'=0$", "Inflection"], answer: "A", explanation: "Extreme Value Theorem." },
   { prompt: "Hard: redefine $f(1)=2$ for $(x^2-1)/(x-1)$ to:", options: ["Remove discontinuity", "Create a jump", "Make discontinuous", "Change the limit"], answer: "A", explanation: "Removable repair." },
 ];
+
+export const SERIES_P1_QUIZ = [
+  { prompt: "A sequence is:", options: ["an ordered list of numbers", "a continuous function", "a random set", "a matrix"], answer: "A", explanation: "Definition of sequence." },
+  { prompt: "If $\\lim a_n=L$, then eventually $a_n$ is:", options: ["equal to $L$ always", "arbitrarily close to $L$", "increasing", "integer"], answer: "B", explanation: "Epsilon definition of sequence limit." },
+  { prompt: "Geometric series $\\sum ar^n$ ($n\\ge 0$) converges when:", options: ["$|r|<1$", "$|r|>1$", "$r=1$", "$a=0$ only"], answer: "A", explanation: "Standard geometric criterion." },
+  { prompt: "When $|r|<1$, $\\sum_{n=0}^{\\infty} ar^n$ equals:", options: ["$a/(1-r)$", "$a/(1+r)$", "$ar$", "$\\infty$"], answer: "A", explanation: "Closed form." },
+  { prompt: "If $a_n\\not\\to 0$, then $\\sum a_n$:", options: ["converges", "diverges", "is geometric", "telescopes"], answer: "B", explanation: "Term (nth-term) test." },
+  { prompt: "Harmonic series $\\sum 1/n$:", options: ["converges", "diverges", "equals $e$", "equals $0$"], answer: "B", explanation: "Classic divergent series." },
+  { prompt: "$p$-series $\\sum 1/n^p$ converges iff:", options: ["$p>1$", "$p\\le 1$", "$p=0$", "$p<0$"], answer: "A", explanation: "$p$-test." },
+  { prompt: "Partial sum $s_N$ means:", options: ["$a_1+\\cdots+a_N$", "$a_N$", "$a_1 a_N$", "$N!$"], answer: "A", explanation: "Definition." },
+  { prompt: "Telescoping series typically arise from:", options: ["partial fractions that cancel", "derivatives only", "matrices", "probability"], answer: "A", explanation: "Cancellation in $s_N$." },
+  { prompt: "Hard: $\\sum_{n=0}^{\\infty}(1/3)^n$ equals:", options: ["$3/2$", "$1/3$", "$3$", "$\\infty$"], answer: "A", explanation: "$1/(1-1/3)=3/2$." },
+];
+
+export const SERIES_P2_QUIZ = [
+  { prompt: "Ratio test with $L=\\lim|a_{n+1}/a_n|<1$ implies:", options: ["absolute convergence", "divergence", "inconclusive", "conditional only"], answer: "A", explanation: "Ratio test." },
+  { prompt: "If the ratio limit is $L=1$, the test is:", options: ["decisive always", "inconclusive", "divergence", "AST"], answer: "B", explanation: "Borderline case." },
+  { prompt: "Alternating series test needs $|b_n|$ eventually:", options: ["decreasing to $0$", "increasing", "constant", "greater than $1$"], answer: "A", explanation: "Leibniz criterion." },
+  { prompt: "Absolute convergence means $\\sum|a_n|$:", options: ["converges", "diverges", "oscillates", "equals $1$"], answer: "A", explanation: "Definition." },
+  { prompt: "Conditional convergence example:", options: ["alternating harmonic", "$\\sum 1/n^2$", "geometric $|r|<1$", "$\\sum n$"], answer: "A", explanation: "Converges, but not absolutely." },
+  { prompt: "Root test uses:", options: ["$\\limsup|a_n|^{1/n}$", "$a_n+a_{n+1}$", "$\\int a_n$", "$n!$"], answer: "A", explanation: "Root test." },
+  { prompt: "Power series $\\sum c_n(x-a)^n$ has a:", options: ["radius of convergence", "only finite sum", "unique endpoint", "matrix rank"], answer: "A", explanation: "Disk/interval of convergence." },
+  { prompt: "Inside the radius, termwise differentiation is:", options: ["valid", "never allowed", "only at endpoints", "only for geometric"], answer: "A", explanation: "Power series theorem." },
+  { prompt: "Hard: radius of $\\sum x^n/n!$ is:", options: ["$\\infty$", "$1$", "$0$", "$e$"], answer: "A", explanation: "Exponential series." },
+  { prompt: "Hard: $\\sum (-1)^n/\\sqrt{n}$ is:", options: ["conditionally convergent", "absolutely convergent", "divergent", "geometric"], answer: "A", explanation: "AST yes; $p=1/2$ fails absolute." },
+];
+
+export const CONICS_P1_QUIZ = [
+  { prompt: "Distance formula in the plane is:", options: ["$\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$", "$|x_2-x_1|$", "$x_2 y_2$", "$m$"], answer: "A", explanation: "Pythagorean distance." },
+  { prompt: "Circle center $(h,k)$ radius $r$:", options: ["$(x-h)^2+(y-k)^2=r^2$", "$x^2+y^2=r$", "$y=mx+c$", "$r=x+y$"], answer: "A", explanation: "Standard form." },
+  { prompt: "$x^2+y^2=49$ has radius:", options: ["$7$", "$49$", "$14$", "$1$"], answer: "A", explanation: "$\\sqrt{49}=7$." },
+  { prompt: "Parabola $y^2=4ax$ has focus:", options: ["$(a,0)$", "$(0,a)$", "$(2a,0)$", "$(0,0)$"], answer: "A", explanation: "Standard focus." },
+  { prompt: "Eccentricity of a circle is:", options: ["$0$", "$1$", "$\\infty$", "$1/2$"], answer: "A", explanation: "$e=0$." },
+  { prompt: "Parabola eccentricity is:", options: ["$1$", "$0$", "$2$", "$e>1$"], answer: "A", explanation: "$e=1$." },
+  { prompt: "Ellipse satisfies:", options: ["$0<e<1$", "$e>1$", "$e=0$ only", "$e=\\infty$"], answer: "A", explanation: "Definition." },
+  { prompt: "Hyperbola satisfies:", options: ["$e>1$", "$e<1$", "$e=0$", "$e=1$"], answer: "A", explanation: "Definition." },
+  { prompt: "Focus–directrix: $PF$ equals:", options: ["$e\\cdot$(distance to directrix)", "center only", "slope", "$2a$ always"], answer: "A", explanation: "Unifying conic definition." },
+  { prompt: "Hard: complete the square for $x^2+y^2-6x=0$; center is:", options: ["$(3,0)$", "$(0,3)$", "$(6,0)$", "$(-3,0)$"], answer: "A", explanation: "$(x-3)^2+y^2=9$." },
+];
+
+export const CONICS_P2_QUIZ = [
+  { prompt: "For ellipse $x^2/a^2+y^2/b^2=1$ ($a>b$), $c$ equals:", options: ["$\\sqrt{a^2-b^2}$", "$a+b$", "$ab$", "$e$"], answer: "A", explanation: "Linear eccentricity." },
+  { prompt: "Eccentricity of that ellipse is:", options: ["$c/a$", "$a/c$", "$b/a$", "$c/b$"], answer: "A", explanation: "$e=c/a$." },
+  { prompt: "Asymptotes of $x^2/a^2-y^2/b^2=1$:", options: ["$y=\\pm(b/a)x$", "$y=\\pm(a/b)x$", "$x=0$", "$y=0$ only"], answer: "A", explanation: "Standard asymptotes." },
+  { prompt: "Discriminant $B^2-4AC<0$ (nondegenerate) means:", options: ["ellipse type", "hyperbola", "parabola", "line"], answer: "A", explanation: "Classification invariant." },
+  { prompt: "$B^2-4AC=0$ indicates:", options: ["parabola type", "ellipse", "hyperbola", "point only"], answer: "A", explanation: "Classification." },
+  { prompt: "$B^2-4AC>0$ indicates:", options: ["hyperbola type", "ellipse", "circle", "empty"], answer: "A", explanation: "Classification." },
+  { prompt: "Parabola reflection property sends axis-parallel rays:", options: ["through the focus", "through the center", "to infinity only", "to the directrix"], answer: "A", explanation: "Optical property." },
+  { prompt: "Ellipse string property: sum of distances to foci is:", options: ["$2a$", "$2c$", "$e$", "$b$"], answer: "A", explanation: "Constant $2a$." },
+  { prompt: "Hard: foci of $x^2/25+y^2/9=1$ are:", options: ["$(\\pm 4,0)$", "$(\\pm 5,0)$", "$(0,\\pm 4)$", "$(\\pm 3,0)$"], answer: "A", explanation: "$c=\\sqrt{25-9}=4$." },
+  { prompt: "Hard: Kepler orbits under inverse-square gravity are:", options: ["conics with focus at the sun", "lines only", "circles only", "random curves"], answer: "A", explanation: "Newtonian celestial mechanics." },
+];

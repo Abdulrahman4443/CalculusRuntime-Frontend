@@ -1290,6 +1290,8 @@ const TOPICS = [
   'Limits and Continuity',
   'Differentiation',
   'Integration',
+  'Sequences and Infinite Series',
+  'Conic Sections and Analytic Geometry',
   'Multiple Integrals',
   'Vectors & Vector Spaces',
   'Matrices & Determinants',
