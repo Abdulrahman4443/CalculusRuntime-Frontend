@@ -86,6 +86,139 @@ const CURRICULUM = [
       { id: "stokes-2", label: "Part 2 — Applications & Workflows", path: "/stokes-theorem/2" },
     ],
   },
+  // --- NEW CALCULUS TOPICS ---
+  {
+    id: "diff",
+    title: "Differentiation",
+    icon: "d/dx",
+    color: "gold",
+    parts: [
+      { id: "calc-diff-1", label: "Part 1 — Rules & Rates", path: "/differentiation/1" },
+      { id: "calc-diff-2", label: "Part 2 — MVT & L'Hôpital", path: "/differentiation/2" },
+    ],
+  },
+  {
+    id: "int",
+    title: "Integration",
+    icon: "∫",
+    color: "gold",
+    parts: [
+      { id: "calc-int-1", label: "Part 1 — FTC & Area", path: "/integration/1" },
+      { id: "calc-int-2", label: "Part 2 — Techniques & Improper", path: "/integration/2" },
+    ],
+  },
+  {
+    id: "series",
+    title: "Sequences & Infinite Series",
+    icon: "Σ",
+    color: "gold",
+    parts: [
+      { id: "calc-series-1", label: "Part 1 — Tests for Convergence", path: "/sequences-series/1" },
+      { id: "calc-series-2", label: "Part 2 — Power Series", path: "/sequences-series/2" },
+    ],
+  },
+  {
+    id: "conics",
+    title: "Conic Sections",
+    icon: "◯",
+    color: "gold",
+    parts: [
+      { id: "calc-conics-1", label: "Part 1 — Distance & Standard Conics", path: "/conic-sections/1" },
+      { id: "calc-conics-2", label: "Part 2 — General Conics & Applications", path: "/conic-sections/2" },
+    ],
+  },
+  // --- LINEAR ALGEBRA TOPICS ---
+  {
+    id: "vectors",
+    title: "Vectors & Vector Spaces",
+    icon: "v",
+    color: "blue",
+    parts: [
+      { id: "la-vectors-1", label: "Part 1 — Fundamentals", path: "/linear-algebra/vectors/1" },
+      { id: "la-vectors-2", label: "Part 2 — Basis & Span", path: "/linear-algebra/vectors/2" },
+    ],
+  },
+  {
+    id: "matrices",
+    title: "Matrices & Determinants",
+    icon: "M",
+    color: "blue",
+    parts: [
+      { id: "la-matrices-1", label: "Part 1 — Operations", path: "/linear-algebra/matrices/1" },
+      { id: "la-matrices-2", label: "Part 2 — Inverses & Determinants", path: "/linear-algebra/matrices/2" },
+    ],
+  },
+  {
+    id: "systems",
+    title: "Systems of Linear Equations",
+    icon: "Σ",
+    color: "blue",
+    parts: [
+      { id: "la-systems-1", label: "Part 1 — Row Reduction", path: "/linear-algebra/systems/1" },
+      { id: "la-systems-2", label: "Part 2 — Rank & Consistency", path: "/linear-algebra/systems/2" },
+    ],
+  },
+  {
+    id: "eigen",
+    title: "Eigenvalues & Eigenvectors",
+    icon: "λ",
+    color: "blue",
+    parts: [
+      { id: "la-eigen-1", label: "Part 1 — Characteristic Polynomials", path: "/linear-algebra/eigen/1" },
+      { id: "la-eigen-2", label: "Part 2 — Eigenspaces & Diagonalization", path: "/linear-algebra/eigen/2" },
+    ],
+  },
+  // --- PROBABILITY & STATISTICS TOPICS ---
+  {
+    id: "prob",
+    title: "Probability Basics",
+    icon: "P",
+    color: "purple",
+    parts: [
+      { id: "ps-basics-1", label: "Part 1 — Axioms & Events", path: "/probability-statistics/probability-basics/1" },
+      { id: "ps-basics-2", label: "Part 2 — Conditionals & Bayes", path: "/probability-statistics/probability-basics/2" },
+    ],
+  },
+  {
+    id: "rv",
+    title: "Random Variables & Distributions",
+    icon: "X",
+    color: "purple",
+    parts: [
+      { id: "ps-rv-1", label: "Part 1 — Discrete RVs", path: "/probability-statistics/random-variables/1" },
+      { id: "ps-rv-2", label: "Part 2 — Continuous RVs", path: "/probability-statistics/random-variables/2" },
+    ],
+  },
+  {
+    id: "desc",
+    title: "Descriptive Statistics",
+    icon: "μ",
+    color: "purple",
+    parts: [
+      { id: "ps-desc-1", label: "Part 1 — Central Tendency & Spread", path: "/probability-statistics/descriptive-statistics/1" },
+      { id: "ps-desc-2", label: "Part 2 — Z-Scores & Data Displays", path: "/probability-statistics/descriptive-statistics/2" },
+    ],
+  },
+  {
+    id: "hyp",
+    title: "Hypothesis Testing",
+    icon: "H",
+    color: "purple",
+    parts: [
+      { id: "ps-hyp-1", label: "Part 1 — Null Hypotheses & P-Values", path: "/probability-statistics/hypothesis-testing/1" },
+      { id: "ps-hyp-2", label: "Part 2 — Errors & Power", path: "/probability-statistics/hypothesis-testing/2" },
+    ],
+  },
+  {
+    id: "reg",
+    title: "Regression & Correlation",
+    icon: "ρ",
+    color: "purple",
+    parts: [
+      { id: "ps-reg-1", label: "Part 1 — Linear Association", path: "/probability-statistics/regression-correlation/1" },
+      { id: "ps-reg-2", label: "Part 2 — Least Squares & Residuals", path: "/probability-statistics/regression-correlation/2" },
+    ],
+  },
 ];
 
 const TOOLS = [

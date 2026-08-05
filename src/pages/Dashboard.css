@@ -173,6 +173,8 @@
 
 .db-course--teal { border-left: 4px solid var(--teal); }
 .db-course--blue { border-left: 4px solid var(--blue); }
+.db-course--gold { border-left: 4px solid var(--gold); }
+.db-course--purple { border-left: 4px solid #7c5cbf; }
 
 .db-course-head {
   display: flex;
