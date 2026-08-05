@@ -282,7 +282,7 @@ function ProgressChart({ curriculum, progress }) {
               <span className="db-chart-label">{course.title}</span>
               <div className="db-chart-bar-bg">
                 <div
-                  className={`db-chart-bar-fill db-chart-bar--${course.color}`}
+                  className={`db-chart-bar-fill db-chart-bar--${pct === 100 ? "teal" : course.color}`}
                   style={{ width: `${pct}%` }}
                 />
               </div>

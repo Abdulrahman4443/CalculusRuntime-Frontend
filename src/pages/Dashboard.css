@@ -566,6 +566,7 @@
 .db-chart-bar--teal { background: #2a9d8f; }
 .db-chart-bar--blue { background: #3d4f6b; }
 .db-chart-bar--purple { background: #7c5cbf; }
+.db-chart-bar--gold { background: #e8b84b; }
 
 .db-chart-pct {
   font-size: 0.78rem;
