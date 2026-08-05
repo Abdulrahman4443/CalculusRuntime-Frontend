@@ -173,6 +173,8 @@
 
 .db-course--teal { border-left: 4px solid var(--teal); }
 .db-course--blue { border-left: 4px solid var(--blue); }
+.db-course--gold { border-left: 4px solid var(--gold); }
+.db-course--purple { border-left: 4px solid #7c5cbf; }
 
 .db-course-head {
   display: flex;
@@ -564,6 +566,7 @@
 .db-chart-bar--teal { background: #2a9d8f; }
 .db-chart-bar--blue { background: #3d4f6b; }
 .db-chart-bar--purple { background: #7c5cbf; }
+.db-chart-bar--gold { background: #e8b84b; }
 
 .db-chart-pct {
   font-size: 0.78rem;

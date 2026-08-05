@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
 import { useAuth } from "./AuthContext";
+import { recordActivityDay, getStreak } from "../utils/progressUtils";
 
 const ProgressContext = createContext(null);
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
@@ -74,6 +75,7 @@ export function ProgressProvider({ children }) {
   const { user } = useAuth();
   const [progress, setProgress] = useState(() => loadProgress(user?.username));
   const [isHydrated, setIsHydrated] = useState(false);
+  const [streak, setStreak] = useState(() => getStreak());
   // Last intentional opt-in write — prevents a slow GET /progress from clobbering it.
   const leaderboardWriteRef = useRef(null);
 
@@ -81,6 +83,7 @@ export function ProgressProvider({ children }) {
     setProgress(loadProgress(user?.username));
     setIsHydrated(false);
     leaderboardWriteRef.current = null;
+    setStreak(getStreak());
   }, [user?.username]);
 
   const persist = useCallback(
@@ -223,6 +226,9 @@ export function ProgressProvider({ children }) {
           persist(next);
           return next;
         });
+        if (recordActivityDay()) {
+          setStreak(getStreak());
+        }
       };
 
       // Always update local UI first so the button never crashes the page.
@@ -271,6 +277,10 @@ export function ProgressProvider({ children }) {
         persist(next);
         return next;
       });
+
+      if (recordActivityDay()) {
+        setStreak(getStreak());
+      }
 
       const headers = authHeaders();
       if (!headers) return;
@@ -332,6 +342,9 @@ export function ProgressProvider({ children }) {
         persist(next);
         return next;
       });
+      if (recordActivityDay()) {
+        setStreak(getStreak());
+      }
     },
     [persist]
   );
@@ -413,6 +426,10 @@ export function ProgressProvider({ children }) {
         return next;
       });
 
+      if (recordActivityDay()) {
+        setStreak(getStreak());
+      }
+
       const headers = authHeaders();
       if (!headers) return;
 
@@ -457,7 +474,7 @@ export function ProgressProvider({ children }) {
   );
 
   const stats = {
-    totalSections: 34,
+    totalSections: 42,
     completedCount: Object.keys(progress.completedSections).length,
     bookmarkCount: progress.bookmarks.length,
     quizzesTaken: Object.keys(progress.quizScores).length,
@@ -469,6 +486,7 @@ export function ProgressProvider({ children }) {
       value={{
         progress,
         stats,
+        streak,
         markSectionComplete,
         saveQuizScore,
         addBookmark,
