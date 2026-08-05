@@ -227,7 +227,7 @@ function BookmarksSection({ bookmarks, removeBookmark }) {
 // ── Main Dashboard ──
 function Dashboard() {
   const { user, logout } = useAuth();
-  const { progress, stats, removeBookmark, recordVisit } = useProgress();
+  const { progress, stats, removeBookmark, recordVisit, streak } = useProgress();
   const navigate = useNavigate();
 
   const overdueReviewTopics = useMemo(() => {
@@ -251,9 +251,6 @@ function Dashboard() {
     });
   }, [progress.completedSectionMetadata, progress.completedSectionTimestamps]);
 
-  // Calculate study streak
-  const [streak, setStreak] = useState(0);
-
   useEffect(() => {
     if (!user) navigate("/login");
   }, [user, navigate]);
@@ -262,35 +259,7 @@ function Dashboard() {
     recordVisit("dashboard");
   }, [recordVisit]);
 
-  useEffect(() => {
-    // Calculate streak from localStorage
-    try {
-      const today = new Date().toDateString();
-      const studyDays = JSON.parse(localStorage.getItem("calculus-study-days") || "[]");
-
-      // Add today if not already there
-      if (!studyDays.includes(today)) {
-        studyDays.push(today);
-        localStorage.setItem("calculus-study-days", JSON.stringify(studyDays));
-      }
-
-      // Count consecutive days ending today
-      let count = 0;
-      const now = new Date();
-      for (let i = 0; i < 365; i++) {
-        const d = new Date(now);
-        d.setDate(now.getDate() - i);
-        if (studyDays.includes(d.toDateString())) {
-          count++;
-        } else {
-          break;
-        }
-      }
-      setStreak(count);
-    } catch {
-      setStreak(0);
-    }
-  }, []);
+  // Study streak is now managed by ProgressContext and increments on activity, not just visits.
 
   if (!user) return null;
 
