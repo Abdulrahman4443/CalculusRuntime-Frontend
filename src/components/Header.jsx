@@ -34,7 +34,12 @@ const navLinks = [
   { to: "/cheatsheet",      label: "Cheat Sheet", type: "General" },
   { to: "/practice",        label: "Practice",    type: "General" },
   { to: "/leaderboard",     label: "Leaderboard", type: "General" },
-  { to: "/saved-for-later", label: "Saved",       type: "General" },
+  {
+    to: "/certificate/calculus-analytical-geometry",
+    label: "Certificate",
+    type: "General",
+    match: "/certificate",
+  },
 ];
 
 function Header({ darkMode, onToggleDark }) {
