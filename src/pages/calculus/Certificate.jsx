@@ -19,7 +19,14 @@ const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
  * completed course. Backend: POST /api/certificates/generate
  * (see routers/certificates.py — Dev 3).
  */
-async function requestCertificate(accessToken, courseId, courseTitle, username) {
+async function requestCertificate(
+  accessToken,
+  courseId,
+  courseTitle,
+  username,
+  quizId,
+  minQuizScore
+) {
   const response = await fetch(`${API_URL}/api/certificates/generate`, {
     method: "POST",
     headers: {
@@ -29,7 +36,9 @@ async function requestCertificate(accessToken, courseId, courseTitle, username) 
     body: JSON.stringify({
       course_id: courseId,
       course_title: courseTitle,
-      username,
+      full_name: username,
+      quiz_id: quizId,
+      min_quiz_score: minQuizScore,
     }),
   });
 
@@ -121,16 +130,21 @@ function Certificate() {
           user.accessToken,
           courseId,
           courseTitle,
-          user.username
+          user.username,
+          quizId,
+          getMinQuizScore(courseId)
         );
         if (cancelled) return;
         setCertificate({
           id: data.cert_id,
           courseTitle,
-          studentName: user.username,
+          studentName: data.full_name || user.username,
           completedAt,
           verifyUrl: data.verify_url,
           qrImage: data.qr_png_base64,
+          pdfUrl: data.pdf_url,
+          score: data.score,
+          total: data.total,
         });
         setStatus("success");
       } catch {
@@ -234,7 +248,17 @@ function Certificate() {
           </div>
 
           <div className="cert-actions">
-            <button type="button" className="cert-btn cert-btn--primary" onClick={() => window.print()}>
+            {certificate.pdfUrl && (
+              <a
+                href={`${API_URL}${certificate.pdfUrl}`}
+                className="cert-btn cert-btn--primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download PDF
+              </a>
+            )}
+            <button type="button" className="cert-btn" onClick={() => window.print()}>
               Print / Save as PDF
             </button>
             <Link to="/dashboard" className="cert-btn cert-btn--ghost">
