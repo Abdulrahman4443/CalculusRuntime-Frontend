@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useProgress } from "../context/ProgressContext";
@@ -66,7 +66,8 @@ function CourseQuiz() {
   const eligible = isCourseCertificateEligible(courseId) && !!quizId;
   const canStart = eligible && isHydrated && !!user && sectionsComplete;
 
-  async function startAttempt() {
+  const startAttempt = useCallback(async () => {
+    if (!user?.accessToken || !quizId) return;
     setLoading(true);
     setLoadError(null);
     setSubmitted(false);
@@ -96,12 +97,11 @@ function CourseQuiz() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [quizId, user?.accessToken]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (canStart) startAttempt();
-  }, [canStart, quizId]);
+  }, [canStart, quizId, startAttempt]);
 
   function goToQuestion(nextIndex) {
     const a = attemptRef.current;
