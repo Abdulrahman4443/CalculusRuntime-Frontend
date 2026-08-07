@@ -102,6 +102,11 @@
   margin: 0.4rem 0 0;
 }
 
+.quiz-timer--low {
+  color: #c0392b;
+  font-weight: 600;
+}
+
 .quiz-list {
   display: flex;
   flex-direction: column;
