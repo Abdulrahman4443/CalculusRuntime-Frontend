@@ -75,6 +75,14 @@ const topics = [
     icon: "∮",
     color: "teal",
   },
+  {
+    title: "Certification Quiz",
+    description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
+    path: "/quiz/multivariable-calculus",
+    meta: "30 questions · 80% to pass",
+    icon: "✓",
+    color: "teal"
+  },
 ];
 
 export default function MultiVariableCalculus() {
