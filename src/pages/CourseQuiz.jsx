@@ -12,12 +12,10 @@ import "./CourseQuiz.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
 
-function formatClock(totalSeconds) {
-  const s = Math.max(0, Math.ceil(totalSeconds));
-  const m = Math.floor(s / 60);
-  const rem = s % 60;
-  return `${m}:${rem.toString().padStart(2, "0")}`;
-}
+// Small pause after picking an option so the user sees their choice
+// highlighted before we auto-advance — long enough to register, short
+// enough that it doesn't eat into the next question's 10s.
+const ADVANCE_DELAY_MS = 350;
 
 function CourseQuiz() {
   const { courseId } = useParams();
@@ -33,13 +31,31 @@ function CourseQuiz() {
   const [loadError, setLoadError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(null);
 
-  const [remaining, setRemaining] = useState(null); // seconds left in this attempt
-  const deadlineRef = useRef(null);
+  // Refs so the tick/advance logic always reads fresh values without
+  // re-subscribing the interval on every keystroke of state.
+  const questionDeadlineRef = useRef(null);
+  const advancingRef = useRef(false);
+  const advanceTimeoutRef = useRef(null);
+  const currentIndexRef = useRef(0);
+  const answersRef = useRef({});
+  const attemptRef = useRef(null);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
+  useEffect(() => {
+    attemptRef.current = attempt;
+  }, [attempt]);
 
   const requiredSections = useMemo(() => getRequiredSections(courseId), [courseId]);
   const sectionsRemaining = requiredSections.filter(
@@ -56,6 +72,9 @@ function CourseQuiz() {
     setSubmitted(false);
     setResult(null);
     setAnswers({});
+    setCurrentIndex(0);
+    advancingRef.current = false;
+    clearTimeout(advanceTimeoutRef.current);
     try {
       const res = await fetch(`${API_URL}/api/quiz/${quizId}/start`, {
         method: "POST",
@@ -70,8 +89,8 @@ function CourseQuiz() {
       }
       const data = await res.json();
       setAttempt(data);
-      deadlineRef.current = Date.now() + data.total_seconds * 1000;
-      setRemaining(data.total_seconds);
+      questionDeadlineRef.current = Date.now() + data.seconds_per_question * 1000;
+      setSecondsLeft(data.seconds_per_question);
     } catch (e) {
       setLoadError(e.message || "Could not start the quiz. Try again.");
     } finally {
@@ -84,23 +103,43 @@ function CourseQuiz() {
     if (canStart) startAttempt();
   }, [canStart, quizId]);
 
-  // Overall attempt countdown — auto-submits whatever is answered when time
-  // runs out. Full per-question 10s pacing/auto-advance UI is a follow-up;
-  // this enforces the same total time budget the server enforces via the
-  // attempt token's `exp` claim, so the UI can't silently disagree with it.
+  function goToQuestion(nextIndex) {
+    const a = attemptRef.current;
+    if (!a) return;
+    clearTimeout(advanceTimeoutRef.current);
+    advancingRef.current = false;
+
+    if (nextIndex >= a.questions.length) {
+      handleSubmit();
+      return;
+    }
+    setCurrentIndex(nextIndex);
+    questionDeadlineRef.current = Date.now() + a.seconds_per_question * 1000;
+    setSecondsLeft(a.seconds_per_question);
+  }
+
+  function advanceFromTimeout() {
+    if (advancingRef.current) return;
+    advancingRef.current = true;
+    goToQuestion(currentIndexRef.current + 1);
+  }
+
+  // 10s-per-question countdown. Ticks every 100ms for a smooth bar; when it
+  // hits 0 the question is locked in as answered-or-not and we auto-advance.
   useEffect(() => {
     if (!attempt || submitted) return undefined;
     const id = setInterval(() => {
-      const secsLeft = Math.max(0, (deadlineRef.current - Date.now()) / 1000);
-      setRemaining(secsLeft);
-      if (secsLeft <= 0) {
-        clearInterval(id);
-        handleSubmit();
+      const left = Math.max(0, (questionDeadlineRef.current - Date.now()) / 1000);
+      setSecondsLeft(left);
+      if (left <= 0) {
+        advanceFromTimeout();
       }
-    }, 250);
+    }, 100);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attempt, submitted]);
+  }, [attempt, submitted, currentIndex]);
+
+  useEffect(() => () => clearTimeout(advanceTimeoutRef.current), []);
 
   if (!eligible) {
     return <Navigate to="/" replace />;
@@ -181,20 +220,29 @@ function CourseQuiz() {
 
   const totalQuestions = attempt.questions.length;
   const answeredCount = Object.keys(answers).length;
+  const q = attempt.questions[currentIndex];
+  const selectedForCurrent = answers[currentIndex];
 
-  function selectAnswer(qIndex, optIndex) {
-    if (submitted) return;
-    setAnswers((prev) => ({ ...prev, [qIndex]: optIndex }));
+  function selectAnswer(oi) {
+    if (submitted || advancingRef.current) return;
+    setAnswers((prev) => ({ ...prev, [currentIndex]: oi }));
+    advancingRef.current = true;
+    clearTimeout(advanceTimeoutRef.current);
+    advanceTimeoutRef.current = setTimeout(() => {
+      goToQuestion(currentIndexRef.current + 1);
+    }, ADVANCE_DELAY_MS);
   }
 
   async function handleSubmit() {
     if (submitting || submitted) return;
     setSubmitting(true);
 
+    const finalAttempt = attemptRef.current;
+    const finalAnswers = answersRef.current;
     // answers[] must be positional (one entry per question, in the order
-    // /start returned them) — null for anything left blank.
-    const answersArray = attempt.questions.map((_, i) =>
-      Object.prototype.hasOwnProperty.call(answers, i) ? answers[i] : null
+    // /start returned them) — null for anything left blank/timed-out.
+    const answersArray = finalAttempt.questions.map((_, i) =>
+      Object.prototype.hasOwnProperty.call(finalAnswers, i) ? finalAnswers[i] : null
     );
 
     try {
@@ -205,7 +253,7 @@ function CourseQuiz() {
           Authorization: `Bearer ${user.accessToken}`,
         },
         body: JSON.stringify({
-          attempt_token: attempt.attempt_token,
+          attempt_token: finalAttempt.attempt_token,
           answers: answersArray,
         }),
       });
@@ -255,7 +303,10 @@ function CourseQuiz() {
     );
   }
 
-  const timeLow = remaining !== null && remaining <= 30;
+  const pct = attempt.seconds_per_question
+    ? (secondsLeft / attempt.seconds_per_question) * 100
+    : 0;
+  const timeLow = secondsLeft !== null && secondsLeft <= 3;
 
   return (
     <main className="quiz-page">
@@ -263,14 +314,9 @@ function CourseQuiz() {
         <p className="quiz-eyebrow">Certification Quiz</p>
         <h1>{courseTitle}</h1>
         <p className="quiz-sub">
-          {totalQuestions} questions · {attempt.seconds_per_question}s per question ·{" "}
+          Question {currentIndex + 1} of {totalQuestions} ·{" "}
           {result?.min_pass_percent ?? 80}% required to unlock your certificate
         </p>
-        {remaining !== null && (
-          <p className={`quiz-sub ${timeLow ? "quiz-timer--low" : ""}`}>
-            Time remaining: {formatClock(remaining)}
-          </p>
-        )}
         <div className="quiz-progress-track">
           <div
             className="quiz-progress-fill"
@@ -282,39 +328,47 @@ function CourseQuiz() {
         </p>
       </header>
 
-      <div className="quiz-list">
-        {attempt.questions.map((q, qi) => (
-          <div className="quiz-card" key={qi}>
-            <div className="quiz-q-num">Question {qi + 1}</div>
-            <div className="quiz-q-text">{q.q}</div>
-            <div className="quiz-options">
-              {q.options.map((opt, oi) => (
-                <button
-                  key={oi}
-                  type="button"
-                  className={`quiz-opt ${answers[qi] === oi ? "quiz-opt--selected" : ""}`}
-                  onClick={() => selectAnswer(qi, oi)}
-                >
-                  <span className="quiz-opt-letter">{String.fromCharCode(65 + oi)}</span>
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className="quiz-timer-wrap">
+        <div className="quiz-timer-track">
+          <div
+            className={`quiz-timer-fill ${timeLow ? "quiz-timer-fill--low" : ""}`}
+            style={{ width: `${Math.max(0, pct)}%` }}
+          />
+        </div>
+        <span className={`quiz-timer-label ${timeLow ? "quiz-timer--low" : ""}`}>
+          {Math.ceil(Math.max(0, secondsLeft ?? 0))}s
+        </span>
+      </div>
+
+      <div className="quiz-card quiz-card--single">
+        <div className="quiz-q-num">Question {currentIndex + 1}</div>
+        <div className="quiz-q-text">{q.q}</div>
+        <div className="quiz-options">
+          {q.options.map((opt, oi) => (
+            <button
+              key={oi}
+              type="button"
+              className={`quiz-opt ${selectedForCurrent === oi ? "quiz-opt--selected" : ""}`}
+              onClick={() => selectAnswer(oi)}
+              disabled={submitting}
+            >
+              <span className="quiz-opt-letter">{String.fromCharCode(65 + oi)}</span>
+              {opt}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="quiz-submit-bar">
         <button
-          className="quiz-btn quiz-btn--primary"
-          disabled={answeredCount < totalQuestions || submitting}
-          onClick={handleSubmit}
+          className="quiz-btn"
+          disabled={submitting}
+          onClick={() => {
+            advancingRef.current = true;
+            goToQuestion(currentIndex + 1);
+          }}
         >
-          {submitting
-            ? "Submitting…"
-            : answeredCount < totalQuestions
-            ? `Answer all questions (${answeredCount}/${totalQuestions})`
-            : "Submit quiz"}
+          {currentIndex === totalQuestions - 1 ? "Skip & submit" : "Skip →"}
         </button>
       </div>
     </main>
