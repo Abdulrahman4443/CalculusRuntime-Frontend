@@ -4,9 +4,9 @@ export const COURSES = [
     id: "calculus-analytical-geometry",
     title: "Calculus and Analytical Geometry",
     description:
-      "Limits, differentiation, integration, Taylor series, infinite series, and conic sections — certificate-ready theory and examples.",
+      "Single-variable foundations: limits, differentiation, integration, Taylor series — certificate-ready theory and examples.",
     path: "/courses/calculus-analytical-geometry",
-    meta: "6 guides · Tools + practice",
+    meta: "4 guides · Tools + practice",
     icon: "ƒ",
     color: "gold",
     modules: [
@@ -32,20 +32,6 @@ export const COURSES = [
         icon: "∫",
       },
       {
-        title: "Sequences & Infinite Series",
-        description: "Sequences, geometric and p-series, ratio/root/AST, power series — with real-life examples.",
-        path: "/sequences-series/1",
-        meta: "2 parts · 8 examples · 10 quiz Qs each",
-        icon: "Σ",
-      },
-      {
-        title: "Conic Sections & Analytic Geometry",
-        description: "Circles, parabola, ellipse, hyperbola, eccentricity, orbits and optics applications.",
-        path: "/conic-sections/1",
-        meta: "2 parts · 8 examples · 10 quiz Qs each",
-        icon: "◯",
-      },
-      {
         title: "Continuity Finder",
         description: "Interactive tool for checking continuity conditions at a point or over an interval.",
         path: "/test",
@@ -66,11 +52,18 @@ export const COURSES = [
         meta: "Interactive tool",
         icon: "Σ",
       },
+      {
+        title: "Certification Quiz",
+        description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
+        path: "/quiz/calculus-analytical-geometry",
+        meta: "30 questions · 80% to pass",
+        icon: "✓",
+      },
     ],
   },
   {
     id: "multivariable-calculus",
-    title: "Multivariable Calculus",
+    title: "Multi Variable Calculus",
     description:
       "Partial derivatives, vector calculus, multiple integrals, Lagrange multipliers, divergence & curl, and Stokes.",
     path: "/courses/multivariable-calculus",
@@ -141,6 +134,13 @@ export const COURSES = [
         meta: "2 parts · Theorem applications",
         icon: "∮",
       },
+      {
+        title: "Certification Quiz",
+        description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
+        path: "/quiz/multivariable-calculus",
+        meta: "30 questions · 80% to pass",
+        icon: "✓",
+      },
     ],
   },
   {
@@ -168,13 +168,6 @@ export const COURSES = [
         icon: "M",
       },
       {
-        title: "Matrix Sandbox",
-        description: "Up to 10 matrices: multiply, add, powers, eigenvalues, RREF, and more.",
-        path: "/linear-algebra/matrix-sandbox",
-        meta: "Interactive tool",
-        icon: "▣",
-      },
-      {
         title: "Systems of Linear Equations",
         description: "Row reduction, rank, and consistency of linear systems.",
         path: "/linear-algebra/systems/1",
@@ -195,6 +188,13 @@ export const COURSES = [
         meta: "Interactive · Difficulty tiers",
         icon: "✎",
       },
+      {
+        title: "Certification Quiz",
+        description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
+        path: "/quiz/linear-algebra",
+        meta: "30 questions · 80% to pass",
+        icon: "✓",
+      },
     ],
   },
   {
@@ -213,13 +213,6 @@ export const COURSES = [
         path: "/probability-statistics/probability-basics/1",
         meta: "2 parts · MCQ practice",
         icon: "P",
-      },
-      {
-        title: "Bayes Lab",
-        description: "Interactive screening calculator for P(disease | positive test).",
-        path: "/probability-statistics/bayes-lab",
-        meta: "Interactive tool",
-        icon: "B",
       },
       {
         title: "Random Variables & Distributions",
@@ -255,6 +248,13 @@ export const COURSES = [
         path: "/practice",
         meta: "Interactive · Difficulty tiers",
         icon: "✎",
+      },
+      {
+        title: "Certification Quiz",
+        description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
+        path: "/quiz/probability-statistics",
+        meta: "30 questions · 80% to pass",
+        icon: "✓",
       },
     ],
   },

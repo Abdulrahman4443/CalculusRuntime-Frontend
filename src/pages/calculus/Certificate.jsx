@@ -6,6 +6,8 @@ import {
   getCourseTitle,
   isCourseCertificateEligible,
   getRequiredSections,
+  getQuizId,
+  getMinQuizScore,
 } from "../../data/courseCompletion";
 import { runBackgroundVerification } from "../../services/verificationAPI";
 import "./Certificate.css";
@@ -82,15 +84,25 @@ function Certificate() {
       // Ask Dev 2's verification service whether this course is actually
       // complete before issuing anything — single source of truth instead
       // of a local ad-hoc check.
+      const quizId = getQuizId(courseId);
+      const rawQuizAttempt = quizId ? progress.quizScores?.[quizId] : null;
+      const quizPct =
+        rawQuizAttempt && rawQuizAttempt.total
+          ? Math.round((rawQuizAttempt.score / rawQuizAttempt.total) * 100)
+          : undefined;
+
       const userProgress = {
         userId: user.id,
         completedSections: Object.keys(progress.completedSections || {}).filter(
           (id) => progress.completedSections[id]
         ),
+        quizScores: quizId && quizPct !== undefined ? { [quizId]: quizPct } : {},
       };
       const courseData = {
         id: courseId,
         requiredSections: getRequiredSections(courseId),
+        requiredQuiz: quizId || undefined,
+        minQuizScore: getMinQuizScore(courseId),
       };
 
       const verification = await runBackgroundVerification(userProgress, courseData);
@@ -135,6 +147,7 @@ function Certificate() {
     isHydrated,
     progress.completedSections,
     progress.completedSectionTimestamps,
+    progress.quizScores,
     courseTitle,
   ]);
 
@@ -163,11 +176,18 @@ function Certificate() {
         <div className="cert-state">
           <h2>Not finished yet</h2>
           <p>
-            Complete every section of <strong>{courseTitle}</strong> to unlock your certificate.
+            Complete every section of <strong>{courseTitle}</strong> and score at
+            least {getMinQuizScore(courseId)}% on the certification quiz to unlock
+            your certificate.
           </p>
-          <Link to={`/courses/${courseId}`} className="cert-btn cert-btn--primary">
-            Back to course
-          </Link>
+          <div className="cert-actions">
+            <Link to={`/courses/${courseId}`} className="cert-btn cert-btn--primary">
+              Back to course
+            </Link>
+            <Link to={`/quiz/${courseId}`} className="cert-btn">
+              Take the quiz
+            </Link>
+          </div>
         </div>
       )}
 
