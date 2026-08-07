@@ -42,8 +42,8 @@ import DerivativeTool from "./components/DerivativeTool";
 import VectorFieldVisualizer from "./pages/VectorFieldVisualizer";
 import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
-import SavedForLater from "./pages/SavedForLater";
 import Certificate from "./pages/calculus/Certificate";
+import CourseQuiz from "./pages/CourseQuiz";
 import Chatbot from "./components/Chatbot/Chatbot";
 import BackToTop from "./components/BackToTop";
 
@@ -57,9 +57,6 @@ import {
   EigenPart1,
   EigenPart2,
 } from "./pages/linearAlgebra/LaParts";
-
-import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
-import BayesLab from "./pages/probabilityStatistics/BayesLab";
 
 import {
   ProbBasicsPart1,
@@ -79,10 +76,6 @@ import {
   DiffPart2,
   IntPart1,
   IntPart2,
-  SeriesPart1,
-  SeriesPart2,
-  ConicsPart1,
-  ConicsPart2,
 } from "./pages/calculus/CalcParts";
 
 function App() {
@@ -139,16 +132,6 @@ function App() {
               <Route path="/integration/1" element={<Layout body={<IntPart1 />} />} />
               <Route path="/integration/2" element={<Layout body={<IntPart2 />} />} />
 
-              {/* Sequences & Infinite Series */}
-              <Route path="/sequences-series" element={<Navigate to="/sequences-series/1" replace />} />
-              <Route path="/sequences-series/1" element={<Layout body={<SeriesPart1 />} />} />
-              <Route path="/sequences-series/2" element={<Layout body={<SeriesPart2 />} />} />
-
-              {/* Conic Sections & Analytic Geometry */}
-              <Route path="/conic-sections" element={<Navigate to="/conic-sections/1" replace />} />
-              <Route path="/conic-sections/1" element={<Layout body={<ConicsPart1 />} />} />
-              <Route path="/conic-sections/2" element={<Layout body={<ConicsPart2 />} />} />
-
               {/* Multiple Integrals */}
               <Route path="/multiple-integrals" element={<Navigate to="/multiple-integrals/1" replace />} />
               <Route path="/multiple-integrals/1" element={<Layout body={<IntegralsPart1 />} />} />
@@ -160,6 +143,7 @@ function App() {
               <Route path="/taylor-series/2" element={<Layout body={<TaylorPart2 />} />} />
 
               <Route path="/certificate/:courseId" element={<Layout body={<Certificate />} />} />
+              <Route path="/quiz/:courseId" element={<Layout body={<CourseQuiz />} />} />
 
               {/* Lagrange Multipliers */}
               <Route path="/lagrange-multipliers" element={<Navigate to="/lagrange-multipliers/1" replace />} />
@@ -189,7 +173,6 @@ function App() {
               <Route path="/linear-algebra/eigen" element={<Navigate to="/linear-algebra/eigen/1" replace />} />
               <Route path="/linear-algebra/eigen/1" element={<Layout body={<EigenPart1 />} />} />
               <Route path="/linear-algebra/eigen/2" element={<Layout body={<EigenPart2 />} />} />
-              <Route path="/linear-algebra/matrix-sandbox" element={<Layout body={<MatrixSandbox />} />} />
 
               {/* Probability & Statistics */}
               <Route path="/probability-statistics/probability-basics" element={<Navigate to="/probability-statistics/probability-basics/1" replace />} />
@@ -207,7 +190,6 @@ function App() {
               <Route path="/probability-statistics/regression-correlation" element={<Navigate to="/probability-statistics/regression-correlation/1" replace />} />
               <Route path="/probability-statistics/regression-correlation/1" element={<Layout body={<RegressionPart1 />} />} />
               <Route path="/probability-statistics/regression-correlation/2" element={<Layout body={<RegressionPart2 />} />} />
-              <Route path="/probability-statistics/bayes-lab" element={<Layout body={<BayesLab />} />} />
 
               {/* Tools */}
               <Route path="/test" element={<Layout body={<ContinuityFinder />} />} />
@@ -225,9 +207,6 @@ function App() {
 
               {/* Peer Leaderboard */}
               <Route path="/leaderboard" element={<Layout body={<Leaderboard />} />} />
-
-              {/* Objective 4 — Save for Later */}
-              <Route path="/saved-for-later" element={<Layout body={<SavedForLater />} />} />
 
               {/* Catch-all */}
               <Route path="*" element={<Layout body={<NotFound />} />} />
