@@ -32,7 +32,6 @@ function StokesPart2() {
         sectionId="stokes-2"
         nextPath="/practice"
         nextLabel="Practice Section"
-        courseId="multivariable-calculus"
       />
     </div>
   );
