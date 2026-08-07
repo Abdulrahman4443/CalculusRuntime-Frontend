@@ -72,6 +72,13 @@ export const COURSES = [
     color: "teal",
     modules: [
       {
+        title: "Partial Derivatives",
+        description: "Limits, gradients, tangent planes, differentials, and optimization.",
+        path: "/partial-derivatives/1",
+        meta: "2 parts · MCQ practice",
+        icon: "∂",
+      },
+      {
         title: "Extreme Value Finder",
         description: "Find maxima and minima using the second derivative test.",
         path: "/extreme",
