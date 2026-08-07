@@ -107,6 +107,48 @@
   font-weight: 600;
 }
 
+.quiz-timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.quiz-timer-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line, #e0d6c8);
+  overflow: hidden;
+}
+
+.quiz-timer-fill {
+  height: 100%;
+  background: var(--accent, #c8963e);
+  transition: width 0.1s linear;
+}
+
+.quiz-timer-fill--low {
+  background: #c0392b;
+}
+
+.quiz-timer-label {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--muted, #7a7267);
+  min-width: 2.2ch;
+  text-align: right;
+}
+
+.quiz-card--single {
+  max-width: 620px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .quiz-list {
   display: flex;
   flex-direction: column;
