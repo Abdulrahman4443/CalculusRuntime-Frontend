@@ -221,6 +221,33 @@ const CURRICULUM = [
   },
 ];
 
+// Which of the 21 topics above belongs to which of the 4 top-level courses,
+// and the order they should be grouped/displayed in. This mirrors the
+// course structure already used elsewhere (courses.js on the public course
+// pages) — the dashboard just wasn't grouping by it.
+const COURSE_GROUPS = [
+  {
+    id: "calculus-analytical-geometry",
+    title: "Calculus and Analytical Geometry",
+    topicIds: ["limits", "diff", "int", "taylor", "series", "conics"],
+  },
+  {
+    id: "multivariable-calculus",
+    title: "Multivariable Calculus",
+    topicIds: ["partial", "vector", "integrals", "lagrange", "divergence", "stokes"],
+  },
+  {
+    id: "linear-algebra",
+    title: "Linear Algebra",
+    topicIds: ["vectors", "matrices", "systems", "eigen"],
+  },
+  {
+    id: "probability-statistics",
+    title: "Probability & Statistics",
+    topicIds: ["prob", "rv", "desc", "hyp", "reg"],
+  },
+];
+
 const TOOLS = [
   { label: "Continuity Finder", path: "/test", icon: "≈" },
   { label: "Extreme Value Finder", path: "/extreme", icon: "⬆" },
@@ -260,7 +287,7 @@ function StudyStreak({ streak }) {
 }
 
 // ── Progress Chart Component ──
-function ProgressChart({ curriculum, progress }) {
+function ProgressChart({ curriculum, courseGroups, progress }) {
   const totalParts = curriculum.reduce((sum, c) => sum + c.parts.length, 0);
   const completedParts = curriculum.reduce((sum, c) =>
     sum + c.parts.filter((p) => progress.completedSections[p.id]).length, 0);
@@ -270,26 +297,37 @@ function ProgressChart({ curriculum, progress }) {
   }, 0);
   const notStarted = totalParts - completedParts;
 
+  const byId = Object.fromEntries(curriculum.map((c) => [c.id, c]));
+
   return (
     <div className="db-chart-wrapper">
       <h3 className="db-chart-title">Progress Overview</h3>
-      <div className="db-chart-bars">
-        {curriculum.map((course) => {
-          const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
-          const pct = (done / course.parts.length) * 100;
-          return (
-            <div key={course.id} className="db-chart-row">
-              <span className="db-chart-label">{course.title}</span>
-              <div className="db-chart-bar-bg">
-                <div
-                  className={`db-chart-bar-fill db-chart-bar--${pct === 100 ? "teal" : course.color}`}
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
-              <span className="db-chart-pct">{Math.round(pct)}%</span>
+      <div className="db-chart-groups">
+        {courseGroups.map((group) => (
+          <div key={group.id} className="db-chart-group">
+            <h4 className="db-chart-group-title">{group.title}</h4>
+            <div className="db-chart-bars">
+              {group.topicIds.map((topicId) => {
+                const course = byId[topicId];
+                if (!course) return null;
+                const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
+                const pct = (done / course.parts.length) * 100;
+                return (
+                  <div key={course.id} className="db-chart-row">
+                    <span className="db-chart-label">{course.title}</span>
+                    <div className="db-chart-bar-bg">
+                      <div
+                        className={`db-chart-bar-fill db-chart-bar--${pct === 100 ? "teal" : course.color}`}
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <span className="db-chart-pct">{Math.round(pct)}%</span>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
       <div className="db-chart-legend">
         <span className="db-legend-item">
@@ -437,7 +475,7 @@ function Dashboard() {
       {/* Streak + Chart row */}
       <div className="db-streak-chart-row">
         <StudyStreak streak={streak} />
-        <ProgressChart curriculum={CURRICULUM} progress={progress} />
+        <ProgressChart curriculum={CURRICULUM} courseGroups={COURSE_GROUPS} progress={progress} />
       </div>
 
       {/* Overall progress */}
@@ -488,34 +526,41 @@ function Dashboard() {
       {/* Curriculum */}
       <section className="db-section">
         <h2 className="db-section-title">Curriculum</h2>
-        <div className="db-curriculum">
-          {CURRICULUM.map((course) => {
-            const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
-            return (
-              <div key={course.id} className={`db-course db-course--${course.color}`}>
-                <div className="db-course-head">
-                  <span className="db-course-icon">{course.icon}</span>
-                  <div>
-                    <div className="db-course-title">{course.title}</div>
-                    <div className="db-course-meta">{done} / {course.parts.length} parts complete</div>
+        {COURSE_GROUPS.map((group) => (
+          <div key={group.id} className="db-curriculum-group">
+            <h3 className="db-curriculum-group-title">{group.title}</h3>
+            <div className="db-curriculum">
+              {group.topicIds.map((topicId) => {
+                const course = CURRICULUM.find((c) => c.id === topicId);
+                if (!course) return null;
+                const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
+                return (
+                  <div key={course.id} className={`db-course db-course--${course.color}`}>
+                    <div className="db-course-head">
+                      <span className="db-course-icon">{course.icon}</span>
+                      <div>
+                        <div className="db-course-title">{course.title}</div>
+                        <div className="db-course-meta">{done} / {course.parts.length} parts complete</div>
+                      </div>
+                    </div>
+                    <ProgressBar value={done} max={course.parts.length} />
+                    <div className="db-parts">
+                      {course.parts.map((part) => {
+                        const complete = !!progress.completedSections[part.id];
+                        return (
+                          <Link key={part.id} to={part.path} className={`db-part${complete ? " db-part--done" : ""}`}>
+                            <span className="db-part-check">{complete ? "✓" : "○"}</span>
+                            <span>{part.label}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-                <ProgressBar value={done} max={course.parts.length} />
-                <div className="db-parts">
-                  {course.parts.map((part) => {
-                    const complete = !!progress.completedSections[part.id];
-                    return (
-                      <Link key={part.id} to={part.path} className={`db-part${complete ? " db-part--done" : ""}`}>
-                        <span className="db-part-check">{complete ? "✓" : "○"}</span>
-                        <span>{part.label}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* Tools */}
