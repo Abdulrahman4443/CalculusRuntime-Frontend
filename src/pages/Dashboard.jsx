@@ -6,92 +6,24 @@ import { formatCompletionDate } from "../utils/progressUtils";
 import "./Dashboard.css";
 
 const CURRICULUM = [
-  {
-    id: "partial",
-    title: "Partial Derivatives",
-    icon: "∂",
-    color: "teal",
-    parts: [
-      { id: "partial-1", label: "Part 1 — Functions, Limits & Continuity", path: "/partial-derivatives/1" },
-      { id: "partial-2", label: "Part 2 — Derivatives, Chain Rule & Extrema", path: "/partial-derivatives/2" },
-    ],
-  },
-  {
-    id: "vector",
-    title: "Vector Calculus",
-    icon: "∇",
-    color: "blue",
-    parts: [
-      { id: "vector-1", label: "Part 1 — Vector Functions & Line Integrals", path: "/vector-calculus/1" },
-      { id: "vector-2", label: "Part 2 — Green's Theorem & Surfaces", path: "/vector-calculus/2" },
-    ],
-  },
+  // ── Calculus and Analytical Geometry ──────────────────────────────────
   {
     id: "limits",
     title: "Limits & Continuity",
     icon: "lim",
     color: "purple",
+    subject: "Calculus and Analytical Geometry",
     parts: [
       { id: "limits-1", label: "Part 1 — Limits of Multivariable Functions", path: "/limits-continuity/1" },
       { id: "limits-2", label: "Part 2 — Continuity", path: "/limits-continuity/2" },
     ],
   },
   {
-    id: "integrals",
-    title: "Multiple Integrals",
-    icon: "∬",
-    color: "teal",
-    parts: [
-      { id: "integrals-1", label: "Part 1 — Double Integrals & Fubini's Theorem", path: "/multiple-integrals/1" },
-      { id: "integrals-2", label: "Part 2 — Triple Integrals & Coordinates", path: "/multiple-integrals/2" },
-    ],
-  },
-  {
-    id: "taylor",
-    title: "Taylor Series",
-    icon: "Σ",
-    color: "gold",
-    parts: [
-      { id: "taylor-1", label: "Part 1 — Foundations & Maclaurin", path: "/taylor-series/1" },
-      { id: "taylor-2", label: "Part 2 — Convergence & Error Bounds", path: "/taylor-series/2" },
-    ],
-  },
-  {
-    id: "lagrange",
-    title: "Lagrange Multipliers",
-    icon: "λ",
-    color: "purple",
-    parts: [
-      { id: "lagrange-1", label: "Part 1 — Geometric Intuition & Alignment", path: "/lagrange-multipliers/1" },
-      { id: "lagrange-2", label: "Part 2 — Applications & Multi-Constraints", path: "/lagrange-multipliers/2" },
-    ],
-  },
-  {
-    id: "divergence",
-    title: "Divergence & Curl",
-    icon: "∇·",
-    color: "blue",
-    parts: [
-      { id: "divergence-1", label: "Part 1 — Operators & Vector Fields", path: "/divergence-curl/1" },
-      { id: "divergence-2", label: "Part 2 — Identities & Theorems", path: "/divergence-curl/2" },
-    ],
-  },
-  {
-    id: "stokes",
-    title: "Stokes' Theorem",
-    icon: "∮",
-    color: "teal",
-    parts: [
-      { id: "stokes-1", label: "Part 1 — Circulation & The Statement", path: "/stokes-theorem/1" },
-      { id: "stokes-2", label: "Part 2 — Applications & Workflows", path: "/stokes-theorem/2" },
-    ],
-  },
-  // --- NEW CALCULUS TOPICS ---
-  {
     id: "diff",
     title: "Differentiation",
     icon: "d/dx",
     color: "gold",
+    subject: "Calculus and Analytical Geometry",
     parts: [
       { id: "calc-diff-1", label: "Part 1 — Rules & Rates", path: "/differentiation/1" },
       { id: "calc-diff-2", label: "Part 2 — MVT & L'Hôpital", path: "/differentiation/2" },
@@ -102,37 +34,99 @@ const CURRICULUM = [
     title: "Integration",
     icon: "∫",
     color: "gold",
+    subject: "Calculus and Analytical Geometry",
     parts: [
       { id: "calc-int-1", label: "Part 1 — FTC & Area", path: "/integration/1" },
       { id: "calc-int-2", label: "Part 2 — Techniques & Improper", path: "/integration/2" },
     ],
   },
   {
-    id: "series",
-    title: "Sequences & Infinite Series",
+    id: "taylor",
+    title: "Taylor Series",
     icon: "Σ",
     color: "gold",
+    subject: "Calculus and Analytical Geometry",
     parts: [
-      { id: "calc-series-1", label: "Part 1 — Tests for Convergence", path: "/sequences-series/1" },
-      { id: "calc-series-2", label: "Part 2 — Power Series", path: "/sequences-series/2" },
+      { id: "taylor-1", label: "Part 1 — Foundations & Maclaurin", path: "/taylor-series/1" },
+      { id: "taylor-2", label: "Part 2 — Convergence & Error Bounds", path: "/taylor-series/2" },
+    ],
+  },
+
+  // ── Multivariable Calculus ─────────────────────────────────────────────
+  {
+    id: "partial",
+    title: "Partial Derivatives",
+    icon: "∂",
+    color: "teal",
+    subject: "Multivariable Calculus",
+    parts: [
+      { id: "partial-1", label: "Part 1 — Functions, Limits & Continuity", path: "/partial-derivatives/1" },
+      { id: "partial-2", label: "Part 2 — Derivatives, Chain Rule & Extrema", path: "/partial-derivatives/2" },
     ],
   },
   {
-    id: "conics",
-    title: "Conic Sections",
-    icon: "◯",
-    color: "gold",
+    id: "vector",
+    title: "Vector Calculus",
+    icon: "∇",
+    color: "blue",
+    subject: "Multivariable Calculus",
     parts: [
-      { id: "calc-conics-1", label: "Part 1 — Distance & Standard Conics", path: "/conic-sections/1" },
-      { id: "calc-conics-2", label: "Part 2 — General Conics & Applications", path: "/conic-sections/2" },
+      { id: "vector-1", label: "Part 1 — Vector Functions & Line Integrals", path: "/vector-calculus/1" },
+      { id: "vector-2", label: "Part 2 — Green's Theorem & Surfaces", path: "/vector-calculus/2" },
     ],
   },
-  // --- LINEAR ALGEBRA TOPICS ---
+  {
+    id: "integrals",
+    title: "Multiple Integrals",
+    icon: "∬",
+    color: "teal",
+    subject: "Multivariable Calculus",
+    parts: [
+      { id: "integrals-1", label: "Part 1 — Double Integrals & Fubini's Theorem", path: "/multiple-integrals/1" },
+      { id: "integrals-2", label: "Part 2 — Triple Integrals & Coordinates", path: "/multiple-integrals/2" },
+    ],
+  },
+  {
+    id: "lagrange",
+    title: "Lagrange Multipliers",
+    icon: "λ",
+    color: "purple",
+    subject: "Multivariable Calculus",
+    parts: [
+      { id: "lagrange-1", label: "Part 1 — Geometric Intuition & Alignment", path: "/lagrange-multipliers/1" },
+      { id: "lagrange-2", label: "Part 2 — Applications & Multi-Constraints", path: "/lagrange-multipliers/2" },
+    ],
+  },
+  {
+    id: "divergence",
+    title: "Divergence & Curl",
+    icon: "∇·",
+    color: "blue",
+    subject: "Multivariable Calculus",
+    parts: [
+      { id: "divergence-1", label: "Part 1 — Operators & Vector Fields", path: "/divergence-curl/1" },
+      { id: "divergence-2", label: "Part 2 — Identities & Theorems", path: "/divergence-curl/2" },
+    ],
+  },
+  {
+    id: "stokes",
+    title: "Stokes' Theorem",
+    icon: "∮",
+    color: "teal",
+    subject: "Multivariable Calculus",
+    parts: [
+      { id: "stokes-1", label: "Part 1 — Circulation & The Statement", path: "/stokes-theorem/1" },
+      { id: "stokes-2", label: "Part 2 — Applications & Workflows", path: "/stokes-theorem/2" },
+    ],
+  },
+
+  // ── Linear Algebra ──────────────────────────────────────────────────────
   {
     id: "vectors",
     title: "Vectors & Vector Spaces",
     icon: "v",
     color: "blue",
+    subject: "Linear Algebra",
     parts: [
       { id: "la-vectors-1", label: "Part 1 — Fundamentals", path: "/linear-algebra/vectors/1" },
       { id: "la-vectors-2", label: "Part 2 — Basis & Span", path: "/linear-algebra/vectors/2" },
@@ -143,6 +137,7 @@ const CURRICULUM = [
     title: "Matrices & Determinants",
     icon: "M",
     color: "blue",
+    subject: "Linear Algebra",
     parts: [
       { id: "la-matrices-1", label: "Part 1 — Operations", path: "/linear-algebra/matrices/1" },
       { id: "la-matrices-2", label: "Part 2 — Inverses & Determinants", path: "/linear-algebra/matrices/2" },
@@ -153,6 +148,7 @@ const CURRICULUM = [
     title: "Systems of Linear Equations",
     icon: "Σ",
     color: "blue",
+    subject: "Linear Algebra",
     parts: [
       { id: "la-systems-1", label: "Part 1 — Row Reduction", path: "/linear-algebra/systems/1" },
       { id: "la-systems-2", label: "Part 2 — Rank & Consistency", path: "/linear-algebra/systems/2" },
@@ -163,17 +159,20 @@ const CURRICULUM = [
     title: "Eigenvalues & Eigenvectors",
     icon: "λ",
     color: "blue",
+    subject: "Linear Algebra",
     parts: [
       { id: "la-eigen-1", label: "Part 1 — Characteristic Polynomials", path: "/linear-algebra/eigen/1" },
       { id: "la-eigen-2", label: "Part 2 — Eigenspaces & Diagonalization", path: "/linear-algebra/eigen/2" },
     ],
   },
-  // --- PROBABILITY & STATISTICS TOPICS ---
+
+  // ── Probability & Statistics ───────────────────────────────────────────
   {
     id: "prob",
     title: "Probability Basics",
     icon: "P",
     color: "purple",
+    subject: "Probability & Statistics",
     parts: [
       { id: "ps-basics-1", label: "Part 1 — Axioms & Events", path: "/probability-statistics/probability-basics/1" },
       { id: "ps-basics-2", label: "Part 2 — Conditionals & Bayes", path: "/probability-statistics/probability-basics/2" },
@@ -184,6 +183,7 @@ const CURRICULUM = [
     title: "Random Variables & Distributions",
     icon: "X",
     color: "purple",
+    subject: "Probability & Statistics",
     parts: [
       { id: "ps-rv-1", label: "Part 1 — Discrete RVs", path: "/probability-statistics/random-variables/1" },
       { id: "ps-rv-2", label: "Part 2 — Continuous RVs", path: "/probability-statistics/random-variables/2" },
@@ -194,6 +194,7 @@ const CURRICULUM = [
     title: "Descriptive Statistics",
     icon: "μ",
     color: "purple",
+    subject: "Probability & Statistics",
     parts: [
       { id: "ps-desc-1", label: "Part 1 — Central Tendency & Spread", path: "/probability-statistics/descriptive-statistics/1" },
       { id: "ps-desc-2", label: "Part 2 — Z-Scores & Data Displays", path: "/probability-statistics/descriptive-statistics/2" },
@@ -204,6 +205,7 @@ const CURRICULUM = [
     title: "Hypothesis Testing",
     icon: "H",
     color: "purple",
+    subject: "Probability & Statistics",
     parts: [
       { id: "ps-hyp-1", label: "Part 1 — Null Hypotheses & P-Values", path: "/probability-statistics/hypothesis-testing/1" },
       { id: "ps-hyp-2", label: "Part 2 — Errors & Power", path: "/probability-statistics/hypothesis-testing/2" },
@@ -214,6 +216,7 @@ const CURRICULUM = [
     title: "Regression & Correlation",
     icon: "ρ",
     color: "purple",
+    subject: "Probability & Statistics",
     parts: [
       { id: "ps-reg-1", label: "Part 1 — Linear Association", path: "/probability-statistics/regression-correlation/1" },
       { id: "ps-reg-2", label: "Part 2 — Least Squares & Residuals", path: "/probability-statistics/regression-correlation/2" },
@@ -221,32 +224,23 @@ const CURRICULUM = [
   },
 ];
 
-// Which of the 21 topics above belongs to which of the 4 top-level courses,
-// and the order they should be grouped/displayed in. This mirrors the
-// course structure already used elsewhere (courses.js on the public course
-// pages) — the dashboard just wasn't grouping by it.
-const COURSE_GROUPS = [
-  {
-    id: "calculus-analytical-geometry",
-    title: "Calculus and Analytical Geometry",
-    topicIds: ["limits", "diff", "int", "taylor", "series", "conics"],
-  },
-  {
-    id: "multivariable-calculus",
-    title: "Multivariable Calculus",
-    topicIds: ["partial", "vector", "integrals", "lagrange", "divergence", "stokes"],
-  },
-  {
-    id: "linear-algebra",
-    title: "Linear Algebra",
-    topicIds: ["vectors", "matrices", "systems", "eigen"],
-  },
-  {
-    id: "probability-statistics",
-    title: "Probability & Statistics",
-    topicIds: ["prob", "rv", "desc", "hyp", "reg"],
-  },
-];
+/** Groups the flat CURRICULUM list into {subject, topics} buckets, preserving
+ * the order subjects/topics first appear in — so the Dashboard can render a
+ * course heading followed by only that course's modules, instead of all
+ * topics interleaved in one flat list. */
+function groupCurriculumBySubject(curriculum) {
+  const order = [];
+  const bySubject = new Map();
+  curriculum.forEach((topic) => {
+    const subject = topic.subject || "Other";
+    if (!bySubject.has(subject)) {
+      bySubject.set(subject, []);
+      order.push(subject);
+    }
+    bySubject.get(subject).push(topic);
+  });
+  return order.map((subject) => ({ subject, topics: bySubject.get(subject) }));
+}
 
 const TOOLS = [
   { label: "Continuity Finder", path: "/test", icon: "≈" },
@@ -287,7 +281,7 @@ function StudyStreak({ streak }) {
 }
 
 // ── Progress Chart Component ──
-function ProgressChart({ curriculum, courseGroups, progress }) {
+function ProgressChart({ curriculum, progress }) {
   const totalParts = curriculum.reduce((sum, c) => sum + c.parts.length, 0);
   const completedParts = curriculum.reduce((sum, c) =>
     sum + c.parts.filter((p) => progress.completedSections[p.id]).length, 0);
@@ -297,35 +291,31 @@ function ProgressChart({ curriculum, courseGroups, progress }) {
   }, 0);
   const notStarted = totalParts - completedParts;
 
-  const byId = Object.fromEntries(curriculum.map((c) => [c.id, c]));
+  const groups = groupCurriculumBySubject(curriculum);
 
   return (
     <div className="db-chart-wrapper">
       <h3 className="db-chart-title">Progress Overview</h3>
-      <div className="db-chart-groups">
-        {courseGroups.map((group) => (
-          <div key={group.id} className="db-chart-group">
-            <h4 className="db-chart-group-title">{group.title}</h4>
-            <div className="db-chart-bars">
-              {group.topicIds.map((topicId) => {
-                const course = byId[topicId];
-                if (!course) return null;
-                const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
-                const pct = (done / course.parts.length) * 100;
-                return (
-                  <div key={course.id} className="db-chart-row">
-                    <span className="db-chart-label">{course.title}</span>
-                    <div className="db-chart-bar-bg">
-                      <div
-                        className={`db-chart-bar-fill db-chart-bar--${pct === 100 ? "teal" : course.color}`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <span className="db-chart-pct">{Math.round(pct)}%</span>
+      <div className="db-chart-bars">
+        {groups.map(({ subject, topics }) => (
+          <div key={subject} className="db-chart-subject-group">
+            <div className="db-chart-subject-heading">{subject}</div>
+            {topics.map((course) => {
+              const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
+              const pct = (done / course.parts.length) * 100;
+              return (
+                <div key={course.id} className="db-chart-row">
+                  <span className="db-chart-label">{course.title}</span>
+                  <div className="db-chart-bar-bg">
+                    <div
+                      className={`db-chart-bar-fill db-chart-bar--${pct === 100 ? "teal" : course.color}`}
+                      style={{ width: `${pct}%` }}
+                    />
                   </div>
-                );
-              })}
-            </div>
+                  <span className="db-chart-pct">{Math.round(pct)}%</span>
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
@@ -475,7 +465,7 @@ function Dashboard() {
       {/* Streak + Chart row */}
       <div className="db-streak-chart-row">
         <StudyStreak streak={streak} />
-        <ProgressChart curriculum={CURRICULUM} courseGroups={COURSE_GROUPS} progress={progress} />
+        <ProgressChart curriculum={CURRICULUM} progress={progress} />
       </div>
 
       {/* Overall progress */}
@@ -526,13 +516,11 @@ function Dashboard() {
       {/* Curriculum */}
       <section className="db-section">
         <h2 className="db-section-title">Curriculum</h2>
-        {COURSE_GROUPS.map((group) => (
-          <div key={group.id} className="db-curriculum-group">
-            <h3 className="db-curriculum-group-title">{group.title}</h3>
+        {groupCurriculumBySubject(CURRICULUM).map(({ subject, topics }) => (
+          <div key={subject} className="db-curriculum-subject">
+            <h3 className="db-curriculum-subject-title">{subject}</h3>
             <div className="db-curriculum">
-              {group.topicIds.map((topicId) => {
-                const course = CURRICULUM.find((c) => c.id === topicId);
-                if (!course) return null;
+              {topics.map((course) => {
                 const done = course.parts.filter((p) => progress.completedSections[p.id]).length;
                 return (
                   <div key={course.id} className={`db-course db-course--${course.color}`}>
