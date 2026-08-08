@@ -75,7 +75,7 @@ export default function ConicsGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-con-p2"
             badge="Quiz"
-            title="General conics & applications (10 questions)"
+            title="General conics & applications (5 questions)"
             scoreId="score-con-p2"
             section="con-p2"
             questions={CONICS_P2_QUIZ}
@@ -155,7 +155,7 @@ export default function ConicsGuide({ part = 1 }) {
         <LaMcqSection
           id="quiz-con-p1"
           badge="Quiz"
-          title="Distance, circles & standard conics (10 questions)"
+          title="Distance, circles & standard conics (5 questions)"
           scoreId="score-con-p1"
           section="con-p1"
           questions={CONICS_P1_QUIZ}

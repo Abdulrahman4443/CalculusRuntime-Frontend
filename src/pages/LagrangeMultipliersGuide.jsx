@@ -97,11 +97,11 @@ function QuizMcq151() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-geometry">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-geometry">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
-      <div className="mcq-card" data-section="lagrange-geometry" data-q="1" data-answer="B">
+      <div className="mcq-card" data-section="lagrange-geometry" data-q="1" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"1"}</div>
           <div className="mcq-q-text">{"Geometrically, what condition must be met at an optimal point when maximizing an objective function $f(x,y)$ subject to a smooth constraint curve $g(x,y) = c$?"}</div>
@@ -113,11 +113,11 @@ function QuizMcq151() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"Tangency ensures that moving a tiny bit along the constraint curve doesn't push you onto a higher or lower contour of $f(x,y)$, meaning you have hit a local constrained extreme value."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-geometry" data-q="2" data-answer="A">
+      <div className="mcq-card" data-section="lagrange-geometry" data-q="2" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"2"}</div>
           <div className="mcq-q-text">{"If a path $g(x,y) = c$ crosses a level curve contour of $f(x,y) = k$ with a non-zero angle, what does this tell you about that coordinate point?"}</div>
@@ -129,7 +129,7 @@ function QuizMcq151() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"If the path cuts across contour lines, your value is actively climbing or falling, which means you haven't hit a peak or valley yet along that path."}</div>
         </div>
       </div>
@@ -147,6 +147,54 @@ function QuizMcq151() {
         <div className="mcq-answer">
           <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"Since normal vectors are perpendicular to their respective tangent lines, and the curves share a tangent line, their normal vectors must point along the exact same parallel coordinate axis line."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-geometry" data-q="4" data-answer="C" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-geometry" data-q="5" data-answer="D" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -195,7 +243,7 @@ function QuizMcq152() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-math">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-math">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
@@ -231,7 +279,7 @@ function QuizMcq152() {
           <div className="mcq-explanation">{"You need 3 equations to balance the partial derivatives for $x, y,$ and $z$, plus a 4th equation for the constraint rule itself to solve for your variables ($x, y, z, \\lambda$)."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-math" data-q="6" data-answer="A">
+      <div className="mcq-card" data-section="lagrange-math" data-q="6" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"6"}</div>
           <div className="mcq-q-text">{"If $\\nabla g(x_0, y_0) = \\mathbf{0}$ at a specific coordinate point, what happens to the standard Lagrange evaluation framework?"}</div>
@@ -243,8 +291,56 @@ function QuizMcq152() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"The Lagrange multiplier method assumes the constraint boundary is smooth and has a non-zero normal vector. If $\\nabla g = \\mathbf{0}$, that boundary point is singular and has to be checked manually."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-math" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-math" data-q="5" data-answer="C" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -275,7 +371,7 @@ function QuizMcq153() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-fields">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-fields">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
@@ -311,7 +407,7 @@ function QuizMcq153() {
           <div className="mcq-explanation">{"The constraint function is set to a constant value ($g=c$) to build your boundary path. The objective function's value varies as you move along that path so you can find its peaks and valleys."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-fields" data-q="9" data-answer="B">
+      <div className="mcq-card" data-section="lagrange-fields" data-q="9" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"9"}</div>
           <div className="mcq-q-text">{"If you switch the roles of your objective function and constraint function during setup, what happens to your final calculation answers?"}</div>
@@ -323,8 +419,56 @@ function QuizMcq153() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"Switching the target function and the boundary rule fundamentally alters the shape of your optimization landscape, leading to a completely different set of coordinate answers."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-fields" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-fields" data-q="5" data-answer="B" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: B</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -419,11 +563,11 @@ function QuizMcq154() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-calc">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-calc">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
-      <div className="mcq-card" data-section="lagrange-calc" data-q="10" data-answer="A">
+      <div className="mcq-card" data-section="lagrange-calc" data-q="10" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"10"}</div>
           <div className="mcq-q-text">{"Evaluating our example problem above, what is the absolute maximum value achieved by $f(x,y) = xy$ along the boundary $x^2 + y^2 = 8$?"}</div>
@@ -435,11 +579,11 @@ function QuizMcq154() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"Plugging the critical coordinates into our objective function reveals that $(2,2)$ and $(-2,-2)$ both yield a maximum value of $4$. The other two points yield a minimum value of $-4$."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-calc" data-q="11" data-answer="C">
+      <div className="mcq-card" data-section="lagrange-calc" data-q="11" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"11"}</div>
           <div className="mcq-q-text">{"Why is it usually a bad idea to divide both sides of a Lagrange equation by a variable like $x$ or $y$ during the elimination step?"}</div>
@@ -451,7 +595,7 @@ function QuizMcq154() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"Dividing by a variable assumes it can never be zero. If a critical point actually occurs where that variable is zero, you will completely miss it. Always factor expressions instead of dividing them out."}</div>
         </div>
       </div>
@@ -469,6 +613,54 @@ function QuizMcq154() {
         <div className="mcq-answer">
           <span className="mcq-correct-badge">{"Correct Option: B"}</span>
           <div className="mcq-explanation">{"If $\\nabla f = \\mathbf{0}$, the objective function has hit a natural unconstrained peak or valley that happens to sit directly on your constraint boundary path, forcing $\\lambda = 0$."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-calc" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-calc" data-q="5" data-answer="B" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          A distractor that misstates the definition.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: B</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -505,11 +697,11 @@ function QuizMcq155() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-multi">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-multi">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
-      <div className="mcq-card" data-section="lagrange-multi" data-q="13" data-answer="C">
+      <div className="mcq-card" data-section="lagrange-multi" data-q="13" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"13"}</div>
           <div className="mcq-q-text">{"How many total variables must you keep track of when optimizing a 3D function $f(x,y,z)$ bound by two distinct constraint equations?"}</div>
@@ -521,11 +713,11 @@ function QuizMcq155() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"You need three spatial coordinates ($x, y, z$) plus two independent multiplier values ($\\lambda$ and $\\mu$) to track and balance both boundary equations simultaneously."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-multi" data-q="14" data-answer="A">
+      <div className="mcq-card" data-section="lagrange-multi" data-q="14" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"14"}</div>
           <div className="mcq-q-text">{"Geometrically, what shape is formed by the intersection of two smooth, non-parallel constraint surfaces inside a 3D coordinate space?"}</div>
@@ -537,11 +729,11 @@ function QuizMcq155() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"When two 2D surfaces intersect inside a 3D space, they cross along a 1D curve line, creating a single path that your optimization search must follow."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-multi" data-q="15" data-answer="B">
+      <div className="mcq-card" data-section="lagrange-multi" data-q="15" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"15"}</div>
           <div className="mcq-q-text">{"What condition must be true for the constraint gradients $\\nabla g$ and $\\nabla h$ to safely run a multi-constraint Lagrange optimization?"}</div>
@@ -553,8 +745,56 @@ function QuizMcq155() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"If the gradients were parallel, the two constraint surfaces would be tangent to each other, which collapses your intersection space and breaks the linear algebra foundation of the method."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-multi" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-multi" data-q="5" data-answer="A" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -585,11 +825,11 @@ function QuizMcq156() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-verify">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-verify">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
-      <div className="mcq-card" data-section="lagrange-verify" data-q="16" data-answer="B">
+      <div className="mcq-card" data-section="lagrange-verify" data-q="16" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"16"}</div>
           <div className="mcq-q-text">{"Why does the standard unconstrained Second Derivative Test fail when evaluating critical points found via Lagrange Multipliers?"}</div>
@@ -601,11 +841,11 @@ function QuizMcq156() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"The unconstrained landscape might slope downward away from your point, but if your boundary line prevents you from moving in those directions, that point remains a valid maximum along your restricted path."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-verify" data-q="17" data-answer="A">
+      <div className="mcq-card" data-section="lagrange-verify" data-q="17" data-answer="B">
         <div className="mcq-q-row">
           <div className="mcq-num">{"17"}</div>
           <div className="mcq-q-text">{"What topological property must your constraint boundary satisfy to guarantee that your critical point list contains both an absolute maximum and minimum value?"}</div>
@@ -617,11 +857,11 @@ function QuizMcq156() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
           <div className="mcq-explanation">{"The Extreme Value Theorem states that any continuous function evaluated over a compact (closed and bounded) domain must achieve absolute maximum and minimum values."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-verify" data-q="18" data-answer="C">
+      <div className="mcq-card" data-section="lagrange-verify" data-q="18" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"18"}</div>
           <div className="mcq-q-text">{"Advanced check: What matrix assembly is used to mathematically classify Lagrange critical points when your domain stretches out infinitely?"}</div>
@@ -633,8 +873,56 @@ function QuizMcq156() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"The Bordered Hessian matrix embeds your constraint equation's derivatives directly into a second-derivative matrix layout, letting you run an exact determinant test to classify high-dimensional constrained critical points."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-verify" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-verify" data-q="5" data-answer="D" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -669,7 +957,7 @@ function QuizMcq157() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-industry">{"0 / 3"}</span>
+        <span className="score-val" id="scorelagrange-industry">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
 
@@ -689,7 +977,7 @@ function QuizMcq157() {
           <div className="mcq-explanation">{"The multiplier acts as a marginal value indicator, revealing how sensitive your optimized system is to changes in your resource constraints."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="lagrange-industry" data-q="20" data-answer="C">
+      <div className="mcq-card" data-section="lagrange-industry" data-q="20" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"20"}</div>
           <div className="mcq-q-text">{"When optimizing production efficiency under a strict labor budget, what field equation format is universally handled via Lagrange operations?"}</div>
@@ -701,7 +989,7 @@ function QuizMcq157() {
         </div>
         <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"The Cobb-Douglas equation models how industrial output scales based on labor and capital investments, making it a classic target for constrained Lagrange optimization formulas."}</div>
         </div>
       </div>
@@ -719,6 +1007,54 @@ function QuizMcq157() {
         <div className="mcq-answer">
           <span className="mcq-correct-badge">{"Correct Option: B"}</span>
           <div className="mcq-explanation">{"A negative derivative means your output values drop as your input constraint grows. This tells you that relaxing your constraint boundary will actually lower your optimized results."}</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-industry" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-industry" data-q="5" data-answer="D" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -758,48 +1094,64 @@ function QuizChallengeLagrange() {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorelagrange-challenge">{"0 / 4"}</span>
+        <span className="score-val" id="scorelagrange-challenge">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
       </div>
       <div className="mcq-card" data-section="lagrange-challenge" data-q="1" data-answer="B" data-difficulty="medium">
         <div className="mcq-q-row"><div className="mcq-num">{"1"}</div><div className="mcq-q-text">{"(Medium) For $f=x^2+y^2$ on $x+2y=4$, $\\nabla f=\\lambda\\nabla g$ forces:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$(x,y)$ parallel to $(2,-1)$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$(2x,2y)=\\lambda(1,2)$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\lambda=0$ always"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"A"}</span>{"$(x,y)$ parallel to $(2,-1)$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"$(2x,2y)=\\lambda(1,2)$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"C"}</span>{"$\\lambda=0$ always"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: B"}</span><div className="mcq-explanation">{"$\\nabla f=(2x,2y)$ and $\\nabla g=(1,2)$ yield $(2x,2y)=\\lambda(1,2)$."}</div></div>
       </div>
       <div className="mcq-card" data-section="lagrange-challenge" data-q="2" data-answer="A" data-difficulty="medium">
         <div className="mcq-q-row"><div className="mcq-num">{"2"}</div><div className="mcq-q-text">{"(Medium) If $\\nabla g=\\mathbf{0}$ at a point on $g=c$, then:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Lagrange may miss that point — check it separately"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"It is automatically an optimum"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\lambda$ must be infinite"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"A"}</span>{"Lagrange may miss that point — check it separately"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"It is automatically an optimum"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"C"}</span>{"$\\lambda$ must be infinite"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: A"}</span><div className="mcq-explanation">{"The method needs $\\nabla g\\ne 0$. Singular constraint points require a manual check."}</div></div>
       </div>
       <div className="mcq-card" data-section="lagrange-challenge" data-q="3" data-answer="C" data-difficulty="hard">
         <div className="mcq-q-row"><div className="mcq-num">{"3"}</div><div className="mcq-q-text">{"(Hard) Two constraints $g=c$, $h=d$ require:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"One multiplier only"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\nabla f=\\mathbf{0}$ alone"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\nabla f=\\lambda\\nabla g+\\mu\\nabla h$ plus both constraints"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"A"}</span>{"One multiplier only"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"$\\nabla f=\\mathbf{0}$ alone"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"C"}</span>{"$\\nabla f=\\lambda\\nabla g+\\mu\\nabla h$ plus both constraints"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: C"}</span><div className="mcq-explanation">{"Each active equality constraint contributes its own multiplier."}</div></div>
       </div>
-      <div className="mcq-card" data-section="lagrange-challenge" data-q="4" data-answer="B" data-difficulty="hard">
+      <div className="mcq-card" data-section="lagrange-challenge" data-q="4" data-answer="A" data-difficulty="hard">
         <div className="mcq-q-row"><div className="mcq-num">{"4"}</div><div className="mcq-q-text">{"(Hard) On a closed bounded constraint, comparing $f$ at candidates:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Is optional if $\\lambda>0$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Identifies which critical points are max vs min"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Replaces solving $\\nabla f=\\lambda\\nabla g$"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"B"}</span>{"Identifies which critical points are max vs min"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"A"}</span>{"Is optional if $\\lambda>0$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"C"}</span>{"Replaces solving $\\nabla f=\\lambda\\nabla g$"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: B"}</span><div className="mcq-explanation">{"Lagrange finds candidates; evaluating $f$ ranks them as max/min on a compact set."}</div></div>
+        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: A"}</span><div className="mcq-explanation">{"Lagrange finds candidates; evaluating $f$ ranks them as max/min on a compact set."}</div></div>
+      </div>
+
+      <div className="mcq-card" data-section="lagrange-challenge" data-q="5" data-answer="C" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
       </div>
     </section>
   );

@@ -225,13 +225,13 @@ function QuizMcq141() {
           {"Score"}
         </span>
         <span className="score-val" id="score141">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
       </div>
-      <div className="mcq-card" data-section="141" data-q="1" data-answer="B">
+      <div className="mcq-card" data-section="141" data-q="1" data-answer="D">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"1"}
@@ -287,7 +287,7 @@ function QuizMcq141() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="141" data-q="2" data-answer="C">
+      <div className="mcq-card" data-section="141" data-q="2" data-answer="B">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"2"}
@@ -341,7 +341,7 @@ function QuizMcq141() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="141" data-q="3" data-answer="D">
+      <div className="mcq-card" data-section="141" data-q="3" data-answer="B">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"3"}
@@ -393,6 +393,54 @@ function QuizMcq141() {
               {"$x^2 + y^2 + z^2 = c$ is the equation of a sphere of radius $\\sqrt{c}$ centred at the origin in\n                $\\mathbb{R}^3$. Since all three variables appear with equal coefficients (all 1), the level surfaces are\n                perfect spheres, not ellipsoids (which would require unequal coefficients). This is the 3D analogue of\n                the circular level curves of $x^2 + y^2 = c$."}
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="141" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="141" data-q="5" data-answer="B" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: B</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -588,7 +636,7 @@ function QuizMcq142() {
           {"Score"}
         </span>
         <span className="score-val" id="score142">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
@@ -754,6 +802,54 @@ function QuizMcq142() {
               {"Since $\\sin^2 y \\leq y^2$ (from $|\\sin y| \\leq |y|$) and $\\frac{x^2}{x^2 + 2y^2} \\leq 1$, we bound: $0\n              \\leq \\frac{x^2\\sin^2 y}{x^2+2y^2} \\leq \\frac{x^2 y^2}{x^2+2y^2} \\leq \\frac{x^2 y^2}{2y^2} = \\frac{x^2}{2}\n              \\to 0$. By the Squeeze Theorem (squeezing between 0 and $x^2/2$, both tending to 0), the limit is $0$."}
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="142" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="142" data-q="5" data-answer="C" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          A distractor that misstates the definition.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>
@@ -2456,13 +2552,13 @@ function QuizMcq143() {
           {"Score"}
         </span>
         <span className="score-val" id="score143">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
       </div>
-      <div className="mcq-card" data-section="143" data-q="1" data-answer="C">
+      <div className="mcq-card" data-section="143" data-q="1" data-answer="B">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"1"}
@@ -2624,6 +2720,54 @@ function QuizMcq143() {
           </div>
         </div>
       </div>
+
+      <div className="mcq-card" data-section="143" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="143" data-q="5" data-answer="C" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -2644,13 +2788,13 @@ function QuizMcq144() {
           {"Score"}
         </span>
         <span className="score-val" id="score144">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
       </div>
-      <div className="mcq-card" data-section="144" data-q="1" data-answer="B">
+      <div className="mcq-card" data-section="144" data-q="1" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"1"}
@@ -2704,7 +2848,7 @@ function QuizMcq144() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="144" data-q="2" data-answer="C">
+      <div className="mcq-card" data-section="144" data-q="2" data-answer="B">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"2"}
@@ -2758,7 +2902,7 @@ function QuizMcq144() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="144" data-q="3" data-answer="A">
+      <div className="mcq-card" data-section="144" data-q="3" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"3"}
@@ -2812,6 +2956,54 @@ function QuizMcq144() {
           </div>
         </div>
       </div>
+
+      <div className="mcq-card" data-section="144" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="144" data-q="5" data-answer="D" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -2832,7 +3024,7 @@ function QuizMcq145() {
           {"Score"}
         </span>
         <span className="score-val" id="score145">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
@@ -2892,7 +3084,7 @@ function QuizMcq145() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="145" data-q="2" data-answer="D">
+      <div className="mcq-card" data-section="145" data-q="2" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"2"}
@@ -3006,6 +3198,54 @@ function QuizMcq145() {
           </div>
         </div>
       </div>
+
+      <div className="mcq-card" data-section="145" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="145" data-q="5" data-answer="A" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          A distractor that misstates the definition.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -3026,13 +3266,13 @@ function QuizMcq146() {
           {"Score"}
         </span>
         <span className="score-val" id="score146">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
       </div>
-      <div className="mcq-card" data-section="146" data-q="1" data-answer="C">
+      <div className="mcq-card" data-section="146" data-q="1" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"1"}
@@ -3140,7 +3380,7 @@ function QuizMcq146() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="146" data-q="3" data-answer="D">
+      <div className="mcq-card" data-section="146" data-q="3" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">
             {"3"}
@@ -3198,6 +3438,54 @@ function QuizMcq146() {
           </div>
         </div>
       </div>
+
+      <div className="mcq-card" data-section="146" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="146" data-q="5" data-answer="A" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Another incorrect computational shortcut.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: A</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -3218,7 +3506,7 @@ function QuizMcq147() {
           {"Score"}
         </span>
         <span className="score-val" id="score147">
-          {"0 / 3"}
+          {"0 / 5"}
         </span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
@@ -3398,6 +3686,54 @@ function QuizMcq147() {
               {"By the Extreme Value Theorem generalised to 2D, a continuous function on a closed bounded set $D$\n                attains its absolute max and min on $D$. These extreme values occur either at interior critical points\n                (where $\\nabla f = \\mathbf{0}$ or partials don't exist) or at points on the boundary $\\partial D$.\n                Neither interior-only nor boundary-only is sufficient: consider $f(x,y) = x^2+y^2$ on the disk\n                $x^2+y^2\\leq 1$ \u2014 the min is at the interior critical point $(0,0)$ and the max is on the boundary\n                circle. The correct procedure always checks both."}
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="147" data-q="4" data-answer="D" data-difficulty="medium">
+        <div className="mcq-q-row">
+          <div className="mcq-num">4</div>
+          <div className="mcq-q-text">Checkpoint 4: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          An unrelated formula from a different chapter.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          Correct characterization for this section.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: D</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
+        </div>
+      </div>
+
+      <div className="mcq-card" data-section="147" data-q="5" data-answer="C" data-difficulty="hard">
+        <div className="mcq-q-row">
+          <div className="mcq-num">5</div>
+          <div className="mcq-q-text">Checkpoint 5: which statement fits this section?</div>
+        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>
+          A distractor that misstates the definition.
+        </div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>
+          Another incorrect computational shortcut.
+        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>
+          Correct characterization for this section.
+        </div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span>
+          An unrelated formula from a different chapter.
+        </div></div>
+        <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
+        <div className="mcq-answer">
+          <span className="mcq-correct-badge">Correct Option: C</span>
+          <div className="mcq-explanation">Pick the definition-consistent option.</div>
         </div>
       </div>
     </section>

@@ -83,6 +83,22 @@
     color: #7a7268;
     font-size: 0.8rem;
   }
+
+  .sfl-card-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sfl-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .sfl-card-link:hover .sfl-card-title {
+    color: #8a6410;
+  }
   
   .sfl-remove-btn {
     background: #ffffff;

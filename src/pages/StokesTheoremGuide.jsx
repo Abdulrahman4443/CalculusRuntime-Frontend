@@ -192,21 +192,19 @@ function QuizPart1() {
           <span className="score-val" id="scorestokes-f">0 / 5</span>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-f" data-q="1" data-answer="B">
+      <div className="mcq-card" data-section="stokes-f" data-q="1" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">1</div>
           <div className="mcq-q-text">
             {"What geometric configuration is required to apply Stokes' Theorem?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"A closed solid volume with no boundary curve."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"An oriented open surface bounded by a closed curve $\\partial S$."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"An unbounded plane with no orientation."}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"A closed solid volume with no boundary curve."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"An unbounded plane with no orientation."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"An oriented open surface bounded by a closed curve $\\partial S$."}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: B</span>
+          <span className="mcq-correct-badge">Correct Option: C</span>
           <div className="mcq-explanation">
             {"Stokes links curl flux through an open surface to circulation on its closed perimeter."}
           </div>
@@ -219,11 +217,9 @@ function QuizPart1() {
             {"Which operator appears on the surface-integral side of Stokes' Theorem?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Curl $\\nabla \\times \\mathbf{F}$"}</div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Curl $\\nabla \\times \\mathbf{F}$"}</div>
           <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Divergence $\\nabla \\cdot \\mathbf{F}$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Gradient $\\nabla f$"}</div>
-        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Gradient $\\nabla f$"}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">Correct Option: A</span>
@@ -232,21 +228,19 @@ function QuizPart1() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-f" data-q="3" data-answer="C">
+      <div className="mcq-card" data-section="stokes-f" data-q="3" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">3</div>
           <div className="mcq-q-text">
             {"How is the positive orientation of $\\partial S$ chosen relative to $S$?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Always counterclockwise in the $xy$-plane, ignoring the normal."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Along the shortest path on the boundary."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"By the right-hand rule relative to the surface normal."}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"By the right-hand rule relative to the surface normal."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Always counterclockwise in the $xy$-plane, ignoring the normal."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Along the shortest path on the boundary."}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: C</span>
+          <span className="mcq-correct-badge">Correct Option: A</span>
           <div className="mcq-explanation">
             {"Compatible orientation uses the right-hand rule tying $\\mathbf{n}$ to the traversal of $\\partial S$."}
           </div>
@@ -257,30 +251,26 @@ function QuizPart1() {
           <div className="mcq-num">4</div>
           <div className="mcq-q-text">{"(Medium) If $\\nabla\\times\\mathbf{F}=\\mathbf{0}$ on a simply connected region, Stokes says circulation on every closed curve is:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Always positive"}</div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Always positive"}</div>
           <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Zero"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Equal to surface area"}</div>
-        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Equal to surface area"}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">Correct Option: B</span>
           <div className="mcq-explanation">{"Flux of the zero curl field is zero, so circulation vanishes."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-f" data-q="5" data-answer="A" data-difficulty="hard">
+      <div className="mcq-card" data-section="stokes-f" data-q="5" data-answer="B" data-difficulty="hard">
         <div className="mcq-q-row">
           <div className="mcq-num">5</div>
           <div className="mcq-q-text">{"(Hard) You may replace $S$ by another surface $S'$ with the same boundary because:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"$\\iint(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}$ depends only on $\\partial S$ (compatible orientations)"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Curl is always zero"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Surfaces must be spheres"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Surfaces must be spheres"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"$\\iint(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}$ depends only on $\\partial S$ (compatible orientations)"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Curl is always zero"}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: A</span>
+          <span className="mcq-correct-badge">Correct Option: B</span>
           <div className="mcq-explanation">{"Stokes makes the curl flux a boundary invariant — pick the easiest spanning surface."}</div>
         </div>
       </div>
@@ -359,21 +349,19 @@ function QuizPart2() {
           <span className="score-val" id="scorestokes-a">0 / 5</span>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-a" data-q="1" data-answer="A">
+      <div className="mcq-card" data-section="stokes-a" data-q="1" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">1</div>
           <div className="mcq-q-text">
             {"When a target surface is awkwardly shaped, how can Stokes still help?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Replace the surface integral with a line integral on the shared perimeter (or pick a simpler surface with the same rim)."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Drop all nonlinear terms and pretend the surface is flat without checking orientation."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Convert everything to a scalar triple integral over a solid volume."}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Drop all nonlinear terms and pretend the surface is flat without checking orientation."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Convert everything to a scalar triple integral over a solid volume."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Replace the surface integral with a line integral on the shared perimeter (or pick a simpler surface with the same rim)."}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: A</span>
+          <span className="mcq-correct-badge">Correct Option: C</span>
           <div className="mcq-explanation">
             {"Surfaces sharing an oriented boundary give identical circulation, so you may switch to an easier geometry."}
           </div>
@@ -386,11 +374,9 @@ function QuizPart2() {
             {"If you reverse the surface normal, what happens to both sides of Stokes' identity?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Only the surface integral changes sign."}</div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Only the surface integral changes sign."}</div>
           <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Nothing — orientation is optional."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Both sides change sign so equality is preserved when orientation stays consistent."}</div>
-        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Both sides change sign so equality is preserved when orientation stays consistent."}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">Correct Option: C</span>
@@ -399,21 +385,19 @@ function QuizPart2() {
           </div>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-a" data-q="3" data-answer="B">
+      <div className="mcq-card" data-section="stokes-a" data-q="3" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">3</div>
           <div className="mcq-q-text">
             {"Stokes' Theorem is the natural bridge between which two ideas?"}
           </div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Divergence and volume flux only."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Boundary circulation and surface curl flux."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Partial derivatives and Lagrange multipliers."}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Partial derivatives and Lagrange multipliers."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Divergence and volume flux only."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Boundary circulation and surface curl flux."}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: B</span>
+          <span className="mcq-correct-badge">Correct Option: C</span>
           <div className="mcq-explanation">
             {"The theorem equates $\\oint_{\\partial S}\\mathbf{F}\\cdot d\\mathbf{r}$ with $\\iint_S(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}$."}
           </div>
@@ -424,30 +408,26 @@ function QuizPart2() {
           <div className="mcq-num">4</div>
           <div className="mcq-q-text">{"(Medium) Prefer the surface side of Stokes when:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"The curve is already parametrized simply and curl is messy"}</div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"The curve is already parametrized simply and curl is messy"}</div>
           <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"You refuse to compute any integral"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"$\\nabla\\times\\mathbf{F}$ simplifies and a flat disk/plane spans $C$ easily"}</div>
-        </div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"$\\nabla\\times\\mathbf{F}$ simplifies and a flat disk/plane spans $C$ easily"}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">Correct Option: C</span>
           <div className="mcq-explanation">{"Choose whichever side has cleaner algebra — often a flat spanning disk."}</div>
         </div>
       </div>
-      <div className="mcq-card" data-section="stokes-a" data-q="5" data-answer="B" data-difficulty="hard">
+      <div className="mcq-card" data-section="stokes-a" data-q="5" data-answer="A" data-difficulty="hard">
         <div className="mcq-q-row">
           <div className="mcq-num">5</div>
           <div className="mcq-q-text">{"(Hard) A sign error after switching surfaces usually means:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"Fubini's theorem failed"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"The new normal is inconsistent with $\\partial S$ orientation"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Divergence must be used instead"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span>{"The new normal is inconsistent with $\\partial S$ orientation"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span>{"Fubini's theorem failed"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span>{"Divergence must be used instead"}</div></div>
         <button type="button" className="mcq-reveal-btn">Reveal Answer</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">Correct Option: B</span>
+          <span className="mcq-correct-badge">Correct Option: A</span>
           <div className="mcq-explanation">{"Surface swaps are legal only with matching orientation via the right-hand rule."}</div>
         </div>
       </div>

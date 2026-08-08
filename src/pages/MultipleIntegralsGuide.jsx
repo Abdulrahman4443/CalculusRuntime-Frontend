@@ -379,20 +379,18 @@ function IntegralsQuiz({ part }) {
           </span>
         </div>
 
-        <div className="mcq-card" data-section="integrals-p1" data-q="1" data-answer="B">
+        <div className="mcq-card" data-section="integrals-p1" data-q="1" data-answer="D">
           <div className="mcq-q-row">
             <div className="mcq-num">{"1"}</div>
             <div className="mcq-q-text">{"What does a double integral represent geometrically when $f(x,y)\\ge 0$?"}</div>
           </div>
-          <div className="mcq-options">
-            <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The area of the region $R$."}</div>
-            <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The volume under the surface $z=f(x,y)$ above $R$."}</div>
-            <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The surface area of $z=f(x,y)$."}</div>
-            <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"The perimeter of the region $R$."}</div>
-          </div>
+          <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"The surface area of $z=f(x,y)$."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"A"}</span>{"The area of the region $R$."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"D"}</span>{"The perimeter of the region $R$."}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"B"}</span>{"The volume under the surface $z=f(x,y)$ above $R$."}</div></div>
           <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
           <div className="mcq-answer">
-            <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+            <span className="mcq-correct-badge">{"Correct Option: D"}</span>
             <div className="mcq-explanation">{"$\\iint_R f\\,dA$ measures signed volume under $z=f$ when $f\\ge 0$."}</div>
           </div>
         </div>
@@ -402,12 +400,10 @@ function IntegralsQuiz({ part }) {
             <div className="mcq-num">{"2"}</div>
             <div className="mcq-q-text">{"Fubini's Theorem says we can evaluate a double integral as:"}</div>
           </div>
-          <div className="mcq-options">
-            <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A single integral only."}</div>
-            <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Two separate single integrals multiplied together."}</div>
-            <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"An iterated integral in either order."}</div>
-            <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"A limit of a sum only."}</div>
-          </div>
+          <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"A"}</span>{"A single integral only."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"D"}</span>{"A limit of a sum only."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"C"}</span>{"An iterated integral in either order."}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"B"}</span>{"Two separate single integrals multiplied together."}</div></div>
           <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
           <div className="mcq-answer">
             <span className="mcq-correct-badge">{"Correct Option: C"}</span>
@@ -415,56 +411,50 @@ function IntegralsQuiz({ part }) {
           </div>
         </div>
 
-        <div className="mcq-card" data-section="integrals-p1" data-q="3" data-answer="B">
+        <div className="mcq-card" data-section="integrals-p1" data-q="3" data-answer="D">
           <div className="mcq-q-row">
             <div className="mcq-num">{"3"}</div>
             <div className="mcq-q-text">{"To change the order of integration, you must:"}</div>
           </div>
-          <div className="mcq-options">
-            <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Change the function $f(x,y)$."}</div>
-            <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Redraw and redescribe the region of integration."}</div>
-            <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Multiply by a Jacobian factor."}</div>
-            <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"Convert to polar coordinates."}</div>
-          </div>
+          <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"D"}</span>{"Convert to polar coordinates."}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"C"}</span>{"Multiply by a Jacobian factor."}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"Change the function $f(x,y)$."}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"B"}</span>{"Redraw and redescribe the region of integration."}</div></div>
           <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
           <div className="mcq-answer">
-            <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+            <span className="mcq-correct-badge">{"Correct Option: D"}</span>
             <div className="mcq-explanation">{"New bounds must describe the same region with the reversed inner/outer variables."}</div>
           </div>
         </div>
 
-        <div className="mcq-card" data-section="integrals-p1" data-q="4" data-answer="A" data-difficulty="medium">
+        <div className="mcq-card" data-section="integrals-p1" data-q="4" data-answer="C" data-difficulty="medium">
           <div className="mcq-q-row">
             <div className="mcq-num">{"4"}</div>
             <div className="mcq-q-text">{"(Medium) $\\int_0^1\\int_0^{1-x} 1\\,dy\\,dx$ equals the area of:"}</div>
           </div>
-          <div className="mcq-options">
-            <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The triangle with vertices $(0,0)$, $(1,0)$, $(0,1)$"}</div>
-            <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The unit square"}</div>
-            <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"A disk of radius 1"}</div>
-            <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"An infinite strip"}</div>
-          </div>
+          <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"A disk of radius 1"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"The unit square"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"The triangle with vertices $(0,0)$, $(1,0)$, $(0,1)$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"An infinite strip"}</div></div>
           <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
           <div className="mcq-answer">
-            <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+            <span className="mcq-correct-badge">{"Correct Option: C"}</span>
             <div className="mcq-explanation">{"For each $x\\in[0,1]$, $y$ runs from 0 to $1-x$, the triangle under the line $x+y=1$."}</div>
           </div>
         </div>
 
-        <div className="mcq-card" data-section="integrals-p1" data-q="5" data-answer="C" data-difficulty="hard">
+        <div className="mcq-card" data-section="integrals-p1" data-q="5" data-answer="A" data-difficulty="hard">
           <div className="mcq-q-row">
             <div className="mcq-num">{"5"}</div>
             <div className="mcq-q-text">{"(Hard) If $R$ is Type I but not Type II, changing order:"}</div>
           </div>
-          <div className="mcq-options">
-            <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Is always illegal"}</div>
-            <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Requires switching $f$ to $-f$"}</div>
-            <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"May require splitting $R$ into several Type II pieces"}</div>
-            <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"Always keeps a single pair of bounds"}</div>
-          </div>
+          <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"May require splitting $R$ into several Type II pieces"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"D"}</span>{"Always keeps a single pair of bounds"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"Is always illegal"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"B"}</span>{"Requires switching $f$ to $-f$"}</div></div>
           <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
           <div className="mcq-answer">
-            <span className="mcq-correct-badge">{"Correct Option: C"}</span>
+            <span className="mcq-correct-badge">{"Correct Option: A"}</span>
             <div className="mcq-explanation">{"Regions that are Type I but not Type II often need to be split so each piece has $x$ bounds as functions of $y$."}</div>
           </div>
         </div>
@@ -480,44 +470,40 @@ function IntegralsQuiz({ part }) {
       </div>
       <div className="mcq-score-strip">
         <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scoreintegrals-p2">{"0 / 6"}</span>
+        <span className="score-val" id="scoreintegrals-p2">{"0 / 5"}</span>
         <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>
           {"Click an option then reveal answer"}
         </span>
       </div>
 
-      <div className="mcq-card" data-section="integrals-p2" data-q="1" data-answer="B">
+      <div className="mcq-card" data-section="integrals-p2" data-q="1" data-answer="A">
         <div className="mcq-q-row">
           <div className="mcq-num">{"1"}</div>
           <div className="mcq-q-text">{"When converting to polar coordinates, $dA$ becomes:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$dr\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$r\\,dr\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$r^2\\,dr\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$d\\theta\\,dr$"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"B"}</span>{"$r\\,dr\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"C"}</span>{"$r^2\\,dr\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"$dr\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"$d\\theta\\,dr$"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
           <div className="mcq-explanation">{"The Jacobian of polar coordinates contributes the extra factor $r$."}</div>
         </div>
       </div>
 
-      <div className="mcq-card" data-section="integrals-p2" data-q="2" data-answer="B">
+      <div className="mcq-card" data-section="integrals-p2" data-q="2" data-answer="C">
         <div className="mcq-q-row">
           <div className="mcq-num">{"2"}</div>
           <div className="mcq-q-text">{"Cylindrical coordinates are best when the region has:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Rectangular symmetry"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Symmetry about the $z$-axis"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Symmetry about the $x$-axis"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"No particular symmetry"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"Symmetry about the $x$-axis"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"A"}</span>{"Rectangular symmetry"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"B"}</span>{"Symmetry about the $z$-axis"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"No particular symmetry"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
           <div className="mcq-explanation">{"Cylindrical = polar in $xy$ plus $z$, ideal for rotational symmetry about $z$."}</div>
         </div>
       </div>
@@ -527,12 +513,10 @@ function IntegralsQuiz({ part }) {
           <div className="mcq-num">{"3"}</div>
           <div className="mcq-q-text">{"Volume of a solid $E$ by a triple integral is:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\iiint_E (x+y+z)\\,dV$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\iiint_E 1\\,dV$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\iiint_E 0\\,dV$"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$\\iint f(x,y)\\,dA$ always"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"$\\iiint_E 0\\,dV$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"$\\iiint_E 1\\,dV$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"$\\iiint_E (x+y+z)\\,dV$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"$\\iint f(x,y)\\,dA$ always"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">{"Correct Option: B"}</span>
@@ -540,38 +524,34 @@ function IntegralsQuiz({ part }) {
         </div>
       </div>
 
-      <div className="mcq-card" data-section="integrals-p2" data-q="4" data-answer="A" data-difficulty="medium">
+      <div className="mcq-card" data-section="integrals-p2" data-q="4" data-answer="B" data-difficulty="medium">
         <div className="mcq-q-row">
           <div className="mcq-num">{"4"}</div>
           <div className="mcq-q-text">{"(Medium) Disk $x^2+y^2\\le 4$ in polar is:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$0\\le r\\le 2$, $0\\le\\theta\\le 2\\pi$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$0\\le r\\le 4$, $0\\le\\theta\\le\\pi$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$-2\\le r\\le 2$, $0\\le\\theta\\le\\pi$"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$1\\le r\\le 2$, $0\\le\\theta\\le 2\\pi$"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"$-2\\le r\\le 2$, $0\\le\\theta\\le\\pi$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"A"}</span>{"$0\\le r\\le 2$, $0\\le\\theta\\le 2\\pi$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"B"}</span>{"$0\\le r\\le 4$, $0\\le\\theta\\le\\pi$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"$1\\le r\\le 2$, $0\\le\\theta\\le 2\\pi$"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
           <div className="mcq-explanation">{"Radius 2 disk: $r$ from 0 to 2 and a full turn in $\\theta$."}</div>
         </div>
       </div>
 
-      <div className="mcq-card" data-section="integrals-p2" data-q="5" data-answer="D" data-difficulty="hard">
+      <div className="mcq-card" data-section="integrals-p2" data-q="5" data-answer="B" data-difficulty="hard">
         <div className="mcq-q-row">
           <div className="mcq-num">{"5"}</div>
           <div className="mcq-q-text">{"(Hard) In cylindrical coordinates, $dV$ includes:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Only $dz\\,dr\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$dx\\,dy\\,dz$ unchanged"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"The factor $r$: $r\\,dz\\,dr\\,d\\theta$"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"A"}</span>{"Only $dz\\,dr\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"D"}</span>{"The factor $r$: $r\\,dz\\,dr\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"C"}</span>{"$dx\\,dy\\,dz$ unchanged"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: D"}</span>
+          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
           <div className="mcq-explanation">{"Cylindrical volume element is $r\\,dz\\,dr\\,d\\theta$ (polar area times $dz$)."}</div>
         </div>
       </div>
@@ -580,12 +560,10 @@ function IntegralsQuiz({ part }) {
           <div className="mcq-num">{"6"}</div>
           <div className="mcq-q-text">{"The volume element $dV$ in spherical coordinates is:"}</div>
         </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\rho\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\rho^2\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">{"D"}</span>{"$\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
-        </div>
+        <div className="mcq-options"><div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">A</span><span className="mcq-opt-letter">{"C"}</span>{"$\\rho^2\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">B</span><span className="mcq-opt-letter">{"B"}</span>{"$\\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">C</span><span className="mcq-opt-letter">{"A"}</span>{"$\\rho\\,d\\rho\\,d\\phi\\,d\\theta$"}</div>
+          <div className="mcq-opt" data-opt="D"><span className="mcq-opt-letter">D</span><span className="mcq-opt-letter">{"D"}</span>{"$\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"}</div></div>
         <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
         <div className="mcq-answer">
           <span className="mcq-correct-badge">{"Correct Option: B"}</span>

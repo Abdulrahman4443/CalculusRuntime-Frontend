@@ -266,8 +266,11 @@ export function ProgressProvider({ children }) {
     async (quizId, score, total) => {
       setProgress((prev) => {
         const existing = prev.quizScores[quizId];
-        // Keep the best local score, but still sync this attempt to the API below.
-        if (existing && existing.score >= score) {
+        const nextPct = total > 0 ? score / total : 0;
+        const existingPct =
+          existing && existing.total > 0 ? existing.score / existing.total : -1;
+        // Keep the best local percentage (not raw score), but still sync below.
+        if (existing && existingPct >= nextPct) {
           return prev;
         }
         const next = {

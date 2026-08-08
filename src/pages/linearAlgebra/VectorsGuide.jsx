@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
+import LaCertificateBoost from "./LaCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -19,6 +21,7 @@ function VectorsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-la-v-span">Quiz</a>
           <a className="sb-link" href="#la-v-indep">Independence</a>
           <a className="sb-link" href="#quiz-la-v-indep">Quiz</a>
+          <a className="sb-link" href="#la-cert-vectors-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -170,25 +173,37 @@ function VectorsGuide({ part = 1 }) {
             scoreId="score-la-v-span"
             section="la-v-span"
             questions={[
-              {
-                prompt: "What is the span of a single nonzero vector $v$ in $\\mathbb{R}^2$?",
-                options: ["All of $\\mathbb{R}^2$", "The line through the origin in the direction of $v$", "Only the zero vector"],
-                answer: "B",
-                explanation: "Scalar multiples of $v$ fill the line through $0$ and $v$.",
-              },
-              {
-                prompt: "Every basis of $\\mathbb{R}^3$ contains how many vectors?",
-                options: ["2", "3", "Any number $\\ge 3$"],
-                answer: "B",
-                explanation: "Dimension is unique: $\\dim\\mathbb{R}^3=3$.",
-              },
-              {
-                prompt: "A spanning set that is not a basis must be:",
-                options: ["Linearly independent", "Linearly dependent", "Empty"],
-                answer: "B",
-                explanation: "If it spans but is not a basis, it has redundant (dependent) vectors.",
-              },
-            ]}
+            {
+              prompt: "What is the span of a single nonzero vector $v$ in $\\mathbb{R}^2$?",
+              options: ["The line through the origin in the direction of $v$", "All of $\\mathbb{R}^2$", "Only the zero vector"],
+              answer: "A",
+              explanation: "Scalar multiples of $v$ fill the line through $0$ and $v$.",
+            },
+            {
+              prompt: "Every basis of $\\mathbb{R}^3$ contains how many vectors?",
+              options: ["2", "3", "Any number $\\ge 3$"],
+              answer: "B",
+              explanation: "Dimension is unique: $\\dim\\mathbb{R}^3=3$.",
+            },
+            {
+              prompt: "A spanning set that is not a basis must be:",
+              options: ["Empty", "Linearly independent", "Linearly dependent"],
+              answer: "C",
+              explanation: "If it spans but is not a basis, it has redundant (dependent) vectors.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -221,28 +236,42 @@ function VectorsGuide({ part = 1 }) {
             scoreId="score-la-v-indep"
             section="la-v-indep"
             questions={[
-              {
-                prompt: "The set $\\{0, v\\}$ is always:",
-                options: ["Independent", "Dependent", "A basis of $\\mathbb{R}^n$"],
-                answer: "B",
-                explanation: "Any set containing the zero vector is linearly dependent.",
-              },
-              {
-                prompt: "Four vectors in $\\mathbb{R}^3$ are:",
-                options: ["Always independent", "Always dependent", "Independent iff orthogonal"],
-                answer: "B",
-                explanation: "You cannot have more than $\\dim V$ independent vectors in $V$.",
-              },
-              {
-                prompt: "Columns of an invertible $n\\times n$ matrix are:",
-                options: ["Dependent", "A basis of $\\mathbb{R}^n$", "Orthogonal only"],
-                answer: "B",
-                explanation: "Invertibility means the columns form a basis of $\\mathbb{R}^n$.",
-              },
-            ]}
+            {
+              prompt: "The set $\\{0, v\\}$ is always:",
+              options: ["Dependent", "A basis of $\\mathbb{R}^n$", "Independent"],
+              answer: "A",
+              explanation: "Any set containing the zero vector is linearly dependent.",
+            },
+            {
+              prompt: "Four vectors in $\\mathbb{R}^3$ are:",
+              options: ["Independent iff orthogonal", "Always dependent", "Always independent"],
+              answer: "B",
+              explanation: "You cannot have more than $\\dim V$ independent vectors in $V$.",
+            },
+            {
+              prompt: "Columns of an invertible $n\\times n$ matrix are:",
+              options: ["Orthogonal only", "Dependent", "A basis of $\\mathbb{R}^n$"],
+              answer: "C",
+              explanation: "Invertibility means the columns form a basis of $\\mathbb{R}^n$.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <LaCertificateBoost topic="vectors" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -265,6 +294,7 @@ function VectorsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-la-v-intro">Quiz</a>
         <a className="sb-link" href="#la-v-ops">Dot product</a>
         <a className="sb-link" href="#quiz-la-v-ops">Quiz</a>
+        <a className="sb-link" href="#la-cert-vectors-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -417,22 +447,34 @@ function VectorsGuide({ part = 1 }) {
           questions={[
             {
               prompt: "The vector $(1,-2,3)$ lives in which space?",
-              options: ["$\\mathbb{R}^2$", "$\\mathbb{R}^3$", "$\\mathbb{R}^1$"],
-              answer: "B",
+              options: ["$\\mathbb{R}^3$", "$\\mathbb{R}^2$", "$\\mathbb{R}^1$"],
+              answer: "A",
               explanation: "Three components means a vector in $\\mathbb{R}^3$.",
             },
             {
               prompt: "What is $\\|(3,4)\\|$?",
-              options: ["5", "7", "12"],
-              answer: "A",
+              options: ["7", "5", "12"],
+              answer: "B",
               explanation: "$\\sqrt{3^2+4^2}=\\sqrt{25}=5$.",
             },
             {
               prompt: "The zero vector is the additive identity because:",
-              options: ["It has length 1", "$v+0=v$ for every $v$", "It is orthogonal to itself only"],
-              answer: "B",
+              options: ["It is orthogonal to itself only", "It has length 1", "$v+0=v$ for every $v$"],
+              answer: "C",
               explanation: "Vector addition uses $0$ as the identity element.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -469,14 +511,28 @@ function VectorsGuide({ part = 1 }) {
             },
             {
               prompt: "Scaling $v$ by $-2$:",
-              options: ["Keeps direction, doubles length", "Reverses direction and doubles length", "Projects onto the $x$-axis"],
-              answer: "B",
+              options: ["Keeps direction, doubles length", "Projects onto the $x$-axis", "Reverses direction and doubles length"],
+              answer: "C",
               explanation: "Negative scalars reverse direction; magnitude multiplies by $|c|$.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <LaCertificateBoost topic="vectors" part={1} />
+
         <section className="section" id="summary1">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Continue</h2>

@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { saveExample, unsaveExample, isExampleSaved } from "../utils/saveForLaterStorage";
+import { useLocation } from "react-router-dom";
+import { saveExample, unsaveExample, isExampleSaved, exampleAnchorId } from "../utils/saveForLaterStorage";
 import renderMathInElement from "katex/contrib/auto-render";
 import "katex/dist/katex.min.css";
 import { useProgress } from "../context/ProgressContext";
@@ -381,6 +382,12 @@ const saveForLaterStyles = `
   background: #e8b84b;
   color: #0f0e0d;
   border-color: #e8b84b;
+}
+.box.exm.exm-flash {
+  outline: 3px solid #c8922a;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 8px rgba(200, 146, 42, 0.2);
+  transition: outline 0.2s, box-shadow 0.2s;
 }
 `;
 
@@ -869,7 +876,7 @@ function setupSidebar(root) {
   return () => cleanups.forEach((cleanup) => cleanup());
 }
 
-function setupSaveForLater(root, { guideTitle } = {}) {
+function setupSaveForLater(root, { guideTitle, guidePath } = {}) {
   const examples = Array.from(root.querySelectorAll(".box.exm"));
   if (!examples.length) return () => {};
 
@@ -880,7 +887,7 @@ function setupSaveForLater(root, { guideTitle } = {}) {
     if (titleEl) {
       const clone = titleEl.cloneNode(true);
       clone.querySelectorAll(".katex-mathml").forEach((el) => el.remove());
-      exampleTitle = clone.textContent.trim();
+      exampleTitle = clone.textContent.trim() || "Untitled example";
     }
     const sectionEl = example.closest("section[id]");
     const sectionId = sectionEl ? sectionEl.id : "unknown-section";
@@ -888,6 +895,11 @@ function setupSaveForLater(root, { guideTitle } = {}) {
   };
 
   examples.forEach((example, index) => {
+    const { exampleTitle, sectionId } = getMeta(example);
+    const anchor = exampleAnchorId(sectionId, exampleTitle);
+    if (!example.id) example.id = anchor;
+    example.dataset.exampleId = anchor;
+
     if (example.querySelector(".save-example-btn")) return;
 
     example.style.position = example.style.position || "relative";
@@ -898,7 +910,6 @@ function setupSaveForLater(root, { guideTitle } = {}) {
     btn.setAttribute("aria-label", "Save for later");
     btn.dataset.exampleIndex = String(index);
 
-    const { exampleTitle, sectionId } = getMeta(example);
     const alreadySaved = isExampleSaved(sectionId, exampleTitle);
     if (alreadySaved) btn.classList.add("saved");
     btn.textContent = alreadySaved ? "★ Saved" : "☆ Save";
@@ -914,11 +925,18 @@ function setupSaveForLater(root, { guideTitle } = {}) {
     if (!example) return;
 
     const { exampleTitle, sectionId } = getMeta(example);
+    const exampleId = example.id || exampleAnchorId(sectionId, exampleTitle);
     const isSaved = btn.classList.toggle("saved");
     btn.textContent = isSaved ? "★ Saved" : "☆ Save";
 
     if (isSaved) {
-      saveExample({ sectionId, exampleTitle, guideTitle });
+      saveExample({
+        sectionId,
+        exampleTitle,
+        guideTitle,
+        guidePath: guidePath || window.location.pathname,
+        exampleId,
+      });
     } else {
       unsaveExample(sectionId, exampleTitle);
     }
@@ -928,6 +946,20 @@ function setupSaveForLater(root, { guideTitle } = {}) {
   cleanups.push(() => root.removeEventListener("click", onClick));
 
   return () => cleanups.forEach((cleanup) => cleanup());
+}
+
+function scrollToExampleHash(root) {
+  const hash = window.location.hash.replace(/^#/, "");
+  if (!hash || !root) return;
+  const target =
+    root.querySelector(`#${CSS.escape(hash)}`) ||
+    document.getElementById(hash);
+  if (!target) return;
+  window.requestAnimationFrame(() => {
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.classList.add("exm-flash");
+    window.setTimeout(() => target.classList.remove("exm-flash"), 2200);
+  });
 }
 
 function StudyGuideShell({
@@ -940,7 +972,9 @@ function StudyGuideShell({
   const rootRef = useRef(null);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const { saveQuizScore, setLeaderboardOptIn, publishQuizToLeaderboard } = useProgress();
+  const location = useLocation();
   const resolvedClass = guideClass || "partial-derivatives-guide";
+  const guidePath = location.pathname;
 
   const handleSaveAsPDF = async () => {
     const element = rootRef.current;
@@ -1017,12 +1051,16 @@ function StudyGuideShell({
         }),
         setupPinnedGuideNav(rootRef.current),
         setupSidebar(rootRef.current),
-        setupSaveForLater(rootRef.current, { guideTitle: title }),
+        setupSaveForLater(rootRef.current, {
+          guideTitle: title,
+          guidePath,
+        }),
       ];
       const topButton = rootRef.current.querySelector("#top-btn");
       const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
       topButton?.addEventListener("click", scrollTop);
       cleanups.push(() => topButton?.removeEventListener("click", scrollTop));
+      scrollToExampleHash(rootRef.current);
     };
 
     // Defer one frame so React finishes committing Partials-style children.
@@ -1033,7 +1071,11 @@ function StudyGuideShell({
       window.cancelAnimationFrame(raf);
       cleanups.forEach((cleanup) => cleanup());
     };
-  }, [markup, publishQuizToLeaderboard, saveQuizScore, setLeaderboardOptIn, title]);
+  }, [markup, publishQuizToLeaderboard, saveQuizScore, setLeaderboardOptIn, title, guidePath]);
+
+  useEffect(() => {
+    scrollToExampleHash(rootRef.current);
+  }, [location.hash, markup, guidePath]);
 
   // Children-mode guides: progress/visit re-renders restore raw `$...$` text nodes.
   // useLayoutEffect runs before paint so users never see broken raw LaTeX.

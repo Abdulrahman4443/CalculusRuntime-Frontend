@@ -71,7 +71,7 @@ function TableOfContentsPart1() {
         <a className="toc-a" href="#lc-1">{"Limits of Two Variables"}</a>
         <a className="toc-a" href="#lc-2">{"Two-Path Test"}</a>
         <a className="toc-a" href="#lc-3">{"Squeeze Theorem"}</a>
-        <a className="toc-a" href="#lc-quiz1">{"Quiz 1 · 10 questions"}</a>
+        <a className="toc-a" href="#lc-quiz1">{"Quiz 1 · 5 questions"}</a>
       </div>
     </div>
   );
@@ -84,7 +84,7 @@ function TableOfContentsPart2() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
         <a className="toc-a" href="#lc-4">{"Continuity at a Point"}</a>
         <a className="toc-a" href="#lc-5">{"Continuity on a Region"}</a>
-        <a className="toc-a" href="#lc-quiz2">{"Quiz 2 · 10 questions"}</a>
+        <a className="toc-a" href="#lc-quiz2">{"Quiz 2 · 5 questions"}</a>
       </div>
     </div>
   );
@@ -251,7 +251,7 @@ function LimitsQuiz({ part }) {
       <LaMcqSection
         id="lc-quiz1"
         badge="Quiz 1"
-        title="Part 1 Quiz (10 questions — harder items near the end)"
+        title="Part 1 Quiz (5 questions — harder items near the end)"
         scoreId="scorelimits-p1"
         section="limits-p1"
         questions={LIMITS_P1_QUIZ}
@@ -262,7 +262,7 @@ function LimitsQuiz({ part }) {
     <LaMcqSection
       id="lc-quiz2"
       badge="Quiz 2"
-      title="Part 2 Quiz (10 questions — harder items near the end)"
+      title="Part 2 Quiz (5 questions — harder items near the end)"
       scoreId="scorelimits-p2"
       section="limits-p2"
       questions={LIMITS_P2_QUIZ}

@@ -91,7 +91,7 @@ export default function DifferentiationGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-diff-apps"
             badge="Quiz 1"
-            title="Applications (10 questions - harder items unlock last)"
+            title="Applications (5 questions - harder items unlock last)"
             scoreId="score-diff-apps"
             section="diff-apps"
             questions={DIFF_APPS_QUIZ}
@@ -121,7 +121,7 @@ export default function DifferentiationGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-diff-adv"
             badge="Quiz 2"
-            title="Advanced tools (10 questions)"
+            title="Advanced tools (5 questions)"
             scoreId="score-diff-adv"
             section="diff-adv"
             questions={DIFF_ADV_QUIZ}
@@ -209,7 +209,7 @@ export default function DifferentiationGuide({ part = 1 }) {
         <LaMcqSection
           id="quiz-diff-rules"
           badge="Quiz 1"
-          title="Differentiation rules (10 questions)"
+          title="Differentiation rules (5 questions)"
           scoreId="score-diff-rules"
           section="diff-rules"
           questions={DIFF_RULES_QUIZ}

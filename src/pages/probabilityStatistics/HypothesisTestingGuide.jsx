@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
+import PsCertificateBoost from "./PsCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -19,6 +21,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-h-pval">Quiz</a>
           <a className="sb-link" href="#ps-h-errors">Errors &amp; power</a>
           <a className="sb-link" href="#quiz-ps-h-errors">Quiz</a>
+          <a className="sb-link" href="#ps-cert-hypothesis-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -121,25 +124,37 @@ function HypothesisTestingGuide({ part = 1 }) {
             scoreId="score-ps-h-pval"
             section="ps-h-pval"
             questions={[
-              {
-                prompt: "A p-value is computed assuming:",
-                options: ["$H_1$ is true", "$H_0$ is true", "Neither"],
-                answer: "B",
-                explanation: "Sampling distribution under the null.",
-              },
-              {
-                prompt: "If p = 0.01 and $\\alpha=0.05$, you:",
-                options: ["Fail to reject $H_0$", "Reject $H_0$", "Accept $H_0$ as proven"],
-                answer: "B",
-                explanation: "p ≤ α ⇒ reject.",
-              },
-              {
-                prompt: "p = 0.20 means:",
-                options: ["$H_0$ is true", "Data are not very surprising under $H_0$", "$H_1$ is proven"],
-                answer: "B",
-                explanation: "Large p ⇒ weak evidence against $H_0$.",
-              },
-            ]}
+            {
+              prompt: "A p-value is computed assuming:",
+              options: ["$H_0$ is true", "Neither", "$H_1$ is true"],
+              answer: "A",
+              explanation: "Sampling distribution under the null.",
+            },
+            {
+              prompt: "If p = 0.01 and $\\alpha=0.05$, you:",
+              options: ["Accept $H_0$ as proven", "Reject $H_0$", "Fail to reject $H_0$"],
+              answer: "B",
+              explanation: "p ≤ α ⇒ reject.",
+            },
+            {
+              prompt: "p = 0.20 means:",
+              options: ["$H_0$ is true", "$H_1$ is proven", "Data are not very surprising under $H_0$"],
+              answer: "C",
+              explanation: "Large p ⇒ weak evidence against $H_0$.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -201,34 +216,42 @@ function HypothesisTestingGuide({ part = 1 }) {
             scoreId="score-ps-h-errors"
             section="ps-h-errors"
             questions={[
-              {
-                prompt: "Type II error is:",
-                options: ["Reject true $H_0$", "Fail to reject false $H_0$", "Correct rejection"],
-                answer: "B",
-                explanation: "Missed detection of a real effect.",
-              },
-              {
-                prompt: "Power equals:",
-                options: ["$\\alpha$", "$1-\\beta$", "$\\beta$"],
-                answer: "B",
-                explanation: "Probability of correctly rejecting a false null.",
-              },
-              {
-                prompt: "Increasing sample size typically:",
-                options: ["Lowers power", "Raises power", "Forces $\\alpha=0$"],
-                answer: "B",
-                explanation: "More data sharpen the sampling distribution.",
-              },
-              {
-                prompt: "If Type I errors are far more costly than Type II, you should:",
-                options: ["Raise $\\alpha$", "Lower $\\alpha$", "Ignore $\\alpha$ entirely"],
-                answer: "B",
-                explanation: "A stricter significance threshold guards against false alarms at the cost of some power.",
-              },
-            ]}
+            {
+              prompt: "Type II error is:",
+              options: ["Fail to reject false $H_0$", "Reject true $H_0$", "Correct rejection"],
+              answer: "A",
+              explanation: "Missed detection of a real effect.",
+            },
+            {
+              prompt: "Power equals:",
+              options: ["$\\beta$", "$1-\\beta$", "$\\alpha$"],
+              answer: "B",
+              explanation: "Probability of correctly rejecting a false null.",
+            },
+            {
+              prompt: "Increasing sample size typically:",
+              options: ["Lowers power", "Forces $\\alpha=0$", "Raises power"],
+              answer: "C",
+              explanation: "More data sharpen the sampling distribution.",
+            },
+            {
+              prompt: "If Type I errors are far more costly than Type II, you should:",
+              options: ["Lower $\\alpha$", "Raise $\\alpha$", "Ignore $\\alpha$ entirely"],
+              answer: "A",
+              explanation: "A stricter significance threshold guards against false alarms at the cost of some power.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <PsCertificateBoost topic="hypothesis" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -250,6 +273,7 @@ function HypothesisTestingGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-h-framework">Quiz</a>
         <a className="sb-link" href="#ps-h-tests">Common tests</a>
         <a className="sb-link" href="#quiz-ps-h-tests">Quiz</a>
+        <a className="sb-link" href="#ps-cert-hypothesis-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -353,8 +377,8 @@ function HypothesisTestingGuide({ part = 1 }) {
           questions={[
             {
               prompt: "$H_0$ usually represents:",
-              options: ["The research hope", "The status-quo / no-effect claim", "Always $\\mu>0$"],
-              answer: "B",
+              options: ["The status-quo / no-effect claim", "The research hope", "Always $\\mu>0$"],
+              answer: "A",
               explanation: "Null is the claim we challenge.",
             },
             {
@@ -365,10 +389,22 @@ function HypothesisTestingGuide({ part = 1 }) {
             },
             {
               prompt: "Failing to reject $H_0$ means:",
-              options: ["$H_0$ is proven true", "Evidence was not strong enough to reject", "$H_1$ is true"],
-              answer: "B",
+              options: ["$H_0$ is proven true", "$H_1$ is true", "Evidence was not strong enough to reject"],
+              answer: "C",
               explanation: "Inconclusive against the null.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -392,8 +428,8 @@ function HypothesisTestingGuide({ part = 1 }) {
           questions={[
             {
               prompt: "SE of $\\bar x$ with known $\\sigma$ is:",
-              options: ["$\\sigma$", "$\\sigma/\\sqrt n$", "$\\sigma n$"],
-              answer: "B",
+              options: ["$\\sigma/\\sqrt n$", "$\\sigma$", "$\\sigma n$"],
+              answer: "A",
               explanation: "Averaging reduces SD by $\\sqrt n$.",
             },
             {
@@ -404,14 +440,28 @@ function HypothesisTestingGuide({ part = 1 }) {
             },
             {
               prompt: "df for one-sample t is:",
-              options: ["$n$", "$n-1$", "$n-2$"],
-              answer: "B",
+              options: ["$n$", "$n-2$", "$n-1$"],
+              answer: "C",
               explanation: "One parameter estimated for the mean.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <PsCertificateBoost topic="hypothesis" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>
