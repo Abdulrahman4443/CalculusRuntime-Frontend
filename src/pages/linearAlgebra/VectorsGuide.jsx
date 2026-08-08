@@ -1,6 +1,12 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
+import {
+  LA_V_INTRO_QUIZ,
+  LA_V_OPS_QUIZ,
+  LA_V_SPAN_QUIZ,
+  LA_V_INDEP_QUIZ,
+} from "../../data/laVectorsMatricesQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
 import LaCertificateBoost from "./LaCertificateBoost";
@@ -172,38 +178,7 @@ function VectorsGuide({ part = 1 }) {
             title="Span & Basis"
             scoreId="score-la-v-span"
             section="la-v-span"
-            questions={[
-            {
-              prompt: "What is the span of a single nonzero vector $v$ in $\\mathbb{R}^2$?",
-              options: ["The line through the origin in the direction of $v$", "All of $\\mathbb{R}^2$", "Only the zero vector"],
-              answer: "A",
-              explanation: "Scalar multiples of $v$ fill the line through $0$ and $v$.",
-            },
-            {
-              prompt: "Every basis of $\\mathbb{R}^3$ contains how many vectors?",
-              options: ["2", "3", "Any number $\\ge 3$"],
-              answer: "B",
-              explanation: "Dimension is unique: $\\dim\\mathbb{R}^3=3$.",
-            },
-            {
-              prompt: "A spanning set that is not a basis must be:",
-              options: ["Empty", "Linearly independent", "Linearly dependent"],
-              answer: "C",
-              explanation: "If it spans but is not a basis, it has redundant (dependent) vectors.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_V_SPAN_QUIZ}
           />
 
           <Divider />
@@ -235,38 +210,7 @@ function VectorsGuide({ part = 1 }) {
             title="Independence"
             scoreId="score-la-v-indep"
             section="la-v-indep"
-            questions={[
-            {
-              prompt: "The set $\\{0, v\\}$ is always:",
-              options: ["Dependent", "A basis of $\\mathbb{R}^n$", "Independent"],
-              answer: "A",
-              explanation: "Any set containing the zero vector is linearly dependent.",
-            },
-            {
-              prompt: "Four vectors in $\\mathbb{R}^3$ are:",
-              options: ["Independent iff orthogonal", "Always dependent", "Always independent"],
-              answer: "B",
-              explanation: "You cannot have more than $\\dim V$ independent vectors in $V$.",
-            },
-            {
-              prompt: "Columns of an invertible $n\\times n$ matrix are:",
-              options: ["Orthogonal only", "Dependent", "A basis of $\\mathbb{R}^n$"],
-              answer: "C",
-              explanation: "Invertibility means the columns form a basis of $\\mathbb{R}^n$.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_V_INDEP_QUIZ}
           />
 
           <Divider />
@@ -444,38 +388,7 @@ function VectorsGuide({ part = 1 }) {
           title="Vector basics"
           scoreId="score-la-v-intro"
           section="la-v-intro"
-          questions={[
-            {
-              prompt: "The vector $(1,-2,3)$ lives in which space?",
-              options: ["$\\mathbb{R}^3$", "$\\mathbb{R}^2$", "$\\mathbb{R}^1$"],
-              answer: "A",
-              explanation: "Three components means a vector in $\\mathbb{R}^3$.",
-            },
-            {
-              prompt: "What is $\\|(3,4)\\|$?",
-              options: ["7", "5", "12"],
-              answer: "B",
-              explanation: "$\\sqrt{3^2+4^2}=\\sqrt{25}=5$.",
-            },
-            {
-              prompt: "The zero vector is the additive identity because:",
-              options: ["It is orthogonal to itself only", "It has length 1", "$v+0=v$ for every $v$"],
-              answer: "C",
-              explanation: "Vector addition uses $0$ as the identity element.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_V_INTRO_QUIZ}
         />
 
         <Divider />
@@ -496,38 +409,7 @@ function VectorsGuide({ part = 1 }) {
           title="Operations"
           scoreId="score-la-v-ops"
           section="la-v-ops"
-          questions={[
-            {
-              prompt: "$(1,2)+(3,-1)$ equals:",
-              options: ["$(4,1)$", "$(2,3)$", "$(3,2)$"],
-              answer: "A",
-              explanation: "Add componentwise: $(1+3,\\,2-1)=(4,1)$.",
-            },
-            {
-              prompt: "$(1,0)\\cdot(0,1)$ equals:",
-              options: ["1", "0", "$\\sqrt{2}$"],
-              answer: "B",
-              explanation: "Standard basis vectors are orthogonal.",
-            },
-            {
-              prompt: "Scaling $v$ by $-2$:",
-              options: ["Keeps direction, doubles length", "Projects onto the $x$-axis", "Reverses direction and doubles length"],
-              answer: "C",
-              explanation: "Negative scalars reverse direction; magnitude multiplies by $|c|$.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_V_OPS_QUIZ}
         />
 
         <Divider />

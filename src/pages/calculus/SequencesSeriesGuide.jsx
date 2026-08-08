@@ -76,7 +76,7 @@ export default function SequencesSeriesGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-ser-p2"
             badge="Quiz"
-            title="Series tests & power series (5 questions)"
+            title="Series tests & power series (15 questions)"
             scoreId="score-ser-p2"
             section="ser-p2"
             questions={SERIES_P2_QUIZ}
@@ -156,7 +156,7 @@ export default function SequencesSeriesGuide({ part = 1 }) {
         <LaMcqSection
           id="quiz-ser-p1"
           badge="Quiz"
-          title="Sequences & basic series (5 questions)"
+          title="Sequences & basic series (15 questions)"
           scoreId="score-ser-p1"
           section="ser-p1"
           questions={SERIES_P1_QUIZ}

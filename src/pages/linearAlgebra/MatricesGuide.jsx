@@ -1,6 +1,12 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
+import {
+  LA_M_INTRO_QUIZ,
+  LA_M_OPS_QUIZ,
+  LA_M_DET_QUIZ,
+  LA_M_INV_QUIZ,
+} from "../../data/laVectorsMatricesQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
 import LaCertificateBoost from "./LaCertificateBoost";
@@ -188,38 +194,7 @@ function MatricesGuide({ part = 1 }) {
             title="Determinants"
             scoreId="score-la-m-det"
             section="la-m-det"
-            questions={[
-            {
-              prompt: "$\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ equals:",
-              options: ["-2", "10", "2"],
-              answer: "A",
-              explanation: "$1\\cdot 4-2\\cdot 3=4-6=-2$.",
-            },
-            {
-              prompt: "If $\\det A=0$, then $A$ is:",
-              options: ["Orthogonal", "Singular (not invertible)", "Invertible"],
-              answer: "B",
-              explanation: "Zero determinant means columns are dependent; no inverse.",
-            },
-            {
-              prompt: "$\\det(AB)$ equals:",
-              options: ["$\\det(A+B)$", "$\\det A+\\det B$", "$(\\det A)(\\det B)$"],
-              answer: "C",
-              explanation: "Determinants multiply under matrix products.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_M_DET_QUIZ}
           />
 
           <Divider />
@@ -253,38 +228,7 @@ function MatricesGuide({ part = 1 }) {
             title="Inverses"
             scoreId="score-la-m-inv"
             section="la-m-inv"
-            questions={[
-            {
-              prompt: "The inverse of $I$ is:",
-              options: ["$I$", "Undefined", "$0$"],
-              answer: "A",
-              explanation: "$I$ is its own inverse.",
-            },
-            {
-              prompt: "$(AB)^{-1}$ equals (when both invertible):",
-              options: ["$A^{-1}B^{-1}$", "$B^{-1}A^{-1}$", "$AB$"],
-              answer: "B",
-              explanation: "Inverse reverses order: $(AB)(B^{-1}A^{-1})=I$.",
-            },
-            {
-              prompt: "If $Ax=b$ has a unique solution for every $b$, then $A$ is:",
-              options: ["Nilpotent", "Singular", "Invertible"],
-              answer: "C",
-              explanation: "Unique solution for all $b$ iff $A$ is invertible.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_M_INV_QUIZ}
           />
 
           <Divider />
@@ -476,38 +420,7 @@ function MatricesGuide({ part = 1 }) {
           title="Matrix basics"
           scoreId="score-la-m-intro"
           section="la-m-intro"
-          questions={[
-            {
-              prompt: "A $3\\times 2$ matrix maps:",
-              options: ["$\\mathbb{R}^2\\to\\mathbb{R}^3$", "$\\mathbb{R}^3\\to\\mathbb{R}^2$", "$\\mathbb{R}^3\\to\\mathbb{R}^3$"],
-              answer: "A",
-              explanation: "An $m\\times n$ matrix acts on $\\mathbb{R}^n$ and outputs $\\mathbb{R}^m$.",
-            },
-            {
-              prompt: "The diagonal entries of $I_3$ are:",
-              options: ["Alternating", "All $1$", "All $0$"],
-              answer: "B",
-              explanation: "Identity has $1$ on the main diagonal.",
-            },
-            {
-              prompt: "Matrix size is written $m\\times n$ where $m$ is:",
-              options: ["Columns", "Rank", "Rows"],
-              answer: "C",
-              explanation: "$m$ = number of rows, $n$ = number of columns.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_M_INTRO_QUIZ}
         />
 
         <Divider />
@@ -536,38 +449,7 @@ function MatricesGuide({ part = 1 }) {
           title="Operations"
           scoreId="score-la-m-ops"
           section="la-m-ops"
-          questions={[
-            {
-              prompt: "Can you multiply a $2\\times 3$ matrix by a $2\\times 2$ matrix (in that order)?",
-              options: ["No", "Only if symmetric", "Yes"],
-              answer: "A",
-              explanation: "Inner dimensions must match: $3\\neq 2$.",
-            },
-            {
-              prompt: "$(AB)^T$ equals:",
-              options: ["$A^T B^T$", "$B^T A^T$", "$AB$"],
-              answer: "B",
-              explanation: "Transpose reverses product order.",
-            },
-            {
-              prompt: "In general $AB$ and $BA$:",
-              options: ["Always equal", "Always undefined", "Need not be equal"],
-              answer: "C",
-              explanation: "Matrix multiplication is not commutative.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_M_OPS_QUIZ}
         />
 
         <Divider />

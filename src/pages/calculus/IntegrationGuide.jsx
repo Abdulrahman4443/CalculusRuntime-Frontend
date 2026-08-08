@@ -78,7 +78,7 @@ export default function IntegrationGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-int-tech"
             badge="Quiz 1"
-            title="Techniques (5 questions)"
+            title="Techniques (15 questions)"
             scoreId="score-int-tech"
             section="int-tech"
             questions={INT_TECH_QUIZ}
@@ -163,7 +163,7 @@ export default function IntegrationGuide({ part = 1 }) {
         <LaMcqSection
           id="quiz-int-fund"
           badge="Quiz 1"
-          title="Foundations (5 questions)"
+          title="Foundations (15 questions)"
           scoreId="score-int-fund"
           section="int-fund"
           questions={INT_FUND_QUIZ}
