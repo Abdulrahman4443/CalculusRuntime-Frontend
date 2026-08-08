@@ -79,8 +79,8 @@ export function IntPart2() {
       path="/integration/2"
       Guide={IntegrationGuide}
       part={2}
-      nextPath="/sequences-series/1"
-      nextLabel="Next: Sequences & Infinite Series"
+      nextPath="/taylor-series/1"
+      nextLabel="Next: Taylor Series"
     />
   );
 }

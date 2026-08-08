@@ -1,4 +1,3 @@
-import MultiVariableCalculus from "./pages/MultiVariableCalculus";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ProgressProvider } from "./pages/ProgressContext";
@@ -44,6 +43,7 @@ import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
 import Certificate from "./pages/calculus/Certificate";
 import CourseQuiz from "./pages/CourseQuiz";
+import MyCertificates from "./pages/MyCertificates";
 import Chatbot from "./components/Chatbot/Chatbot";
 import BackToTop from "./components/BackToTop";
 
@@ -96,7 +96,6 @@ function App() {
               <Route path="/dashboard" element={<Layout body={<Dashboard />} />} />
 
               {/* Course hubs */}
-              <Route path="/courses/multivariable-calculus" element={<Layout body={<MultiVariableCalculus />} />} />
               <Route path="/courses/:courseId" element={<Layout body={<CourseHub />} />} />
 
               {/* Simple Concepts */}
@@ -142,6 +141,7 @@ function App() {
               <Route path="/taylor-series/1" element={<Layout body={<TaylorPart1 />} />} />
               <Route path="/taylor-series/2" element={<Layout body={<TaylorPart2 />} />} />
 
+              <Route path="/certificates" element={<Layout body={<MyCertificates />} />} />
               <Route path="/certificate/:courseId" element={<Layout body={<Certificate />} />} />
               <Route path="/quiz/:courseId" element={<Layout body={<CourseQuiz />} />} />
 
