@@ -44,6 +44,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Certificate from "./pages/calculus/Certificate";
 import CourseQuiz from "./pages/CourseQuiz";
 import MyCertificates from "./pages/MyCertificates";
+import SavedForLater from "./pages/SavedForLater";
 import Chatbot from "./components/Chatbot/Chatbot";
 import BackToTop from "./components/BackToTop";
 
@@ -98,6 +99,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/dashboard" element={<Layout body={<Dashboard />} />} />
+              <Route path="/saved" element={<Layout body={<SavedForLater />} />} />
 
               {/* Course hubs */}
               <Route path="/courses/:courseId" element={<Layout body={<CourseHub />} />} />

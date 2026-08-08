@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
+import PsCertificateBoost from "./PsCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -19,6 +21,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-b-cond">Quiz</a>
           <a className="sb-link" href="#ps-b-bayes">Bayes</a>
           <a className="sb-link" href="#quiz-ps-b-bayes">Quiz</a>
+          <a className="sb-link" href="#ps-cert-probability-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -132,25 +135,37 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             scoreId="score-ps-b-cond"
             section="ps-b-cond"
             questions={[
-              {
-                prompt: "$P(A\\mid B)$ equals:",
-                options: ["$P(A)/P(B)$", "$P(A\\cap B)/P(B)$", "$P(A)P(B)$"],
-                answer: "B",
-                explanation: "Definition of conditional probability.",
-              },
-              {
-                prompt: "If $A$ and $B$ are independent, then $P(A\\mid B)$ equals:",
-                options: ["$P(B)$", "$P(A)$", "$0$"],
-                answer: "B",
-                explanation: "Independence means conditioning does not change $P(A)$.",
-              },
-              {
-                prompt: "The law of total probability requires the $B_i$ to:",
-                options: ["Overlap freely", "Partition the sample space", "Be independent of $A$"],
-                answer: "B",
-                explanation: "A partition covers $\\Omega$ with disjoint pieces.",
-              },
-            ]}
+            {
+              prompt: "$P(A\\mid B)$ equals:",
+              options: ["$P(A\\cap B)/P(B)$", "$P(A)P(B)$", "$P(A)/P(B)$"],
+              answer: "A",
+              explanation: "Definition of conditional probability.",
+            },
+            {
+              prompt: "If $A$ and $B$ are independent, then $P(A\\mid B)$ equals:",
+              options: ["$P(B)$", "$P(A)$", "$0$"],
+              answer: "B",
+              explanation: "Independence means conditioning does not change $P(A)$.",
+            },
+            {
+              prompt: "The law of total probability requires the $B_i$ to:",
+              options: ["Overlap freely", "Be independent of $A$", "Partition the sample space"],
+              answer: "C",
+              explanation: "A partition covers $\\Omega$ with disjoint pieces.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -212,34 +227,42 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             scoreId="score-ps-b-bayes"
             section="ps-b-bayes"
             questions={[
-              {
-                prompt: "Bayes’ theorem updates:",
-                options: ["Only sample spaces", "Priors into posteriors", "Only means"],
-                answer: "B",
-                explanation: "Evidence revises belief about hypotheses.",
-              },
-              {
-                prompt: "In the medical test example, a rare disease implies:",
-                options: ["Positive tests are always disease", "False positives can dominate", "Sensitivity is irrelevant"],
-                answer: "B",
-                explanation: "Large healthy pool generates many false positives.",
-              },
-              {
-                prompt: "$P(A)$ in Bayes’ formula is often found by:",
-                options: ["Guessing", "Law of total probability", "Setting it to 1"],
-                answer: "B",
-                explanation: "Marginalize over partitions of the cause.",
-              },
-              {
-                prompt: "With several hypotheses $B_1,\\ldots,B_k$, the posteriors $P(B_i\\mid A)$ must:",
-                options: ["Each equal $P(B_i)$", "Sum to 1 across all $i$", "Always be equal to each other"],
-                answer: "B",
-                explanation: "The $B_i$ partition the sample space, so their posteriors form a complete distribution.",
-              },
-            ]}
+            {
+              prompt: "Bayes’ theorem updates:",
+              options: ["Priors into posteriors", "Only sample spaces", "Only means"],
+              answer: "A",
+              explanation: "Evidence revises belief about hypotheses.",
+            },
+            {
+              prompt: "In the medical test example, a rare disease implies:",
+              options: ["Sensitivity is irrelevant", "False positives can dominate", "Positive tests are always disease"],
+              answer: "B",
+              explanation: "Large healthy pool generates many false positives.",
+            },
+            {
+              prompt: "$P(A)$ in Bayes’ formula is often found by:",
+              options: ["Setting it to 1", "Guessing", "Law of total probability"],
+              answer: "C",
+              explanation: "Marginalize over partitions of the cause.",
+            },
+            {
+              prompt: "With several hypotheses $B_1,\\ldots,B_k$, the posteriors $P(B_i\\mid A)$ must:",
+              options: ["Sum to 1 across all $i$", "Always be equal to each other", "Each equal $P(B_i)$"],
+              answer: "A",
+              explanation: "The $B_i$ partition the sample space, so their posteriors form a complete distribution.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <PsCertificateBoost topic="probability" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -261,6 +284,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-b-intro">Quiz</a>
         <a className="sb-link" href="#ps-b-combo">Counting</a>
         <a className="sb-link" href="#quiz-ps-b-combo">Quiz</a>
+        <a className="sb-link" href="#ps-cert-probability-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -375,8 +399,8 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           questions={[
             {
               prompt: "$P(\\Omega)$ equals:",
-              options: ["0", "1", "Depends on the experiment"],
-              answer: "B",
+              options: ["1", "0", "Depends on the experiment"],
+              answer: "A",
               explanation: "The certain event has probability 1.",
             },
             {
@@ -387,10 +411,22 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             },
             {
               prompt: "For disjoint $A,B$, $P(A\\cup B)$ equals:",
-              options: ["$P(A)P(B)$", "$P(A)+P(B)$", "$P(A)-P(B)$"],
-              answer: "B",
+              options: ["$P(A)-P(B)$", "$P(A)P(B)$", "$P(A)+P(B)$"],
+              answer: "C",
               explanation: "Additivity for disjoint events.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -414,26 +450,40 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           questions={[
             {
               prompt: "For equally likely outcomes, $P(A)$ is:",
-              options: ["$|A|+|\\Omega|$", "$|A|/|\\Omega|$", "$|\\Omega|/|A|$"],
-              answer: "B",
+              options: ["$|A|/|\\Omega|$", "$|\\Omega|/|A|$", "$|A|+|\\Omega|$"],
+              answer: "A",
               explanation: "Favorable over total.",
             },
             {
               prompt: "$\\binom{5}{2}$ equals:",
-              options: ["10", "20", "25"],
-              answer: "A",
+              options: ["20", "10", "25"],
+              answer: "B",
               explanation: "$5!/(2!3!)=10$.",
             },
             {
               prompt: "Order matters for:",
-              options: ["Combinations only", "Permutations", "Neither"],
-              answer: "B",
+              options: ["Neither", "Combinations only", "Permutations"],
+              answer: "C",
               explanation: "Permutations count ordered selections.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <PsCertificateBoost topic="probability" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

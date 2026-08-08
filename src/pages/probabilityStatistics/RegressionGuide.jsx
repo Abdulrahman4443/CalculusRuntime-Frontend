@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
+import PsCertificateBoost from "./PsCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -19,6 +21,7 @@ function RegressionGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-r-fit">Quiz</a>
           <a className="sb-link" href="#ps-r-resid">Residuals</a>
           <a className="sb-link" href="#quiz-ps-r-resid">Quiz</a>
+          <a className="sb-link" href="#ps-cert-regression-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -119,25 +122,37 @@ function RegressionGuide({ part = 1 }) {
             scoreId="score-ps-r-fit"
             section="ps-r-fit"
             questions={[
-              {
-                prompt: "Least squares minimizes:",
-                options: ["Sum of residuals", "Sum of squared residuals", "Sum of $|e_i|$ only"],
-                answer: "B",
-                explanation: "Squared vertical errors.",
-              },
-              {
-                prompt: "The fitted line always goes through:",
-                options: ["$(0,0)$", "$(\\bar x,\\bar y)$", "$(1,1)$"],
-                answer: "B",
-                explanation: "Centroid property of least squares.",
-              },
-              {
-                prompt: "$b_1=r s_y/s_x$ implies if $r=0$ then:",
-                options: ["Slope is infinite", "Slope is 0", "Intercept is 0"],
-                answer: "B",
-                explanation: "No linear association ⇒ flat best line.",
-              },
-            ]}
+            {
+              prompt: "Least squares minimizes:",
+              options: ["Sum of squared residuals", "Sum of $|e_i|$ only", "Sum of residuals"],
+              answer: "A",
+              explanation: "Squared vertical errors.",
+            },
+            {
+              prompt: "The fitted line always goes through:",
+              options: ["$(0,0)$", "$(\\bar x,\\bar y)$", "$(1,1)$"],
+              answer: "B",
+              explanation: "Centroid property of least squares.",
+            },
+            {
+              prompt: "$b_1=r s_y/s_x$ implies if $r=0$ then:",
+              options: ["Intercept is 0", "Slope is infinite", "Slope is 0"],
+              answer: "C",
+              explanation: "No linear association ⇒ flat best line.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -198,34 +213,42 @@ function RegressionGuide({ part = 1 }) {
             scoreId="score-ps-r-resid"
             section="ps-r-resid"
             questions={[
-              {
-                prompt: "Residual equals:",
-                options: ["$\\hat y-y$", "$y-\\hat y$", "$y-\\bar y$"],
-                answer: "B",
-                explanation: "Observed minus fitted.",
-              },
-              {
-                prompt: "A curved residual plot suggests:",
-                options: ["Perfect fit", "Nonlinear relationship", "r must be 1"],
-                answer: "B",
-                explanation: "Linear model misses curvature.",
-              },
-              {
-                prompt: "Extrapolation is risky because:",
-                options: ["r becomes 2", "The linear pattern may not continue outside the data range", "Residuals become correlations"],
-                answer: "B",
-                explanation: "Model is local to observed $x$.",
-              },
-              {
-                prompt: "For simple linear regression, $R^2$ is:",
-                options: ["Always negative", "Equal to $r^2$", "Unrelated to $r$"],
-                answer: "B",
-                explanation: "R-squared is the square of the correlation coefficient in the simple linear case.",
-              },
-            ]}
+            {
+              prompt: "Residual equals:",
+              options: ["$y-\\hat y$", "$y-\\bar y$", "$\\hat y-y$"],
+              answer: "A",
+              explanation: "Observed minus fitted.",
+            },
+            {
+              prompt: "A curved residual plot suggests:",
+              options: ["r must be 1", "Nonlinear relationship", "Perfect fit"],
+              answer: "B",
+              explanation: "Linear model misses curvature.",
+            },
+            {
+              prompt: "Extrapolation is risky because:",
+              options: ["Residuals become correlations", "r becomes 2", "The linear pattern may not continue outside the data range"],
+              answer: "C",
+              explanation: "Model is local to observed $x$.",
+            },
+            {
+              prompt: "For simple linear regression, $R^2$ is:",
+              options: ["Equal to $r^2$", "Always negative", "Unrelated to $r$"],
+              answer: "A",
+              explanation: "R-squared is the square of the correlation coefficient in the simple linear case.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <PsCertificateBoost topic="regression" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Course module complete</h2>
@@ -247,6 +270,7 @@ function RegressionGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-r-corr">Quiz</a>
         <a className="sb-link" href="#ps-r-assoc">Association</a>
         <a className="sb-link" href="#quiz-ps-r-assoc">Quiz</a>
+        <a className="sb-link" href="#ps-cert-regression-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -352,22 +376,34 @@ function RegressionGuide({ part = 1 }) {
           questions={[
             {
               prompt: "Range of Pearson $r$:",
-              options: ["$[0,1]$", "$[-1,1]$", "$(-\\infty,\\infty)$"],
-              answer: "B",
+              options: ["$[-1,1]$", "$(-\\infty,\\infty)$", "$[0,1]$"],
+              answer: "A",
               explanation: "Bounded linear association measure.",
             },
             {
               prompt: "$r=1$ means:",
-              options: ["Random cloud", "Perfect positive linear fit", "Causation proven"],
+              options: ["Causation proven", "Perfect positive linear fit", "Random cloud"],
               answer: "B",
               explanation: "All points on an upward line.",
             },
             {
               prompt: "Correlation proves causation:",
-              options: ["Always", "Never by itself", "When $|r|>0.5$"],
-              answer: "B",
+              options: ["When $|r|>0.5$", "Always", "Never by itself"],
+              answer: "C",
               explanation: "Confounding and reverse causality remain possible.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -391,8 +427,8 @@ function RegressionGuide({ part = 1 }) {
           questions={[
             {
               prompt: "First step before computing r:",
-              options: ["Fit multiple regression", "Look at the scatterplot", "Delete half the data"],
-              answer: "B",
+              options: ["Look at the scatterplot", "Delete half the data", "Fit multiple regression"],
+              answer: "A",
               explanation: "Visual form guides interpretation.",
             },
             {
@@ -403,14 +439,28 @@ function RegressionGuide({ part = 1 }) {
             },
             {
               prompt: "Strength of linear association is mainly read from:",
-              options: ["Sign of r only", "$|r|$ and the plot", "Sample size alone"],
-              answer: "B",
+              options: ["Sign of r only", "Sample size alone", "$|r|$ and the plot"],
+              answer: "C",
               explanation: "Magnitude plus visual confirmation.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <PsCertificateBoost topic="regression" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import SubmitToLeaderboard from '../components/SubmitToLeaderboard';
-import { CALC_AG_PRACTICE_BANK } from '../data/calcAgPracticeBank';
-import { PS_PRACTICE_BANK } from '../data/psPracticeBank';
-import { LA_PRACTICE_BANK } from '../data/laPracticeBank';
-import { MV_PRACTICE_BANK } from '../data/mvPracticeBank';
 import './Leaderboard.css';
 import './PractiseSection.css';
 
-// --- MASTER PROBLEM DATABASE ---
-const PRACTICE_PROBLEMS = [
-  // Certificate-depth banks: 15 Easy + 15 Medium + 15 Hard per topic
-  ...CALC_AG_PRACTICE_BANK,
-  ...MV_PRACTICE_BANK,
-  ...PS_PRACTICE_BANK,
-  ...LA_PRACTICE_BANK,
-];
+// Each bank holds 100 Easy + 100 Medium + 100 Hard questions per topic, so they
+// are fetched on demand instead of shipping ~2 MB of questions in the main bundle.
+const BANK_LOADERS = {
+  calcAg: () => import('../data/calcAgPracticeBank').then((m) => m.CALC_AG_PRACTICE_BANK),
+  mv: () => import('../data/mvPracticeBank').then((m) => m.MV_PRACTICE_BANK),
+  la: () => import('../data/laPracticeBank').then((m) => m.LA_PRACTICE_BANK),
+  ps: () => import('../data/psPracticeBank').then((m) => m.PS_PRACTICE_BANK),
+};
 
 const DIFFICULTIES = ['Easy', 'Medium', 'Hard'];
 
@@ -42,6 +38,39 @@ const TOPICS = [
   'Regression & Correlation',
 ];
 
+const TOPIC_BANK = {
+  'Limits and Continuity': 'calcAg',
+  Differentiation: 'calcAg',
+  Integration: 'calcAg',
+  'Sequences and Infinite Series': 'calcAg',
+  'Conic Sections and Analytic Geometry': 'calcAg',
+  'Taylor Series for Multivariable Functions': 'calcAg',
+  'Partial Derivatives': 'mv',
+  'Vector Calculus': 'mv',
+  'Multiple Integrals': 'mv',
+  'Lagrange Multipliers': 'mv',
+  'Divergence & Curl': 'mv',
+  "Stokes' Theorem": 'mv',
+  'Vectors & Vector Spaces': 'la',
+  'Matrices & Determinants': 'la',
+  'Systems of Linear Equations': 'la',
+  'Eigenvalues & Eigenvectors': 'la',
+  'Probability Basics': 'ps',
+  'Random Variables & Distributions': 'ps',
+  'Descriptive Statistics': 'ps',
+  'Hypothesis Testing': 'ps',
+  'Regression & Correlation': 'ps',
+};
+
+function shuffled(list) {
+  const out = [...list];
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
 export default function PractiseSection() {
   // --- LAYER 1: DIFFICULTY SELECTION ---
   const [chosenDifficulty, setChosenDifficulty] = useState(null);
@@ -66,17 +95,38 @@ export default function PractiseSection() {
     localStorage.setItem('arena_score_tracker', JSON.stringify(score));
   }, [score]);
 
+  const [isLoadingBank, setIsLoadingBank] = useState(false);
+
   // Handle building the problem pool based on selection matrices
   useEffect(() => {
-    if (chosenDifficulty && chosenTopic) {
-      const filtered = PRACTICE_PROBLEMS.filter(
+    if (!chosenDifficulty || !chosenTopic) return undefined;
+
+    let cancelled = false;
+    const loader = BANK_LOADERS[TOPIC_BANK[chosenTopic]];
+    setIsLoadingBank(true);
+    setPoolProblems([]);
+    setCurrentIndex(0);
+    setIsQuizCompleted(false);
+    resetQuizTurn();
+
+    Promise.resolve(loader ? loader() : [])
+      .then((bank) => {
+        if (cancelled) return;
+        const filtered = bank.filter(
         p => p.difficulty === chosenDifficulty && p.topic === chosenTopic
       );
-      setPoolProblems(filtered);
-      setCurrentIndex(0);
-      setIsQuizCompleted(false);
-      resetQuizTurn();
-    }
+        setPoolProblems(shuffled(filtered));
+      })
+      .catch(() => {
+        if (!cancelled) setPoolProblems([]);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoadingBank(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [chosenDifficulty, chosenTopic]);
 
   const resetQuizTurn = () => {
@@ -113,7 +163,7 @@ export default function PractiseSection() {
   const handleNextQuestion = () => {
     if (currentIndex < poolProblems.length - 1) {
       setCurrentIndex(prev => prev + 1);
-      resetQuizTurn();
+    resetQuizTurn();
     } else {
       setIsQuizCompleted(true);
     }
@@ -262,14 +312,14 @@ export default function PractiseSection() {
 
                 <div className="practice-actions">
                   {!isSubmitted ? (
-                    <button
-                      type="button"
-                      className="practice-submit"
-                      onClick={handleSubmit}
+                  <button
+                    type="button"
+                    className="practice-submit"
+                    onClick={handleSubmit}
                       disabled={selectedAnswer === null}
-                    >
-                      Submit Verification
-                    </button>
+                  >
+                    Submit Verification
+                  </button>
                   ) : (
                     <button
                       type="button"
@@ -308,6 +358,8 @@ export default function PractiseSection() {
                   Choose Another Topic
                 </button>
               </div>
+            ) : isLoadingBank ? (
+              <div className="practice-empty">Loading question bank…</div>
             ) : (
               <div className="practice-empty">
                 No questions populated matching this configuration choice.

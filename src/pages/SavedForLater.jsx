@@ -1,6 +1,19 @@
 import { useEffect, useState } from "react";
-import { getSavedExamples, unsaveExample } from "../utils/saveForLaterStorage";
+import { Link } from "react-router-dom";
+import {
+  getSavedExamples,
+  unsaveExample,
+  exampleAnchorId,
+} from "../utils/saveForLaterStorage";
 import "./SavedForLater.css";
+
+function exampleHref(entry) {
+  const path = entry.guidePath || "/dashboard";
+  const hash =
+    entry.exampleId ||
+    exampleAnchorId(entry.sectionId, entry.exampleTitle);
+  return `${path}#${hash}`;
+}
 
 function SavedForLater() {
   const [examples, setExamples] = useState([]);
@@ -20,21 +33,22 @@ function SavedForLater() {
         <div className="sfl-eye">CalcVoyager</div>
         <h1 className="sfl-title">Saved for Later</h1>
         <p className="sfl-sub">
-          Examples you've bookmarked across all study guides.
+          Examples you have bookmarked across study guides. Click an example to
+          jump to it in its guide.
         </p>
       </header>
 
       <section className="sfl-body">
         {examples.length === 0 ? (
           <p className="sfl-empty">
-            Nothing saved yet. Tap "☆ Save" on any example inside a study
+            Nothing saved yet. Tap &quot;☆ Save&quot; on any example inside a study
             guide to add it here.
           </p>
         ) : (
           <ul className="sfl-list">
             {examples.map((entry) => (
               <li key={entry.id} className="sfl-card">
-                <div className="sfl-card-main">
+                <Link to={exampleHref(entry)} className="sfl-card-main sfl-card-link">
                   <div className="sfl-card-guide">
                     {entry.guideTitle || "Study Guide"}
                   </div>
@@ -42,12 +56,15 @@ function SavedForLater() {
                   <div className="sfl-card-meta">
                     Section: {entry.sectionId} · Saved{" "}
                     {new Date(entry.savedAt).toLocaleDateString()}
+                    {entry.guidePath ? ` · Open in guide →` : ""}
                   </div>
-                </div>
+                </Link>
                 <button
                   type="button"
                   className="sfl-remove-btn"
-                  onClick={() => handleRemove(entry.sectionId, entry.exampleTitle)}
+                  onClick={() =>
+                    handleRemove(entry.sectionId, entry.exampleTitle)
+                  }
                 >
                   Remove
                 </button>

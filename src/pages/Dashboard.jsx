@@ -570,6 +570,17 @@ function Dashboard() {
         removeBookmark={removeBookmark}
       />
 
+      <section className="db-section">
+        <h2 className="db-section-title">Saved examples</h2>
+        <p style={{ color: "var(--muted)", marginBottom: "0.75rem" }}>
+          Jump back to worked examples you starred in study guides.
+        </p>
+        <Link to="/saved" className="db-tool-card" style={{ display: "inline-flex", maxWidth: "16rem" }}>
+          <span className="db-tool-icon">☆</span>
+          <span>Open saved examples</span>
+        </Link>
+      </section>
+
       {/* Quiz scores */}
       {Object.keys(progress.quizScores).length > 0 && (
         <section className="db-section">

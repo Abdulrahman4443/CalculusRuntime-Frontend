@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
+import LaCertificateBoost from "./LaCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -19,6 +21,7 @@ function SystemsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-la-s-rank">Quiz</a>
           <a className="sb-link" href="#la-s-geo">Geometry</a>
           <a className="sb-link" href="#quiz-la-s-geo">Quiz</a>
+          <a className="sb-link" href="#la-cert-systems-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -187,25 +190,37 @@ function SystemsGuide({ part = 1 }) {
             scoreId="score-la-s-rank"
             section="la-s-rank"
             questions={[
-              {
-                prompt: "Rank equals the number of:",
-                options: ["Rows", "Pivots in RREF", "Zero rows only"],
-                answer: "B",
-                explanation: "Rank = number of nonzero pivot rows after reduction.",
-              },
-              {
-                prompt: "If $\\mathrm{rank}(A)<\\mathrm{rank}([A\\mid b])$, the system is:",
-                options: ["Consistent", "Inconsistent", "Homogeneous"],
-                answer: "B",
-                explanation: "Augmented matrix having higher rank means a contradictory equation like $0=1$.",
-              },
-              {
-                prompt: "A consistent $3\\times 3$ system with rank $2$ has:",
-                options: ["Unique solution", "One free variable", "No solution"],
-                answer: "B",
-                explanation: "Free variables = $n-r=3-2=1$.",
-              },
-            ]}
+            {
+              prompt: "Rank equals the number of:",
+              options: ["Pivots in RREF", "Zero rows only", "Rows"],
+              answer: "A",
+              explanation: "Rank = number of nonzero pivot rows after reduction.",
+            },
+            {
+              prompt: "If $\\mathrm{rank}(A)<\\mathrm{rank}([A\\mid b])$, the system is:",
+              options: ["Homogeneous", "Inconsistent", "Consistent"],
+              answer: "B",
+              explanation: "Augmented matrix having higher rank means a contradictory equation like $0=1$.",
+            },
+            {
+              prompt: "A consistent $3\\times 3$ system with rank $2$ has:",
+              options: ["Unique solution", "No solution", "One free variable"],
+              answer: "C",
+              explanation: "Free variables = $n-r=3-2=1$.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -235,28 +250,42 @@ function SystemsGuide({ part = 1 }) {
             scoreId="score-la-s-geo"
             section="la-s-geo"
             questions={[
-              {
-                prompt: "The homogeneous system $Ax=0$ always:",
-                options: ["Has no solution", "Has at least the zero solution", "Has a unique nonzero solution"],
-                answer: "B",
-                explanation: "$A0=0$ always holds.",
-              },
-              {
-                prompt: "If $x_p$ solves $Ax=b$ and $v$ is in $\\mathrm{Nul}(A)$, then $x_p+v$:",
-                options: ["Fails to solve $Ax=b$", "Also solves $Ax=b$", "Solves $Ax=0$ only"],
-                answer: "B",
-                explanation: "$A(x_p+v)=b+0=b$.",
-              },
-              {
-                prompt: "Two distinct planes in $\\mathbb{R}^3$ that are not parallel typically intersect in a:",
-                options: ["Point", "Line", "Ball"],
-                answer: "B",
-                explanation: "Generic intersection of two planes is a line.",
-              },
-            ]}
+            {
+              prompt: "The homogeneous system $Ax=0$ always:",
+              options: ["Has at least the zero solution", "Has a unique nonzero solution", "Has no solution"],
+              answer: "A",
+              explanation: "$A0=0$ always holds.",
+            },
+            {
+              prompt: "If $x_p$ solves $Ax=b$ and $v$ is in $\\mathrm{Nul}(A)$, then $x_p+v$:",
+              options: ["Fails to solve $Ax=b$", "Also solves $Ax=b$", "Solves $Ax=0$ only"],
+              answer: "B",
+              explanation: "$A(x_p+v)=b+0=b$.",
+            },
+            {
+              prompt: "Two distinct planes in $\\mathbb{R}^3$ that are not parallel typically intersect in a:",
+              options: ["Point", "Ball", "Line"],
+              answer: "C",
+              explanation: "Generic intersection of two planes is a line.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <LaCertificateBoost topic="systems" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -287,6 +316,7 @@ function SystemsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-la-s-intro">Quiz</a>
         <a className="sb-link" href="#la-s-gauss">Row reduction</a>
         <a className="sb-link" href="#quiz-la-s-gauss">Quiz</a>
+        <a className="sb-link" href="#la-cert-systems-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -445,26 +475,34 @@ function SystemsGuide({ part = 1 }) {
           questions={[
             {
               prompt: "How many solutions can a linear system have?",
-              options: ["Only one", "Zero, one, or infinitely many", "Always infinitely many"],
-              answer: "B",
+              options: ["Zero, one, or infinitely many", "Only one", "Always infinitely many"],
+              answer: "A",
               explanation: "Those are the only three possibilities over $\\mathbb{R}$.",
             },
             {
               prompt: "In $Ax=b$, the vector $b$ lives in:",
-              options: ["Column space candidate space $\\mathbb{R}^m$", "Only $\\mathrm{Nul}(A)$", "Always $\\mathbb{R}^1$"],
-              answer: "A",
+              options: ["Only $\\mathrm{Nul}(A)$", "Column space candidate space $\\mathbb{R}^m$", "Always $\\mathbb{R}^1$"],
+              answer: "B",
               explanation: "Consistency means $b$ lies in the column space of $A$.",
             },
             {
               prompt: "The augmented matrix for $x+y=1$, $2x-y=0$ is:",
-              options: [
-                "$\\begin{pmatrix}1&1&1\\\\2&-1&0\\end{pmatrix}$",
-                "$\\begin{pmatrix}1&1\\\\2&-1\\end{pmatrix}$",
-                "$\\begin{pmatrix}1\\\\0\\end{pmatrix}$",
-              ],
-              answer: "A",
+              options: ["$\\begin{pmatrix}1\\\\0\\end{pmatrix}$", "$\\begin{pmatrix}1&1\\\\2&-1\\end{pmatrix}$", "$\\begin{pmatrix}1&1&1\\\\2&-1&0\\end{pmatrix}$"],
+              answer: "C",
               explanation: "Coefficients plus RHS as an extra column.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -497,26 +535,40 @@ function SystemsGuide({ part = 1 }) {
           questions={[
             {
               prompt: "Swapping two rows of the augmented matrix:",
-              options: ["Changes the solution set", "Preserves the solution set", "Always creates inconsistency"],
-              answer: "B",
+              options: ["Preserves the solution set", "Always creates inconsistency", "Changes the solution set"],
+              answer: "A",
               explanation: "Elementary row operations are reversible and keep equivalent systems.",
             },
             {
               prompt: "A free variable corresponds to a:",
-              options: ["Pivot column", "Non-pivot column", "RHS column only"],
+              options: ["RHS column only", "Non-pivot column", "Pivot column"],
               answer: "B",
               explanation: "Non-pivot columns mark free parameters.",
             },
             {
               prompt: "Back-substitution is used after reaching:",
-              options: ["A random matrix", "Echelon / triangular form", "Only the zero matrix"],
-              answer: "B",
+              options: ["A random matrix", "Only the zero matrix", "Echelon / triangular form"],
+              answer: "C",
               explanation: "Solve from the bottom pivot upward.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <LaCertificateBoost topic="systems" part={1} />
+
         <section className="section" id="summary1">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Continue</h2>

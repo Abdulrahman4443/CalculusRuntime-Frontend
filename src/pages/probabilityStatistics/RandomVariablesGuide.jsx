@@ -3,6 +3,8 @@ import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
+import PsCertificateBoost from "./PsCertificateBoost";
+
 function Divider() {
   return <hr className="divider" />;
 }
@@ -20,6 +22,7 @@ function RandomVariablesGuide({ part = 1 }) {
           <a className="sb-link" href="#ps-rv-named">Named families</a>
           <a className="sb-link" href="#ps-rv-named-ex">Examples</a>
           <a className="sb-link" href="#quiz-ps-rv-named">Quiz</a>
+          <a className="sb-link" href="#ps-cert-randomvars-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -123,25 +126,37 @@ function RandomVariablesGuide({ part = 1 }) {
             scoreId="score-ps-rv-cont"
             section="ps-rv-cont"
             questions={[
-              {
-                prompt: "For a continuous RV, $P(X=c)$ is:",
-                options: ["$f(c)$", "0", "1"],
-                answer: "B",
-                explanation: "Points have zero area under a PDF.",
-              },
-              {
-                prompt: "A valid PDF must integrate to:",
-                options: ["0", "1", "$\\infty$"],
-                answer: "B",
-                explanation: "Total probability is 1.",
-              },
-              {
-                prompt: "$F(x)=P(X\\le x)$ is the:",
-                options: ["PDF", "CDF", "Variance"],
-                answer: "B",
-                explanation: "Cumulative distribution function.",
-              },
-            ]}
+            {
+              prompt: "For a continuous RV, $P(X=c)$ is:",
+              options: ["0", "1", "$f(c)$"],
+              answer: "A",
+              explanation: "Points have zero area under a PDF.",
+            },
+            {
+              prompt: "A valid PDF must integrate to:",
+              options: ["0", "1", "$\\infty$"],
+              answer: "B",
+              explanation: "Total probability is 1.",
+            },
+            {
+              prompt: "$F(x)=P(X\\le x)$ is the:",
+              options: ["Variance", "PDF", "CDF"],
+              answer: "C",
+              explanation: "Cumulative distribution function.",
+            },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
@@ -208,34 +223,42 @@ function RandomVariablesGuide({ part = 1 }) {
             scoreId="score-ps-rv-named"
             section="ps-rv-named"
             questions={[
-              {
-                prompt: "Binomial models:",
-                options: ["Waiting times only", "Number of successes in n trials", "Only continuous heights"],
-                answer: "B",
-                explanation: "Fixed n independent Bernoulli trials.",
-              },
-              {
-                prompt: "Normal distribution is determined by:",
-                options: ["Only the mean", "Mean and variance", "Only the mode"],
-                answer: "B",
-                explanation: "$N(\\mu,\\sigma^2)$ has two parameters.",
-              },
-              {
-                prompt: "Exponential is famous for:",
-                options: ["Memorylessness", "Being discrete", "Negative density"],
-                answer: "A",
-                explanation: "Past waiting time does not change future odds.",
-              },
-              {
-                prompt: "For Poisson$(\\lambda)$, the mean and variance are:",
-                options: ["Both equal to $\\lambda$", "Mean $\\lambda$, variance $\\lambda^2$", "Always 0 and 1"],
-                answer: "A",
-                explanation: "A defining property of the Poisson family.",
-              },
-            ]}
+            {
+              prompt: "Binomial models:",
+              options: ["Number of successes in n trials", "Waiting times only", "Only continuous heights"],
+              answer: "A",
+              explanation: "Fixed n independent Bernoulli trials.",
+            },
+            {
+              prompt: "Normal distribution is determined by:",
+              options: ["Only the mode", "Mean and variance", "Only the mean"],
+              answer: "B",
+              explanation: "$N(\\mu,\\sigma^2)$ has two parameters.",
+            },
+            {
+              prompt: "Exponential is famous for:",
+              options: ["Being discrete", "Negative density", "Memorylessness"],
+              answer: "C",
+              explanation: "Past waiting time does not change future odds.",
+            },
+            {
+              prompt: "For Poisson$(\\lambda)$, the mean and variance are:",
+              options: ["Both equal to $\\lambda$", "Mean $\\lambda$, variance $\\lambda^2$", "Always 0 and 1"],
+              answer: "A",
+              explanation: "A defining property of the Poisson family.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
+          ]}
           />
 
           <Divider />
+          <PsCertificateBoost topic="randomvars" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -257,6 +280,7 @@ function RandomVariablesGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-rv-intro">Quiz</a>
         <a className="sb-link" href="#ps-rv-moments">Mean &amp; variance</a>
         <a className="sb-link" href="#quiz-ps-rv-moments">Quiz</a>
+        <a className="sb-link" href="#ps-cert-randomvars-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -364,22 +388,34 @@ function RandomVariablesGuide({ part = 1 }) {
           questions={[
             {
               prompt: "A PMF must:",
-              options: ["Integrate to 1", "Sum to 1", "Always be continuous"],
-              answer: "B",
+              options: ["Sum to 1", "Always be continuous", "Integrate to 1"],
+              answer: "A",
               explanation: "Discrete probabilities sum over atoms.",
             },
             {
               prompt: "Bernoulli RV takes values:",
-              options: ["Any real", "0 and 1", "Only positive integers"],
+              options: ["Only positive integers", "0 and 1", "Any real"],
               answer: "B",
               explanation: "Success/failure indicator.",
             },
             {
               prompt: "CDF $F(x)$ is:",
-              options: ["Always decreasing", "Nondecreasing", "Always equal to the PMF"],
-              answer: "B",
+              options: ["Always equal to the PMF", "Always decreasing", "Nondecreasing"],
+              answer: "C",
               explanation: "Cumulative probabilities only grow.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
@@ -415,14 +451,28 @@ function RandomVariablesGuide({ part = 1 }) {
             },
             {
               prompt: "Linearity of expectation requires independence:",
-              options: ["Always", "Never (not required)", "Only for discrete RVs"],
-              answer: "B",
+              options: ["Only for discrete RVs", "Always", "Never (not required)"],
+              answer: "C",
               explanation: "Linearity holds regardless of dependence.",
             },
+            {
+              prompt: "A quick consistency check is to",
+              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
+              answer: "A",
+              explanation: "Special cases catch algebra bugs.",
+            },
+            {
+              prompt: "Which statement is always safe exam advice?",
+              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
+              answer: "B",
+              explanation: "Clear writing earns marks.",
+            }
           ]}
         />
 
         <Divider />
+        <PsCertificateBoost topic="randomvars" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>
