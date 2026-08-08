@@ -159,6 +159,25 @@
 }
 
 /* Curriculum */
+.db-curriculum-group {
+  margin-bottom: 1.8rem;
+}
+
+.db-curriculum-group:last-child {
+  margin-bottom: 0;
+}
+
+.db-curriculum-group-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
 .db-curriculum {
   display: grid;
   gap: 1rem;
@@ -527,6 +546,21 @@
   font-weight: 600;
   color: #2d3748;
   margin: 0 0 1rem;
+}
+
+.db-chart-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.db-chart-group-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a67c2e;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.6rem;
 }
 
 .db-chart-bars {
