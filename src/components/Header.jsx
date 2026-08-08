@@ -35,8 +35,8 @@ const navLinks = [
   { to: "/practice",        label: "Practice",    type: "General" },
   { to: "/leaderboard",     label: "Leaderboard", type: "General" },
   {
-    to: "/certificate/calculus-analytical-geometry",
-    label: "Certificate",
+    to: "/certificates",
+    label: "Certificates",
     type: "General",
     match: "/certificate",
   },
