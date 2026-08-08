@@ -23,7 +23,7 @@ export default function IntegrationGuide({ part = 1 }) {
           <a className="sb-link" href="#int-tech">Techniques</a>
           <a className="sb-link" href="#int-proc2">Method</a>
           <a className="sb-link" href="#int-ex-p2">Examples (8)</a>
-          <a className="sb-link" href="#quiz-int-tech">Quiz 1 - 10 Qs</a>
+          <a className="sb-link" href="#quiz-int-tech">Quiz 1 - 15 Qs</a>
           <a className="sb-link" href="#int-life2">Real-life use</a>
         </nav>
         <main className="main">
@@ -105,7 +105,7 @@ export default function IntegrationGuide({ part = 1 }) {
         <a className="sb-link" href="#int-theory">Theory</a>
         <a className="sb-link" href="#int-proc1">Method</a>
         <a className="sb-link" href="#int-ex-p1">Examples (8)</a>
-        <a className="sb-link" href="#quiz-int-fund">Quiz 1 - 10 Qs</a>
+        <a className="sb-link" href="#quiz-int-fund">Quiz 1 - 15 Qs</a>
         <a className="sb-link" href="#int-life1">Real-life use</a>
       </nav>
       <main className="main">

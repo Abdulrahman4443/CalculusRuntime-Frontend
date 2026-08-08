@@ -31,9 +31,9 @@ export default function DifferentiationGuide({ part = 1 }) {
           <a className="sb-link" href="#diff-apps">Applications</a>
           <a className="sb-link" href="#diff-proc2">Method</a>
           <a className="sb-link" href="#diff-ex-p2">Examples (8)</a>
-          <a className="sb-link" href="#quiz-diff-apps">Quiz 1 - 10 Qs</a>
+          <a className="sb-link" href="#quiz-diff-apps">Quiz 1 - 15 Qs</a>
           <a className="sb-link" href="#diff-advanced">Advanced tools</a>
-          <a className="sb-link" href="#quiz-diff-adv">Quiz 2 - 10 Qs</a>
+          <a className="sb-link" href="#quiz-diff-adv">Quiz 2 - 15 Qs</a>
           <a className="sb-link" href="#diff-life2">Real-life use</a>
         </nav>
         <main className="main">
@@ -149,7 +149,7 @@ export default function DifferentiationGuide({ part = 1 }) {
         <a className="sb-link" href="#diff-theory">Theory</a>
         <a className="sb-link" href="#diff-proc1">Method</a>
         <a className="sb-link" href="#diff-ex-p1">Examples (8)</a>
-        <a className="sb-link" href="#quiz-diff-rules">Quiz 1 - 10 Qs</a>
+        <a className="sb-link" href="#quiz-diff-rules">Quiz 1 - 15 Qs</a>
         <a className="sb-link" href="#diff-life1">Real-life use</a>
       </nav>
       <main className="main">

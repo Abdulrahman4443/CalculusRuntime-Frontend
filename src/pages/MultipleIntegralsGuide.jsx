@@ -368,18 +368,6 @@ function SectionMIEnrichment() {
   );
 }
 
-function IntegralsQuiz({ part }) {
-  if (part === 1) {
-    return (
-      
-    );
-  }
-
-  return (
-    
-  );
-}
-
 function SectionRealWorld() {
   return (
     <section className="section" id="mi-real-world">
@@ -429,8 +417,6 @@ function IntegralsContent({ part }) {
           <Divider />
           <GuideMcqSection id="mi-quiz1" badge="Practice" title="Multiple Integrals Part 1 Quiz" scoreId="scoreintegrals-p1" section="integrals-p1" questions={MV_INTEGRALS_P1_QUIZ} />
           <MvCertificateBoost topic="integrals" part={1} />
-          <Divider />
-          <IntegralsQuiz part={1} />
           <GuideFooter />
         </main>
       </>
@@ -457,9 +443,7 @@ function IntegralsContent({ part }) {
         <IntegralsExtendedPart2 />
         <Divider />
         <GuideMcqSection id="mi-quiz2" badge="Practice" title="Multiple Integrals Part 2 Quiz" scoreId="scoreintegrals-p2" section="integrals-p2" questions={MV_INTEGRALS_P2_QUIZ} />
-          <MvCertificateBoost topic="integrals" part={2} />
-        <Divider />
-        <IntegralsQuiz part={2} />
+        <MvCertificateBoost topic="integrals" part={2} />
         <Divider />
         <SectionRealWorld />
         <GuideFooter />

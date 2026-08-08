@@ -22,7 +22,7 @@ function GuideSidebarPart1() {
       <a className="sb-link" href="#lc-2">{"Two-Path Test"}</a>
       <a className="sb-link" href="#lc-3">{"Squeeze Theorem"}</a>
       <a className="sb-link" href="#lc-cert-p1">{"Certificate examples (8)"}</a>
-      <a className="sb-link" href="#lc-quiz1">{"Quiz 1 · 10 Qs"}</a>
+      <a className="sb-link" href="#lc-quiz1">{"Quiz 1 · 15 Qs"}</a>
     </nav>
   );
 }
@@ -36,7 +36,7 @@ function GuideSidebarPart2() {
       <a className="sb-link" href="#lc-4">{"Continuity at a Point"}</a>
       <a className="sb-link" href="#lc-5">{"Continuity on a Region"}</a>
       <a className="sb-link" href="#lc-cert-p2">{"Certificate examples (8)"}</a>
-      <a className="sb-link" href="#lc-quiz2">{"Quiz 2 · 10 Qs"}</a>
+      <a className="sb-link" href="#lc-quiz2">{"Quiz 2 · 15 Qs"}</a>
     </nav>
   );
 }

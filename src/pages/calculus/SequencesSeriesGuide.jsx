@@ -22,7 +22,7 @@ export default function SequencesSeriesGuide({ part = 1 }) {
           <a className="sb-link" href="#ser-tests">Convergence tests</a>
           <a className="sb-link" href="#ser-proc2">Method</a>
           <a className="sb-link" href="#ser-ex-p2">Examples (8)</a>
-          <a className="sb-link" href="#quiz-ser-p2">Quiz · 10 Qs</a>
+          <a className="sb-link" href="#quiz-ser-p2">Quiz · 15 Qs</a>
           <a className="sb-link" href="#ser-life2">Real-life use</a>
         </nav>
         <main className="main">
@@ -104,7 +104,7 @@ export default function SequencesSeriesGuide({ part = 1 }) {
         <a className="sb-link" href="#ser-theory">Sequences &amp; series</a>
         <a className="sb-link" href="#ser-proc1">Method</a>
         <a className="sb-link" href="#ser-ex-p1">Examples (8)</a>
-        <a className="sb-link" href="#quiz-ser-p1">Quiz · 10 Qs</a>
+        <a className="sb-link" href="#quiz-ser-p1">Quiz · 15 Qs</a>
         <a className="sb-link" href="#ser-life1">Real-life use</a>
       </nav>
       <main className="main">
