@@ -1,4 +1,3 @@
-import MultiVariableCalculus from "./pages/MultiVariableCalculus";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ProgressProvider } from "./pages/ProgressContext";
@@ -97,7 +96,6 @@ function App() {
               <Route path="/dashboard" element={<Layout body={<Dashboard />} />} />
 
               {/* Course hubs */}
-              <Route path="/courses/multivariable-calculus" element={<Layout body={<MultiVariableCalculus />} />} />
               <Route path="/courses/:courseId" element={<Layout body={<CourseHub />} />} />
 
               {/* Simple Concepts */}
