@@ -5,6 +5,7 @@ import {
   IntegralsExtendedPart1,
   IntegralsExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -642,6 +643,8 @@ function IntegralsContent({ part }) {
           <Divider />
           <IntegralsExtendedPart1 />
           <Divider />
+          <MvCertificateBoost topic="integrals" part={1} />
+          <Divider />
           <IntegralsQuiz part={1} />
           <GuideFooter />
         </main>
@@ -667,6 +670,8 @@ function IntegralsContent({ part }) {
         <SectionMIEnrichment />
         <Divider />
         <IntegralsExtendedPart2 />
+        <Divider />
+        <MvCertificateBoost topic="integrals" part={2} />
         <Divider />
         <IntegralsQuiz part={2} />
         <Divider />

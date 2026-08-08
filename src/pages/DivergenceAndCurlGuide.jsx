@@ -7,6 +7,7 @@ import {
   DivCurlExtendedPart1,
   DivCurlExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -1130,6 +1131,8 @@ function DivergenceAndCurlGuide({ section }) {
           <Divider />
           <DivCurlExtendedPart2 />
           <Divider />
+          <MvCertificateBoost topic="divcurl" part={2} />
+          <Divider />
           <QuizChallengeDivCurl />
           <Divider />
           <SectionRealWorld />
@@ -1164,6 +1167,8 @@ function DivergenceAndCurlGuide({ section }) {
         <SectionObj18Enrichment />
         <Divider />
         <DivCurlExtendedPart1 />
+        <Divider />
+        <MvCertificateBoost topic="divcurl" part={1} />
         <Divider />
         <QuizChallengeDivCurl />
         <Divider />

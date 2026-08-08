@@ -6,6 +6,7 @@ import {
   StokesExtendedPart1,
   StokesExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -507,6 +508,8 @@ function StokesTheoremGuide({ section = 1 }) {
           <Divider />
           <StokesExtendedPart2 />
           <Divider />
+          <MvCertificateBoost topic="stokes" part={2} />
+          <Divider />
           <QuizPart2 />
           <Divider />
           <SectionRealWorld />
@@ -530,6 +533,8 @@ function StokesTheoremGuide({ section = 1 }) {
         <SectionST3 />
         <Divider />
         <StokesExtendedPart1 />
+        <Divider />
+        <MvCertificateBoost topic="stokes" part={1} />
         <Divider />
         <QuizPart1 />
         <Part1Complete />

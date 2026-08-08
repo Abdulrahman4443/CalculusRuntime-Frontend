@@ -7,6 +7,7 @@ import {
   LagrangeExtendedPart1,
   LagrangeExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -872,6 +873,8 @@ function LagrangeMultipliersGuide({ section }) {
           <Divider />
           <LagrangeExtendedPart2 />
           <Divider />
+          <MvCertificateBoost topic="lagrange" part={2} />
+          <Divider />
           <QuizChallengeLagrange />
           <Divider />
           <SectionRealWorld />
@@ -906,6 +909,8 @@ function LagrangeMultipliersGuide({ section }) {
         <SectionObj18Enrichment />
         <Divider />
         <LagrangeExtendedPart1 />
+        <Divider />
+        <MvCertificateBoost topic="lagrange" part={1} />
         <Divider />
         <QuizChallengeLagrange />
         <Divider />

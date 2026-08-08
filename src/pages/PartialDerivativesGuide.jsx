@@ -5,6 +5,7 @@ import {
   PartialsExtendedPart1,
   PartialsExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -3518,6 +3519,7 @@ function PartialDerivativesContent({ part = 1 }) {
           <QuizMcq143 />
           <Divider />
           <PartialsExtendedPart1 />
+          <MvCertificateBoost topic="partial" part={1} />
           <RealLifeUse>
             Partial derivatives power weather models, finance Greeks, and machine-learning gradients — anytime a quantity depends on several inputs and you ask what happens if one input shifts.
           </RealLifeUse>
@@ -3559,6 +3561,8 @@ function PartialDerivativesContent({ part = 1 }) {
         <QuizMcq147 />
         <Divider />
         <PartialsExtendedPart2 />
+        <Divider />
+        <MvCertificateBoost topic="partial" part={2} />
         <Divider />
         <SectionRealWorld />
         <GuideFooter />

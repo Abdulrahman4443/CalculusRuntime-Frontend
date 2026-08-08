@@ -4,9 +4,9 @@ export const COURSES = [
     id: "calculus-analytical-geometry",
     title: "Calculus and Analytical Geometry",
     description:
-      "Single-variable foundations: limits, differentiation, integration, Taylor series — certificate-ready theory and examples.",
+      "Single-variable foundations: limits, differentiation, integration, sequences & series, conics, and Taylor series — certificate-ready theory and examples.",
     path: "/courses/calculus-analytical-geometry",
-    meta: "4 guides · Tools + practice",
+    meta: "6 guides · Tools + practice",
     icon: "ƒ",
     color: "gold",
     modules: [
@@ -30,6 +30,20 @@ export const COURSES = [
         path: "/integration/1",
         meta: "2 parts · 6 examples each",
         icon: "∫",
+      },
+      {
+        title: "Sequences & Infinite Series",
+        description: "Convergence tests, power series, and radius of convergence — certificate track.",
+        path: "/sequences-series/1",
+        meta: "2 parts · 8 examples each",
+        icon: "Σ",
+      },
+      {
+        title: "Conic Sections",
+        description: "Parabolas, ellipses, hyperbolas, and analytic geometry — certificate track.",
+        path: "/conic-sections/1",
+        meta: "2 parts · 8 examples each",
+        icon: "◯",
       },
       {
         title: "Continuity Finder",
