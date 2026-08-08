@@ -110,6 +110,7 @@ export function EigenPart2() {
       path="/linear-algebra/eigen/2"
       Guide={EigenGuide}
       part={2}
+      courseId="linear-algebra"
       nextPath="/courses/linear-algebra"
       nextLabel="Back to Linear Algebra course hub"
     />

@@ -76,6 +76,10 @@ import {
   DiffPart2,
   IntPart1,
   IntPart2,
+  SeriesPart1,
+  SeriesPart2,
+  ConicsPart1,
+  ConicsPart2,
 } from "./pages/calculus/CalcParts";
 
 function App() {
@@ -130,6 +134,16 @@ function App() {
               <Route path="/integration" element={<Navigate to="/integration/1" replace />} />
               <Route path="/integration/1" element={<Layout body={<IntPart1 />} />} />
               <Route path="/integration/2" element={<Layout body={<IntPart2 />} />} />
+
+              {/* Sequences & Series */}
+              <Route path="/sequences-series" element={<Navigate to="/sequences-series/1" replace />} />
+              <Route path="/sequences-series/1" element={<Layout body={<SeriesPart1 />} />} />
+              <Route path="/sequences-series/2" element={<Layout body={<SeriesPart2 />} />} />
+
+              {/* Conic Sections */}
+              <Route path="/conic-sections" element={<Navigate to="/conic-sections/1" replace />} />
+              <Route path="/conic-sections/1" element={<Layout body={<ConicsPart1 />} />} />
+              <Route path="/conic-sections/2" element={<Layout body={<ConicsPart2 />} />} />
 
               {/* Multiple Integrals */}
               <Route path="/multiple-integrals" element={<Navigate to="/multiple-integrals/1" replace />} />
