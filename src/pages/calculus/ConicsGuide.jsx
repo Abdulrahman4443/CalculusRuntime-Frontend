@@ -22,7 +22,7 @@ export default function ConicsGuide({ part = 1 }) {
           <a className="sb-link" href="#con-class">Classification &amp; applications</a>
           <a className="sb-link" href="#con-proc2">Method</a>
           <a className="sb-link" href="#con-ex-p2">Examples (8)</a>
-          <a className="sb-link" href="#quiz-con-p2">Quiz · 10 Qs</a>
+          <a className="sb-link" href="#quiz-con-p2">Quiz · 15 Qs</a>
           <a className="sb-link" href="#con-life2">Real-life use</a>
         </nav>
         <main className="main">
@@ -75,7 +75,7 @@ export default function ConicsGuide({ part = 1 }) {
           <LaMcqSection
             id="quiz-con-p2"
             badge="Quiz"
-            title="General conics & applications (5 questions)"
+            title="General conics & applications (15 questions)"
             scoreId="score-con-p2"
             section="con-p2"
             questions={CONICS_P2_QUIZ}
@@ -103,7 +103,7 @@ export default function ConicsGuide({ part = 1 }) {
         <a className="sb-link" href="#con-theory">Lines, circles, conics</a>
         <a className="sb-link" href="#con-proc1">Method</a>
         <a className="sb-link" href="#con-ex-p1">Examples (8)</a>
-        <a className="sb-link" href="#quiz-con-p1">Quiz · 10 Qs</a>
+        <a className="sb-link" href="#quiz-con-p1">Quiz · 15 Qs</a>
         <a className="sb-link" href="#con-life1">Real-life use</a>
       </nav>
       <main className="main">
@@ -155,7 +155,7 @@ export default function ConicsGuide({ part = 1 }) {
         <LaMcqSection
           id="quiz-con-p1"
           badge="Quiz"
-          title="Distance, circles & standard conics (5 questions)"
+          title="Distance, circles & standard conics (15 questions)"
           scoreId="score-con-p1"
           section="con-p1"
           questions={CONICS_P1_QUIZ}

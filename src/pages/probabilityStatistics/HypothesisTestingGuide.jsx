@@ -1,6 +1,12 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_H_FRAMEWORK_QUIZ,
+  PS_H_TESTS_QUIZ,
+  PS_H_PVAL_QUIZ,
+  PS_H_ERRORS_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
 import PsCertificateBoost from "./PsCertificateBoost";
@@ -123,38 +129,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="p-values"
             scoreId="score-ps-h-pval"
             section="ps-h-pval"
-            questions={[
-            {
-              prompt: "A p-value is computed assuming:",
-              options: ["$H_0$ is true", "Neither", "$H_1$ is true"],
-              answer: "A",
-              explanation: "Sampling distribution under the null.",
-            },
-            {
-              prompt: "If p = 0.01 and $\\alpha=0.05$, you:",
-              options: ["Accept $H_0$ as proven", "Reject $H_0$", "Fail to reject $H_0$"],
-              answer: "B",
-              explanation: "p ≤ α ⇒ reject.",
-            },
-            {
-              prompt: "p = 0.20 means:",
-              options: ["$H_0$ is true", "$H_1$ is proven", "Data are not very surprising under $H_0$"],
-              answer: "C",
-              explanation: "Large p ⇒ weak evidence against $H_0$.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_H_PVAL_QUIZ}
           />
 
           <Divider />
@@ -215,38 +190,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="Errors"
             scoreId="score-ps-h-errors"
             section="ps-h-errors"
-            questions={[
-            {
-              prompt: "Type II error is:",
-              options: ["Fail to reject false $H_0$", "Reject true $H_0$", "Correct rejection"],
-              answer: "A",
-              explanation: "Missed detection of a real effect.",
-            },
-            {
-              prompt: "Power equals:",
-              options: ["$\\beta$", "$1-\\beta$", "$\\alpha$"],
-              answer: "B",
-              explanation: "Probability of correctly rejecting a false null.",
-            },
-            {
-              prompt: "Increasing sample size typically:",
-              options: ["Lowers power", "Forces $\\alpha=0$", "Raises power"],
-              answer: "C",
-              explanation: "More data sharpen the sampling distribution.",
-            },
-            {
-              prompt: "If Type I errors are far more costly than Type II, you should:",
-              options: ["Lower $\\alpha$", "Raise $\\alpha$", "Ignore $\\alpha$ entirely"],
-              answer: "A",
-              explanation: "A stricter significance threshold guards against false alarms at the cost of some power.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_H_ERRORS_QUIZ}
           />
 
           <Divider />
@@ -374,38 +318,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           title="Framework"
           scoreId="score-ps-h-framework"
           section="ps-h-framework"
-          questions={[
-            {
-              prompt: "$H_0$ usually represents:",
-              options: ["The status-quo / no-effect claim", "The research hope", "Always $\\mu>0$"],
-              answer: "A",
-              explanation: "Null is the claim we challenge.",
-            },
-            {
-              prompt: "Significance level $\\alpha$ is:",
-              options: ["Power", "Type I error rate we allow", "Always 0.5"],
-              answer: "B",
-              explanation: "Long-run false positive rate under $H_0$.",
-            },
-            {
-              prompt: "Failing to reject $H_0$ means:",
-              options: ["$H_0$ is proven true", "$H_1$ is true", "Evidence was not strong enough to reject"],
-              answer: "C",
-              explanation: "Inconclusive against the null.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_H_FRAMEWORK_QUIZ}
         />
 
         <Divider />
@@ -425,38 +338,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           title="Tests"
           scoreId="score-ps-h-tests"
           section="ps-h-tests"
-          questions={[
-            {
-              prompt: "SE of $\\bar x$ with known $\\sigma$ is:",
-              options: ["$\\sigma/\\sqrt n$", "$\\sigma$", "$\\sigma n$"],
-              answer: "A",
-              explanation: "Averaging reduces SD by $\\sqrt n$.",
-            },
-            {
-              prompt: "t-distribution vs normal has:",
-              options: ["Thinner tails", "Heavier tails", "No mean"],
-              answer: "B",
-              explanation: "Extra uncertainty from estimating $\\sigma$.",
-            },
-            {
-              prompt: "df for one-sample t is:",
-              options: ["$n$", "$n-2$", "$n-1$"],
-              answer: "C",
-              explanation: "One parameter estimated for the mean.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_H_TESTS_QUIZ}
         />
 
         <Divider />

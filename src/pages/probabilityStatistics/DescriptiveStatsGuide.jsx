@@ -1,6 +1,12 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_D_CENTER_QUIZ,
+  PS_D_QUANT_QUIZ,
+  PS_D_SPREAD_QUIZ,
+  PS_D_PLOTS_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
 import PsCertificateBoost from "./PsCertificateBoost";
@@ -125,38 +131,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Spread"
             scoreId="score-ps-d-spread"
             section="ps-d-spread"
-            questions={[
-            {
-              prompt: "Sample variance usually divides by:",
-              options: ["$n-1$", "$n$", "$n+1$"],
-              answer: "A",
-              explanation: "Unbiased sample variance uses $n-1$.",
-            },
-            {
-              prompt: "A z-score of 0 means the value equals:",
-              options: ["The max", "The mean", "The SD"],
-              answer: "B",
-              explanation: "$z=(x-\\bar x)/s$.",
-            },
-            {
-              prompt: "IQR is:",
-              options: ["Max − min", "$Q_1+Q_3$", "$Q_3-Q_1$"],
-              answer: "C",
-              explanation: "Middle 50% width.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_D_SPREAD_QUIZ}
           />
 
           <Divider />
@@ -217,38 +192,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Plots"
             scoreId="score-ps-d-plots"
             section="ps-d-plots"
-            questions={[
-            {
-              prompt: "Best plot for outliers in one variable:",
-              options: ["Boxplot", "Pie chart", "Venn diagram"],
-              answer: "A",
-              explanation: "Boxplots mark points beyond fences.",
-            },
-            {
-              prompt: "A right-skewed histogram has a long tail to the:",
-              options: ["Left", "Right", "Neither"],
-              answer: "B",
-              explanation: "Skew direction follows the long tail.",
-            },
-            {
-              prompt: "Scatterplots show:",
-              options: ["Only means", "Only categories", "Relationship between two quantitative variables"],
-              answer: "C",
-              explanation: "Each point is a pair $(x,y)$.",
-            },
-            {
-              prompt: "The upper outlier fence is computed as:",
-              options: ["$Q_3+1.5\\,\\mathrm{IQR}$", "Mean$+2\\sigma$", "$Q_3\\times 1.5$"],
-              answer: "A",
-              explanation: "Standard Tukey fence rule using IQR.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_D_PLOTS_QUIZ}
           />
 
           <Divider />
@@ -377,38 +321,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
           title="Center"
           scoreId="score-ps-d-center"
           section="ps-d-center"
-          questions={[
-            {
-              prompt: "Most outlier-resistant center:",
-              options: ["Median", "Range", "Mean"],
-              answer: "A",
-              explanation: "Median ignores extreme magnitude.",
-            },
-            {
-              prompt: "Right-skewed data tend to have:",
-              options: ["Mean = mode always", "Mean > median", "Mean < median"],
-              answer: "B",
-              explanation: "Long right tail pulls the mean up.",
-            },
-            {
-              prompt: "Sample mean formula divides the sum by:",
-              options: ["$n-1$", "$2n$", "$n$"],
-              answer: "C",
-              explanation: "$\\bar x=(\\sum x_i)/n$.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_D_CENTER_QUIZ}
         />
 
         <Divider />
@@ -428,38 +341,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
           title="Quantiles"
           scoreId="score-ps-d-quant"
           section="ps-d-quant"
-          questions={[
-            {
-              prompt: "$Q_2$ is the:",
-              options: ["Median", "Mean", "Mode"],
-              answer: "A",
-              explanation: "Second quartile = median.",
-            },
-            {
-              prompt: "The 90th percentile is above roughly:",
-              options: ["10% of data", "90% of data", "50% of data"],
-              answer: "B",
-              explanation: "About 90% lie at or below it.",
-            },
-            {
-              prompt: "Five-number summary uses:",
-              options: ["Only mode", "Only mean/SD", "Min, Q1, median, Q3, max"],
-              answer: "C",
-              explanation: "Classic boxplot ingredients.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_D_QUANT_QUIZ}
         />
 
         <Divider />

@@ -1,6 +1,12 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_R_CORR_QUIZ,
+  PS_R_ASSOC_QUIZ,
+  PS_R_FIT_QUIZ,
+  PS_R_RESID_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
 
 import PsCertificateBoost from "./PsCertificateBoost";
@@ -121,38 +127,7 @@ function RegressionGuide({ part = 1 }) {
             title="Least squares"
             scoreId="score-ps-r-fit"
             section="ps-r-fit"
-            questions={[
-            {
-              prompt: "Least squares minimizes:",
-              options: ["Sum of squared residuals", "Sum of $|e_i|$ only", "Sum of residuals"],
-              answer: "A",
-              explanation: "Squared vertical errors.",
-            },
-            {
-              prompt: "The fitted line always goes through:",
-              options: ["$(0,0)$", "$(\\bar x,\\bar y)$", "$(1,1)$"],
-              answer: "B",
-              explanation: "Centroid property of least squares.",
-            },
-            {
-              prompt: "$b_1=r s_y/s_x$ implies if $r=0$ then:",
-              options: ["Intercept is 0", "Slope is infinite", "Slope is 0"],
-              answer: "C",
-              explanation: "No linear association ⇒ flat best line.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_R_FIT_QUIZ}
           />
 
           <Divider />
@@ -212,38 +187,7 @@ function RegressionGuide({ part = 1 }) {
             title="Residuals"
             scoreId="score-ps-r-resid"
             section="ps-r-resid"
-            questions={[
-            {
-              prompt: "Residual equals:",
-              options: ["$y-\\hat y$", "$y-\\bar y$", "$\\hat y-y$"],
-              answer: "A",
-              explanation: "Observed minus fitted.",
-            },
-            {
-              prompt: "A curved residual plot suggests:",
-              options: ["r must be 1", "Nonlinear relationship", "Perfect fit"],
-              answer: "B",
-              explanation: "Linear model misses curvature.",
-            },
-            {
-              prompt: "Extrapolation is risky because:",
-              options: ["Residuals become correlations", "r becomes 2", "The linear pattern may not continue outside the data range"],
-              answer: "C",
-              explanation: "Model is local to observed $x$.",
-            },
-            {
-              prompt: "For simple linear regression, $R^2$ is:",
-              options: ["Equal to $r^2$", "Always negative", "Unrelated to $r$"],
-              answer: "A",
-              explanation: "R-squared is the square of the correlation coefficient in the simple linear case.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={PS_R_RESID_QUIZ}
           />
 
           <Divider />
@@ -373,38 +317,7 @@ function RegressionGuide({ part = 1 }) {
           title="Correlation"
           scoreId="score-ps-r-corr"
           section="ps-r-corr"
-          questions={[
-            {
-              prompt: "Range of Pearson $r$:",
-              options: ["$[-1,1]$", "$(-\\infty,\\infty)$", "$[0,1]$"],
-              answer: "A",
-              explanation: "Bounded linear association measure.",
-            },
-            {
-              prompt: "$r=1$ means:",
-              options: ["Causation proven", "Perfect positive linear fit", "Random cloud"],
-              answer: "B",
-              explanation: "All points on an upward line.",
-            },
-            {
-              prompt: "Correlation proves causation:",
-              options: ["When $|r|>0.5$", "Always", "Never by itself"],
-              answer: "C",
-              explanation: "Confounding and reverse causality remain possible.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_R_CORR_QUIZ}
         />
 
         <Divider />
@@ -424,38 +337,7 @@ function RegressionGuide({ part = 1 }) {
           title="Association"
           scoreId="score-ps-r-assoc"
           section="ps-r-assoc"
-          questions={[
-            {
-              prompt: "First step before computing r:",
-              options: ["Look at the scatterplot", "Delete half the data", "Fit multiple regression"],
-              answer: "A",
-              explanation: "Visual form guides interpretation.",
-            },
-            {
-              prompt: "A lurking variable is:",
-              options: ["Always the response", "An unmeasured factor that may drive the association", "The intercept"],
-              answer: "B",
-              explanation: "Confounders create spurious correlations.",
-            },
-            {
-              prompt: "Strength of linear association is mainly read from:",
-              options: ["Sign of r only", "Sample size alone", "$|r|$ and the plot"],
-              answer: "C",
-              explanation: "Magnitude plus visual confirmation.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={PS_R_ASSOC_QUIZ}
         />
 
         <Divider />

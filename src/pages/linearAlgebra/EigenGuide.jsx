@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
+import {
+  LA_E_INTRO_QUIZ,
+  LA_E_CHAR_QUIZ,
+  LA_E_DIAG_QUIZ,
+  LA_E_APPS_QUIZ,
+} from "../../data/laSystemsEigenQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
 
 import LaCertificateBoost from "./LaCertificateBoost";
@@ -189,38 +195,7 @@ function EigenGuide({ part = 1 }) {
             title="Diagonalization"
             scoreId="score-la-e-diag"
             section="la-e-diag"
-            questions={[
-            {
-              prompt: "In $A=PDP^{-1}$, the columns of $P$ are:",
-              options: ["Eigenvectors of $A$", "Only the zero vector", "Rows of $A$"],
-              answer: "A",
-              explanation: "Independent eigenvectors form $P$.",
-            },
-            {
-              prompt: "If $A$ has $n$ distinct eigenvalues, then $A$ is:",
-              options: ["Singular", "Diagonalizable", "Never diagonalizable"],
-              answer: "B",
-              explanation: "Distinct eigenvalues give independent eigenvectors.",
-            },
-            {
-              prompt: "$A^k$ for diagonalizable $A=PDP^{-1}$ equals:",
-              options: ["$P^k D P^{-1}$", "$D^k$ only", "$P D^k P^{-1}$"],
-              answer: "C",
-              explanation: "Powers become easy on the diagonal factor.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_E_DIAG_QUIZ}
           />
 
           <Divider />
@@ -249,38 +224,7 @@ function EigenGuide({ part = 1 }) {
             title="Applications"
             scoreId="score-la-e-apps"
             section="la-e-apps"
-            questions={[
-            {
-              prompt: "For $\\dot x=Ax$, solutions grow when eigenvalues have:",
-              options: ["Positive real part", "Zero imaginary part only", "Negative real part"],
-              answer: "A",
-              explanation: "Positive real parts drive exponential growth.",
-            },
-            {
-              prompt: "Real symmetric matrices have:",
-              options: ["Only complex eigenvalues", "Real eigenvalues", "No eigenvectors"],
-              answer: "B",
-              explanation: "Spectral theorem: real eigenvalues and orthogonal diagonalization.",
-            },
-            {
-              prompt: "PCA uses eigenvectors of:",
-              options: ["A random sparse matrix", "Only $I$", "A covariance / Gram matrix"],
-              answer: "C",
-              explanation: "Principal directions are eigenvectors of the covariance matrix.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+            questions={LA_E_APPS_QUIZ}
           />
 
           <Divider />
@@ -470,38 +414,7 @@ function EigenGuide({ part = 1 }) {
           title="Eigen basics"
           scoreId="score-la-e-intro"
           section="la-e-intro"
-          questions={[
-            {
-              prompt: "An eigenvector must be:",
-              options: ["Nonzero", "The zero vector", "A unit matrix"],
-              answer: "A",
-              explanation: "By definition eigenvectors are nonzero.",
-            },
-            {
-              prompt: "If $Av=3v$ for $v\\neq 0$, then $3$ is:",
-              options: ["A singular value only", "An eigenvalue", "The determinant"],
-              answer: "B",
-              explanation: "That is the definition of eigenvalue $3$.",
-            },
-            {
-              prompt: "$Av=\\lambda v$ rearranges to:",
-              options: ["$(A+\\lambda I)v=I$", "$A^{-1}v=\\lambda$", "$(A-\\lambda I)v=0$"],
-              answer: "C",
-              explanation: "Bring terms to one side: $Av-\\lambda v=0$.",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "erase the problem", "change the answer randomly"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Skip units", "State definitions before computing", "Never check endpoints"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_E_INTRO_QUIZ}
         />
 
         <Divider />
@@ -530,38 +443,7 @@ function EigenGuide({ part = 1 }) {
           title="Characteristic polynomial"
           scoreId="score-la-e-char"
           section="la-e-char"
-          questions={[
-            {
-              prompt: "Eigenvalues are roots of:",
-              options: ["$\\det(A-\\lambda I)$", "$\\det A$", "Trace only"],
-              answer: "A",
-              explanation: "Characteristic equation $\\det(A-\\lambda I)=0$.",
-            },
-            {
-              prompt: "Geometric multiplicity is:",
-              options: ["Always equal to $n$", "Dimension of the eigenspace", "Number of rows of $A$"],
-              answer: "B",
-              explanation: "Geo. mult. $=\\dim\\{v:Av=\\lambda v\\}$.",
-            },
-            {
-              prompt: "Trace of a $2\\times 2$ matrix equals:",
-              options: ["Determinant", "Product of eigenvalues", "Sum of eigenvalues"],
-              answer: "C",
-              explanation: "Trace = sum of eigenvalues (with multiplicity).",
-            },
-            {
-              prompt: "A quick consistency check is to",
-              options: ["test a special case or limit", "change the answer randomly", "erase the problem"],
-              answer: "A",
-              explanation: "Special cases catch algebra bugs.",
-            },
-            {
-              prompt: "Which statement is always safe exam advice?",
-              options: ["Never check endpoints", "State definitions before computing", "Skip units"],
-              answer: "B",
-              explanation: "Clear writing earns marks.",
-            }
-          ]}
+          questions={LA_E_CHAR_QUIZ}
         />
 
         <Divider />
