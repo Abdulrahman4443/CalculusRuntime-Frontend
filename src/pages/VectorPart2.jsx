@@ -28,8 +28,8 @@ function VectorPart2() {
       <VectorCalculusGuide part={2} />
       <SectionCompleteBar
         sectionId="vector-2"
-        nextPath="/ai-solver"
-        nextLabel="Try the AI Solver"
+        nextPath="/multiple-integrals/1"
+        nextLabel="Next: Multiple Integrals"
       />
     </div>
   );
