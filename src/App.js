@@ -44,6 +44,7 @@ import CheatSheet from "./pages/CheatSheet";
 import Leaderboard from "./pages/Leaderboard";
 import Certificate from "./pages/calculus/Certificate";
 import CourseQuiz from "./pages/CourseQuiz";
+import MyCertificates from "./pages/MyCertificates";
 import Chatbot from "./components/Chatbot/Chatbot";
 import BackToTop from "./components/BackToTop";
 
@@ -142,6 +143,7 @@ function App() {
               <Route path="/taylor-series/1" element={<Layout body={<TaylorPart1 />} />} />
               <Route path="/taylor-series/2" element={<Layout body={<TaylorPart2 />} />} />
 
+              <Route path="/certificates" element={<Layout body={<MyCertificates />} />} />
               <Route path="/certificate/:courseId" element={<Layout body={<Certificate />} />} />
               <Route path="/quiz/:courseId" element={<Layout body={<CourseQuiz />} />} />
 
