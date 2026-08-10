@@ -8,6 +8,7 @@ import {
   getRemainingSections,
 } from "../data/courseCompletion";
 import "./MyCertificates.css";
+import { fetchWithTimeout } from "../utils/fetchWithTimeout";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
 const COURSE_IDS = Object.keys(COURSE_CERTIFICATE_REQUIREMENTS);
@@ -25,14 +26,16 @@ function MyCertificates() {
   const { progress } = useProgress();
   const [earned, setEarned] = useState(null); // null = loading, else map courseId -> record
   const [loadError, setLoadError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     if (!isHydrated || !user) return;
     let cancelled = false;
+    setLoadError(false);
 
     (async () => {
       try {
-        const res = await fetch(`${API_URL}/api/certificates/mine`, {
+        const res = await fetchWithTimeout(`${API_URL}/api/certificates/mine`, {
           headers: { Authorization: `Bearer ${user.accessToken}` },
         });
         if (!res.ok) throw new Error();
@@ -51,7 +54,7 @@ function MyCertificates() {
     return () => {
       cancelled = true;
     };
-  }, [isHydrated, user]);
+  }, [isHydrated, user, retryCount]);
 
   if (!isHydrated) {
     return (
@@ -85,6 +88,22 @@ function MyCertificates() {
           this list, it never replaces an earlier one.
         </p>
       </header>
+
+      {loadError && (
+        <div className="mycerts-error-banner">
+          <span>
+            Couldn't reach the server (it may be waking up from sleep — this
+            can take up to a minute).
+          </span>
+          <button
+            type="button"
+            className="mycerts-btn mycerts-btn--primary"
+            onClick={() => setRetryCount((n) => n + 1)}
+          >
+            Try again
+          </button>
+        </div>
+      )}
 
       <div className="mycerts-list">
         {COURSE_IDS.map((courseId) => {
