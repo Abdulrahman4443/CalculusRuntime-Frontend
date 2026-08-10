@@ -9,6 +9,7 @@ import {
   getQuizId,
 } from "../data/courseCompletion";
 import "./CourseQuiz.css";
+import { fetchWithTimeout } from "../utils/fetchWithTimeout";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
 
@@ -77,7 +78,7 @@ function CourseQuiz() {
     advancingRef.current = false;
     clearTimeout(advanceTimeoutRef.current);
     try {
-      const res = await fetch(`${API_URL}/api/quiz/${quizId}/start`, {
+      const res = await fetchWithTimeout(`${API_URL}/api/quiz/${quizId}/start`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -246,7 +247,7 @@ function CourseQuiz() {
     );
 
     try {
-      const res = await fetch(`${API_URL}/api/quiz/${quizId}/submit`, {
+      const res = await fetchWithTimeout(`${API_URL}/api/quiz/${quizId}/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
