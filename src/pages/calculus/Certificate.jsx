@@ -10,6 +10,7 @@ import {
   getMinQuizScore,
 } from "../../data/courseCompletion";
 import { runBackgroundVerification } from "../../services/verificationAPI";
+import { fetchWithTimeout } from "../../utils/fetchWithTimeout";
 import "./Certificate.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
@@ -21,7 +22,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
  * a name. Returns the certificate data, or null if none exists yet.
  */
 async function fetchExistingCertificate(accessToken, courseId) {
-  const response = await fetch(`${API_URL}/api/certificates/mine/${courseId}`, {
+  const response = await fetchWithTimeout(`${API_URL}/api/certificates/mine/${courseId}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   if (response.status === 404) return null;
@@ -35,7 +36,7 @@ async function fetchExistingCertificate(accessToken, courseId) {
  * (see routers/certificates.py — Dev 3).
  */
 async function requestCertificate(accessToken, courseId, courseTitle, fullName, quizId, minQuizScore) {
-  const response = await fetch(`${API_URL}/api/certificates/generate`, {
+  const response = await fetchWithTimeout(`${API_URL}/api/certificates/generate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -79,6 +80,8 @@ function Certificate() {
   const [certificate, setCertificate] = useState(null);
   const [fullName, setFullName] = useState("");
   const [pendingCompletedAt, setPendingCompletedAt] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [retryCount, setRetryCount] = useState(0);
 
   const courseTitle = useMemo(() => getCourseTitle(courseId), [courseId]);
 
@@ -100,65 +103,75 @@ function Certificate() {
     let cancelled = false;
 
     (async () => {
-      // If a certificate was already issued for this user+course (e.g. they
-      // came back days later), show it immediately — no re-verification or
-      // re-asking for a name.
-      const existing = await fetchExistingCertificate(user.accessToken, courseId);
-      if (cancelled) return;
-      if (existing) {
-        setCertificate({
-          id: existing.cert_id,
-          courseTitle,
-          studentName: existing.full_name,
-          completedAt: existing.issued_at * 1000,
-          verifyUrl: existing.verify_url,
-          qrImage: existing.qr_png_base64,
-          pdfUrl: existing.pdf_url ? `${API_URL}${existing.pdf_url}` : null,
-          score: existing.score,
-          total: existing.total,
-        });
-        setStatus("success");
-        return;
+      try {
+        // If a certificate was already issued for this user+course (e.g.
+        // they came back days later), show it immediately — no
+        // re-verification or re-asking for a name.
+        const existing = await fetchExistingCertificate(user.accessToken, courseId);
+        if (cancelled) return;
+        if (existing) {
+          setCertificate({
+            id: existing.cert_id,
+            courseTitle,
+            studentName: existing.full_name,
+            completedAt: existing.issued_at * 1000,
+            verifyUrl: existing.verify_url,
+            qrImage: existing.qr_png_base64,
+            pdfUrl: existing.pdf_url ? `${API_URL}${existing.pdf_url}` : null,
+            score: existing.score,
+            total: existing.total,
+          });
+          setStatus("success");
+          return;
+        }
+
+        // Ask Dev 2's verification service whether this course is actually
+        // complete before issuing anything — single source of truth
+        // instead of a local ad-hoc check.
+        const quizId = getQuizId(courseId);
+        const rawQuizAttempt = quizId ? progress.quizScores?.[quizId] : null;
+        const quizPct =
+          rawQuizAttempt && rawQuizAttempt.total
+            ? Math.round((rawQuizAttempt.score / rawQuizAttempt.total) * 100)
+            : undefined;
+
+        const userProgress = {
+          userId: user.id,
+          completedSections: Object.keys(progress.completedSections || {}).filter(
+            (id) => progress.completedSections[id]
+          ),
+          quizScores: quizId && quizPct !== undefined ? { [quizId]: quizPct } : {},
+        };
+        const courseData = {
+          id: courseId,
+          requiredSections: getRequiredSections(courseId),
+          requiredQuiz: quizId || undefined,
+          minQuizScore: getMinQuizScore(courseId),
+        };
+
+        const verification = await runBackgroundVerification(userProgress, courseData);
+        if (cancelled) return;
+
+        if (!verification.verified) {
+          setStatus("incomplete");
+          return;
+        }
+
+        const timestamps = Object.values(progress.completedSectionTimestamps || {});
+        const completedAt = timestamps.length ? Math.max(...timestamps) : Date.now();
+
+        setPendingCompletedAt(completedAt);
+        setFullName((prev) => prev || user.username);
+        setStatus("confirm_name");
+      } catch (e) {
+        // Anything above (a sleeping/unresponsive backend, a network drop,
+        // etc.) lands here instead of leaving the page stuck on "loading"
+        // forever.
+        if (!cancelled) {
+          setErrorMessage(e?.message || "Something went wrong.");
+          setStatus("failed");
+        }
       }
-
-      // Ask Dev 2's verification service whether this course is actually
-      // complete before issuing anything — single source of truth instead
-      // of a local ad-hoc check.
-      const quizId = getQuizId(courseId);
-      const rawQuizAttempt = quizId ? progress.quizScores?.[quizId] : null;
-      const quizPct =
-        rawQuizAttempt && rawQuizAttempt.total
-          ? Math.round((rawQuizAttempt.score / rawQuizAttempt.total) * 100)
-          : undefined;
-
-      const userProgress = {
-        userId: user.id,
-        completedSections: Object.keys(progress.completedSections || {}).filter(
-          (id) => progress.completedSections[id]
-        ),
-        quizScores: quizId && quizPct !== undefined ? { [quizId]: quizPct } : {},
-      };
-      const courseData = {
-        id: courseId,
-        requiredSections: getRequiredSections(courseId),
-        requiredQuiz: quizId || undefined,
-        minQuizScore: getMinQuizScore(courseId),
-      };
-
-      const verification = await runBackgroundVerification(userProgress, courseData);
-      if (cancelled) return;
-
-      if (!verification.verified) {
-        setStatus("incomplete");
-        return;
-      }
-
-      const timestamps = Object.values(progress.completedSectionTimestamps || {});
-      const completedAt = timestamps.length ? Math.max(...timestamps) : Date.now();
-
-      setPendingCompletedAt(completedAt);
-      setFullName((prev) => prev || user.username);
-      setStatus("confirm_name");
     })();
 
     return () => {
@@ -172,6 +185,7 @@ function Certificate() {
     progress.completedSectionTimestamps,
     progress.quizScores,
     courseTitle,
+    retryCount,
   ]);
 
   const qrSrc = certificate?.qrImage || null;
@@ -202,7 +216,8 @@ function Certificate() {
         total: data.total,
       });
       setStatus("success");
-    } catch {
+    } catch (e) {
+      setErrorMessage(e?.message || "Something went wrong.");
       setStatus("failed");
     }
   }
@@ -276,10 +291,25 @@ function Certificate() {
       {status === "failed" && (
         <div className="cert-state">
           <h2>We couldn't load this certificate</h2>
-          <p>Something went wrong, or this course doesn't offer a certificate yet.</p>
-          <Link to="/dashboard" className="cert-btn cert-btn--primary">
-            Back to dashboard
-          </Link>
+          <p>
+            {errorMessage ||
+              "Something went wrong, or this course doesn't offer a certificate yet."}
+          </p>
+          <div className="cert-actions">
+            <button
+              type="button"
+              className="cert-btn cert-btn--primary"
+              onClick={() => {
+                setErrorMessage("");
+                setRetryCount((n) => n + 1);
+              }}
+            >
+              Try again
+            </button>
+            <Link to="/dashboard" className="cert-btn cert-btn--ghost">
+              Back to dashboard
+            </Link>
+          </div>
         </div>
       )}
 
