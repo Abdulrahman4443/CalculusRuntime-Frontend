@@ -9,6 +9,13 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const integrationStyles = `
+.sfl-highlight {
+  outline: 3px solid #c8922a;
+  outline-offset: 4px;
+  border-radius: 8px;
+  transition: outline-color 2s ease;
+}
+
 .study-guide-page {
   min-height: 100vh;
   overflow: visible;
@@ -903,6 +910,11 @@ function setupSaveForLater(root, { guideTitle, guidePath } = {}) {
     if (example.querySelector(".save-example-btn")) return;
 
     example.style.position = example.style.position || "relative";
+
+    if (!example.id) {
+      const { sectionId } = getMeta(example);
+      example.id = `${sectionId}-example-${index}`;
+    }
 
     const btn = document.createElement("button");
     btn.type = "button";

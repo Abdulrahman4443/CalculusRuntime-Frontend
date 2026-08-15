@@ -165,7 +165,36 @@ const CURRICULUM = [
       { id: "la-eigen-2", label: "Part 2 — Eigenspaces & Diagonalization", path: "/linear-algebra/eigen/2" },
     ],
   },
-
+  {
+    id: "transformations",
+    title: "Linear Transformations",
+    icon: "T",
+    color: "blue",
+    parts: [
+      { id: "la-transform-1", label: "Part 1 — Definition & Properties", path: "/linear-algebra/transformations/1" },
+      { id: "la-transform-2", label: "Part 2 — Matrix Representation & Applications", path: "/linear-algebra/transformations/2" },
+    ],
+  },
+  {
+    id: "orthogonality",
+    title: "Orthogonality & Least Squares",
+    icon: "⊥",
+    color: "blue",
+    parts: [
+      { id: "la-ortho-1", label: "Part 1 — Orthogonality & Gram–Schmidt", path: "/linear-algebra/orthogonality/1" },
+      { id: "la-ortho-2", label: "Part 2 — Projections & Least Squares", path: "/linear-algebra/orthogonality/2" },
+    ],
+  },
+  {
+    id: "svd",
+    title: "Singular Value Decomposition",
+    icon: "Σ",
+    color: "blue",
+    parts: [
+      { id: "la-svd-1", label: "Part 1 — Definition & Geometry", path: "/linear-algebra/svd/1" },
+      { id: "la-svd-2", label: "Part 2 — Applications & Low-rank Approximation", path: "/linear-algebra/svd/2" },
+    ],
+  },
   // ── Probability & Statistics ───────────────────────────────────────────
   {
     id: "prob",
