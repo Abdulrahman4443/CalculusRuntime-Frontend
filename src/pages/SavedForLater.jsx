@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getSavedExamples, unsaveExample, exampleAnchorId, } from "../utils/saveForLaterStorage";
 import "./SavedForLater.css";
 
@@ -13,7 +13,6 @@ function exampleHref(entry) {
 
 function SavedForLater() {
   const [examples, setExamples] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setExamples(getSavedExamples());
@@ -22,11 +21,6 @@ function SavedForLater() {
   const handleRemove = (sectionId, exampleTitle) => {
     unsaveExample(sectionId, exampleTitle);
     setExamples(getSavedExamples());
-  };
-
-  const handleGoTo = (entry) => {
-    if (!entry.route) return;
-    navigate(entry.route, { state: { scrollToId: entry.anchorId } });
   };
 
   return (
