@@ -197,6 +197,7 @@ export function SvdPart2() {
       path="/linear-algebra/svd/2"
       Guide={SvdGuide}
       part={2}
+      courseId="linear-algebra"
       nextPath="/courses/linear-algebra"
       nextLabel="Back to Linear Algebra course hub"
     />

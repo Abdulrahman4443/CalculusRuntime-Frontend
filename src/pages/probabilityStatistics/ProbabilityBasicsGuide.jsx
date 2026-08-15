@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_B_INTRO_QUIZ,
+  PS_B_COMBO_QUIZ,
+  PS_B_COND_QUIZ,
+  PS_B_BAYES_QUIZ,
+} from "../../data/psProbRvQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
+
+import PsCertificateBoost from "./PsCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -19,6 +27,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-b-cond">Quiz</a>
           <a className="sb-link" href="#ps-b-bayes">Bayes</a>
           <a className="sb-link" href="#quiz-ps-b-bayes">Quiz</a>
+          <a className="sb-link" href="#ps-cert-probability-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -131,26 +140,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Conditionals"
             scoreId="score-ps-b-cond"
             section="ps-b-cond"
-            questions={[
-              {
-                prompt: "$P(A\\mid B)$ equals:",
-                options: ["$P(A)/P(B)$", "$P(A\\cap B)/P(B)$", "$P(A)P(B)$"],
-                answer: "B",
-                explanation: "Definition of conditional probability.",
-              },
-              {
-                prompt: "If $A$ and $B$ are independent, then $P(A\\mid B)$ equals:",
-                options: ["$P(B)$", "$P(A)$", "$0$"],
-                answer: "B",
-                explanation: "Independence means conditioning does not change $P(A)$.",
-              },
-              {
-                prompt: "The law of total probability requires the $B_i$ to:",
-                options: ["Overlap freely", "Partition the sample space", "Be independent of $A$"],
-                answer: "B",
-                explanation: "A partition covers $\\Omega$ with disjoint pieces.",
-              },
-            ]}
+            questions={PS_B_COND_QUIZ}
           />
 
           <Divider />
@@ -211,35 +201,12 @@ function ProbabilityBasicsGuide({ part = 1 }) {
             title="Bayes"
             scoreId="score-ps-b-bayes"
             section="ps-b-bayes"
-            questions={[
-              {
-                prompt: "Bayes’ theorem updates:",
-                options: ["Only sample spaces", "Priors into posteriors", "Only means"],
-                answer: "B",
-                explanation: "Evidence revises belief about hypotheses.",
-              },
-              {
-                prompt: "In the medical test example, a rare disease implies:",
-                options: ["Positive tests are always disease", "False positives can dominate", "Sensitivity is irrelevant"],
-                answer: "B",
-                explanation: "Large healthy pool generates many false positives.",
-              },
-              {
-                prompt: "$P(A)$ in Bayes’ formula is often found by:",
-                options: ["Guessing", "Law of total probability", "Setting it to 1"],
-                answer: "B",
-                explanation: "Marginalize over partitions of the cause.",
-              },
-              {
-                prompt: "With several hypotheses $B_1,\\ldots,B_k$, the posteriors $P(B_i\\mid A)$ must:",
-                options: ["Each equal $P(B_i)$", "Sum to 1 across all $i$", "Always be equal to each other"],
-                answer: "B",
-                explanation: "The $B_i$ partition the sample space, so their posteriors form a complete distribution.",
-              },
-            ]}
+            questions={PS_B_BAYES_QUIZ}
           />
 
           <Divider />
+          <PsCertificateBoost topic="probability" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -261,6 +228,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-b-intro">Quiz</a>
         <a className="sb-link" href="#ps-b-combo">Counting</a>
         <a className="sb-link" href="#quiz-ps-b-combo">Quiz</a>
+        <a className="sb-link" href="#ps-cert-probability-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -372,26 +340,7 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           title="Axioms"
           scoreId="score-ps-b-intro"
           section="ps-b-intro"
-          questions={[
-            {
-              prompt: "$P(\\Omega)$ equals:",
-              options: ["0", "1", "Depends on the experiment"],
-              answer: "B",
-              explanation: "The certain event has probability 1.",
-            },
-            {
-              prompt: "$P(A^c)$ equals:",
-              options: ["$P(A)$", "$1-P(A)$", "$P(A)^2$"],
-              answer: "B",
-              explanation: "Complement rule from the axioms.",
-            },
-            {
-              prompt: "For disjoint $A,B$, $P(A\\cup B)$ equals:",
-              options: ["$P(A)P(B)$", "$P(A)+P(B)$", "$P(A)-P(B)$"],
-              answer: "B",
-              explanation: "Additivity for disjoint events.",
-            },
-          ]}
+          questions={PS_B_INTRO_QUIZ}
         />
 
         <Divider />
@@ -411,29 +360,12 @@ function ProbabilityBasicsGuide({ part = 1 }) {
           title="Counting"
           scoreId="score-ps-b-combo"
           section="ps-b-combo"
-          questions={[
-            {
-              prompt: "For equally likely outcomes, $P(A)$ is:",
-              options: ["$|A|+|\\Omega|$", "$|A|/|\\Omega|$", "$|\\Omega|/|A|$"],
-              answer: "B",
-              explanation: "Favorable over total.",
-            },
-            {
-              prompt: "$\\binom{5}{2}$ equals:",
-              options: ["10", "20", "25"],
-              answer: "A",
-              explanation: "$5!/(2!3!)=10$.",
-            },
-            {
-              prompt: "Order matters for:",
-              options: ["Combinations only", "Permutations", "Neither"],
-              answer: "B",
-              explanation: "Permutations count ordered selections.",
-            },
-          ]}
+          questions={PS_B_COMBO_QUIZ}
         />
 
         <Divider />
+        <PsCertificateBoost topic="probability" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

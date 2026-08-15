@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_R_CORR_QUIZ,
+  PS_R_ASSOC_QUIZ,
+  PS_R_FIT_QUIZ,
+  PS_R_RESID_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
+
+import PsCertificateBoost from "./PsCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -19,6 +27,7 @@ function RegressionGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-r-fit">Quiz</a>
           <a className="sb-link" href="#ps-r-resid">Residuals</a>
           <a className="sb-link" href="#quiz-ps-r-resid">Quiz</a>
+          <a className="sb-link" href="#ps-cert-regression-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -118,26 +127,7 @@ function RegressionGuide({ part = 1 }) {
             title="Least squares"
             scoreId="score-ps-r-fit"
             section="ps-r-fit"
-            questions={[
-              {
-                prompt: "Least squares minimizes:",
-                options: ["Sum of residuals", "Sum of squared residuals", "Sum of $|e_i|$ only"],
-                answer: "B",
-                explanation: "Squared vertical errors.",
-              },
-              {
-                prompt: "The fitted line always goes through:",
-                options: ["$(0,0)$", "$(\\bar x,\\bar y)$", "$(1,1)$"],
-                answer: "B",
-                explanation: "Centroid property of least squares.",
-              },
-              {
-                prompt: "$b_1=r s_y/s_x$ implies if $r=0$ then:",
-                options: ["Slope is infinite", "Slope is 0", "Intercept is 0"],
-                answer: "B",
-                explanation: "No linear association ⇒ flat best line.",
-              },
-            ]}
+            questions={PS_R_FIT_QUIZ}
           />
 
           <Divider />
@@ -197,35 +187,12 @@ function RegressionGuide({ part = 1 }) {
             title="Residuals"
             scoreId="score-ps-r-resid"
             section="ps-r-resid"
-            questions={[
-              {
-                prompt: "Residual equals:",
-                options: ["$\\hat y-y$", "$y-\\hat y$", "$y-\\bar y$"],
-                answer: "B",
-                explanation: "Observed minus fitted.",
-              },
-              {
-                prompt: "A curved residual plot suggests:",
-                options: ["Perfect fit", "Nonlinear relationship", "r must be 1"],
-                answer: "B",
-                explanation: "Linear model misses curvature.",
-              },
-              {
-                prompt: "Extrapolation is risky because:",
-                options: ["r becomes 2", "The linear pattern may not continue outside the data range", "Residuals become correlations"],
-                answer: "B",
-                explanation: "Model is local to observed $x$.",
-              },
-              {
-                prompt: "For simple linear regression, $R^2$ is:",
-                options: ["Always negative", "Equal to $r^2$", "Unrelated to $r$"],
-                answer: "B",
-                explanation: "R-squared is the square of the correlation coefficient in the simple linear case.",
-              },
-            ]}
+            questions={PS_R_RESID_QUIZ}
           />
 
           <Divider />
+          <PsCertificateBoost topic="regression" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Course module complete</h2>
@@ -247,6 +214,7 @@ function RegressionGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-r-corr">Quiz</a>
         <a className="sb-link" href="#ps-r-assoc">Association</a>
         <a className="sb-link" href="#quiz-ps-r-assoc">Quiz</a>
+        <a className="sb-link" href="#ps-cert-regression-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -349,26 +317,7 @@ function RegressionGuide({ part = 1 }) {
           title="Correlation"
           scoreId="score-ps-r-corr"
           section="ps-r-corr"
-          questions={[
-            {
-              prompt: "Range of Pearson $r$:",
-              options: ["$[0,1]$", "$[-1,1]$", "$(-\\infty,\\infty)$"],
-              answer: "B",
-              explanation: "Bounded linear association measure.",
-            },
-            {
-              prompt: "$r=1$ means:",
-              options: ["Random cloud", "Perfect positive linear fit", "Causation proven"],
-              answer: "B",
-              explanation: "All points on an upward line.",
-            },
-            {
-              prompt: "Correlation proves causation:",
-              options: ["Always", "Never by itself", "When $|r|>0.5$"],
-              answer: "B",
-              explanation: "Confounding and reverse causality remain possible.",
-            },
-          ]}
+          questions={PS_R_CORR_QUIZ}
         />
 
         <Divider />
@@ -388,29 +337,12 @@ function RegressionGuide({ part = 1 }) {
           title="Association"
           scoreId="score-ps-r-assoc"
           section="ps-r-assoc"
-          questions={[
-            {
-              prompt: "First step before computing r:",
-              options: ["Fit multiple regression", "Look at the scatterplot", "Delete half the data"],
-              answer: "B",
-              explanation: "Visual form guides interpretation.",
-            },
-            {
-              prompt: "A lurking variable is:",
-              options: ["Always the response", "An unmeasured factor that may drive the association", "The intercept"],
-              answer: "B",
-              explanation: "Confounders create spurious correlations.",
-            },
-            {
-              prompt: "Strength of linear association is mainly read from:",
-              options: ["Sign of r only", "$|r|$ and the plot", "Sample size alone"],
-              answer: "B",
-              explanation: "Magnitude plus visual confirmation.",
-            },
-          ]}
+          questions={PS_R_ASSOC_QUIZ}
         />
 
         <Divider />
+        <PsCertificateBoost topic="regression" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

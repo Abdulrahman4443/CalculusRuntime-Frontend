@@ -13,12 +13,26 @@ function writeAll(examples) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(examples));
   } catch {
-    // localStorage unavailable (private browsing, quota, etc.) — fail silently
+    // localStorage unavailable — fail silently
   }
 }
 
 function makeId(sectionId, exampleTitle) {
   return `${sectionId}::${exampleTitle}`;
+}
+
+/** Stable DOM id / URL hash for an example within a guide. */
+export function exampleAnchorId(sectionId, exampleTitle) {
+  const slug = String(exampleTitle || "example")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 48);
+  const sec = String(sectionId || "sec")
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .slice(0, 32);
+  return `ex-${sec}-${slug || "item"}`;
 }
 
 export function getSavedExamples() {
@@ -30,7 +44,13 @@ export function isExampleSaved(sectionId, exampleTitle) {
   return readAll().some((entry) => entry.id === id);
 }
 
-export function saveExample({ sectionId, exampleTitle, guideTitle, route, anchorId }) {
+export function saveExample({
+  sectionId,
+  exampleTitle,
+  guideTitle,
+  guidePath,
+  exampleId,
+}) {
   const id = makeId(sectionId, exampleTitle);
   const existing = readAll();
   if (existing.some((entry) => entry.id === id)) return;
@@ -40,8 +60,8 @@ export function saveExample({ sectionId, exampleTitle, guideTitle, route, anchor
     sectionId,
     exampleTitle,
     guideTitle: guideTitle || null,
-    route: route || null,
-    anchorId: anchorId || null,
+    guidePath: guidePath || null,
+    exampleId: exampleId || exampleAnchorId(sectionId, exampleTitle),
     savedAt: new Date().toISOString(),
   };
   writeAll([...existing, entry]);

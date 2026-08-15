@@ -8,7 +8,7 @@ import IntegrationGuide from "./IntegrationGuide";
 import SequencesSeriesGuide from "./SequencesSeriesGuide";
 import ConicsGuide from "./ConicsGuide";
 
-function CalcTopicPart({ sectionId, title, path, Guide, part, nextPath, nextLabel }) {
+function CalcTopicPart({ sectionId, title, path, Guide, part, nextPath, nextLabel, courseId }) {
   const { recordVisit } = useProgress();
   useEffect(() => {
     recordVisit(sectionId);
@@ -24,7 +24,12 @@ function CalcTopicPart({ sectionId, title, path, Guide, part, nextPath, nextLabe
         <BookmarkButton id={sectionId} title={title} path={path} />
       </div>
       <Guide part={part} />
-      <SectionCompleteBar sectionId={sectionId} nextPath={nextPath} nextLabel={nextLabel} />
+      <SectionCompleteBar
+        sectionId={sectionId}
+        nextPath={nextPath}
+        nextLabel={nextLabel}
+        courseId={courseId}
+      />
     </div>
   );
 }
@@ -135,8 +140,8 @@ export function ConicsPart2() {
       path="/conic-sections/2"
       Guide={ConicsGuide}
       part={2}
-      nextPath="/courses/calculus-analytical-geometry"
-      nextLabel="Back to Calculus & Analytical Geometry hub"
+      nextPath="/taylor-series/1"
+      nextLabel="Next: Taylor Series"
     />
   );
 }

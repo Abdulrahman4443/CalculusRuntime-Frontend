@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
+import {
+  LA_V_INTRO_QUIZ,
+  LA_V_OPS_QUIZ,
+  LA_V_SPAN_QUIZ,
+  LA_V_INDEP_QUIZ,
+} from "../../data/laVectorsMatricesQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
+
+import LaCertificateBoost from "./LaCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -19,6 +27,7 @@ function VectorsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-la-v-span">Quiz</a>
           <a className="sb-link" href="#la-v-indep">Independence</a>
           <a className="sb-link" href="#quiz-la-v-indep">Quiz</a>
+          <a className="sb-link" href="#la-cert-vectors-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -169,26 +178,7 @@ function VectorsGuide({ part = 1 }) {
             title="Span & Basis"
             scoreId="score-la-v-span"
             section="la-v-span"
-            questions={[
-              {
-                prompt: "What is the span of a single nonzero vector $v$ in $\\mathbb{R}^2$?",
-                options: ["All of $\\mathbb{R}^2$", "The line through the origin in the direction of $v$", "Only the zero vector"],
-                answer: "B",
-                explanation: "Scalar multiples of $v$ fill the line through $0$ and $v$.",
-              },
-              {
-                prompt: "Every basis of $\\mathbb{R}^3$ contains how many vectors?",
-                options: ["2", "3", "Any number $\\ge 3$"],
-                answer: "B",
-                explanation: "Dimension is unique: $\\dim\\mathbb{R}^3=3$.",
-              },
-              {
-                prompt: "A spanning set that is not a basis must be:",
-                options: ["Linearly independent", "Linearly dependent", "Empty"],
-                answer: "B",
-                explanation: "If it spans but is not a basis, it has redundant (dependent) vectors.",
-              },
-            ]}
+            questions={LA_V_SPAN_QUIZ}
           />
 
           <Divider />
@@ -220,29 +210,12 @@ function VectorsGuide({ part = 1 }) {
             title="Independence"
             scoreId="score-la-v-indep"
             section="la-v-indep"
-            questions={[
-              {
-                prompt: "The set $\\{0, v\\}$ is always:",
-                options: ["Independent", "Dependent", "A basis of $\\mathbb{R}^n$"],
-                answer: "B",
-                explanation: "Any set containing the zero vector is linearly dependent.",
-              },
-              {
-                prompt: "Four vectors in $\\mathbb{R}^3$ are:",
-                options: ["Always independent", "Always dependent", "Independent iff orthogonal"],
-                answer: "B",
-                explanation: "You cannot have more than $\\dim V$ independent vectors in $V$.",
-              },
-              {
-                prompt: "Columns of an invertible $n\\times n$ matrix are:",
-                options: ["Dependent", "A basis of $\\mathbb{R}^n$", "Orthogonal only"],
-                answer: "B",
-                explanation: "Invertibility means the columns form a basis of $\\mathbb{R}^n$.",
-              },
-            ]}
+            questions={LA_V_INDEP_QUIZ}
           />
 
           <Divider />
+          <LaCertificateBoost topic="vectors" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -265,6 +238,7 @@ function VectorsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-la-v-intro">Quiz</a>
         <a className="sb-link" href="#la-v-ops">Dot product</a>
         <a className="sb-link" href="#quiz-la-v-ops">Quiz</a>
+        <a className="sb-link" href="#la-cert-vectors-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -414,26 +388,7 @@ function VectorsGuide({ part = 1 }) {
           title="Vector basics"
           scoreId="score-la-v-intro"
           section="la-v-intro"
-          questions={[
-            {
-              prompt: "The vector $(1,-2,3)$ lives in which space?",
-              options: ["$\\mathbb{R}^2$", "$\\mathbb{R}^3$", "$\\mathbb{R}^1$"],
-              answer: "B",
-              explanation: "Three components means a vector in $\\mathbb{R}^3$.",
-            },
-            {
-              prompt: "What is $\\|(3,4)\\|$?",
-              options: ["5", "7", "12"],
-              answer: "A",
-              explanation: "$\\sqrt{3^2+4^2}=\\sqrt{25}=5$.",
-            },
-            {
-              prompt: "The zero vector is the additive identity because:",
-              options: ["It has length 1", "$v+0=v$ for every $v$", "It is orthogonal to itself only"],
-              answer: "B",
-              explanation: "Vector addition uses $0$ as the identity element.",
-            },
-          ]}
+          questions={LA_V_INTRO_QUIZ}
         />
 
         <Divider />
@@ -454,29 +409,12 @@ function VectorsGuide({ part = 1 }) {
           title="Operations"
           scoreId="score-la-v-ops"
           section="la-v-ops"
-          questions={[
-            {
-              prompt: "$(1,2)+(3,-1)$ equals:",
-              options: ["$(4,1)$", "$(2,3)$", "$(3,2)$"],
-              answer: "A",
-              explanation: "Add componentwise: $(1+3,\\,2-1)=(4,1)$.",
-            },
-            {
-              prompt: "$(1,0)\\cdot(0,1)$ equals:",
-              options: ["1", "0", "$\\sqrt{2}$"],
-              answer: "B",
-              explanation: "Standard basis vectors are orthogonal.",
-            },
-            {
-              prompt: "Scaling $v$ by $-2$:",
-              options: ["Keeps direction, doubles length", "Reverses direction and doubles length", "Projects onto the $x$-axis"],
-              answer: "B",
-              explanation: "Negative scalars reverse direction; magnitude multiplies by $|c|$.",
-            },
-          ]}
+          questions={LA_V_OPS_QUIZ}
         />
 
         <Divider />
+        <LaCertificateBoost topic="vectors" part={1} />
+
         <section className="section" id="summary1">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Continue</h2>

@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "./LaMcq";
+import {
+  LA_E_INTRO_QUIZ,
+  LA_E_CHAR_QUIZ,
+  LA_E_DIAG_QUIZ,
+  LA_E_APPS_QUIZ,
+} from "../../data/laSystemsEigenQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, PracticalTheory, RealLifeUse } from "./LaBlocks";
+
+import LaCertificateBoost from "./LaCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -20,6 +28,7 @@ function EigenGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-la-e-diag">Quiz</a>
           <a className="sb-link" href="#la-e-apps">Applications</a>
           <a className="sb-link" href="#quiz-la-e-apps">Quiz</a>
+          <a className="sb-link" href="#la-cert-eigen-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -186,26 +195,7 @@ function EigenGuide({ part = 1 }) {
             title="Diagonalization"
             scoreId="score-la-e-diag"
             section="la-e-diag"
-            questions={[
-              {
-                prompt: "In $A=PDP^{-1}$, the columns of $P$ are:",
-                options: ["Rows of $A$", "Eigenvectors of $A$", "Only the zero vector"],
-                answer: "B",
-                explanation: "Independent eigenvectors form $P$.",
-              },
-              {
-                prompt: "If $A$ has $n$ distinct eigenvalues, then $A$ is:",
-                options: ["Never diagonalizable", "Diagonalizable", "Singular"],
-                answer: "B",
-                explanation: "Distinct eigenvalues give independent eigenvectors.",
-              },
-              {
-                prompt: "$A^k$ for diagonalizable $A=PDP^{-1}$ equals:",
-                options: ["$P D^k P^{-1}$", "$P^k D P^{-1}$", "$D^k$ only"],
-                answer: "A",
-                explanation: "Powers become easy on the diagonal factor.",
-              },
-            ]}
+            questions={LA_E_DIAG_QUIZ}
           />
 
           <Divider />
@@ -234,29 +224,12 @@ function EigenGuide({ part = 1 }) {
             title="Applications"
             scoreId="score-la-e-apps"
             section="la-e-apps"
-            questions={[
-              {
-                prompt: "For $\\dot x=Ax$, solutions grow when eigenvalues have:",
-                options: ["Negative real part", "Positive real part", "Zero imaginary part only"],
-                answer: "B",
-                explanation: "Positive real parts drive exponential growth.",
-              },
-              {
-                prompt: "Real symmetric matrices have:",
-                options: ["Only complex eigenvalues", "Real eigenvalues", "No eigenvectors"],
-                answer: "B",
-                explanation: "Spectral theorem: real eigenvalues and orthogonal diagonalization.",
-              },
-              {
-                prompt: "PCA uses eigenvectors of:",
-                options: ["A random sparse matrix", "A covariance / Gram matrix", "Only $I$"],
-                answer: "B",
-                explanation: "Principal directions are eigenvectors of the covariance matrix.",
-              },
-            ]}
+            questions={LA_E_APPS_QUIZ}
           />
 
           <Divider />
+          <LaCertificateBoost topic="eigen" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Module complete</h2>
@@ -286,6 +259,7 @@ function EigenGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-la-e-intro">Quiz</a>
         <a className="sb-link" href="#la-e-char">Characteristic poly</a>
         <a className="sb-link" href="#quiz-la-e-char">Quiz</a>
+        <a className="sb-link" href="#la-cert-eigen-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -440,26 +414,7 @@ function EigenGuide({ part = 1 }) {
           title="Eigen basics"
           scoreId="score-la-e-intro"
           section="la-e-intro"
-          questions={[
-            {
-              prompt: "An eigenvector must be:",
-              options: ["The zero vector", "Nonzero", "A unit matrix"],
-              answer: "B",
-              explanation: "By definition eigenvectors are nonzero.",
-            },
-            {
-              prompt: "If $Av=3v$ for $v\\neq 0$, then $3$ is:",
-              options: ["A singular value only", "An eigenvalue", "The determinant"],
-              answer: "B",
-              explanation: "That is the definition of eigenvalue $3$.",
-            },
-            {
-              prompt: "$Av=\\lambda v$ rearranges to:",
-              options: ["$(A-\\lambda I)v=0$", "$(A+\\lambda I)v=I$", "$A^{-1}v=\\lambda$"],
-              answer: "A",
-              explanation: "Bring terms to one side: $Av-\\lambda v=0$.",
-            },
-          ]}
+          questions={LA_E_INTRO_QUIZ}
         />
 
         <Divider />
@@ -488,29 +443,12 @@ function EigenGuide({ part = 1 }) {
           title="Characteristic polynomial"
           scoreId="score-la-e-char"
           section="la-e-char"
-          questions={[
-            {
-              prompt: "Eigenvalues are roots of:",
-              options: ["$\\det A$", "$\\det(A-\\lambda I)$", "Trace only"],
-              answer: "B",
-              explanation: "Characteristic equation $\\det(A-\\lambda I)=0$.",
-            },
-            {
-              prompt: "Geometric multiplicity is:",
-              options: ["Number of rows of $A$", "Dimension of the eigenspace", "Always equal to $n$"],
-              answer: "B",
-              explanation: "Geo. mult. $=\\dim\\{v:Av=\\lambda v\\}$.",
-            },
-            {
-              prompt: "Trace of a $2\\times 2$ matrix equals:",
-              options: ["Product of eigenvalues", "Sum of eigenvalues", "Determinant"],
-              answer: "B",
-              explanation: "Trace = sum of eigenvalues (with multiplicity).",
-            },
-          ]}
+          questions={LA_E_CHAR_QUIZ}
         />
 
         <Divider />
+        <LaCertificateBoost topic="eigen" part={1} />
+
         <section className="section" id="summary1">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Continue</h2>

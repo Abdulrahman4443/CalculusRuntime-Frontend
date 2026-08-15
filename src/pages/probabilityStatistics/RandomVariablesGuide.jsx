@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_RV_INTRO_QUIZ,
+  PS_RV_MOMENTS_QUIZ,
+  PS_RV_CONT_QUIZ,
+  PS_RV_NAMED_QUIZ,
+} from "../../data/psProbRvQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
+
+import PsCertificateBoost from "./PsCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -20,6 +28,7 @@ function RandomVariablesGuide({ part = 1 }) {
           <a className="sb-link" href="#ps-rv-named">Named families</a>
           <a className="sb-link" href="#ps-rv-named-ex">Examples</a>
           <a className="sb-link" href="#quiz-ps-rv-named">Quiz</a>
+          <a className="sb-link" href="#ps-cert-randomvars-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -122,26 +131,7 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Continuous"
             scoreId="score-ps-rv-cont"
             section="ps-rv-cont"
-            questions={[
-              {
-                prompt: "For a continuous RV, $P(X=c)$ is:",
-                options: ["$f(c)$", "0", "1"],
-                answer: "B",
-                explanation: "Points have zero area under a PDF.",
-              },
-              {
-                prompt: "A valid PDF must integrate to:",
-                options: ["0", "1", "$\\infty$"],
-                answer: "B",
-                explanation: "Total probability is 1.",
-              },
-              {
-                prompt: "$F(x)=P(X\\le x)$ is the:",
-                options: ["PDF", "CDF", "Variance"],
-                answer: "B",
-                explanation: "Cumulative distribution function.",
-              },
-            ]}
+            questions={PS_RV_CONT_QUIZ}
           />
 
           <Divider />
@@ -207,35 +197,12 @@ function RandomVariablesGuide({ part = 1 }) {
             title="Families"
             scoreId="score-ps-rv-named"
             section="ps-rv-named"
-            questions={[
-              {
-                prompt: "Binomial models:",
-                options: ["Waiting times only", "Number of successes in n trials", "Only continuous heights"],
-                answer: "B",
-                explanation: "Fixed n independent Bernoulli trials.",
-              },
-              {
-                prompt: "Normal distribution is determined by:",
-                options: ["Only the mean", "Mean and variance", "Only the mode"],
-                answer: "B",
-                explanation: "$N(\\mu,\\sigma^2)$ has two parameters.",
-              },
-              {
-                prompt: "Exponential is famous for:",
-                options: ["Memorylessness", "Being discrete", "Negative density"],
-                answer: "A",
-                explanation: "Past waiting time does not change future odds.",
-              },
-              {
-                prompt: "For Poisson$(\\lambda)$, the mean and variance are:",
-                options: ["Both equal to $\\lambda$", "Mean $\\lambda$, variance $\\lambda^2$", "Always 0 and 1"],
-                answer: "A",
-                explanation: "A defining property of the Poisson family.",
-              },
-            ]}
+            questions={PS_RV_NAMED_QUIZ}
           />
 
           <Divider />
+          <PsCertificateBoost topic="randomvars" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -257,6 +224,7 @@ function RandomVariablesGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-rv-intro">Quiz</a>
         <a className="sb-link" href="#ps-rv-moments">Mean &amp; variance</a>
         <a className="sb-link" href="#quiz-ps-rv-moments">Quiz</a>
+        <a className="sb-link" href="#ps-cert-randomvars-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -361,26 +329,7 @@ function RandomVariablesGuide({ part = 1 }) {
           title="Discrete RVs"
           scoreId="score-ps-rv-intro"
           section="ps-rv-intro"
-          questions={[
-            {
-              prompt: "A PMF must:",
-              options: ["Integrate to 1", "Sum to 1", "Always be continuous"],
-              answer: "B",
-              explanation: "Discrete probabilities sum over atoms.",
-            },
-            {
-              prompt: "Bernoulli RV takes values:",
-              options: ["Any real", "0 and 1", "Only positive integers"],
-              answer: "B",
-              explanation: "Success/failure indicator.",
-            },
-            {
-              prompt: "CDF $F(x)$ is:",
-              options: ["Always decreasing", "Nondecreasing", "Always equal to the PMF"],
-              answer: "B",
-              explanation: "Cumulative probabilities only grow.",
-            },
-          ]}
+          questions={PS_RV_INTRO_QUIZ}
         />
 
         <Divider />
@@ -400,29 +349,12 @@ function RandomVariablesGuide({ part = 1 }) {
           title="Moments"
           scoreId="score-ps-rv-moments"
           section="ps-rv-moments"
-          questions={[
-            {
-              prompt: "$E[aX+b]$ equals:",
-              options: ["$aE[X]+b$", "$aE[X]$ only", "$E[X]+b$ only"],
-              answer: "A",
-              explanation: "Affinity of expectation.",
-            },
-            {
-              prompt: "$\\mathrm{Var}(X)$ equals:",
-              options: ["$E[X]^2$", "$E[X^2]-(E[X])^2$", "$(E[X])^2-E[X^2]$"],
-              answer: "B",
-              explanation: "Computational formula for variance.",
-            },
-            {
-              prompt: "Linearity of expectation requires independence:",
-              options: ["Always", "Never (not required)", "Only for discrete RVs"],
-              answer: "B",
-              explanation: "Linearity holds regardless of dependence.",
-            },
-          ]}
+          questions={PS_RV_MOMENTS_QUIZ}
         />
 
         <Divider />
+        <PsCertificateBoost topic="randomvars" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

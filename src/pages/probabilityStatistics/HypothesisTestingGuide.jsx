@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_H_FRAMEWORK_QUIZ,
+  PS_H_TESTS_QUIZ,
+  PS_H_PVAL_QUIZ,
+  PS_H_ERRORS_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
+
+import PsCertificateBoost from "./PsCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -19,6 +27,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-h-pval">Quiz</a>
           <a className="sb-link" href="#ps-h-errors">Errors &amp; power</a>
           <a className="sb-link" href="#quiz-ps-h-errors">Quiz</a>
+          <a className="sb-link" href="#ps-cert-hypothesis-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -120,26 +129,7 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="p-values"
             scoreId="score-ps-h-pval"
             section="ps-h-pval"
-            questions={[
-              {
-                prompt: "A p-value is computed assuming:",
-                options: ["$H_1$ is true", "$H_0$ is true", "Neither"],
-                answer: "B",
-                explanation: "Sampling distribution under the null.",
-              },
-              {
-                prompt: "If p = 0.01 and $\\alpha=0.05$, you:",
-                options: ["Fail to reject $H_0$", "Reject $H_0$", "Accept $H_0$ as proven"],
-                answer: "B",
-                explanation: "p ≤ α ⇒ reject.",
-              },
-              {
-                prompt: "p = 0.20 means:",
-                options: ["$H_0$ is true", "Data are not very surprising under $H_0$", "$H_1$ is proven"],
-                answer: "B",
-                explanation: "Large p ⇒ weak evidence against $H_0$.",
-              },
-            ]}
+            questions={PS_H_PVAL_QUIZ}
           />
 
           <Divider />
@@ -200,35 +190,12 @@ function HypothesisTestingGuide({ part = 1 }) {
             title="Errors"
             scoreId="score-ps-h-errors"
             section="ps-h-errors"
-            questions={[
-              {
-                prompt: "Type II error is:",
-                options: ["Reject true $H_0$", "Fail to reject false $H_0$", "Correct rejection"],
-                answer: "B",
-                explanation: "Missed detection of a real effect.",
-              },
-              {
-                prompt: "Power equals:",
-                options: ["$\\alpha$", "$1-\\beta$", "$\\beta$"],
-                answer: "B",
-                explanation: "Probability of correctly rejecting a false null.",
-              },
-              {
-                prompt: "Increasing sample size typically:",
-                options: ["Lowers power", "Raises power", "Forces $\\alpha=0$"],
-                answer: "B",
-                explanation: "More data sharpen the sampling distribution.",
-              },
-              {
-                prompt: "If Type I errors are far more costly than Type II, you should:",
-                options: ["Raise $\\alpha$", "Lower $\\alpha$", "Ignore $\\alpha$ entirely"],
-                answer: "B",
-                explanation: "A stricter significance threshold guards against false alarms at the cost of some power.",
-              },
-            ]}
+            questions={PS_H_ERRORS_QUIZ}
           />
 
           <Divider />
+          <PsCertificateBoost topic="hypothesis" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -250,6 +217,7 @@ function HypothesisTestingGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-h-framework">Quiz</a>
         <a className="sb-link" href="#ps-h-tests">Common tests</a>
         <a className="sb-link" href="#quiz-ps-h-tests">Quiz</a>
+        <a className="sb-link" href="#ps-cert-hypothesis-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -350,26 +318,7 @@ function HypothesisTestingGuide({ part = 1 }) {
           title="Framework"
           scoreId="score-ps-h-framework"
           section="ps-h-framework"
-          questions={[
-            {
-              prompt: "$H_0$ usually represents:",
-              options: ["The research hope", "The status-quo / no-effect claim", "Always $\\mu>0$"],
-              answer: "B",
-              explanation: "Null is the claim we challenge.",
-            },
-            {
-              prompt: "Significance level $\\alpha$ is:",
-              options: ["Power", "Type I error rate we allow", "Always 0.5"],
-              answer: "B",
-              explanation: "Long-run false positive rate under $H_0$.",
-            },
-            {
-              prompt: "Failing to reject $H_0$ means:",
-              options: ["$H_0$ is proven true", "Evidence was not strong enough to reject", "$H_1$ is true"],
-              answer: "B",
-              explanation: "Inconclusive against the null.",
-            },
-          ]}
+          questions={PS_H_FRAMEWORK_QUIZ}
         />
 
         <Divider />
@@ -389,29 +338,12 @@ function HypothesisTestingGuide({ part = 1 }) {
           title="Tests"
           scoreId="score-ps-h-tests"
           section="ps-h-tests"
-          questions={[
-            {
-              prompt: "SE of $\\bar x$ with known $\\sigma$ is:",
-              options: ["$\\sigma$", "$\\sigma/\\sqrt n$", "$\\sigma n$"],
-              answer: "B",
-              explanation: "Averaging reduces SD by $\\sqrt n$.",
-            },
-            {
-              prompt: "t-distribution vs normal has:",
-              options: ["Thinner tails", "Heavier tails", "No mean"],
-              answer: "B",
-              explanation: "Extra uncertainty from estimating $\\sigma$.",
-            },
-            {
-              prompt: "df for one-sample t is:",
-              options: ["$n$", "$n-1$", "$n-2$"],
-              answer: "B",
-              explanation: "One parameter estimated for the mean.",
-            },
-          ]}
+          questions={PS_H_TESTS_QUIZ}
         />
 
         <Divider />
+        <PsCertificateBoost topic="hypothesis" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>

@@ -64,6 +64,22 @@
   gap: 1rem;
 }
 
+.sfl-card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.sfl-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: 6px;
+}
+
+.sfl-card-link:hover .sfl-card-title {
+  color: #8a6410;
+}
+
 .sfl-card-guide {
   color: #c8922a;
   font-size: 0.75rem;

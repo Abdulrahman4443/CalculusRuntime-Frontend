@@ -1,4 +1,15 @@
 import React from "react";
+import { GuideMcqSection } from "../components/GuideMcq";
+import {
+  FIELD_CONCEPT_QUIZ,
+  DIV_FORMULA_QUIZ,
+  CURL_CORE_QUIZ,
+  VECTOR_CATALOG_QUIZ,
+  VECTOR_IDENTITY_QUIZ,
+  DIV_THEOREM_QUIZ,
+  STOKES_THEOREM_QUIZ,
+  DIVCURL_CHALLENGE_QUIZ,
+} from "../data/mvDivCurlQuizzes";
 import { Link } from "react-router-dom";
 import StudyGuideShell from "./StudyGuideShell";
 import "./PartialDerivativesGuide.css";
@@ -7,6 +18,7 @@ import {
   DivCurlExtendedPart1,
   DivCurlExtendedPart2,
 } from "./GuideExtendedMaterials";
+import MvCertificateBoost from "./MvCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -86,71 +98,6 @@ function SectionS161() {
   );
 }
 
-function QuizMcq161() {
-  return (
-    <section className="mcq-section" id="quiz-161">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.1"}</span>
-        <h2 className="mcq-section-title">{"Vector Field Assessments"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorefield-concept">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="field-concept" data-q="1" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"1"}</div>
-          <div className="mcq-q-text">{"What spatial structural element is output by a standard 3D vector field expression $\\mathbf{F}(x,y,z)$ at any single coordinate point?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A uniform scalar temperature measurement value."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"A set of intersecting scalar plane curves."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"A single vector arrow containing directional heading and magnitude length parameters."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"By definition, a multi-variable vector field maps spatial coordinates to matching vector quantities rather than isolated scalar values."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="field-concept" data-q="2" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"2"}</div>
-          <div className="mcq-q-text">{"If every arrow in a vector field points directly away from the origin and grows longer as distance increases, how is this field categorized geometrically?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A uniform rotational vortex field layout."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"A radial expansion field mapping outward flow lines."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"A constant parallel translation vector deck."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"Vectors pointing straight out from the coordinate center that scale with distance form a classic radial expansion profile."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="field-concept" data-q="3" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"3"}</div>
-          <div className="mcq-q-text">{"Which mathematical component inside $\\mathbf{F}(x,y) = P(x,y)\\mathbf{i} + Q(x,y)\\mathbf{j}$ determines the vertical scalar velocity component?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The scalar component function $Q(x,y)$ paired with the $\\mathbf{j}$ unit vector axis."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The horizontal parameter function $P(x,y)$ mapping along $\\mathbf{i}$."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The cross gradient magnitude modulus."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"The standard component configuration maps the $Q$ scalar function to the vertical vector component along the $\\mathbf{j}$ basis axis."}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SectionS162() {
   return (
     <section className="section" id="s162">
@@ -218,72 +165,6 @@ function SectionS162() {
   );
 }
 
-function QuizMcq162() {
-  return (
-    <section className="mcq-section" id="quiz-162">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.2"}</span>
-        <h2 className="mcq-section-title">{"Divergence Structure Verifications"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorediv-formula">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="div-formula" data-q="4" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"4"}</div>
-          <div className="mcq-q-text">{"What mathematical output variant type is yielded when executing the divergence operation onto a vector field model?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A pure multi-variable scalar function field tracking local source density values."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"A brand new three-dimensional perpendicular coordinate vector matrix layer."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"An isolated single angle measurement coordinate value."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"Divergence uses a dot product format ($\\nabla \\cdot \\mathbf{F}$), which reduces multi-variable vector groupings down into a pure scalar fields layout."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="div-formula" data-q="5" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"5"}</div>
-          <div className="mcq-q-text">{"Evaluate the explicit scalar value for $\\nabla \\cdot \\mathbf{F}$ if the vector field is defined as $\\mathbf{F} = 3x^2\\mathbf{i} + 2y^2\\mathbf{j}$."}</div>
-        </div>
-        <div className="mcq-options">
-          {/* FIXED: escaped \\mathbf{j} below to prevent bad escape sequence string token errors */}
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$6x\\mathbf{i} + 4y\\\\mathbf{j}$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$6x + 4y$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$6 + 4 = 10$"}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"Differentiating $P = 3x^2$ with respect to $x$ yields $6x$, and differentiating $Q = 2y^2$ with respect to $y$ yields $4y$. Adding them yields the scalar function $6x + 4y$."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="div-formula" data-q="6" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"6"}</div>
-          <div className="mcq-q-text">{"What physical condition profile is indicated if $\\nabla \\cdot \\mathbf{F} < 0$ systematically within a local region area?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Fluid is expanding outward into an empty void stream layout."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Fluid velocities have frozen completely into a static vector deck."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Fluid is condensing or compressing inward toward a structural density sink zone."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"Negative divergence scores state that more flux volume enters a micro region than leaves it, identifying a local compression sink point."}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SectionS163() {
   return (
     <section className="section" id="s163">
@@ -343,72 +224,6 @@ function SectionS163() {
         <p>
           {"Students frequently reverse the order of the differences (writing $\\partial Q/\\partial z - \\partial R/\\partial y$ instead of $\\partial R/\\partial y - \\partial Q/\\partial z$, etc.). The cyclic order of the formula is fixed by the determinant of the del cross product — swapping any pair flips the sign of that component and produces the wrong rotation direction. The middle (j) component also carries an extra minus sign that is easy to miss."}
         </p>
-      </div>
-    </section>
-  );
-}
-
-function QuizMcq163() {
-  return (
-    <section className="mcq-section" id="quiz-163">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.3"}</span>
-        <h2 className="mcq-section-title">{"Curl Reduction Drills"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorecurl-core">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="curl-core" data-q="7" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"7"}</div>
-          <div className="mcq-q-text">{"What configuration structure converts general vector parameters into the standard curl output format expression?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Computing the cross product matrix of Del with the field vector ($\\nabla \\times \\mathbf{F}$)."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"Computing the isolated triple dot scalar product alignment profile."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Dividing component arrays uniformly by radial radius variables."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"By explicit definition framework, curl maps local structural vortex spinning by computing cross products using the Del differential vector layer."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="curl-core" data-q="8" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"8"}</div>
-          <div className="mcq-q-text">{"Why does curl produce a full vector entity output instead of an isolated scalar value score map?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"Because spatial area limits force values to remain aligned along flat lines."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"To explicitly track the directional axis orientation line about which spatial rotation occurs."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Because curl metrics ignore partial derivatives entirely during analysis tasks."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"Microscopic spin possesses both rotational intensity scale speed and a perpendicular physical direction line axis that demands a complete vector component model."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="curl-core" data-q="9" data-answer="C">
-        {/* FIXED: Restored missing mcq-q-row layout wrapping elements here to prevent premature component breakdown */}
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"9"}</div>
-          <div className="mcq-q-text">{"If a vector field has zero curl everywhere inside a domain ($\\nabla \\times \\mathbf{F} = \\mathbf{0}$), what does this reveal about its physical property parameters?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The field lines are expanding outward symmetrically at maximum speed parameters."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The field vectors trace closed loop circles indefinitely across coordinate zones."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The vector field is irrotational, meaning a micro paddlewheel dropped inside will not experience spin rotation."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"Zero curl metrics identify irrotational vector geometries, meaning the field exerts no local curling or spinning torque profiles onto point objects inside."}</div>
-        </div>
       </div>
     </section>
   );
@@ -486,71 +301,6 @@ function SectionS164() {
         Curl of velocity is vorticity — tornado cores and whirlpools; Maxwell's equations package divergence and curl as the language of electric and magnetic fields in engineering.
       </RealLifeUse>
 
-    </section>
-  );
-}
-
-function QuizMcq164() {
-  return (
-    <section className="mcq-section" id="quiz-164">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.4"}</span>
-        <h2 className="mcq-section-title">{"Physical Catalog Assessments"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorevector-catalog">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="vector-catalog" data-q="10" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"10"}</div>
-          <div className="mcq-q-text">{"Which specific physical condition statement is fully validated when a magnetic field equation matches $\\nabla \\cdot \\mathbf{B} = 0$ perfectly?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"There are no isolated magnetic monopoles; all lines form complete closed continuous loops."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The magnetic field scales to infinity along linear trajectories."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The electrical current has completely stopped moving through the system loop."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"Zero divergence inside a magnetic system ($\\nabla \\cdot \\mathbf{B} = 0$) means there are no individual point sources, which confirms that magnetic monopoles do not exist in classical electromagnetic theory."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="vector-catalog" data-q="11" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"11"}</div>
-          <div className="mcq-q-text">{"Determine the divergence metric status for an incompressible fluid velocity field $\\mathbf{v}$ passing through a closed pipe section."}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The divergence rises exponentially with linear velocity scale changes."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The divergence scales purely to negative infinity values uniformly."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The divergence evaluates to exactly zero ($\\nabla \\cdot \\mathbf{v} = 0$) because mass is conserved."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"Incompressible media maintain stable density properties throughout, meaning their divergence scores remain locked at zero due to conservation laws."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="vector-catalog" data-q="12" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"12"}</div>
-          <div className="mcq-q-text">{"What mechanical event happens to a miniature floating paddlewheel dropped into a fluid domain tracking a curl score of $\\nabla \\times \\mathbf{v} \\neq \\mathbf{0}$?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The device moves forward along straight lines without rotating."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The tool spins about its center axis because of local fluid shear torque forces."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The mechanical device dissolves or implodes immediately under pressure parameters."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"A non-zero curl profile proves the presence of localized vortex shear forces, which applies a rotational torque that spins indicator objects placed in the flow."}</div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -657,71 +407,6 @@ function SectionS165b() {
   );
 }
 
-function QuizMcq165() {
-  return (
-    <section className="mcq-section" id="quiz-165">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.5"}</span>
-        <h2 className="mcq-section-title">{"Vector Identity Verifications"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorevector-identity">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="vector-identity" data-q="13" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"13"}</div>
-          <div className="mcq-q-text">{"What is the absolute evaluation score for computing the divergence of the curl of any twice continuously differentiable 3D vector field ($\\nabla \\cdot (\\nabla \\times \\mathbf{F})$)?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"An infinite vector sequence matrix."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The gradient of the divergence scalar field."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Exactly zero scalar ($0$) across all differentiable fields."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"By Clairaut's Theorem, mixed partial derivatives cancel out during expansion, which forces the divergence of any curl expression to evaluate to exactly zero."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="vector-identity" data-q="14" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"14"}</div>
-          <div className="mcq-q-text">{"Evaluate the identity outcome for computing the curl of a standard scalar gradient field layout, expressed mathematically as $\\nabla \\times (\\nabla f)$."}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The zero vector $\\mathbf{0}$ (Conservative fields contain zero loop rotation)"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The Laplacian scalar function field $\\nabla^2 f$."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The direct initial scalar value function $f$ itself."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"Gradient fields are conservative, meaning their lines expand without looping back on themselves. This guarantees that their curl calculation yields the zero vector $\\mathbf{0}$."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="vector-identity" data-q="15" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"15"}</div>
-          <div className="mcq-q-text">{"What operator definition is generated when evaluating the dot product identity of Del with itself, written out as $\\nabla \\cdot \\nabla$?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The isolated cross rotational vector coordinate tracking array."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The Laplacian differential operator, denoted as $\\nabla^2$ or $\\Delta$."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"A flat transformation matrix scale value line indicator."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"The dot product of Del with itself sums the second partial derivatives ($\\frac{\\partial^2}{\\partial x^2} + \\frac{\\partial^2}{\\partial y^2} + \\frac{\\partial^2}{\\partial z^2}$), which defines the Laplacian operator $\\nabla^2$."}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SectionS166() {
   return (
     <section className="section" id="s166">
@@ -770,71 +455,6 @@ function SectionS166() {
           <strong>{"Always check if the Divergence Theorem applies first"}</strong>
           {" (closed surface, well-defined interior) \u2014 it almost always simplifies the calculation."}
         </p>
-      </div>
-    </section>
-  );
-}
-
-function QuizMcq166() {
-  return (
-    <section className="mcq-section" id="quiz-166">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.6"}</span>
-        <h2 className="mcq-section-title">{"Divergence Theorem Assessments"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorediv-theorem">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="div-theorem" data-q="16" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"16"}</div>
-          <div className="mcq-q-text">{"What geometric boundary condition must be met to apply the Divergence Theorem to a surface integration?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The integration pathway surface layer must remain perfectly flat."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The surface must be completely closed, trapping a distinct, finite three-dimensional volume inside."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The boundary border curve must intersect the coordinate origin point."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"The Divergence Theorem requires a closed surface skin ($\\partial V$), because it links the total flux crossing that outer boundary directly to the volume trapped inside."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="div-theorem" data-q="17" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"17"}</div>
-          <div className="mcq-q-text">{"How does changing the total internal source density generation inside a solid volume region impact the net surface flux passing out through its boundary?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"The net boundary flux increases proportionally because internal source changes scale the surface output directly."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"The surface outward flux stays completely locked at zero regardless of internal changes."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"The boundary flux flips orientation directions chaotically across tracking axes."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"The theorem equates internal divergence sources directly to outward surface flux, meaning any increase in internal generation pushes more net flux out across the boundary skin."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="div-theorem" data-q="18" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"18"}</div>
-          <div className="mcq-q-text">{"What role does the unit normal vector $\\mathbf{n}$ perform inside the classical surface flux calculation step expression $\\iint \\mathbf{F} \\cdot \\mathbf{n} \\, dS$?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"It tracks the linear distance to the origin point."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"It measures the total surface area parameter value scale directly."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"It establishes the outward perpendicular heading direction for checking field line escape angles."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"The normal vector $\\mathbf{n}$ stands perpendicular to the surface skin, isolating the portion of the vector field pointing directly out across the boundary."}</div>
-        </div>
       </div>
     </section>
   );
@@ -910,71 +530,6 @@ function SectionS167() {
   );
 }
 
-function QuizMcq167() {
-  return (
-    <section className="mcq-section" id="quiz-167">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Quiz Section 16.7"}</span>
-        <h2 className="mcq-section-title">{"Stokes Workflow Drills"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scorestokes-theorem">{"0 / 3"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-
-      <div className="mcq-card" data-section="stokes-theorem" data-q="19" data-answer="B">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"19"}</div>
-          <div className="mcq-q-text">{"What geometric configuration asset matches the surface parameters required for executing a Stokes Theorem conversion step?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A completely solid multi-variable mass density block."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"An open surface area bounded by a distinct closed perimeter line loop curve $\\partial S$."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"An infinite un-bounded plane coordinate slice."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: B"}</span>
-          <div className="mcq-explanation">{"Stokes' Theorem links the curl passing through an open surface directly to the line integration around its closed outer perimeter loop path."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="stokes-theorem" data-q="20" data-answer="A">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"20"}</div>
-          <div className="mcq-q-text">{"How do structural calculus systems evaluate complex surface curl values when the target cap surface bends awkwardly through space?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"They substitute the messy surface integration with a simple line integration tracking the shared perimeter loop path instead."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"They drop all non-linear parameter values and treat the surface as flat."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"They swap out the vector expressions with basic one-dimensional scalar integrations."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: A"}</span>
-          <div className="mcq-explanation">{"Since the theorem shows that any open surface sharing the same perimeter loop yields identical results, you can skip the awkward surface integration and evaluate the simple boundary loop path instead."}</div>
-        </div>
-      </div>
-      <div className="mcq-card" data-section="stokes-theorem" data-q="21" data-answer="C">
-        <div className="mcq-q-row">
-          <div className="mcq-num">{"21"}</div>
-          <div className="mcq-q-text">{"When evaluating boundary path directions for Stokes conversions, how is the correct tracking orientation determined?"}</div>
-        </div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"By matching vector lengths along the positive vertical axis lines."}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"By selecting the shortest distance route to the nearest coordinate wall."}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"By applying the Right-Hand Rule relative to the surface's normal vector heading direction."}</div>
-        </div>
-        <button className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer">
-          <span className="mcq-correct-badge">{"Correct Option: C"}</span>
-          <div className="mcq-explanation">{"The standard orientation conventions link path rotation to the surface normal heading using the Right-Hand Rule, ensuring consistency across vector cross-product math."}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SectionObj18Enrichment() {
   return (
     <section className="section" id="divcurl-enrich">
@@ -994,62 +549,6 @@ function SectionObj18Enrichment() {
           <div className="sol-lbl">{"Solution"}</div>
           <p>{"$\\nabla\\cdot\\mathbf{F}=0$ (incompressible). $\\nabla\\times\\mathbf{F}=(0,0,2)$ (constant vertical vorticity)."}</p>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function QuizChallengeDivCurl() {
-  return (
-    <section className="mcq-section" id="quiz-divcurl-challenge">
-      <div className="mcq-section-head">
-        <span className="mcq-section-badge">{"Challenge"}</span>
-        <h2 className="mcq-section-title">{"Medium & Hard Practice"}</h2>
-      </div>
-      <div className="mcq-score-strip">
-        <span className="score-lbl">{"Score"}</span>
-        <span className="score-val" id="scoredivcurl-challenge">{"0 / 4"}</span>
-        <span className="score-lbl" style={{ marginLeft: "auto", opacity: "0.4" }}>{"Click an option then reveal answer"}</span>
-      </div>
-      <div className="mcq-card" data-section="divcurl-challenge" data-q="1" data-answer="A" data-difficulty="medium">
-        <div className="mcq-q-row"><div className="mcq-num">{"1"}</div><div className="mcq-q-text">{"(Medium) For $\\mathbf{F}=(x,-y,0)$, $\\nabla\\cdot\\mathbf{F}$ equals:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$0$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$1$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$2$"}</div>
-        </div>
-        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: A"}</span><div className="mcq-explanation">{"$1+(-1)+0=0$."}</div></div>
-      </div>
-      <div className="mcq-card" data-section="divcurl-challenge" data-q="2" data-answer="B" data-difficulty="medium">
-        <div className="mcq-q-row"><div className="mcq-num">{"2"}</div><div className="mcq-q-text">{"(Medium) Curl of a gradient $\\nabla\\times(\\nabla f)$ is:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\nabla f$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\mathbf{0}$ (when mixed partials match)"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\nabla\\cdot\\nabla f$"}</div>
-        </div>
-        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: B"}</span><div className="mcq-explanation">{"Classic vector calculus identity: curl of a gradient vanishes."}</div></div>
-      </div>
-      <div className="mcq-card" data-section="divcurl-challenge" data-q="3" data-answer="C" data-difficulty="hard">
-        <div className="mcq-q-row"><div className="mcq-num">{"3"}</div><div className="mcq-q-text">{"(Hard) Divergence theorem relates $\\iiint(\\nabla\\cdot\\mathbf{F})\\,dV$ to:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"A line integral of $f\\,ds$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\iint(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"Flux $\\iint\\mathbf{F}\\cdot d\\mathbf{S}$ through the closed boundary"}</div>
-        </div>
-        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: C"}</span><div className="mcq-explanation">{"Total expansion inside equals net outward flux through $\\partial E$."}</div></div>
-      </div>
-      <div className="mcq-card" data-section="divcurl-challenge" data-q="4" data-answer="A" data-difficulty="hard">
-        <div className="mcq-q-row"><div className="mcq-num">{"4"}</div><div className="mcq-q-text">{"(Hard) Stokes relates circulation on $\\partial S$ to:"}</div></div>
-        <div className="mcq-options">
-          <div className="mcq-opt" data-opt="A"><span className="mcq-opt-letter">{"A"}</span>{"$\\iint_S(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}$"}</div>
-          <div className="mcq-opt" data-opt="B"><span className="mcq-opt-letter">{"B"}</span>{"$\\iiint(\\nabla\\cdot\\mathbf{F})\\,dV$"}</div>
-          <div className="mcq-opt" data-opt="C"><span className="mcq-opt-letter">{"C"}</span>{"$\\iint_S\\mathbf{F}\\cdot\\mathbf{T}\\,dS$"}</div>
-        </div>
-        <button type="button" className="mcq-reveal-btn">{"Reveal Answer"}</button>
-        <div className="mcq-answer"><span className="mcq-correct-badge">{"Correct Option: A"}</span><div className="mcq-explanation">{"Circulation = flux of curl through any oriented surface spanning the curve."}</div></div>
       </div>
     </section>
   );
@@ -1113,24 +612,26 @@ function DivergenceAndCurlGuide({ section }) {
           <TableOfContentsPart2 />
           <Divider />
           <SectionS164 />
-          <QuizMcq164 />
+          <GuideMcqSection id="quiz-164" badge="Practice" title="Vector Catalog" scoreId="scorevector-catalog" section="vector-catalog" questions={VECTOR_CATALOG_QUIZ} />
           <Divider />
           <SectionS165 />
-          <QuizMcq165 />
+          <GuideMcqSection id="quiz-165" badge="Practice" title="Vector Identities" scoreId="scorevector-identity" section="vector-identity" questions={VECTOR_IDENTITY_QUIZ} />
           <Divider />
           <SectionS165b />
           <Divider />
           <SectionS166 />
-          <QuizMcq166 />
+          <GuideMcqSection id="quiz-166" badge="Practice" title="Divergence Theorem" scoreId="scorediv-theorem" section="div-theorem" questions={DIV_THEOREM_QUIZ} />
           <Divider />
           <SectionS167 />
-          <QuizMcq167 />
+          <GuideMcqSection id="quiz-167" badge="Practice" title="Stokes Framework" scoreId="scorestokes-theorem" section="stokes-theorem" questions={STOKES_THEOREM_QUIZ} />
           <Divider />
           <SectionObj18Enrichment />
           <Divider />
           <DivCurlExtendedPart2 />
           <Divider />
-          <QuizChallengeDivCurl />
+          <MvCertificateBoost topic="divcurl" part={2} />
+          <Divider />
+          <GuideMcqSection id="quiz-divcurl-challenge" badge="Challenge" title="Mixed Challenge" scoreId="scoredivcurl-challenge" section="divcurl-challenge" questions={DIVCURL_CHALLENGE_QUIZ} />
           <Divider />
           <SectionRealWorld />
           <Divider />
@@ -1153,19 +654,20 @@ function DivergenceAndCurlGuide({ section }) {
         <OpeningNote />
         <Divider />
         <SectionS161 />
-        <QuizMcq161 />
+        <GuideMcqSection id="quiz-161" badge="Practice" title="Vector Field Concepts" scoreId="scorefield-concept" section="field-concept" questions={FIELD_CONCEPT_QUIZ} />
         <Divider />
         <SectionS162 />
-        <QuizMcq162 />
+        <GuideMcqSection id="quiz-162" badge="Practice" title="Divergence Formula" scoreId="scorediv-formula" section="div-formula" questions={DIV_FORMULA_QUIZ} />
         <Divider />
         <SectionS163 />
-        <QuizMcq163 />
+        <GuideMcqSection id="quiz-163" badge="Practice" title="Curl Core" scoreId="scorecurl-core" section="curl-core" questions={CURL_CORE_QUIZ} />
         <Divider />
         <SectionObj18Enrichment />
         <Divider />
         <DivCurlExtendedPart1 />
         <Divider />
-        <QuizChallengeDivCurl />
+        <MvCertificateBoost topic="divcurl" part={1} />
+        <Divider />
         <Divider />
         <section id="summary1" className="section">
           <div className="sec-badge">{"Reference"}</div>

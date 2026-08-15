@@ -1,7 +1,15 @@
 import StudyGuideShell from "../StudyGuideShell";
 import "../PartialDerivativesGuide.css";
 import { LaMcqSection } from "../linearAlgebra/LaMcq";
+import {
+  PS_D_CENTER_QUIZ,
+  PS_D_QUANT_QUIZ,
+  PS_D_SPREAD_QUIZ,
+  PS_D_PLOTS_QUIZ,
+} from "../../data/psStatsQuizzes";
 import { TheoryBox, TheoremBox, ProcedureBox, WorkedExample, RealLifeUse, PracticalTheory } from "../linearAlgebra/LaBlocks";
+
+import PsCertificateBoost from "./PsCertificateBoost";
 
 function Divider() {
   return <hr className="divider" />;
@@ -19,6 +27,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-d-spread">Quiz</a>
           <a className="sb-link" href="#ps-d-plots">Plots</a>
           <a className="sb-link" href="#quiz-ps-d-plots">Quiz</a>
+          <a className="sb-link" href="#ps-cert-descriptive-p2">Eight examples</a>
         </nav>
         <main className="main">
           <header className="ch-hdr">
@@ -122,26 +131,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Spread"
             scoreId="score-ps-d-spread"
             section="ps-d-spread"
-            questions={[
-              {
-                prompt: "Sample variance usually divides by:",
-                options: ["$n$", "$n-1$", "$n+1$"],
-                answer: "B",
-                explanation: "Unbiased sample variance uses $n-1$.",
-              },
-              {
-                prompt: "A z-score of 0 means the value equals:",
-                options: ["The max", "The mean", "The SD"],
-                answer: "B",
-                explanation: "$z=(x-\\bar x)/s$.",
-              },
-              {
-                prompt: "IQR is:",
-                options: ["$Q_3-Q_1$", "$Q_1+Q_3$", "Max − min"],
-                answer: "A",
-                explanation: "Middle 50% width.",
-              },
-            ]}
+            questions={PS_D_SPREAD_QUIZ}
           />
 
           <Divider />
@@ -202,35 +192,12 @@ function DescriptiveStatsGuide({ part = 1 }) {
             title="Plots"
             scoreId="score-ps-d-plots"
             section="ps-d-plots"
-            questions={[
-              {
-                prompt: "Best plot for outliers in one variable:",
-                options: ["Pie chart", "Boxplot", "Venn diagram"],
-                answer: "B",
-                explanation: "Boxplots mark points beyond fences.",
-              },
-              {
-                prompt: "A right-skewed histogram has a long tail to the:",
-                options: ["Left", "Right", "Neither"],
-                answer: "B",
-                explanation: "Skew direction follows the long tail.",
-              },
-              {
-                prompt: "Scatterplots show:",
-                options: ["Only means", "Relationship between two quantitative variables", "Only categories"],
-                answer: "B",
-                explanation: "Each point is a pair $(x,y)$.",
-              },
-              {
-                prompt: "The upper outlier fence is computed as:",
-                options: ["$Q_3+1.5\\,\\mathrm{IQR}$", "$Q_3\\times 1.5$", "Mean$+2\\sigma$"],
-                answer: "A",
-                explanation: "Standard Tukey fence rule using IQR.",
-              },
-            ]}
+            questions={PS_D_PLOTS_QUIZ}
           />
 
           <Divider />
+          <PsCertificateBoost topic="descriptive" part={2} />
+
           <section className="section" id="summary">
             <div className="sec-badge">Reference</div>
             <h2 className="sec-title">Part 2 complete</h2>
@@ -252,6 +219,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-d-center">Quiz</a>
         <a className="sb-link" href="#ps-d-quant">Quantiles</a>
         <a className="sb-link" href="#quiz-ps-d-quant">Quiz</a>
+        <a className="sb-link" href="#ps-cert-descriptive-p1">Eight examples</a>
       </nav>
       <main className="main">
         <header className="ch-hdr">
@@ -353,26 +321,7 @@ function DescriptiveStatsGuide({ part = 1 }) {
           title="Center"
           scoreId="score-ps-d-center"
           section="ps-d-center"
-          questions={[
-            {
-              prompt: "Most outlier-resistant center:",
-              options: ["Mean", "Median", "Range"],
-              answer: "B",
-              explanation: "Median ignores extreme magnitude.",
-            },
-            {
-              prompt: "Right-skewed data tend to have:",
-              options: ["Mean < median", "Mean > median", "Mean = mode always"],
-              answer: "B",
-              explanation: "Long right tail pulls the mean up.",
-            },
-            {
-              prompt: "Sample mean formula divides the sum by:",
-              options: ["$n-1$", "$n$", "$2n$"],
-              answer: "B",
-              explanation: "$\\bar x=(\\sum x_i)/n$.",
-            },
-          ]}
+          questions={PS_D_CENTER_QUIZ}
         />
 
         <Divider />
@@ -392,29 +341,12 @@ function DescriptiveStatsGuide({ part = 1 }) {
           title="Quantiles"
           scoreId="score-ps-d-quant"
           section="ps-d-quant"
-          questions={[
-            {
-              prompt: "$Q_2$ is the:",
-              options: ["Mean", "Median", "Mode"],
-              answer: "B",
-              explanation: "Second quartile = median.",
-            },
-            {
-              prompt: "The 90th percentile is above roughly:",
-              options: ["10% of data", "90% of data", "50% of data"],
-              answer: "B",
-              explanation: "About 90% lie at or below it.",
-            },
-            {
-              prompt: "Five-number summary uses:",
-              options: ["Only mean/SD", "Min, Q1, median, Q3, max", "Only mode"],
-              answer: "B",
-              explanation: "Classic boxplot ingredients.",
-            },
-          ]}
+          questions={PS_D_QUANT_QUIZ}
         />
 
         <Divider />
+        <PsCertificateBoost topic="descriptive" part={1} />
+
         <section className="section" id="summary">
           <div className="sec-badge">Reference</div>
           <h2 className="sec-title">Part 1 complete</h2>
