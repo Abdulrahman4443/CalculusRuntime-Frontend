@@ -64,6 +64,7 @@ import {
   SvdPart1,
   SvdPart2,
 } from "./pages/linearAlgebra/LaParts";
+import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
 
 import {
   ProbBasicsPart1,
