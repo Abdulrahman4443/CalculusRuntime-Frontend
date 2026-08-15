@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getSavedExamples, unsaveExample } from "../utils/saveForLaterStorage";
 import "./SavedForLater.css";
 
 function SavedForLater() {
   const [examples, setExamples] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setExamples(getSavedExamples());
@@ -12,6 +14,11 @@ function SavedForLater() {
   const handleRemove = (sectionId, exampleTitle) => {
     unsaveExample(sectionId, exampleTitle);
     setExamples(getSavedExamples());
+  };
+
+  const handleGoTo = (entry) => {
+    if (!entry.route) return;
+    navigate(entry.route, { state: { scrollToId: entry.anchorId } });
   };
 
   return (
@@ -44,13 +51,28 @@ function SavedForLater() {
                     {new Date(entry.savedAt).toLocaleDateString()}
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="sfl-remove-btn"
-                  onClick={() => handleRemove(entry.sectionId, entry.exampleTitle)}
-                >
-                  Remove
-                </button>
+                <div className="sfl-card-actions">
+                  <button
+                    type="button"
+                    className="sfl-goto-btn"
+                    onClick={() => handleGoTo(entry)}
+                    disabled={!entry.route}
+                    title={
+                      entry.route
+                        ? "Jump to this example"
+                        : "Saved before this feature — re-save it from the guide to enable jumping"
+                    }
+                  >
+                    View Full Example
+                  </button>
+                  <button
+                    type="button"
+                    className="sfl-remove-btn"
+                    onClick={() => handleRemove(entry.sectionId, entry.exampleTitle)}
+                  >
+                    Remove
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

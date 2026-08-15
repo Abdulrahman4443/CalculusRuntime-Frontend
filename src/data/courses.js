@@ -189,6 +189,27 @@ export const COURSES = [
         icon: "λ",
       },
       {
+        title: "Linear Transformations",
+        description: "Standard matrices, kernel & image, composition, and invertibility.",
+        path: "/linear-algebra/transformations/1",
+        meta: "2 parts · MCQ practice",
+        icon: "T",
+      },
+      {
+        title: "Orthogonality & Least Squares",
+        description: "Orthogonal projections, Gram–Schmidt, QR, and best-fit lines.",
+        path: "/linear-algebra/orthogonality/1",
+        meta: "2 parts · MCQ practice",
+        icon: "⊥",
+      },
+      {
+        title: "Singular Value Decomposition",
+        description: "SVD, singular values, low-rank approximation, and the pseudoinverse.",
+        path: "/linear-algebra/svd/1",
+        meta: "2 parts · MCQ practice",
+        icon: "Σ",
+      },
+      {
         title: "Practice Arena",
         description: "MCQ drills for Linear Algebra topics with leaderboard submit.",
         path: "/practice",

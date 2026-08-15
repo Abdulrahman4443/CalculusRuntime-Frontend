@@ -56,6 +56,12 @@ import {
   SystemsPart2,
   EigenPart1,
   EigenPart2,
+  TransformPart1,
+  TransformPart2,
+  OrthoPart1,
+  OrthoPart2,
+  SvdPart1,
+  SvdPart2,
 } from "./pages/linearAlgebra/LaParts";
 
 import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
@@ -189,6 +195,20 @@ function App() {
               <Route path="/linear-algebra/eigen" element={<Navigate to="/linear-algebra/eigen/1" replace />} />
               <Route path="/linear-algebra/eigen/1" element={<Layout body={<EigenPart1 />} />} />
               <Route path="/linear-algebra/eigen/2" element={<Layout body={<EigenPart2 />} />} />
+              {/* Linear Transformations */}
+              <Route path="/linear-algebra/transformations" element={<Navigate to="/linear-algebra/transformations/1" replace />} />
+              <Route path="/linear-algebra/transformations/1" element={<Layout body={<TransformPart1 />} />} />
+              <Route path="/linear-algebra/transformations/2" element={<Layout body={<TransformPart2 />} />} />
+              
+              {/* Orthogonality & Least Squares */}
+              <Route path="/linear-algebra/orthogonality" element={<Navigate to="/linear-algebra/orthogonality/1" replace />} />
+              <Route path="/linear-algebra/orthogonality/1" element={<Layout body={<OrthoPart1 />} />} />
+              <Route path="/linear-algebra/orthogonality/2" element={<Layout body={<OrthoPart2 />} />} />
+              
+              {/* Singular Value Decomposition */}
+              <Route path="/linear-algebra/svd" element={<Navigate to="/linear-algebra/svd/1" replace />} />
+              <Route path="/linear-algebra/svd/1" element={<Layout body={<SvdPart1 />} />} />
+              <Route path="/linear-algebra/svd/2" element={<Layout body={<SvdPart2 />} />} />
               <Route path="/linear-algebra/matrix-sandbox" element={<Layout body={<MatrixSandbox />} />} />
 
               {/* Probability & Statistics */}

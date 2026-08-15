@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { saveExample, unsaveExample, isExampleSaved } from "../utils/saveForLaterStorage";
 import renderMathInElement from "katex/contrib/auto-render";
 import "katex/dist/katex.min.css";
@@ -8,6 +9,13 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const integrationStyles = `
+.sfl-highlight {
+  outline: 3px solid #c8922a;
+  outline-offset: 4px;
+  border-radius: 8px;
+  transition: outline-color 2s ease;
+}
+
 .study-guide-page {
   min-height: 100vh;
   overflow: visible;
@@ -892,6 +900,11 @@ function setupSaveForLater(root, { guideTitle } = {}) {
 
     example.style.position = example.style.position || "relative";
 
+    if (!example.id) {
+      const { sectionId } = getMeta(example);
+      example.id = `${sectionId}-example-${index}`;
+    }
+
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "save-example-btn";
@@ -918,7 +931,13 @@ function setupSaveForLater(root, { guideTitle } = {}) {
     btn.textContent = isSaved ? "★ Saved" : "☆ Save";
 
     if (isSaved) {
-      saveExample({ sectionId, exampleTitle, guideTitle });
+      saveExample({
+        sectionId,
+        exampleTitle,
+        guideTitle,
+        route: window.location.pathname,
+        anchorId: example.id,
+      });
     } else {
       unsaveExample(sectionId, exampleTitle);
     }
@@ -940,6 +959,7 @@ function StudyGuideShell({
   const rootRef = useRef(null);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const { saveQuizScore, setLeaderboardOptIn, publishQuizToLeaderboard } = useProgress();
+  const location = useLocation();
   const resolvedClass = guideClass || "partial-derivatives-guide";
 
   const handleSaveAsPDF = async () => {
@@ -1023,6 +1043,19 @@ function StudyGuideShell({
       const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
       topButton?.addEventListener("click", scrollTop);
       cleanups.push(() => topButton?.removeEventListener("click", scrollTop));
+
+      const scrollToId = location.state?.scrollToId;
+      if (scrollToId) {
+        const target = rootRef.current.querySelector(`#${CSS.escape(scrollToId)}`);
+        if (target) {
+          // Extra delay: KaTeX rendering can still be reflowing layout right after mount.
+          window.setTimeout(() => {
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+            target.classList.add("sfl-highlight");
+            window.setTimeout(() => target.classList.remove("sfl-highlight"), 2000);
+          }, 150);
+        }
+      }
     };
 
     // Defer one frame so React finishes committing Partials-style children.

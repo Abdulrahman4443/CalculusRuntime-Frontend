@@ -30,7 +30,7 @@ export function isExampleSaved(sectionId, exampleTitle) {
   return readAll().some((entry) => entry.id === id);
 }
 
-export function saveExample({ sectionId, exampleTitle, guideTitle }) {
+export function saveExample({ sectionId, exampleTitle, guideTitle, route, anchorId }) {
   const id = makeId(sectionId, exampleTitle);
   const existing = readAll();
   if (existing.some((entry) => entry.id === id)) return;
@@ -40,6 +40,8 @@ export function saveExample({ sectionId, exampleTitle, guideTitle }) {
     sectionId,
     exampleTitle,
     guideTitle: guideTitle || null,
+    route: route || null,
+    anchorId: anchorId || null,
     savedAt: new Date().toISOString(),
   };
   writeAll([...existing, entry]);
