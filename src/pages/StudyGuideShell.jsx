@@ -28,13 +28,12 @@ const integrationStyles = `
 
 .partial-derivatives-guide .sidebar {
   position: fixed !important;
-  top: calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px)) !important;
+  top: var(--sidebar-top, calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px))) !important;
   left: 0 !important;
   right: auto !important;
   bottom: 0 !important;
   width: 240px !important;
   max-width: 240px !important;
-  height: auto !important;
   display: flex !important;
   flex-direction: column !important;
   flex-wrap: nowrap;
@@ -728,17 +727,33 @@ function setupPinnedGuideNav(root) {
   }
 
   const sync = () => {
+    const mobile = window.matchMedia("(max-width: 920px)").matches;
+    const topbar = document.querySelector(".guide-part-topbar");
+    const header = document.querySelector(".site-header");
+
     const headerH =
       parseFloat(
         getComputedStyle(document.documentElement).getPropertyValue("--header-h"),
       ) || 64;
-    const topbar = document.querySelector(".guide-part-topbar");
     const topbarH = topbar ? Math.ceil(topbar.getBoundingClientRect().height) : 0;
     document.documentElement.style.setProperty("--guide-topbar-h", `${topbarH}px`);
-    const mobile = window.matchMedia("(max-width: 920px)").matches;
+
+    // Dynamically calculate visible bottom of topbar / header stack
+    let topOffset = 0;
+    if (topbar) {
+      const rect = topbar.getBoundingClientRect();
+      topOffset = Math.max(0, Math.ceil(rect.bottom));
+    } else if (header) {
+      const rect = header.getBoundingClientRect();
+      topOffset = Math.max(0, Math.ceil(rect.bottom));
+    } else {
+      topOffset = headerH + topbarH;
+    }
+
+    document.documentElement.style.setProperty("--sidebar-top", `${topOffset}px`);
 
     sidebar.style.position = "fixed";
-    sidebar.style.top = `${headerH + topbarH}px`;
+    sidebar.style.top = `${topOffset}px`;
     sidebar.style.left = "0";
     sidebar.style.zIndex = "115";
 
@@ -753,7 +768,7 @@ function setupPinnedGuideNav(root) {
       sidebar.style.right = "auto";
       sidebar.style.bottom = "0";
       sidebar.style.width = "240px";
-      sidebar.style.height = "auto";
+      sidebar.style.height = "";
       spacer.style.display = "none";
       spacer.style.height = "0";
     }
@@ -778,6 +793,7 @@ function setupPinnedGuideNav(root) {
     ro?.disconnect();
     spacer.remove();
     document.documentElement.style.removeProperty("--guide-topbar-h");
+    document.documentElement.style.removeProperty("--sidebar-top");
   };
 }
 

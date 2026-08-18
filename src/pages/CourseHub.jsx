@@ -7,6 +7,144 @@ import {
   getRemainingSections,
 } from "../data/courseCompletion";
 
+/* ── colour tokens per course colour key ── */
+const colorTokens = {
+  gold:   { accent: "#a0720a", accentLt: "#c89318", bg: "rgba(160,114,10,0.06)", border: "rgba(160,114,10,0.22)", dot: "#c89318" },
+  teal:   { accent: "#2a5c45", accentLt: "#3a8a6a", bg: "rgba(42,92,69,0.06)",   border: "rgba(42,92,69,0.22)",   dot: "#3a8a6a" },
+  blue:   { accent: "#1a3358", accentLt: "#3d6fba", bg: "rgba(26,51,88,0.06)",   border: "rgba(26,51,88,0.22)",   dot: "#3d6fba" },
+  purple: { accent: "#5b2d8e", accentLt: "#7c4dbd", bg: "rgba(91,45,142,0.06)",  border: "rgba(91,45,142,0.22)",  dot: "#7c4dbd" },
+};
+
+function CourseOverview({ course }) {
+  if (!course || !course.overview) return null;
+  const { overview } = course;
+  const paragraphs = Array.isArray(overview.longDescription)
+    ? overview.longDescription
+    : [overview.longDescription];
+
+  return (
+    <section className="guide-section" aria-labelledby="overview-heading">
+      <div className="section-kicker">Course Overview</div>
+      <h2 id="overview-heading">In-Depth Curriculum &amp; Learning Roadmap</h2>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1.5rem",
+          marginBottom: "2rem",
+        }}
+      >
+        {/* Main Comprehensive Overview Card */}
+        <div
+          className={`guide-card guide-card--${course.color} overview-main-card`}
+          style={{
+            minHeight: "auto",
+            padding: "clamp(1.5rem, 3.5vw, 2.4rem)",
+            cursor: "default",
+          }}
+        >
+          <div className="guide-card-icon">{course.icon}</div>
+          <span>Comprehensive Curriculum · Detailed Course Breakdown</span>
+          <h3 style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)", margin: "0.75rem 0 1.25rem" }}>
+            {course.title} — Complete Overview
+          </h3>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.1rem",
+              color: "#38332b",
+              lineHeight: 1.85,
+              fontSize: "1.02rem",
+              paddingBottom: "0.5rem",
+            }}
+          >
+            {paragraphs.map((p, idx) => (
+              <p key={idx} style={{ margin: 0, paddingBottom: 0, color: "#38332b" }}>
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* Side-by-Side Topics & Prerequisites Cards */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
+          {/* Key Topics Card */}
+          <div
+            className={`guide-card guide-card--${course.color} overview-sub-card`}
+            style={{ minHeight: "auto", padding: "1.8rem", cursor: "default" }}
+          >
+            <div className="guide-card-icon" style={{ fontSize: "1.6rem" }}>✦</div>
+            <span>Core Syllabus</span>
+            <h3 style={{ fontSize: "1.45rem", margin: "0.5rem 0 1rem" }}>
+              Key Topics &amp; Mastery Checklist
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {overview.highlights.map((h, i) => (
+                <li
+                  key={i}
+                  style={{
+                    padding: "0.45rem 0",
+                    fontSize: "0.95rem",
+                    color: "#38332b",
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "0.6rem",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  <span style={{ color: "var(--teal)", fontSize: "0.75rem", flexShrink: 0 }}>
+                    ✔
+                  </span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Prerequisites & Verification Card */}
+          <div
+            className={`guide-card guide-card--${course.color} overview-sub-card`}
+            style={{ minHeight: "auto", padding: "1.8rem", cursor: "default" }}
+          >
+            <div className="guide-card-icon" style={{ fontSize: "1.6rem" }}>🎓</div>
+            <span>Requirements &amp; Credentials</span>
+            <h3 style={{ fontSize: "1.45rem", margin: "0.5rem 0 1rem" }}>
+              Prerequisites &amp; Certification
+            </h3>
+            <p style={{ fontSize: "0.98rem", color: "#38332b", lineHeight: 1.75, marginBottom: "1.2rem", paddingBottom: 0 }}>
+              <strong>Recommended Background:</strong> {overview.prerequisites}
+            </p>
+            <p style={{ fontSize: "0.95rem", color: "#5a5347", lineHeight: 1.65, margin: 0, paddingBottom: 0 }}>
+              <strong>Certificate of Completion:</strong> Complete all theory modules and pass the 30-question final quiz with 80%+ score to earn a verifiable digital certificate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .overview-main-card::after,
+        .overview-sub-card::after {
+          display: none !important;
+        }
+        .overview-main-card:hover,
+        .overview-sub-card:hover {
+          transform: none !important;
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
+        }
+      `}</style>
+    </section>
+  );
+}
+
 function CourseHub() {
   const { courseId } = useParams();
   const course = getCourseById(courseId);
@@ -40,6 +178,9 @@ function CourseHub() {
           </div>
         </div>
       </section>
+
+      {/* ── Course Overview ── */}
+      <CourseOverview course={course} />
 
       <section className="guide-section" aria-labelledby="modules-heading">
         <div className="section-kicker">Modules</div>
@@ -92,3 +233,4 @@ function CourseHub() {
 }
 
 export default CourseHub;
+
