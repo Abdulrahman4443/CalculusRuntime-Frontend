@@ -74,7 +74,7 @@ function CourseHub() {
 
             return (
               <Link
-                className={`guide-card guide-card--${course.color}`}
+                className={`guide-card guide-card--${course.color}${mod.start ? " guide-card--start" : ""}`}
                 key={mod.path}
                 to={mod.path}
               >
