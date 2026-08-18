@@ -88,8 +88,9 @@ export function LineGraph({ lines = [], range = 8, size = 260, extraPoints = [],
                 x2={sx2}
                 y2={sy2}
                 stroke={ln.color || "var(--gold, #a0720a)"}
-                strokeWidth={2.5}
+                strokeWidth={ln.dashed ? 4 : 2.5}
                 strokeLinecap="round"
+                strokeDasharray={ln.dashed ? "1 7" : undefined}
               />
             );
           })}

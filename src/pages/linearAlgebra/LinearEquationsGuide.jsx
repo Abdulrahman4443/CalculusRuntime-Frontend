@@ -79,9 +79,9 @@ function LinearEquationsGuide({ part = 1 }) {
                 range={7}
                 lines={[
                   { a: 1, b: 1, c: 2, color: "#a0720a" },
-                  { a: 2, b: 2, c: 4, color: "#1a3358" },
+                  { a: 2, b: 2, c: 4, color: "#1a3358", dashed: true },
                 ]}
-                caption={"Case 3 — infinitely many: $x+y=2$ and $2x+2y=4$ are the same line."}
+                caption={"Case 3 — infinitely many: $x+y=2$ and $2x+2y=4$ trace the exact same line — the navy dashes sit right on top of the gold line."}
               />
             </div>
 
