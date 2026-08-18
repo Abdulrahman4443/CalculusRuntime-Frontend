@@ -214,6 +214,21 @@ export const COURSES = [
     },
     modules: [
       {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/linear-algebra/overview",
+        meta: "Start here",
+        icon: "★",
+        start: true,
+      },
+      {
+        title: "Linear Equations",
+        description: "General form in 2, 3, and n variables, graphing with intercepts, systems, and solving techniques.",
+        path: "/linear-algebra/linear-equations/1",
+        meta: "2 parts · MCQ practice",
+        icon: "=",
+      },
+      {
         title: "Vectors & Vector Spaces",
         description: "Vectors, span, basis, and linear independence.",
         path: "/linear-algebra/vectors/1",

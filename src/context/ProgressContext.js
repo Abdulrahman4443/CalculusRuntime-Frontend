@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
 import { useAuth } from "./AuthContext";
 import { recordActivityDay, getStreak } from "../utils/progressUtils";
+import { fetchWithTimeout } from "../utils/fetchWithTimeout";
 
 const ProgressContext = createContext(null);
 const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
@@ -114,7 +115,7 @@ export function ProgressProvider({ children }) {
 
     async function fetchProgress() {
       try {
-        const response = await fetch(`${API_URL}/api/progress/`, {
+        const response = await fetchWithTimeout(`${API_URL}/api/progress/`, {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
