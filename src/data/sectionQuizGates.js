@@ -16,7 +16,7 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   "calc-series-2": ["ser-p2"],
   "calc-conics-1": ["con-p1"],
   "calc-conics-2": ["con-p2"],
-  "taylor-1": ["taylor-concept", "taylor-formula", "maclaurin-core", "taylor-challenge"],
+  "taylor-1": ["taylor-concept", "taylor-formula", "maclaurin-core"],
   "taylor-2": [
     "taylor-catalog",
     "taylor-convergence",
@@ -32,12 +32,7 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   "vector-2": [],
   "integrals-1": ["integrals-p1"],
   "integrals-2": ["integrals-p2"],
-  "lagrange-1": [
-    "lagrange-geometry",
-    "lagrange-math",
-    "lagrange-fields",
-    "lagrange-challenge",
-  ],
+  "lagrange-1": ["lagrange-geometry", "lagrange-math", "lagrange-fields"],
   "lagrange-2": [
     "lagrange-calc",
     "lagrange-multi",
@@ -45,7 +40,7 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
     "lagrange-industry",
     "lagrange-challenge",
   ],
-  "divergence-1": ["field-concept", "div-formula", "curl-core", "divcurl-challenge"],
+  "divergence-1": ["field-concept", "div-formula", "curl-core"],
   "divergence-2": [
     "vector-catalog",
     "vector-identity",
