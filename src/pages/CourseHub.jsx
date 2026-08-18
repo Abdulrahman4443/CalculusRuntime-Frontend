@@ -7,14 +7,6 @@ import {
   getRemainingSections,
 } from "../data/courseCompletion";
 
-/* ── colour tokens per course colour key ── */
-const colorTokens = {
-  gold:   { accent: "#a0720a", accentLt: "#c89318", bg: "rgba(160,114,10,0.06)", border: "rgba(160,114,10,0.22)", dot: "#c89318" },
-  teal:   { accent: "#2a5c45", accentLt: "#3a8a6a", bg: "rgba(42,92,69,0.06)",   border: "rgba(42,92,69,0.22)",   dot: "#3a8a6a" },
-  blue:   { accent: "#1a3358", accentLt: "#3d6fba", bg: "rgba(26,51,88,0.06)",   border: "rgba(26,51,88,0.22)",   dot: "#3d6fba" },
-  purple: { accent: "#5b2d8e", accentLt: "#7c4dbd", bg: "rgba(91,45,142,0.06)",  border: "rgba(91,45,142,0.22)",  dot: "#7c4dbd" },
-};
-
 function CourseOverview({ course }) {
   if (!course || !course.overview) return null;
   const { overview } = course;
