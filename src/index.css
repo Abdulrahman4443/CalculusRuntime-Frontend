@@ -51,13 +51,13 @@
 
 html {
   scroll-behavior: smooth;
-  /* Prevent the study-guide horizontal sub-nav from creating a page scrollbar */
-  overflow-x: hidden;
+  /* Prevent the study-guide horizontal sub-nav from creating a page scrollbar without breaking position:sticky */
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
-  overflow-x: hidden; /* belt & suspenders */
+  overflow-x: clip; /* belt & suspenders */
   background: var(--paper);
   color: var(--ink);
   font-family:

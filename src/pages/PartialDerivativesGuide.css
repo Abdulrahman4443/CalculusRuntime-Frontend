@@ -29,7 +29,7 @@
       line-height: 1.85;
     }.partial-derivatives-guide .sidebar{
       position: fixed;
-      top: var(--header-h, 72px);
+      top: var(--sidebar-top, var(--header-h, 72px));
       left: 0;
       bottom: 0;
       width: var(--sw);
