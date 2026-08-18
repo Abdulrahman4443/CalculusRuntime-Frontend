@@ -31,10 +31,11 @@ const integrationStyles = `
   top: calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px)) !important;
   left: 0 !important;
   right: auto !important;
-  bottom: 0 !important;
+  bottom: auto !important;
   width: 240px !important;
   max-width: 240px !important;
   height: auto !important;
+  max-height: calc(100vh - var(--header-h, 64px) - var(--guide-topbar-h, 0px) - 1.5rem) !important;
   display: flex !important;
   flex-direction: column !important;
   flex-wrap: nowrap;
@@ -43,13 +44,14 @@ const integrationStyles = `
   background: #0f0e0d;
   border-right: 1px solid rgba(200, 146, 42, 0.35) !important;
   border-bottom: 0 !important;
+  border-radius: 0 0 10px 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 1rem 0.75rem 2rem !important;
+  padding: 1rem 0.75rem 1.35rem !important;
   z-index: 115 !important;
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
-  box-shadow: 4px 0 18px rgba(0, 0, 0, 0.18);
+  box-shadow: 4px 4px 18px rgba(0, 0, 0, 0.18);
 }
 
 .partial-derivatives-guide .guide-nav-spacer {
@@ -276,6 +278,13 @@ const integrationStyles = `
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.partial-derivatives-guide .box:hover,
+.partial-derivatives-guide .sum-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 .partial-derivatives-guide .fml {
@@ -371,11 +380,12 @@ const integrationStyles = `
 const saveForLaterStyles = `
 .box.exm {
   position: relative;
+  padding-right: 5.75rem;
 }
 .save-example-btn {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: 0.9rem;
+  right: 0.9rem;
   background: #ffffff;
   border: 1px solid rgba(200, 146, 42, 0.4);
   color: #3d4f6b;
@@ -384,11 +394,20 @@ const saveForLaterStyles = `
   font-size: 0.75rem;
   cursor: pointer;
   z-index: 5;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.save-example-btn:hover {
+  background: #fbf1dd;
+  border-color: #c8922a;
+  transform: translateY(-1px);
 }
 .save-example-btn.saved {
   background: #e8b84b;
   color: #0f0e0d;
   border-color: #e8b84b;
+}
+.save-example-btn.saved:hover {
+  background: #dfa93b;
 }
 .box.exm.exm-flash {
   outline: 3px solid #c8922a;
@@ -751,9 +770,10 @@ function setupPinnedGuideNav(root) {
       spacer.style.height = `${Math.ceil(sidebar.getBoundingClientRect().height || 52)}px`;
     } else {
       sidebar.style.right = "auto";
-      sidebar.style.bottom = "0";
+      sidebar.style.bottom = "auto";
       sidebar.style.width = "240px";
       sidebar.style.height = "auto";
+      sidebar.style.maxHeight = `calc(100vh - ${headerH + topbarH}px - 1.5rem)`;
       spacer.style.display = "none";
       spacer.style.height = "0";
     }
