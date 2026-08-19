@@ -185,7 +185,7 @@ export default function PractiseSection() {
   const handleNextQuestion = () => {
     if (currentIndex < poolProblems.length - 1) {
       setCurrentIndex(prev => prev + 1);
-    resetQuizTurn();
+      resetQuizTurn();
     } else {
       setIsQuizCompleted(true);
     }
@@ -198,7 +198,7 @@ export default function PractiseSection() {
       <div className="practice-hud">
         <div>
           <h1>Focused Practice Arena</h1>
-          <p>Comprehensive testing workspace for Advanced Calculus modules.</p>
+          <p>Comprehensive testing workspace for Advanced Calculus and Mathematics modules.</p>
         </div>
         <div className="practice-score">
           <div>
@@ -334,14 +334,14 @@ export default function PractiseSection() {
 
                 <div className="practice-actions">
                   {!isSubmitted ? (
-                  <button
-                    type="button"
-                    className="practice-submit"
-                    onClick={handleSubmit}
+                    <button
+                      type="button"
+                      className="practice-submit"
+                      onClick={handleSubmit}
                       disabled={selectedAnswer === null}
-                  >
-                    Submit Verification
-                  </button>
+                    >
+                      Submit Verification
+                    </button>
                   ) : (
                     <button
                       type="button"
