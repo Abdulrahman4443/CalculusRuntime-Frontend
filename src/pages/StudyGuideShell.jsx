@@ -31,11 +31,11 @@ const integrationStyles = `
   top: var(--sidebar-top, calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px))) !important;
   left: 0 !important;
   right: auto !important;
-  bottom: auto !important;
+  bottom: 0 !important;
   width: 240px !important;
   max-width: 240px !important;
-  height: auto !important;
-  max-height: calc(100vh - var(--header-h, 64px) - var(--guide-topbar-h, 0px) - 1.5rem) !important;
+  height: calc(100vh - var(--sidebar-top, calc(var(--header-h, 64px) + var(--guide-topbar-h, 0px)))) !important;
+  max-height: none !important;
   display: flex !important;
   flex-direction: column !important;
   flex-wrap: nowrap;
@@ -44,7 +44,7 @@ const integrationStyles = `
   background: #0f0e0d;
   border-right: 1px solid rgba(200, 146, 42, 0.35) !important;
   border-bottom: 0 !important;
-  border-radius: 0 0 10px 0;
+  border-radius: 0 !important;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 1rem 0.75rem 1.35rem !important;
@@ -782,14 +782,17 @@ function setupPinnedGuideNav(root) {
       sidebar.style.bottom = "auto";
       sidebar.style.width = "100%";
       sidebar.style.height = "auto";
+      sidebar.style.maxHeight = "";
+      sidebar.style.borderRadius = "0";
       spacer.style.display = "block";
       spacer.style.height = `${Math.ceil(sidebar.getBoundingClientRect().height || 52)}px`;
     } else {
       sidebar.style.right = "auto";
-      sidebar.style.bottom = "auto";
+      sidebar.style.bottom = "0";
       sidebar.style.width = "240px";
-      sidebar.style.height = "auto";
-      sidebar.style.maxHeight = `calc(100vh - ${headerH + topbarH}px - 1.5rem)`;
+      sidebar.style.height = `calc(100vh - ${topOffset}px)`;
+      sidebar.style.maxHeight = "none";
+      sidebar.style.borderRadius = "0";
       spacer.style.display = "none";
       spacer.style.height = "0";
     }
