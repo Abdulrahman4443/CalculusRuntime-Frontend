@@ -15,7 +15,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8002";
 
 // Small pause after picking an option so the user sees their choice
 // highlighted before we auto-advance — long enough to register, short
-// enough that it doesn't eat into the next question's 10s.
+// enough that it doesn't eat into the next question's 90s.
 const ADVANCE_DELAY_MS = 350;
 
 function CourseQuiz() {
@@ -90,9 +90,10 @@ function CourseQuiz() {
         throw new Error(body.detail || `Could not start quiz (${res.status}).`);
       }
       const data = await res.json();
+      const secPerQ = data.seconds_per_question || 90;
       setAttempt(data);
-      questionDeadlineRef.current = Date.now() + data.seconds_per_question * 1000;
-      setSecondsLeft(data.seconds_per_question);
+      questionDeadlineRef.current = Date.now() + secPerQ * 1000;
+      setSecondsLeft(secPerQ);
     } catch (e) {
       setLoadError(e.message || "Could not start the quiz. Try again.");
     } finally {
@@ -114,9 +115,10 @@ function CourseQuiz() {
       handleSubmit();
       return;
     }
+    const secPerQ = a.seconds_per_question || 90;
     setCurrentIndex(nextIndex);
-    questionDeadlineRef.current = Date.now() + a.seconds_per_question * 1000;
-    setSecondsLeft(a.seconds_per_question);
+    questionDeadlineRef.current = Date.now() + secPerQ * 1000;
+    setSecondsLeft(secPerQ);
   }
 
   function advanceFromTimeout() {
@@ -125,7 +127,7 @@ function CourseQuiz() {
     goToQuestion(currentIndexRef.current + 1);
   }
 
-  // 10s-per-question countdown. Ticks every 100ms for a smooth bar; when it
+  // 90s-per-question countdown. Ticks every 100ms for a smooth bar; when it
   // hits 0 the question is locked in as answered-or-not and we auto-advance.
   useEffect(() => {
     if (!attempt || submitted) return undefined;
@@ -304,10 +306,9 @@ function CourseQuiz() {
     );
   }
 
-  const pct = attempt.seconds_per_question
-    ? (secondsLeft / attempt.seconds_per_question) * 100
-    : 0;
-  const timeLow = secondsLeft !== null && secondsLeft <= 3;
+  const secPerQ = attempt?.seconds_per_question || 90;
+  const pct = (secondsLeft / secPerQ) * 100;
+  const timeLow = secondsLeft !== null && secondsLeft <= 10;
 
   return (
     <main className="quiz-page">
