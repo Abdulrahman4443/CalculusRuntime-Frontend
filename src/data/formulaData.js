@@ -488,6 +488,54 @@ const formulaData = {
     ],
   },
 
+  "la-subspaces": {
+    title: "Fundamental Subspaces & Rank-Nullity",
+    category: "Linear Algebra",
+    color: "#2563eb",
+    formulas: [
+      {
+        name: "Rank-Nullity Theorem",
+        formula: "rank(A) + nullity(A) = n  for A ∈ ℝ^(m×n)",
+        note: "nullity(A) = dim Null(A) = n - rank(A)",
+      },
+      {
+        name: "Dimensions of the Four Fundamental Subspaces",
+        formula: "dim Col(A) = r · dim Row(A) = r · dim Null(A) = n-r · dim Null(Aᵀ) = m-r",
+        note: "Here A is m×n and r = rank(A)",
+      },
+      {
+        name: "Orthogonal Complement Pairs",
+        formula: "Row(A)⊥ = Null(A)  ·  Col(A)⊥ = Null(Aᵀ)",
+        note: "Null-space vectors are orthogonal to rows; left-null vectors are orthogonal to columns",
+      },
+      {
+        name: "Column-Space Consistency Test",
+        formula: "Ax = b is consistent ⇔ b ∈ Col(A) ⇔ rank(A) = rank([A | b])",
+        note: "Equivalently, b must be orthogonal to every vector in Null(Aᵀ)",
+      },
+      {
+        name: "General Solution of a Consistent System",
+        formula: "x = x_p + v,  where v ∈ Null(A)",
+        note: "If nullity(A)=k, the solution family has k independent free directions",
+      },
+      {
+        name: "Injectivity / Independent Columns Test",
+        formula: "Null(A) = {0} ⇔ nullity(A)=0 ⇔ rank(A)=n",
+        note: "Equivalent to independent columns and a one-to-one linear map",
+      },
+      {
+        name: "Subspace Test",
+        formula: "0 ∈ W;  u,v ∈ W ⇒ u+v ∈ W;  c∈ℝ,u∈W ⇒ cu∈W",
+        note: "A nonempty subset W is a subspace exactly when it is closed under linear combinations",
+      },
+      {
+        name: "LU Factorization",
+        formula: "A = LU  (or PA = LU with pivoting); solve Ly=b then Ux=y",
+        note: "Factor once, then reuse the triangular solves for multiple right-hand sides",
+      },
+    ],
+  },
+
   "la-vectors": {
     title: "Vectors, Span & Basis",
     category: "Linear Algebra",

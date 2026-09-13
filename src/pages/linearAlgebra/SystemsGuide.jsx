@@ -6,6 +6,7 @@ import {
   LA_S_GAUSS_QUIZ,
   LA_S_LU_QUIZ,
   LA_S_RANK_QUIZ,
+  LA_S_SUBSPACES_QUIZ,
   LA_S_GEO_QUIZ,
 } from "../../data/laSystemsEigenQuizzes";
 import {
@@ -52,12 +53,20 @@ function SystemsGuide({ part = 1 }) {
             Rank
           </a>
 
+          <a className="sb-link" href="#la-s-rank-nullity">
+            Rank–Nullity
+          </a>
+
           <a className="sb-link" href="#la-s-subspaces">
             Fundamental Subspaces
           </a>
 
           <a className="sb-link" href="#la-s-applications">
             Real-Life Uses
+          </a>
+
+          <a className="sb-link" href="#quiz-la-s-subspaces">
+            Subspaces Quiz
           </a>
 
           <a className="sb-link" href="#la-s-proc2">
@@ -156,7 +165,89 @@ function SystemsGuide({ part = 1 }) {
               }
             </RealLifeUse>
           </section>
-                              <section className="section" id="la-s-subspaces">
+
+          <Divider />
+
+          <section className="section" id="la-s-rank-nullity">
+            <div className="sec-badge">Module H · Rank–Nullity</div>
+            <h2 className="sec-title">Rank–Nullity Theorem — proof and applications</h2>
+
+            <TheoremBox title="Rank–Nullity Theorem">
+              <p>
+                {
+                  "For an $m\\times n$ matrix $A$ with rank $r$, the domain $\\mathbb{R}^n$ splits dimensionally into the directions that survive under $A$ and the directions that are sent to zero. Therefore $\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n$, or equivalently $r+\\dim\\mathrm{Nul}(A)=n$."
+                }
+              </p>
+              <p>
+                {
+                  "In linear-map language, if $T:V\\to W$ is linear and $V$ is finite-dimensional, then $\\dim(\\ker T)+\\dim(\\operatorname{im}T)=\\dim V$."
+                }
+              </p>
+            </TheoremBox>
+
+            <TheoryBox title="Proof from pivots and free variables">
+              <p>
+                {
+                  "Row-reduce $A$ to RREF. Suppose there are $r$ pivot columns. Those pivot columns correspond to $r$ basic variables, so among the $n$ variables there are exactly $n-r$ free variables."
+                }
+              </p>
+              <p>
+                {
+                  "When solving $Ax=0$, assign one free variable at a time to $1$ and the others to $0$. This produces one special solution for each free variable. These $n-r$ special solutions are linearly independent and span $\\mathrm{Nul}(A)$, so $\\dim\\mathrm{Nul}(A)=n-r$."
+                }
+              </p>
+              <p>
+                {
+                  "Because the number of pivot columns is $r=\\operatorname{rank}(A)$, we obtain $\\operatorname{rank}(A)+\\operatorname{nullity}(A)=r+(n-r)=n$. This proves the theorem."
+                }
+              </p>
+            </TheoryBox>
+
+            <ProcedureBox
+              title="How to use rank–nullity quickly"
+              steps={[
+                {
+                  text: "Identify the number of columns $n$ of $A$.",
+                  why: "Rank–nullity uses the dimension of the domain, which equals the number of columns.",
+                },
+                {
+                  text: "Row-reduce $A$ and count pivots to get $r=\\operatorname{rank}(A)$.",
+                  why: "Each pivot contributes one independent output direction.",
+                },
+                {
+                  text: "Compute $\\operatorname{nullity}(A)=n-r$.",
+                  why: "Every non-pivot column corresponds to one free parameter in $Ax=0$.",
+                },
+                {
+                  text: "Use nullity $0$ to recognize a trivial nullspace and independent columns.",
+                  why: "No free variables means $Ax=0$ has only $x=0$.",
+                },
+                {
+                  text: "For a consistent $Ax=b$, interpret nullity as the dimension of the family of solutions.",
+                  why: "All solutions are $x_p+\\mathrm{Nul}(A)$, so the nullspace supplies every free direction.",
+                },
+              ]}
+            />
+
+            <PracticalTheory title="Consequences you should recognize immediately">
+              <ul>
+                <li>{"If $\\operatorname{rank}(A)=n$, then $\\operatorname{nullity}(A)=0$ and the columns of $A$ are linearly independent."}</li>
+                <li>{"If $\\operatorname{rank}(A)<n$, then $Ax=0$ has nontrivial solutions and every consistent $Ax=b$ has infinitely many solutions."}</li>
+                <li>{"For $T:\\mathbb{R}^n\\to\\mathbb{R}^m$, $T$ is one-to-one exactly when $\\operatorname{nullity}(T)=0$."}</li>
+                <li>{"For an $m\\times n$ matrix, $\\dim\\mathrm{Nul}(A)=n-r$ while $\\dim\\mathrm{Nul}(A^T)=m-r$."}</li>
+              </ul>
+            </PracticalTheory>
+
+            <RealLifeUse>
+              {
+                "Rank–nullity is a fast diagnostic in engineering models. In sensor systems, a nonzero nullspace reveals state directions the sensors cannot observe. In actuator models, it exposes input combinations that produce no net output. In circuit and network equations, it counts independent constraints versus internal degrees of freedom, and in data fitting it reveals parameter combinations that cannot be uniquely identified."
+              }
+            </RealLifeUse>
+          </section>
+
+          <Divider />
+
+          <section className="section" id="la-s-subspaces">
             <div className="sec-badge">Module H · Fundamental Subspaces</div>
             <h2 className="sec-title">The Four Fundamental Subspaces</h2>
 
@@ -302,6 +393,15 @@ function SystemsGuide({ part = 1 }) {
               </p>
             </PracticalTheory>
           </section>
+
+          <LaMcqSection
+            id="quiz-la-s-subspaces"
+            badge="Module H Quiz"
+            title="Subspaces & Rank–Nullity"
+            scoreId="score-la-s-subspaces"
+            section="la-s-subspaces"
+            questions={LA_S_SUBSPACES_QUIZ}
+          />
 
           <Divider />
 
