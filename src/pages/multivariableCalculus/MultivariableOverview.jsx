@@ -45,6 +45,13 @@ function MultivariableOverview() {
             </Link>
           </div>
         </div>
+        <div className="hero-image-container course-hero-image-container">
+          <img
+            src="/images/courses/multivariable-calc-hero.svg"
+            alt="Multivariable Calculus 3D Surface and Gradient Field"
+            className="hero-graph-img course-hero-img"
+          />
+        </div>
       </section>
 
       <section className="guide-section" aria-labelledby="why-heading">

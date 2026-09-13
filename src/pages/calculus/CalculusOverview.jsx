@@ -48,6 +48,13 @@ function CalculusOverview() {
             </Link>
           </div>
         </div>
+        <div className="hero-image-container course-hero-image-container">
+          <img
+            src="/images/courses/calc-geometry-hero.svg"
+            alt="Calculus and Analytical Geometry Curves and Tangents Visual"
+            className="hero-graph-img course-hero-img"
+          />
+        </div>
       </section>
 
       <section className="guide-section" aria-labelledby="why-heading">

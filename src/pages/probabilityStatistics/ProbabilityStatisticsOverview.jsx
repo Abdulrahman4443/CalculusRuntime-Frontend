@@ -44,6 +44,13 @@ function ProbabilityStatisticsOverview() {
             </Link>
           </div>
         </div>
+        <div className="hero-image-container course-hero-image-container">
+          <img
+            src="/images/courses/prob-stats-hero.svg"
+            alt="Probability and Statistics Gaussian Bell Curve and Regression Visual"
+            className="hero-graph-img course-hero-img"
+          />
+        </div>
       </section>
 
       <section className="guide-section" aria-labelledby="why-heading">
