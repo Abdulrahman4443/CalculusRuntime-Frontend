@@ -538,7 +538,7 @@ function setupPinnedGuideNav(root) {
     } else {
       sidebar.style.right = "auto";
       sidebar.style.bottom = "0";
-      sidebar.style.width = "240px";
+      sidebar.style.width = "260px";
       sidebar.style.height = `calc(100vh - ${topOffset}px)`;
       sidebar.style.maxHeight = "none";
       sidebar.style.borderRadius = "0";
