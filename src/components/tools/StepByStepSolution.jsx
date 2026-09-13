@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InlineMath, BlockMath } from "./Math";
+import { InlineMath, BlockMath } from "../Math";
 import Badge from "../common/Badge";
 import "./StepByStepSolution.css";
 
@@ -50,7 +50,7 @@ export default function StepByStepSolution({
       {initialProblem && (
         <div className="step-initial-problem">
           <span className="step-problem-label">Problem:</span>
-          <BlockMath math={initialProblem} />
+          <BlockMath latex={initialProblem} />
         </div>
       )}
 
@@ -74,7 +74,7 @@ export default function StepByStepSolution({
                 <div className="step-content">
                   {step.latex && (
                     <div className="step-math-box">
-                      <BlockMath math={step.latex} />
+                      <BlockMath latex={step.latex} />
                     </div>
                   )}
                   {step.details && <p className="step-details-text">{step.details}</p>}
@@ -89,7 +89,7 @@ export default function StepByStepSolution({
         <div className="step-final-answer">
           <div className="final-answer-badge">Final Result</div>
           <div className="final-math">
-            <InlineMath math={finalAnswer} />
+            <InlineMath latex={finalAnswer} />
           </div>
         </div>
       )}
