@@ -49,3 +49,20 @@
     display: none;
   }
 }
+
+[data-theme="dark"] .guide-part-topbar {
+  background: #0B1120 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .guide-part-title {
+  color: #cbd5e1 !important;
+}
+
+@media (min-width: 861px) {
+  .guide-part-wrapper .scb-wrap {
+    margin-left: calc(var(--sw, 260px) + 2rem) !important;
+    margin-right: 2rem !important;
+    max-width: min(960px, calc(100% - var(--sw, 260px) - 4rem)) !important;
+  }
+}

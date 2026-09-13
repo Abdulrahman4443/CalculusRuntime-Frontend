@@ -243,6 +243,208 @@ const formulaData = {
     ],
   },
 
+  "lines-geometry": {
+    title: "2D Lines & Systems of Lines",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Section Formula (Internal & External)",
+        formula: "Internal: P = ((k₁x₂ + k₂x₁)/(k₁ + k₂), (k₁y₂ + k₂y₁)/(k₁ + k₂)) · External: Q = ((k₁x₂ - k₂x₁)/(k₁ - k₂), (k₁y₂ - k₂y₁)/(k₁ - k₂))",
+        note: "Divides line segment joining (x₁, y₁) and (x₂, y₂) in ratio k₁ : k₂",
+      },
+      {
+        name: "Triangle Centers",
+        formula: "Centroid G = ((Σxᵢ)/3, (Σyᵢ)/3) · Incenter I = ((ax₁ + bx₂ + cx₃)/(a+b+c), (ay₁ + by₂ + cy₃)/(a+b+c))",
+        note: "Euler Line: Centroid G divides segment HO (Orthocenter to Circumcenter) in ratio 2 : 1",
+      },
+      {
+        name: "Six Standard Forms of a Line",
+        formula: "Slope-Int: y = mx + c · Pt-Slope: y - y₁ = m(x - x₁) · 2-Pt: (y - y₁)/(y₂ - y₁) = (x - x₁)/(x₂ - x₁) · Int: x/a + y/b = 1 · Normal: x cos α + y sin α = p · Parametric: (x - x₁)/cos θ = (y - y₁)/sin θ = r",
+        note: "Complete representation across Cartesian, intercept, normal and distance forms",
+      },
+      {
+        name: "Perpendicular Distance & Parallel Separation",
+        formula: "d(pt, line) = |Ax₀ + By₀ + C| / √(A² + B²) · d(parallel lines) = |C₁ - C₂| / √(A² + B²)",
+        note: "Both parallel lines must be written with identical coefficients A and B",
+      },
+      {
+        name: "Angle Between Two Lines",
+        formula: "tan θ = |(m₂ - m₁) / (1 + m₁m₂)| · Parallel iff m₁ = m₂ · Perpendicular iff m₁m₂ = -1 (A₁A₂ + B₁B₂ = 0)",
+        note: "Computes the acute angle between intersecting lines",
+      },
+      {
+        name: "Condition of Concurrency of Three Lines",
+        formula: "det [ [A₁, B₁, C₁], [A₂, B₂, C₂], [A₃, B₃, C₃] ] = 0",
+        note: "Three lines intersect at a unique common point if and only if the coefficient determinant is zero",
+      },
+      {
+        name: "Homogeneous Pair of Straight Lines",
+        formula: "ax² + 2hxy + by² = 0 · Angle: tan θ = [2√(h² - ab)] / (a + b) · Perpendicular: a + b = 0 · Coincident: h² = ab",
+        note: "Represents two lines passing through the origin (0, 0)",
+      },
+      {
+        name: "General Second-Degree Pair of Lines",
+        formula: "ax² + 2hxy + by² + 2gx + 2fy + c = 0 represents lines iff Δ = abc + 2fgh - af² - bg² - ch² = 0",
+        note: "Intersection point is found by simultaneous solution of ∂F/∂x = 0 and ∂F/∂y = 0",
+      },
+      {
+        name: "Joint Equation of Angle Bisectors",
+        formula: "(x² - y²) / (a - b) = xy / h  or  h(x² - y²) = (a - b)xy",
+        note: "The pair of angle bisectors is always mutually perpendicular (coefficients of x² and y² sum to zero)",
+      },
+    ],
+  },
+
+  "circles-tangents": {
+    title: "Circles & Conic Tangents/Normals",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Standard & General Circle Equations",
+        formula: "Standard: (x - h)² + (y - k)² = r² · General: x² + y² + 2gx + 2fy + c = 0, Center (-g, -f), r = √(g² + f² - c)",
+        note: "Real circle requires g² + f² - c > 0; Point circle if = 0; Imaginary circle if < 0",
+      },
+      {
+        name: "Circle Through 3 Points & Diameter Form",
+        formula: "Diameter Form: (x - x₁)(x - x₂) + (y - y₁)(y - y₂) = 0",
+        note: "Subtends a 90° angle at every point on the circumference",
+      },
+      {
+        name: "Parametric Form of Circle",
+        formula: "x = h + r cos θ,  y = k + r sin θ  (0 ≤ θ < 2π)",
+        note: "Trigonometric representation with center (h, k) and radius r",
+      },
+      {
+        name: "Tangent at a Point via T = 0 Substitution Rule",
+        formula: "x² → xx₁,  y² → yy₁,  xy → (xy₁ + x₁y)/2,  x → (x + x₁)/2,  y → (y + y₁)/2",
+        note: "Universal tangent rule for any second-degree conic at point (x₁, y₁) lying on the curve",
+      },
+      {
+        name: "Conditions of Tangency (y = mx + c)",
+        formula: "Circle: c² = r²(1 + m²) · Parabola (y² = 4ax): c = a/m · Ellipse: c² = a²m² + b² · Hyperbola: c² = a²m² - b²",
+        note: "Determines the exact c value for a line of slope m to touch each standard conic",
+      },
+      {
+        name: "Length of Tangent from External Point",
+        formula: "L = √(x₁² + y₁² + 2gx₁ + 2fy₁ + c) = √S₁",
+        note: "Valid for points outside the circle (S₁ > 0)",
+      },
+      {
+        name: "Director Circles (Perpendicular Tangents Locus)",
+        formula: "Circle: x² + y² = 2r² · Ellipse: x² + y² = a² + b² · Hyperbola: x² + y² = a² - b² · Parabola: Directrix x = -a",
+        note: "Locus of intersection points of mutually perpendicular tangents",
+      },
+      {
+        name: "Chord of Contact of Tangents",
+        formula: "T = 0 ⟹ xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0",
+        note: "Line connecting the two points of tangency from an external point (x₁, y₁)",
+      },
+    ],
+  },
+
+  "advanced-calculus": {
+    title: "Advanced Single-Variable Calculus",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Formal Epsilon-Delta Limit Definition",
+        formula: "∀ε > 0, ∃δ > 0 such that 0 < |x - c| < δ ⟹ |f(x) - L| < ε",
+        note: "Rigorous foundation for single-variable limits and analysis proofs",
+      },
+      {
+        name: "Classification of Discontinuities",
+        formula: "Removable (lim exists ≠ f(c)) · Jump (lim_left ≠ lim_right finite) · Infinite (lim = ±∞) · Essential/Oscillating (no limit)",
+        note: "Four canonical types of mathematical discontinuity",
+      },
+      {
+        name: "IVT, EVT & Rolle's Theorem",
+        formula: "IVT: f(c) = u for continuous f on [a,b] · Rolle's: f'(c) = 0 if f(a) = f(b) · Cauchy MVT: f'(c)/g'(c) = [f(b)-f(a)]/[g(b)-g(a)]",
+        note: "Cornerstone existence theorems of real analysis",
+      },
+      {
+        name: "Logarithmic & Parametric Differentiation",
+        formula: "Log: y = f(x)ᵍ⁽ˣ⁾ ⟹ y' = y [g'(x) ln f(x) + g(x) f'(x)/f(x)] · Parametric: dy/dx = y'(t)/x'(t) · d²y/dx² = [d/dt(dy/dx)] / x'(t)",
+        note: "Logarithmic differentiation handles variable towers; parametric chain rule avoids x-elimination",
+      },
+      {
+        name: "Hyperbolic Functions & Derivatives",
+        formula: "cosh² x - sinh² x = 1 · d/dx[sinh x] = cosh x · d/dx[cosh x] = sinh x · d/dx[tanh x] = sech² x · d/dx[arcsinh x] = 1/√(1 + x²)",
+        note: "Hyperbolic cosine derivative carries positive sign (unlike circular cosine)",
+      },
+      {
+        name: "Extended L'Hôpital's Rule (All Indeterminate Forms)",
+        formula: "0/0,  ∞/∞,  0 · ∞,  ∞ - ∞,  1^∞,  0⁰,  ∞⁰",
+        note: "Exponentials 1^∞, 0⁰, ∞⁰ are converted to 0/0 or ∞/∞ via natural logarithm transform ln L",
+      },
+      {
+        name: "Curvature & Radius of Curvature",
+        formula: "Explicit: κ(x) = |y''| / (1 + (y')²)^(3/2) · Parametric: κ(t) = |x'y'' - y'x''| / (x'² + y'²)^(3/2) · Radius ρ = 1/κ",
+        note: "Evolute center: α = x - y'(1 + (y')²)/y'', β = y + (1 + (y')²)/y''",
+      },
+      {
+        name: "Arc Length & Surface of Revolution",
+        formula: "Arc Length: s = ∫ₐᵇ √(1 + (f'(x))²) dx · Surface Area (x-axis): S = 2π ∫ₐᵇ y √(1 + (y')²) dx",
+        note: "Differential arc element ds = √(dx² + dy²)",
+      },
+      {
+        name: "Physical Applications of Integration",
+        formula: "Work: W = ∫ F(x) dx · Centroid: x̄ = (1/A)∫ x f(x) dx, ȳ = (1/2A)∫ [f(x)]² dx · Hydrostatic: F = ∫ ρ g h(y) w(y) dy",
+        note: "Applied single-variable mechanics, centroids of laminas, and fluid pressure forces",
+      },
+    ],
+  },
+
+  "differential-equations": {
+    title: "Ordinary Differential Equations (ODEs)",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Separable Differential Equations",
+        formula: "dy/dx = g(x) h(y) ⟹ ∫ [1/h(y)] dy = ∫ g(x) dx + C",
+        note: "Separates dependent and independent variables directly into two single integrals",
+      },
+      {
+        name: "Homogeneous First-Order ODEs",
+        formula: "dy/dx = F(y/x) ⟹ substitute y = vx,  dy/dx = v + x (dv/dx) ⟹ dv / [F(v) - v] = dx / x",
+        note: "Converts degree-homogeneous first-order ODEs into separable form in variable v",
+      },
+      {
+        name: "First-Order Linear ODEs (Integrating Factor)",
+        formula: "dy/dx + P(x)y = Q(x) ⟹ Integrating Factor I(x) = e^(∫ P(x) dx) ⟹ y(x) = [1/I(x)] [∫ I(x) Q(x) dx + C]",
+        note: "Multiplies through by I(x) to condense LHS into exact derivative d/dx[I(x) y]",
+      },
+      {
+        name: "Exact Differential Equations",
+        formula: "M(x, y) dx + N(x, y) dy = 0 is exact iff ∂M/∂y = ∂N/∂x ⟹ Potential function Ψ(x, y) = C",
+        note: "Integrate M with respect to x, then determine g(y) by matching ∂Ψ/∂y = N",
+      },
+      {
+        name: "Bernoulli Equation Transformation",
+        formula: "dy/dx + P(x)y = Q(x)yⁿ ⟹ divide by yⁿ, substitute u = y^(1-n) ⟹ du/dx + (1-n)P(x)u = (1-n)Q(x)",
+        note: "Converts non-linear power equations into standard first-order linear ODEs in u",
+      },
+      {
+        name: "2nd-Order Linear Homogeneous ODEs",
+        formula: "ay'' + by' + cy = 0 · Char: ar² + br + c = 0 ⟹ Distinct: y = c₁e^(r₁x) + c₂e^(r₂x) · Repeated: y = (c₁ + c₂x)e^(rx) · Complex (α ± iβ): y = e^(αx)[c₁ cos(βx) + c₂ sin(βx)]",
+        note: "Classification according to discriminant b² - 4ac",
+      },
+      {
+        name: "Method of Undetermined Coefficients",
+        formula: "y(x) = y_c(x) + y_p(x) · Polynomial: A_n xⁿ + ... · Exponential: A e^(kx) · Sinusoidal: A cos(ωx) + B sin(ωx)",
+        note: "Multiply trial form by xˢ if forcing term duplicates a complementary homogeneous solution",
+      },
+      {
+        name: "Variation of Parameters & Wronskian",
+        formula: "W(y₁, y₂) = y₁y₂' - y₁'y₂ · y_p = -y₁ ∫ [y₂ g(x) / W] dx + y₂ ∫ [y₁ g(x) / W] dx",
+        note: "Universal particular solution method for any forcing term g(x), including tan x, sec x, 1/x",
+      },
+    ],
+  },
+
   // ═══════════════════════════════════════════════════════════════════════════
   // 2. Multivariable Calculus
   // ═══════════════════════════════════════════════════════════════════════════

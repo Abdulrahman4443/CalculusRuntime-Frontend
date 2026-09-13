@@ -1,17 +1,37 @@
-import { NavLink, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 function Footer() {
   const year = new Date().getFullYear();
   const { user } = useAuth();
+  const location = useLocation();
+  const [hasSidebar, setHasSidebar] = useState(false);
+
+  useEffect(() => {
+    const checkSidebar = () => {
+      const sb = document.querySelector(".sidebar");
+      setHasSidebar(Boolean(sb));
+    };
+
+    checkSidebar();
+    const t1 = setTimeout(checkSidebar, 50);
+    const t2 = setTimeout(checkSidebar, 200);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [location.pathname]);
 
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer ${hasSidebar ? "site-footer--with-sidebar" : ""}`}>
       <div className="footer-brand">
         <span className="footer-logo">∂</span>
         <div>
           <p>CalcVoyager</p>
-          <span>Study guides, practice, AI solver, and interactive tools.</span>
+          <span className="footer-tagline">
+            Study guides, practice, AI solver, and interactive tools.
+          </span>
         </div>
       </div>
 

@@ -95,6 +95,14 @@ import {
   SeriesPart2,
   ConicsPart1,
   ConicsPart2,
+  LinesPart1,
+  LinesPart2,
+  CirclesPart1,
+  CirclesPart2,
+  AdvCalcPart1,
+  AdvCalcPart2,
+  OdePart1,
+  OdePart2,
 } from "./pages/calculus/CalcParts";
 
 function App() {
@@ -171,6 +179,26 @@ function App() {
               <Route path="/taylor-series" element={<Navigate to="/taylor-series/1" replace />} />
               <Route path="/taylor-series/1" element={<Layout body={<TaylorPart1 />} />} />
               <Route path="/taylor-series/2" element={<Layout body={<TaylorPart2 />} />} />
+
+              {/* Module A: Lines & Analytical Geometry */}
+              <Route path="/lines-geometry" element={<Navigate to="/lines-geometry/1" replace />} />
+              <Route path="/lines-geometry/1" element={<Layout body={<LinesPart1 />} />} />
+              <Route path="/lines-geometry/2" element={<Layout body={<LinesPart2 />} />} />
+
+              {/* Module B: Circle & Conic Tangents */}
+              <Route path="/circles-tangents" element={<Navigate to="/circles-tangents/1" replace />} />
+              <Route path="/circles-tangents/1" element={<Layout body={<CirclesPart1 />} />} />
+              <Route path="/circles-tangents/2" element={<Layout body={<CirclesPart2 />} />} />
+
+              {/* Module C: Advanced Single-Variable Calculus */}
+              <Route path="/advanced-calculus" element={<Navigate to="/advanced-calculus/1" replace />} />
+              <Route path="/advanced-calculus/1" element={<Layout body={<AdvCalcPart1 />} />} />
+              <Route path="/advanced-calculus/2" element={<Layout body={<AdvCalcPart2 />} />} />
+
+              {/* Module D: Ordinary Differential Equations */}
+              <Route path="/differential-equations" element={<Navigate to="/differential-equations/1" replace />} />
+              <Route path="/differential-equations/1" element={<Layout body={<OdePart1 />} />} />
+              <Route path="/differential-equations/2" element={<Layout body={<OdePart2 />} />} />
 
               <Route path="/certificates" element={<Layout body={<MyCertificates />} />} />
               <Route path="/my-certificates" element={<Navigate to="/certificates" replace />} />
