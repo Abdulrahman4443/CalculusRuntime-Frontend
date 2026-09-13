@@ -1722,6 +1722,40 @@ select {
   filter: drop-shadow(0 20px 48px rgba(56, 189, 248, 0.38)) !important;
 }
 
+/* ── Course Hero Visuals (Dissolve & Seamless Background Blend) ── */
+.course-hero-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.course-hero-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 14px 38px rgba(14, 165, 233, 0.28)) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.course-hero-img:hover {
+  transform: translateY(-5px) scale(1.03);
+  filter: drop-shadow(0 20px 48px rgba(14, 165, 233, 0.42)) !important;
+}
+
+[data-theme="dark"] .course-hero-img {
+  filter: drop-shadow(0 16px 44px rgba(56, 189, 248, 0.35)) !important;
+}
+
 [data-site-theme="default"] .trust-badge {
   display: flex;
   align-items: center;

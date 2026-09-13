@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 440" width="100%" height="100%" fill="none" style="font-family: 'JetBrains Mono', 'Source Sans 3', monospace;">
+  <defs>
+    <!-- Technical Glow Filters -->
+    <filter id="ps-mat-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="ps-mat-amber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <linearGradient id="ps-mat-curve" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="ps-mat-center" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.36" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.08" />
+    </linearGradient>
+
+    <linearGradient id="ps-mat-tail" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.08" />
+    </linearGradient>
+
+    <linearGradient id="ps-ci-band" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.06" />
+    </linearGradient>
+
+    <radialGradient id="ps-mat-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.16" />
+      <stop offset="70%" stop-color="#8b5cf6" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <circle cx="290" cy="220" r="190" fill="url(#ps-mat-aura)" />
+
+  <!-- Technical Coordinate Grid -->
+  <g stroke="#38bdf8" stroke-width="0.75" opacity="0.16">
+    <line x1="60" y1="80" x2="520" y2="80" />
+    <line x1="60" y1="140" x2="520" y2="140" />
+    <line x1="60" y1="200" x2="520" y2="200" />
+    <line x1="60" y1="260" x2="520" y2="260" />
+    <line x1="60" y1="320" x2="520" y2="320" />
+
+    <line x1="100" y1="50" x2="100" y2="380" />
+    <line x1="170" y1="50" x2="170" y2="380" />
+    <line x1="240" y1="50" x2="240" y2="380" />
+    <line x1="310" y1="50" x2="310" y2="380" />
+    <line x1="380" y1="50" x2="380" y2="380" />
+    <line x1="450" y1="50" x2="450" y2="380" />
+  </g>
+
+  <!-- OLS Linear Regression: 95% Confidence Interval Envelope & Scatter Points -->
+  <g>
+    <!-- 95% Confidence Interval Envelope -->
+    <polygon points="110,215 470,80 470,125 110,260" fill="url(#ps-ci-band)" />
+    <!-- OLS Regression Trendline -->
+    <line x1="95" y1="240" x2="485" y2="95" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" filter="url(#ps-mat-amber)" />
+    <text x="400" y="85" fill="#fbbf24" font-size="11" font-weight="700">ŷ = β₀ + β₁x</text>
+
+    <!-- Discrete Empirical Scatter Points -->
+    <g fill="#fbbf24" opacity="0.8">
+      <circle cx="125" cy="235" r="3.5" />
+      <circle cx="155" cy="208" r="4" />
+      <circle cx="180" cy="222" r="3" />
+      <circle cx="215" cy="185" r="4" />
+      <circle cx="245" cy="200" r="3.5" />
+      <circle cx="275" cy="168" r="4" />
+      <circle cx="310" cy="152" r="4" />
+      <circle cx="335" cy="164" r="3.5" />
+      <circle cx="370" cy="136" r="4.5" />
+      <circle cx="400" cy="122" r="3.5" />
+      <circle cx="430" cy="128" r="4" />
+      <circle cx="460" cy="106" r="4" />
+    </g>
+  </g>
+
+  <!-- Gaussian Normal Distribution: Tail Rejection Regions (α/2) -->
+  <path d="M 80 320 C 120 320, 150 316, 175 292 L 175 320 Z" fill="url(#ps-mat-tail)" />
+  <path d="M 445 292 C 470 316, 500 320, 540 320 L 445 320 Z" fill="url(#ps-mat-tail)" />
+  <text x="120" y="312" fill="#c084fc" font-size="10" font-weight="600">α/2</text>
+  <text x="475" y="312" fill="#c084fc" font-size="10" font-weight="600">α/2</text>
+
+  <!-- Central 68.3% Confidence Area [-1σ, +1σ] -->
+  <path d="M 240 320 L 240 230 C 275 160, 310 135, 310 135 C 310 135, 345 160, 380 230 L 380 320 Z"
+    fill="url(#ps-mat-center)" />
+  <text x="290" y="240" fill="#00e5ff" font-size="11" font-weight="700">68.3%</text>
+
+  <!-- Full Gaussian Normal Distribution Bell Curve -->
+  <path d="M 70 320 C 145 320, 195 315, 235 235 C 265 170, 285 135, 310 135 C 335 135, 355 170, 385 235 C 425 315, 475 320, 550 320"
+    fill="none" stroke="url(#ps-mat-curve)" stroke-width="3.5" stroke-linecap="round"
+    filter="url(#ps-mat-cyan)" />
+
+  <!-- Standard Deviation Reference Lines (Mean μ, ±1σ, ±2σ) -->
+  <g stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.65">
+    <!-- Mean μ -->
+    <line x1="310" y1="135" x2="310" y2="320" stroke="#00e5ff" stroke-width="1.8" />
+    <circle cx="310" cy="135" r="4.5" fill="#00e5ff" stroke="#ffffff" stroke-width="1.8" />
+    <!-- -1σ & +1σ -->
+    <line x1="240" y1="230" x2="240" y2="320" />
+    <line x1="380" y1="230" x2="380" y2="320" />
+    <!-- -2σ & +2σ -->
+    <line x1="175" y1="292" x2="175" y2="320" />
+    <line x1="445" y1="292" x2="445" y2="320" />
+  </g>
+
+  <!-- Coordinate Baseline & Ticks -->
+  <g stroke="#64748b" stroke-width="1.6" opacity="0.85">
+    <line x1="50" y1="320" x2="550" y2="320" />
+    <polygon points="556,320 546,316 546,324" fill="#64748b" />
+    <text x="562" y="324" fill="#94a3b8" font-size="12" font-weight="600">z</text>
+
+    <!-- Z-Score Ticks & Labels -->
+    <line x1="175" y1="320" x2="175" y2="326" />
+    <text x="165" y="340" fill="#94a3b8" font-size="10">-2σ</text>
+
+    <line x1="240" y1="320" x2="240" y2="326" />
+    <text x="230" y="340" fill="#94a3b8" font-size="10">-1σ</text>
+
+    <line x1="310" y1="320" x2="310" y2="326" stroke="#00e5ff" stroke-width="2" />
+    <text x="304" y="340" fill="#00e5ff" font-size="11" font-weight="700">μ=0</text>
+
+    <line x1="380" y1="320" x2="380" y2="326" />
+    <text x="373" y="340" fill="#94a3b8" font-size="10">+1σ</text>
+
+    <line x1="445" y1="320" x2="445" y2="326" />
+    <text x="438" y="340" fill="#94a3b8" font-size="10">+2σ</text>
+  </g>
+
+  <!-- Distribution Notation -->
+  <text x="75" y="110" fill="#38bdf8" font-size="12" font-weight="600" opacity="0.9">X ~ N(μ, σ²)</text>
+</svg>

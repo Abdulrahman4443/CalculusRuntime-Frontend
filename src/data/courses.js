@@ -14,6 +14,8 @@ export const COURSES = [
     meta: "6 guides · Tools + practice",
     icon: "∫",
     color: "gold",
+    heroImage: "/images/courses/calc-geometry-hero.svg",
+    heroImageAlt: "Calculus and Analytical Geometry Curves and Tangents Visual",
     overview: {
       longDescription: [
         "Calculus and Analytical Geometry forms the mathematical bedrock for modern science, engineering, and computational modeling. This rigorous curriculum establishes first principles of limits and continuity via epsilon-delta formulations, the Squeeze Theorem, and intermediate value properties. We develop differential calculus from difference quotients through product, quotient, and chain rules, analyzing curve optimization, related rates, and Mean Value Theorems. Integral calculus bridges accumulation via Riemann sums to the Fundamental Theorem of Calculus, improper integrals, and geometric volume applications. The course advances through infinite series convergence tests, Taylor and Maclaurin expansions, and concludes with Cartesian coordinate geometry and complete conic section classifications."
@@ -169,6 +171,8 @@ export const COURSES = [
     meta: "Full study path · Guides + tools",
     icon: "∇",
     color: "teal",
+    heroImage: "/images/courses/multivariable-calc-hero.svg",
+    heroImageAlt: "Multivariable Calculus 3D Surface and Gradient Field",
     overview: {
       longDescription: [
         "Multivariable Calculus extends single-variable analysis to multidimensional coordinate spaces and physical vector field theory. The curriculum begins with functions of several variables, level surfaces, and partial derivatives, formalizing tangent planes, total differentials, gradient vectors, and directional derivatives. We analyze unconstrained multivariable optimization alongside Lagrange Multipliers for constrained systems. The course develops multiple integration across Cartesian, polar, cylindrical, and spherical coordinates using Fubini's Theorem and Jacobian transformations. Finally, vector calculus formalizes line and surface integrals, conservative work fields, and the cornerstone integral theorems—Green's, Gauss's Divergence, and Stokes' Theorems—connecting differential field divergence and curl to macro-scale boundary fluxes across science."
@@ -290,6 +294,8 @@ export const COURSES = [
     meta: "4 modules · Guides + practice",
     icon: "A",
     color: "blue",
+    heroImage: "/images/courses/linear-algebra-hero.svg",
+    heroImageAlt: "Linear Algebra Vectors and Matrix Transformation Visual",
     overview: {
       longDescription: [
         "Linear Algebra provides the universal mathematical framework for modern computation, machine learning, data science, and quantum physics. We establish vector space algebra in n-dimensional Euclidean space, investigating linear combinations, span, basis sets, dimensions, and fundamental subspaces. Matrix operations, Gaussian elimination, row reduction, rank-nullity invariants, and determinant volumes characterize linear system solvability and matrix invertibility. The curriculum explores linear transformations, spectral eigenvalue decompositions, and the Spectral Theorem for symmetric operators. Advanced modules formalize inner product orthogonality, Gram-Schmidt QR factorizations, and least-squares normal equations, culminating in the Singular Value Decomposition (SVD) and Principal Component Analysis for optimal high-dimensional data reduction and modeling."
@@ -412,6 +418,8 @@ export const COURSES = [
     meta: "6 modules · Guides + tools",
     icon: "P",
     color: "purple",
+    heroImage: "/images/courses/prob-stats-hero.svg",
+    heroImageAlt: "Probability and Statistics Gaussian Bell Curve and Regression Visual",
     overview: {
       longDescription: [
         "Probability and Statistics bridges mathematical theory and real-world empirical inference. Master sample spaces, probability axioms, conditional probability, and Bayes' Theorem. Explore discrete and continuous random variables, probability mass and density functions, expected values, variance, and fundamental distributions (Binomial, Poisson, Normal, Exponential). Learn descriptive statistics, central limit theorem, hypothesis testing (z-tests, t-tests, p-values), and linear regression with residual analysis."
