@@ -27,6 +27,8 @@ function HypothesisTestingGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-h-pval">Quiz</a>
           <a className="sb-link" href="#ps-h-errors">Errors &amp; power</a>
           <a className="sb-link" href="#quiz-ps-h-errors">Quiz</a>
+          <a className="sb-link" href="#ps-h-anova">ANOVA (One &amp; Two-Way)</a>
+          <a className="sb-link" href="#ps-h-chisquare">Chi-Square tests</a>
           <a className="sb-link" href="#ps-cert-hypothesis-p2">Eight examples</a>
         </nav>
         <main className="main">
@@ -192,6 +194,79 @@ function HypothesisTestingGuide({ part = 1 }) {
             section="ps-h-errors"
             questions={PS_H_ERRORS_QUIZ}
           />
+
+          <Divider />
+          <section className="section" id="ps-h-anova">
+            <div className="sec-badge">Section 4.5</div>
+            <h2 className="sec-title">Analysis of Variance (ANOVA): One-Way &amp; Two-Way</h2>
+            <TheoryBox title="Comparing multiple group means">
+              <p>
+                {"When comparing $k \\ge 3$ group means, running multiple pairwise $t$-tests causes severe family-wise Type I error inflation: with $m$ independent tests at $\\alpha = 0.05$, the cumulative chance of at least one false rejection is $1 - (1-0.05)^m$. For 5 groups ($m = 10$ pairs), false alarm risk spikes to $40\\%$."}
+              </p>
+              <p>
+                {"Analysis of Variance (ANOVA) resolves this by executing a single omnibus test of $H_0: \\mu_1 = \\mu_2 = \\dots = \\mu_k$ against $H_1: \\text{at least one group mean differs}$."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Sum of Squares decomposition &amp; F-ratio">
+              <p>
+                {"Total variation $SST$ decomposes into between-group variation $SSB$ (effect of treatment) and within-group variation $SSW$ (random experimental error):"}
+              </p>
+              <p>
+                {"$$SST = SSB + SSW, \\quad SSB = \\sum_{j=1}^k n_j (\\bar{x}_j - \\bar{x})^2, \\quad SSW = \\sum_{j=1}^k \\sum_{i=1}^{n_j} (x_{ij} - \\bar{x}_j)^2$$"}
+              </p>
+              <p>
+                {"Degrees of freedom partition as $df_T = N - 1$, $df_B = k - 1$, and $df_W = N - k$. Dividing sums of squares by degrees of freedom produces Mean Squares: $MSB = \\frac{SSB}{k-1}$ and $MSW = \\frac{SSW}{N-k}$."}
+              </p>
+              <p>
+                {"Under $H_0$, the ratio follows Snedecor's $F$-distribution: $F = \\frac{MSB}{MSW} \\sim F_{k-1, N-k}$. Reject $H_0$ if $F > F_{\\alpha, k-1, N-k}$."}
+              </p>
+              <p>
+                {"Two-Way ANOVA extends this decomposition to examine two independent factors (Factor A with $a$ levels, Factor B with $b$ levels) plus their interaction effect: $SST = SSA + SSB + SSAB + SSE$."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Standard One-Way ANOVA Table"
+              steps={[
+                { text: "Source: Between Groups | SS: SSB | df: k - 1 | MS: MSB = SSB/(k-1) | F: MSB/MSW | p-value" },
+                { text: "Source: Within Groups (Error) | SS: SSW | df: N - k | MS: MSW = SSW/(N-k)" },
+                { text: "Source: Total | SS: SST = SSB + SSW | df: N - 1" },
+                { text: "Decision rule: If calculated F exceeds critical value $F_{\\alpha, k-1, N-k}$ (or p ≤ α), reject $H_0$ and perform post-hoc Tukey HSD tests to isolate differing pairs." }
+              ]}
+            />
+          </section>
+
+          <Divider />
+          <section className="section" id="ps-h-chisquare">
+            <div className="sec-badge">Section 4.6</div>
+            <h2 className="sec-title">Chi-Square Tests: Goodness-of-Fit &amp; Independence</h2>
+            <TheoryBox title="Inference for categorical frequencies">
+              <p>
+                {"Chi-Square ($\\chi^2$) tests assess discrepancies between observed count data $O$ and theoretical expected count frequencies $E$ under a hypothesized categorical distribution."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Goodness-of-Fit vs. Contingency Table Independence">
+              <p>
+                {"1. Goodness-of-Fit Test: Tests whether an observed sample originates from a specific multinomial distribution with probabilities $p_1, \\dots, p_k$ ($H_0: P(C_i) = p_i$). Expected counts are $E_i = n p_i$:"}
+              </p>
+              <p>
+                {"$$\\chi^2 = \\sum_{i=1}^k \\frac{(O_i - E_i)^2}{E_i} \\sim \\chi^2_{k - 1 - p}$$"}
+              </p>
+              <p>
+                {"where $p$ is the count of population parameters estimated from sample data (typically $p=0$ for fully specified nulls)."}
+              </p>
+              <p>
+                {"2. Test of Independence (Contingency Tables): Tests whether two categorical variables in an $r \\times c$ table are independent ($H_0: P(A_i \\cap B_j) = P(A_i)P(B_j)$). Expected counts are calculated using marginal row ($R_i$) and column ($C_j$) totals: $E_{ij} = \\frac{R_i C_j}{N}$."}
+              </p>
+              <p>
+                {"$$\\chi^2 = \\sum_{i=1}^r \\sum_{j=1}^c \\frac{(O_{ij} - E_{ij})^2}{E_{ij}} \\sim \\chi^2_{(r-1)(c-1)}$$"}
+              </p>
+            </TheoremBox>
+            <PracticalTheory title="Validity rule of thumb">
+              <p>
+                {"Chi-Square test approximations require all expected counts $E \\ge 5$ in every cell. If expected cell counts fall below 5, collapse adjacent categories or use Fisher's exact test."}
+              </p>
+            </PracticalTheory>
+          </section>
 
           <Divider />
           <PsCertificateBoost topic="hypothesis" part={2} />

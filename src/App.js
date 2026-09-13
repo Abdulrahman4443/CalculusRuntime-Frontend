@@ -72,6 +72,9 @@ import {
 } from "./pages/linearAlgebra/LaParts";
 import MatrixSandbox from "./pages/linearAlgebra/MatrixSandbox";
 import LinearAlgebraOverview from "./pages/linearAlgebra/LinearAlgebraOverview";
+import CalculusOverview from "./pages/calculus/CalculusOverview";
+import MultivariableOverview from "./pages/multivariableCalculus/MultivariableOverview";
+import ProbabilityStatisticsOverview from "./pages/probabilityStatistics/ProbabilityStatisticsOverview";
 
 import {
   ProbBasicsPart1,
@@ -134,6 +137,10 @@ function App() {
               {/* AI Solver */}
               <Route path="/ai-solver" element={<Layout body={<AISolver />} />} />
 
+              {/* Multivariable Calculus Overview */}
+              <Route path="/multivariable-calculus/overview" element={<Layout body={<MultivariableOverview />} />} />
+              <Route path="/courses/multivariable-calculus/overview" element={<Layout body={<MultivariableOverview />} />} />
+
               {/* Partial Derivatives */}
               <Route path="/partial-derivatives" element={<Navigate to="/partial-derivatives/1" replace />} />
               <Route path="/partial-derivatives/1" element={<Layout body={<PartialPart1 />} />} />
@@ -144,6 +151,10 @@ function App() {
               <Route path="/vector-calculus/1" element={<Layout body={<VectorPart1 />} />} />
               <Route path="/vector-calculus/2" element={<Layout body={<VectorPart2 />} />} />
               <Route path="/vectorfield" element={<Layout body={<VectorFieldVisualizer />} />} />
+
+              {/* Calculus & Analytical Geometry Overview */}
+              <Route path="/calculus/overview" element={<Layout body={<CalculusOverview />} />} />
+              <Route path="/courses/calculus-analytical-geometry/overview" element={<Layout body={<CalculusOverview />} />} />
 
               {/* Limits & Continuity */}
               <Route path="/limits-continuity" element={<Navigate to="/limits-continuity/1" replace />} />
@@ -223,6 +234,7 @@ function App() {
 
               {/* Linear Algebra */}
               <Route path="/linear-algebra/overview" element={<Layout body={<LinearAlgebraOverview />} />} />
+              <Route path="/courses/linear-algebra/overview" element={<Layout body={<LinearAlgebraOverview />} />} />
               <Route path="/linear-algebra/linear-equations" element={<Navigate to="/linear-algebra/linear-equations/1" replace />} />
               <Route path="/linear-algebra/linear-equations/1" element={<Layout body={<LinearEquationsPart1 />} />} />
               <Route path="/linear-algebra/linear-equations/2" element={<Layout body={<LinearEquationsPart2 />} />} />
@@ -255,6 +267,8 @@ function App() {
               <Route path="/linear-algebra/matrix-sandbox" element={<Layout body={<MatrixSandbox />} />} />
 
               {/* Probability & Statistics */}
+              <Route path="/probability-statistics/overview" element={<Layout body={<ProbabilityStatisticsOverview />} />} />
+              <Route path="/courses/probability-statistics/overview" element={<Layout body={<ProbabilityStatisticsOverview />} />} />
               <Route path="/probability-statistics/probability-basics" element={<Navigate to="/probability-statistics/probability-basics/1" replace />} />
               <Route path="/probability-statistics/probability-basics/1" element={<Layout body={<ProbBasicsPart1 />} />} />
               <Route path="/probability-statistics/probability-basics/2" element={<Layout body={<ProbBasicsPart2 />} />} />

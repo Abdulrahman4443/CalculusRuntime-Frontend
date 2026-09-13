@@ -27,6 +27,7 @@ function RegressionGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-r-fit">Quiz</a>
           <a className="sb-link" href="#ps-r-resid">Residuals</a>
           <a className="sb-link" href="#quiz-ps-r-resid">Quiz</a>
+          <a className="sb-link" href="#ps-r-inference">Inference &amp; ANOVA</a>
           <a className="sb-link" href="#ps-cert-regression-p2">Eight examples</a>
         </nav>
         <main className="main">
@@ -191,6 +192,45 @@ function RegressionGuide({ part = 1 }) {
           />
 
           <Divider />
+          <section className="section" id="ps-r-inference">
+            <div className="sec-badge">Section 5.5</div>
+            <h2 className="sec-title">Inference in Linear Regression &amp; ANOVA</h2>
+            <TheoryBox title="The Classical Normal Linear Regression Model">
+              <p>
+                {"We model the relationship between predictor $x$ and response $Y$ as $Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i$, where the unobserved errors $\\epsilon_i \\overset{i.i.d.}{\\sim} N(0, \\sigma^2)$ are independent, zero-mean normal variables with constant variance $\\sigma^2$ (homoscedasticity)."}
+              </p>
+              <p>
+                {"Under these Gauss-Markov assumptions, the Ordinary Least Squares (OLS) estimators $\\hat{\\beta}_0$ and $\\hat{\\beta}_1$ are the Best Linear Unbiased Estimators (BLUE)."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Standard Errors, $t$-Tests &amp; ANOVA Partition">
+              <p>
+                {"1. Standard Error of Regression & Slope: The estimate of error variance $\\sigma$ is $s_e = \\sqrt{\\frac{\\sum e_i^2}{n - 2}} = \\sqrt{\\frac{SSE}{n - 2}}$. The standard error of the estimated slope is:"}
+              </p>
+              <p>
+                {"$$\\mathrm{SE}(\\hat{\\beta}_1) = \\frac{s_e}{\\sqrt{\\sum(x_i - \\bar{x})^2}} = \\frac{s_e}{\\sqrt{SS_{xx}}}$$"}
+              </p>
+              <p>
+                {"2. Slope Hypothesis Test: To test whether $x$ has a statistically significant linear association with $y$ ($H_0: \\beta_1 = 0$ vs $H_1: \\beta_1 \\neq 0$):"}
+              </p>
+              <p>
+                {"$$t = \\frac{\\hat{\\beta}_1 - 0}{\\mathrm{SE}(\\hat{\\beta}_1)} \\sim t_{n-2}$$"}
+              </p>
+              <p>
+                {"A $100(1-\\alpha)\\%$ confidence interval for the true slope is: $\\hat{\\beta}_1 \\pm t_{\\alpha/2, n-2} \\mathrm{SE}(\\hat{\\beta}_1)$."}
+              </p>
+              <p>
+                {"3. Regression ANOVA Decomposition: Total variation decomposes as $SST = SSR + SSE$ with degrees of freedom $n - 1 = 1 + (n - 2)$. The overall model test statistic is $F = \\frac{MSR}{MSE} = \\frac{SSR / 1}{SSE / (n-2)} \\sim F_{1, n-2}$. In simple linear regression, $F = t^2$ identically."}
+              </p>
+            </TheoremBox>
+            <PracticalTheory title="Mean Response vs. Individual Prediction Interval">
+              <p>
+                {"Predicting the average response of all individuals at $x_0$ has narrow standard error: $\\mathrm{SE}(\\hat{\\mu}_{y\\mid x_0}) = s_e \\sqrt{\\frac{1}{n} + \\frac{(x_0-\\bar{x})^2}{SS_{xx}}}$. Predicting a single new individual at $x_0$ is fundamentally more uncertain and includes individual variance: $\\mathrm{SE}(\\hat{y}_{\\text{new}}) = s_e \\sqrt{1 + \\frac{1}{n} + \\frac{(x_0-\\bar{x})^2}{SS_{xx}}}$."}
+              </p>
+            </PracticalTheory>
+          </section>
+
+          <Divider />
           <PsCertificateBoost topic="regression" part={2} />
 
           <section className="section" id="summary">
@@ -214,6 +254,7 @@ function RegressionGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-r-corr">Quiz</a>
         <a className="sb-link" href="#ps-r-assoc">Association</a>
         <a className="sb-link" href="#quiz-ps-r-assoc">Quiz</a>
+        <a className="sb-link" href="#ps-r-ols-derivation">OLS derivation</a>
         <a className="sb-link" href="#ps-cert-regression-p1">Eight examples</a>
       </nav>
       <main className="main">
@@ -339,6 +380,51 @@ function RegressionGuide({ part = 1 }) {
           section="ps-r-assoc"
           questions={PS_R_ASSOC_QUIZ}
         />
+
+        <Divider />
+        <section className="section" id="ps-r-ols-derivation">
+          <div className="sec-badge">Section 5.2B</div>
+          <h2 className="sec-title">Calculus Derivation of Ordinary Least Squares (OLS)</h2>
+          <TheoryBox title="Minimizing the squared error loss function">
+            <p>
+              {"Given $n$ paired data points $(x_1, y_1), \\dots, (x_n, y_n)$, we wish to find the line $\\hat{y} = \\beta_0 + \\beta_1 x$ that minimizes the sum of squared vertical residuals:"}
+            </p>
+            <p>
+              {"$$S(\\beta_0, \\beta_1) = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n (y_i - \\beta_0 - \\beta_1 x_i)^2$$"}
+            </p>
+            <p>
+              {"Since $S$ is a strictly convex paraboloid in $(\\beta_0, \\beta_1)$, the unique global minimum occurs where both first partial derivatives vanish simultaneously."}
+            </p>
+          </TheoryBox>
+          <TheoremBox title="The Normal Equations &amp; Closed-Form Solutions">
+            <p>
+              {"1. Differentiating with respect to intercept $\\beta_0$:"}
+            </p>
+            <p>
+              {"$$\\frac{\\partial S}{\\partial \\beta_0} = -2\\sum_{i=1}^n (y_i - \\beta_0 - \\beta_1 x_i) = 0 \\implies \\sum y_i = n\\beta_0 + \\beta_1 \\sum x_i$$"}
+            </p>
+            <p>
+              {"Dividing through by $n$ yields the intercept formula: $\\hat{\\beta}_0 = \\bar{y} - \\hat{\\beta}_1 \\bar{x}$."}
+            </p>
+            <p>
+              {"2. Differentiating with respect to slope $\\beta_1$:"}
+            </p>
+            <p>
+              {"$$\\frac{\\partial S}{\\partial \\beta_1} = -2\\sum_{i=1}^n x_i (y_i - \\beta_0 - \\beta_1 x_i) = 0 \\implies \\sum x_i y_i = \\beta_0 \\sum x_i + \\beta_1 \\sum x_i^2$$"}
+            </p>
+            <p>
+              {"Substituting $\\beta_0 = \\bar{y} - \\beta_1 \\bar{x}$ and simplifying establishes the closed-form slope formula:"}
+            </p>
+            <p>
+              {"$$\\hat{\\beta}_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} = \\frac{SS_{xy}}{SS_{xx}} = r \\frac{s_y}{s_x}$$"}
+            </p>
+          </TheoremBox>
+          <PracticalTheory title="Three invariant geometric properties of OLS">
+            <p>
+              {"(1) The OLS regression line always passes through the bivariate centroid $(\\bar{x}, \\bar{y})$. (2) The algebraic sum of all residuals is identically zero: $\\sum_{i=1}^n e_i = \\sum (y_i - \\hat{y}_i) = 0$. (3) The predictor vector and residual vector are orthogonal: $\\sum x_i e_i = 0$."}
+            </p>
+          </PracticalTheory>
+        </section>
 
         <Divider />
         <PsCertificateBoost topic="regression" part={1} />
