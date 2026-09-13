@@ -3,8 +3,8 @@ import SubmitToLeaderboard from "../../components/SubmitToLeaderboard";
 import "../dashboard/Leaderboard.css";
 import "./PractiseSection.css";
 
-// Each bank holds 100 Easy + 100 Medium + 100 Hard questions per topic, so they
-// are fetched on demand instead of shipping ~2 MB of questions in the main bundle.
+// Practice banks are fetched on demand so the full question library does not ship
+// in the main bundle. Available question counts vary by topic.
 const BANK_LOADERS = {
   calcAg: () => import('../../data/calcAgPracticeBank').then((m) => m.CALC_AG_PRACTICE_BANK),
   mv: () => import('../../data/mvPracticeBank').then((m) => m.MV_PRACTICE_BANK),
@@ -83,6 +83,21 @@ function shuffled(list) {
   return out;
 }
 
+function shuffleQuestionOptions(question) {
+  const choices = question.options.map((option, originalIndex) => ({
+    option,
+    originalIndex,
+  }));
+  const randomizedChoices = shuffled(choices);
+  return {
+    ...question,
+    options: randomizedChoices.map((choice) => choice.option),
+    correctAnswer: randomizedChoices.findIndex(
+      (choice) => choice.originalIndex === question.correctAnswer
+    ),
+  };
+}
+
 export default function PractiseSection() {
   // --- LAYER 1: DIFFICULTY SELECTION ---
   const [chosenDifficulty, setChosenDifficulty] = useState(null);
@@ -139,9 +154,10 @@ export default function PractiseSection() {
           }
           return false;
         });
-        setPoolProblems(shuffled(filtered));
+        setPoolProblems(shuffled(filtered).map(shuffleQuestionOptions));
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Failed to load practice question bank:", error);
         if (!cancelled) setPoolProblems([]);
       })
       .finally(() => {

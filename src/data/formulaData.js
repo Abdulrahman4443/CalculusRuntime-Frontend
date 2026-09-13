@@ -482,8 +482,8 @@ const formulaData = {
       },
       {
         name: "Homogeneous System Ax = 0",
-        formula: "Always has trivial solution x = 0; non-trivial solutions exist iff det(A) = 0",
-        note: "Solution space forms the null space Null(A)",
+        formula: "Always has trivial solution x = 0; non-trivial solutions exist iff rank(A) < n",
+        note: "For square A, rank(A) < n is equivalent to det(A) = 0; the solution space is Null(A)",
       },
     ],
   },
@@ -558,7 +558,7 @@ const formulaData = {
       },
       {
         name: "Dot Product & Norm",
-        formula: "u · v = Σ u_i v_i = |u||v| cos θ · |v| = √(v · v)",
+        formula: "u · v = Σ u_i v_i = ||u|| ||v|| cos θ;  ||v|| = √(v · v)",
         note: "Vectors u, v are orthogonal iff u · v = 0",
       },
     ],
