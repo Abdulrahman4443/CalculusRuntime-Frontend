@@ -288,26 +288,26 @@ export const LA_S_SUBSPACES_QUIZ = [
   },
   {
     prompt: "The plane $x+2y-z=0$ in $\\mathbb{R}^3$ is:",
-    options: ["A subspace", "Not a subspace because it is two-dimensional", "Not a subspace because it contains the origin"],
-    answer: "A",
+    options: ["Not a subspace because it is two-dimensional", "A subspace", "Not a subspace because it contains the origin"],
+    answer: "B",
     explanation: "It is the solution set of a homogeneous linear equation, so it contains $0$ and is closed under linear combinations.",
   },
   {
     prompt: "The plane $x+2y-z=1$ is not a subspace because:",
-    options: ["It does not contain the zero vector", "It contains too many vectors", "Its normal vector is nonzero"],
-    answer: "A",
+    options: ["It contains too many vectors", "Its normal vector is nonzero", "It does not contain the zero vector"],
+    answer: "C",
     explanation: "Subspaces must contain the origin; substituting $(0,0,0)$ gives $0\\neq1$.",
   },
   {
     prompt: "For an $m\\times n$ matrix $A$, $\\operatorname{Col}(A)$ is a subspace of:",
-    options: ["$\\mathbb{R}^m$", "$\\mathbb{R}^n$", "$\\mathbb{R}^{m+n}$"],
-    answer: "A",
+    options: ["$\\mathbb{R}^n$", "$\\mathbb{R}^m$", "$\\mathbb{R}^{m+n}$"],
+    answer: "B",
     explanation: "Each column and every output $Ax$ has $m$ entries.",
   },
   {
     prompt: "For an $m\\times n$ matrix $A$, $\\operatorname{Row}(A)$ is a subspace of:",
-    options: ["$\\mathbb{R}^n$", "$\\mathbb{R}^m$", "$\\mathbb{R}^{mn}$"],
-    answer: "A",
+    options: ["$\\mathbb{R}^m$", "$\\mathbb{R}^{mn}$", "$\\mathbb{R}^n$"],
+    answer: "C",
     explanation: "Every row has $n$ entries.",
   },
   {
@@ -318,14 +318,14 @@ export const LA_S_SUBSPACES_QUIZ = [
   },
   {
     prompt: "A convenient basis for $\\operatorname{Row}(A)$ is given by:",
-    options: ["The nonzero rows of an echelon form of $A$", "The zero rows of RREF", "The original pivot columns"],
-    answer: "A",
+    options: ["The zero rows of RREF", "The original pivot columns", "The nonzero rows of an echelon form of $A$"],
+    answer: "C",
     explanation: "Elementary row operations preserve the row space, and the nonzero echelon rows are independent.",
   },
   {
     prompt: "The left null space of $A$ is:",
-    options: ["$\\operatorname{Nul}(A^T)$", "$\\operatorname{Nul}(A)$", "$\\operatorname{Col}(A)$"],
-    answer: "A",
+    options: ["$\\operatorname{Nul}(A)$", "$\\operatorname{Nul}(A^T)$", "$\\operatorname{Col}(A)$"],
+    answer: "B",
     explanation: "By definition, the left null space consists of vectors $y$ with $A^Ty=0$.",
   },
   {
@@ -336,41 +336,42 @@ export const LA_S_SUBSPACES_QUIZ = [
   },
   {
     prompt: "If $A$ is $5\\times 8$ with rank $3$, then $\\dim\\operatorname{Nul}(A^T)$ is:",
-    options: ["$2$", "$5$", "$3$"],
-    answer: "A",
+    options: ["$5$", "$3$", "$2$"],
+    answer: "C",
     explanation: "The left-null dimension is $m-r=5-3=2$.",
   },
   {
-    prompt: "Which orthogonal-complement identity is correct?",
-    options: ["$\\operatorname{Row}(A)^\\perp=\\operatorname{Nul}(A)$", "$\\operatorname{Row}(A)^\\perp=\\operatorname{Col}(A)$", "$\\operatorname{Nul}(A)^\\perp=\\operatorname{Nul}(A^T)$"],
-    answer: "A",
+    prompt: "Which identity relates the row space to the null space?",
+    options: ["$\\operatorname{Row}(A)^\\perp=\\operatorname{Col}(A)$", "$\\operatorname{Row}(A)^\\perp=\\operatorname{Nul}(A)$", "$\\operatorname{Nul}(A)^\\perp=\\operatorname{Nul}(A^T)$"],
+    answer: "B",
     explanation: "A vector is in the null space exactly when it is orthogonal to every row of $A$.",
   },
   {
-    prompt: "Which orthogonal-complement identity is correct?",
+    prompt: "Which identity relates the column space to the left null space?",
     options: ["$\\operatorname{Col}(A)^\\perp=\\operatorname{Nul}(A^T)$", "$\\operatorname{Col}(A)^\\perp=\\operatorname{Row}(A)$", "$\\operatorname{Col}(A)=\\operatorname{Nul}(A^T)$"],
     answer: "A",
     explanation: "Left-null vectors are orthogonal to every column of $A$.",
   },
   {
     prompt: "If $A$ has $n$ columns and rank $n$, rank–nullity implies:",
-    options: ["$\\operatorname{Nul}(A)=\\{0\\}$", "$\\operatorname{nullity}(A)=n$", "$A$ must have more columns than rows"],
-    answer: "A",
+    options: ["$\\operatorname{nullity}(A)=n$", "$A$ must have more columns than rows", "$\\operatorname{Nul}(A)=\\{0\\}$"],
+    answer: "C",
     explanation: "Nullity is $n-n=0$, so the homogeneous system has only the trivial solution.",
   },
   {
     prompt: "For a consistent system $Ax=b$, if $\\operatorname{nullity}(A)=2$, the solution set has:",
-    options: ["Two independent free directions", "Exactly two points", "No free variables"],
-    answer: "A",
+    options: ["Exactly two points", "Two independent free directions", "No free variables"],
+    answer: "B",
     explanation: "Every solution is one particular solution plus the two-dimensional null space.",
   },
   {
     prompt: "The pivot/free-variable proof of rank–nullity works because $r$ pivots among $n$ columns leave:",
     options: ["$n-r$ free variables", "$m-r$ free variables", "$r-n$ free variables"],
     answer: "A",
-    explanation: "Each non-pivot column corresponds to one free parameter and one null-space basis direction.",
+    explanation: "The remaining $n-r$ non-pivot columns correspond to free variables, so nullity is $n-r$.",
   },
 ];
+
 
 export const LA_S_GEO_QUIZ = [
   {

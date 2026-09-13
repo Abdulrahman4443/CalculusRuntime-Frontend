@@ -76,6 +76,8 @@ import CalculusOverview from "./pages/calculus/CalculusOverview";
 import MultivariableOverview from "./pages/multivariableCalculus/MultivariableOverview";
 import ProbabilityStatisticsOverview from "./pages/probabilityStatistics/ProbabilityStatisticsOverview";
 
+import BayesLab from "./pages/probabilityStatistics/BayesLab";
+
 import {
   ProbBasicsPart1,
   ProbBasicsPart2,
@@ -272,6 +274,7 @@ function App() {
               <Route path="/probability-statistics/probability-basics" element={<Navigate to="/probability-statistics/probability-basics/1" replace />} />
               <Route path="/probability-statistics/probability-basics/1" element={<Layout body={<ProbBasicsPart1 />} />} />
               <Route path="/probability-statistics/probability-basics/2" element={<Layout body={<ProbBasicsPart2 />} />} />
+              <Route path="/probability-statistics/bayes-lab" element={<Layout body={<BayesLab />} />} />
               <Route path="/probability-statistics/random-variables" element={<Navigate to="/probability-statistics/random-variables/1" replace />} />
               <Route path="/probability-statistics/random-variables/1" element={<Layout body={<RandomVarsPart1 />} />} />
               <Route path="/probability-statistics/random-variables/2" element={<Layout body={<RandomVarsPart2 />} />} />
