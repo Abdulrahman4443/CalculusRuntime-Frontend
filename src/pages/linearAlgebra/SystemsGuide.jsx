@@ -43,28 +43,43 @@ function SystemsGuide({ part = 1 }) {
         guideClass="partial-derivatives-guide"
         title="Systems of Linear Equations (Part 2)"
       >
-        <nav className="sidebar">
+                <nav className="sidebar">
           <div className="sb-brand">
             <div className="sb-title">Systems · Part 2</div>
           </div>
+
           <a className="sb-link" href="#la-s-rank">
             Rank
           </a>
+
+          <a className="sb-link" href="#la-s-subspaces">
+            Fundamental Subspaces
+          </a>
+
+          <a className="sb-link" href="#la-s-applications">
+            Real-Life Uses
+          </a>
+
           <a className="sb-link" href="#la-s-proc2">
             Method
           </a>
+
           <a className="sb-link" href="#la-s-ex-p2">
             Examples
           </a>
+
           <a className="sb-link" href="#quiz-la-s-rank">
             Quiz
           </a>
+
           <a className="sb-link" href="#la-s-geo">
             Geometry
           </a>
+
           <a className="sb-link" href="#quiz-la-s-geo">
             Quiz
           </a>
+
           <a className="sb-link" href="#la-cert-systems-p2">
             Eight examples
           </a>
@@ -141,6 +156,154 @@ function SystemsGuide({ part = 1 }) {
               }
             </RealLifeUse>
           </section>
+                              <section className="section" id="la-s-subspaces">
+            <div className="sec-badge">Module H · Fundamental Subspaces</div>
+            <h2 className="sec-title">The Four Fundamental Subspaces</h2>
+
+            <TheoryBox title="One matrix, four important subspaces">
+              <p>
+                {
+                  "Let $A$ be an $m\\times n$ matrix with rank $r$. Associated with $A$ are four fundamental subspaces: the column space $\\mathrm{Col}(A)$, row space $\\mathrm{Row}(A)$, null space $\\mathrm{Nul}(A)$, and left null space $\\mathrm{Nul}(A^T)$. Together they describe the input directions, output directions, and directions that are lost by the linear transformation represented by $A$."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoryBox title="Column space">
+              <p>
+                {
+                  "$\\mathrm{Col}(A)$ is the span of the columns of $A$. It is a subspace of $\\mathbb{R}^m$ and contains every vector that can be produced in the form $Ax$. Therefore, the system $Ax=b$ is consistent exactly when $b\\in\\mathrm{Col}(A)$."
+                }
+              </p>
+              <p>
+                {
+                  "To find a basis for $\\mathrm{Col}(A)$, row-reduce $A$ to locate the pivot columns, but take the corresponding columns from the original matrix $A$, not from its RREF."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoryBox title="Row space">
+              <p>
+                {
+                  "$\\mathrm{Row}(A)$ is the span of the row vectors of $A$ and is a subspace of $\\mathbb{R}^n$. Elementary row operations do not change the row space, so the nonzero rows of an echelon form or RREF of $A$ provide a convenient basis for $\\mathrm{Row}(A)$."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoryBox title="Null space">
+              <p>
+                {
+                  "$\\mathrm{Nul}(A)$ is the set of all vectors $x\\in\\mathbb{R}^n$ satisfying $Ax=0$. It contains the input directions that the transformation sends to the zero vector. Free variables in the homogeneous system determine a basis for the null space."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoryBox title="Left null space">
+              <p>
+                {
+                  "$\\mathrm{Nul}(A^T)$ is called the left null space of $A$. It consists of all vectors $y\\in\\mathbb{R}^m$ satisfying $A^T y=0$. Equivalently, these vectors are orthogonal to every column of $A$."
+                }
+              </p>
+              <p>
+                {
+                  "The left null space is important in consistency, orthogonality, least-squares problems, and the geometry of linear transformations."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoremBox title="Dimensions of the four fundamental subspaces">
+              <p>
+                {
+                  "If $A$ is an $m\\times n$ matrix with $\\mathrm{rank}(A)=r$, then:"
+                }
+              </p>
+
+              <ul>
+                <li>{"$\\dim\\mathrm{Col}(A)=r$"}</li>
+                <li>{"$\\dim\\mathrm{Row}(A)=r$"}</li>
+                <li>{"$\\dim\\mathrm{Nul}(A)=n-r$"}</li>
+                <li>{"$\\dim\\mathrm{Nul}(A^T)=m-r$"}</li>
+              </ul>
+
+              <p>
+                {
+                  "Thus the column space and row space have the same dimension, while the null space and left null space account for the remaining dimensions in their respective ambient spaces."
+                }
+              </p>
+            </TheoremBox>
+
+            <TheoremBox title="Orthogonal complement relationships">
+              <p>
+                {
+                  "The four subspaces occur in orthogonal pairs: $\\mathrm{Row}(A)^\\perp=\\mathrm{Nul}(A)$ and $\\mathrm{Col}(A)^\\perp=\\mathrm{Nul}(A^T)$. This means every vector in the null space is orthogonal to every row of $A$, while every vector in the left null space is orthogonal to every column of $A$."
+                }
+              </p>
+            </TheoremBox>
+
+            <PracticalTheory title="How to find all four subspaces">
+              <p>
+                {
+                  "Row-reduce $A$ once and use the result efficiently. Pivot columns identify a basis for the column space using the corresponding original columns. Nonzero rows of the echelon form give a basis for the row space. Solve $Ax=0$ to obtain the null space, and solve $A^T y=0$ to obtain the left null space."
+                }
+              </p>
+            </PracticalTheory>
+
+            <RealLifeUse>
+              {
+                "In engineering, the four fundamental subspaces reveal which inputs produce observable outputs, which inputs have no effect, which output directions are achievable, and which measurement directions are incompatible with the system. These ideas appear in circuit models, control systems, signal processing, estimation, and least-squares analysis."
+              }
+                        </RealLifeUse>
+          </section>
+
+          <Divider />
+
+          <section className="section" id="la-s-applications">
+            <div className="sec-badge">Applications</div>
+            <h2 className="sec-title">
+              Real-Life Use of the Four Fundamental Subspaces
+            </h2>
+
+            <RealLifeUse>
+              {
+                "The four fundamental subspaces are useful for understanding what a real engineering system can produce, which inputs have no observable effect, which constraints contain useful information, and when measurements are incompatible with a mathematical model."
+              }
+            </RealLifeUse>
+
+            <TheoryBox title="Engineering interpretation">
+              <p>
+                {
+                  "$\\mathrm{Col}(A)$ represents the outputs that a system can actually produce. In control systems, circuits, and signal-processing models, it describes the achievable response space."
+                }
+              </p>
+
+              <p>
+                {
+                  "$\\mathrm{Row}(A)$ represents the independent information or constraints contained in the system equations. Dependent rows represent redundant equations or measurements."
+                }
+              </p>
+
+              <p>
+                {
+                  "$\\mathrm{Nul}(A)$ represents input directions that produce zero output. In engineering, these may correspond to hidden motions, ineffective actuator combinations, or signals that a measurement system cannot detect."
+                }
+              </p>
+
+              <p>
+                {
+                  "$\\mathrm{Nul}(A^T)$ identifies directions orthogonal to all achievable outputs. It is useful for detecting inconsistent measurements and understanding residual error in least-squares estimation."
+                }
+              </p>
+            </TheoryBox>
+
+            <PracticalTheory title="Where these ideas appear">
+              <p>
+                {
+                  "The four fundamental subspaces appear in electrical circuit analysis, control systems, robotics, signal processing, communication systems, sensor estimation, structural analysis, machine learning, and least-squares data fitting."
+                }
+              </p>
+            </PracticalTheory>
+          </section>
+
+          <Divider />
 
           <section className="section" id="la-s-proc2">
             <div className="sec-badge">Procedure</div>
@@ -188,7 +351,7 @@ function SystemsGuide({ part = 1 }) {
 
           <section className="section" id="la-s-ex-p2">
             <div className="sec-badge">Large examples</div>
-            <h2 className="sec-title">Six detailed worked examples</h2>
+            <h2 className="sec-title">Eight detailed worked examples</h2>
 
             <WorkedExample
               number={1}
@@ -375,6 +538,79 @@ function SystemsGuide({ part = 1 }) {
               }
               check={
                 "$b=3(1,2,1)^T$ lies in $\\mathrm{Col}(A)$ since column 3 is not needed; ranks match."
+              }
+            />
+            <WorkedExample
+              number={7}
+              title="Find all four fundamental subspaces"
+              setup={
+                "$A=\\begin{pmatrix}1&2\\\\2&4\\\\3&6\\end{pmatrix}$. Find bases for $\\mathrm{Col}(A)$, $\\mathrm{Row}(A)$, $\\mathrm{Nul}(A)$, and $\\mathrm{Nul}(A^T)$."
+              }
+              steps={[
+                {
+                  text: "The second column is twice the first, so there is only one independent column and $\\mathrm{rank}(A)=1$.",
+                  why: "Rank determines the dimensions of all four fundamental subspaces.",
+                },
+                {
+                  text: "A basis for $\\mathrm{Col}(A)$ is $\\left\\{\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\right\\}$.",
+                  why: "Use the original pivot column when forming a basis for the column space.",
+                },
+                {
+                  text: "All rows are multiples of $(1,2)$, so a basis for $\\mathrm{Row}(A)$ is $\\{(1,2)\\}$.",
+                  why: "The row space has the same dimension as the column space.",
+                },
+                {
+                  text: "Solve $Ax=0$. The equation $x_1+2x_2=0$ gives $x_1=-2x_2$.",
+                  why: "The homogeneous solution set is the null space.",
+                },
+                {
+                  text: "Let $x_2=t$. Then $x=t(-2,1)$, so a basis for $\\mathrm{Nul}(A)$ is $\\{(-2,1)\\}$.",
+                },
+                {
+                  text: "For the left null space solve $A^T y=0$, giving $y_1+2y_2+3y_3=0$.",
+                  why: "The left null space is the null space of the transpose.",
+                },
+                {
+                  text: "Let $y_2=s$ and $y_3=t$. Then $y=s(-2,1,0)+t(-3,0,1)$.",
+                },
+              ]}
+              result={
+                "$\\mathrm{Col}(A)=\\mathrm{Span}\\{(1,2,3)^T\\}$, $\\mathrm{Row}(A)=\\mathrm{Span}\\{(1,2)\\}$, $\\mathrm{Nul}(A)=\\mathrm{Span}\\{(-2,1)\\}$, and $\\mathrm{Nul}(A^T)=\\mathrm{Span}\\{(-2,1,0),(-3,0,1)\\}$."
+              }
+              check={
+                "The dimensions are $1,1,1,2$. Since $m=3$, $n=2$, and $r=1$, this matches $r,r,n-r,m-r$."
+              }
+            />
+
+            <WorkedExample
+              number={8}
+              title="Use the left null space to test consistency"
+              setup={
+                "Let $A=\\begin{pmatrix}1&2\\\\2&4\\\\3&6\\end{pmatrix}$ and $b=\\begin{pmatrix}1\\\\2\\\\4\\end{pmatrix}$. Determine whether $Ax=b$ is consistent using the left null space."
+              }
+              steps={[
+                {
+                  text: "From Example 7, one left-null vector is $y=(-3,0,1)$.",
+                  why: "$y\\in\\mathrm{Nul}(A^T)$ means $y^T A=0$.",
+                },
+                {
+                  text: "Compute $y^T b=(-3)(1)+0(2)+1(4)=1$.",
+                },
+                {
+                  text: "Because $y^T b\\neq 0$, $b$ is not orthogonal to the left null space.",
+                  why: "Every vector in $\\mathrm{Col}(A)$ must be orthogonal to every vector in $\\mathrm{Nul}(A^T)$.",
+                },
+                {
+                  text: "Therefore $b\\notin\\mathrm{Col}(A)$.",
+                  why: "$Ax=b$ is solvable exactly when $b$ belongs to the column space.",
+                },
+                {
+                  text: "Hence the system $Ax=b$ is inconsistent.",
+                },
+              ]}
+              result={"The system has no solution."}
+              check={
+                "Every vector in $\\mathrm{Col}(A)$ is a multiple of $(1,2,3)^T$, but $(1,2,4)^T$ is not."
               }
             />
           </section>
