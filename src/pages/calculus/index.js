@@ -5,4 +5,5 @@ export { default as ConicsGuide } from "./ConicsGuide";
 export { default as DifferentiationGuide } from "./DifferentiationGuide";
 export { default as IntegrationGuide } from "./IntegrationGuide";
 export { default as SequencesSeriesGuide } from "./SequencesSeriesGuide";
+export { default as CalculusOverview } from "./CalculusOverview";
 export * from "./CalcBlocks";

@@ -27,6 +27,8 @@ function DescriptiveStatsGuide({ part = 1 }) {
           <a className="sb-link" href="#quiz-ps-d-spread">Quiz</a>
           <a className="sb-link" href="#ps-d-plots">Plots</a>
           <a className="sb-link" href="#quiz-ps-d-plots">Quiz</a>
+          <a className="sb-link" href="#ps-d-sampling">Sampling distributions</a>
+          <a className="sb-link" href="#ps-d-estimation">Point estimation &amp; MLE</a>
           <a className="sb-link" href="#ps-cert-descriptive-p2">Eight examples</a>
         </nav>
         <main className="main">
@@ -194,6 +196,79 @@ function DescriptiveStatsGuide({ part = 1 }) {
             section="ps-d-plots"
             questions={PS_D_PLOTS_QUIZ}
           />
+
+          <Divider />
+          <section className="section" id="ps-d-sampling">
+            <div className="sec-badge">Section 3.5</div>
+            <h2 className="sec-title">Sampling Distributions: $Z$, $t$, $\chi^2$, and $F$</h2>
+            <TheoryBox title="Distributions of sample statistics">
+              <p>
+                {"A statistic calculated from a random sample (such as $\\bar{X}$ or $s^2$) is itself a random variable with its own probability distribution, called a sampling distribution. Standard error (SE) is the standard deviation of this sampling distribution."}
+              </p>
+              <p>
+                {"For sample mean $\\bar{X}$ from a population with mean $\\mu$ and variance $\\sigma^2$, the standard error is $\\mathrm{SE}(\\bar{X}) = \\frac{\\sigma}{\\sqrt{n}}$. If $\\sigma$ is known, $Z = \\frac{\\bar{X}-\\mu}{\\sigma/\\sqrt{n}} \\sim N(0,1)$."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="The three fundamental inferential distributions">
+              <p>
+                {"1. Student's $t$-distribution: When population $\\sigma$ is unknown and estimated by sample SD $s$, the standardized statistic follows Student's $t$ with $\\nu = n-1$ degrees of freedom:"}
+              </p>
+              <p>
+                {"$$t = \\frac{\\bar{X} - \\mu}{s / \\sqrt{n}} \\sim t_{\\nu}$$"}
+              </p>
+              <p>
+                {"$t$ is bell-shaped and symmetric with mean 0, but possesses heavier tails than $N(0,1)$ to reflect sampling uncertainty in $s$. As $\\nu \\to \\infty$, $t_{\\nu} \\xrightarrow{d} N(0,1)$."}
+              </p>
+              <p>
+                {"2. Chi-Square ($\\chi^2$) distribution: The sum of $\\nu$ independent squared standard normals follows a Chi-Square distribution with $\\nu$ degrees of freedom. For a normal sample:"}
+              </p>
+              <p>
+                {"$$V = \\frac{(n-1)s^2}{\\sigma^2} \\sim \\chi^2_{n-1}, \\quad E[V] = \\nu, \\quad \\mathrm{Var}(V) = 2\\nu$$"}
+              </p>
+              <p>
+                {"3. Snedecor's $F$-distribution: The ratio of two independent chi-square variates divided by their respective degrees of freedom follows an $F$-distribution: $F = \\frac{U_1/\\nu_1}{U_2/\\nu_2} \\sim F_{\\nu_1, \\nu_2}$. For comparing two independent variances: $F = \\frac{s_1^2/\\sigma_1^2}{s_2^2/\\sigma_2^2}$."}
+              </p>
+            </TheoremBox>
+            <PracticalTheory title="Diagnostic mapping for exams">
+              <p>
+                {"Estimating mean with known $\\sigma$ → $Z$-table. Estimating mean with unknown $\\sigma$ from sample → $t$-table (df $= n-1$). Testing population variance or independence in contingency tables → $\\chi^2$-table. Comparing multiple group means in ANOVA or comparing two variances → $F$-table."}
+              </p>
+            </PracticalTheory>
+          </section>
+
+          <Divider />
+          <section className="section" id="ps-d-estimation">
+            <div className="sec-badge">Section 3.6</div>
+            <h2 className="sec-title">Point Estimation: MLE, Method of Moments, Bias &amp; MSE</h2>
+            <TheoryBox title="Constructing estimators from data">
+              <p>
+                {"A point estimator $\\hat{\\theta} = g(X_1, \\dots, X_n)$ is a rule that assigns a numerical estimate to an unknown population parameter $\\theta$ based on sample data."}
+              </p>
+              <p>
+                {"1. Maximum Likelihood Estimation (MLE): The likelihood of observing the specific sample $x_1, \\dots, x_n$ is $L(\\theta) = \\prod_{i=1}^n f(x_i; \\theta)$. Because the natural logarithm is strictly increasing, maximizing the log-likelihood $\\ell(\\theta) = \\ln L(\\theta) = \\sum_{i=1}^n \\ln f(x_i; \\theta)$ yields identical parameter estimates. We solve the score equation $\\frac{d\\ell}{d\\theta} = 0$ and verify $\\frac{d^2\\ell}{d\\theta^2} < 0$."}
+              </p>
+              <p>
+                {"2. Method of Moments (MoM): Equates sample raw moments $m_k = \\frac{1}{n}\\sum_{i=1}^n X_i^k$ to theoretical population moments $\\mu_k = E[X^k; \\theta]$ and solves the resulting algebraic system for $\\theta$."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Estimator properties: Bias, Consistency &amp; MSE">
+              <p>
+                {"Bias: $\\mathrm{Bias}(\\hat{\\theta}) = E[\\hat{\\theta}] - \\theta$. An estimator is unbiased if $E[\\hat{\\theta}] = \\theta$. Sample mean is unbiased: $E[\\bar{X}] = \\mu$. Dividing by $n-1$ in $s^2 = \\frac{1}{n-1}\\sum(X_i-\\bar{X})^2$ corrects the degrees of freedom so that $E[s^2] = \\sigma^2$ (unbiased)."}
+              </p>
+              <p>
+                {"Mean Squared Error (MSE): $\\mathrm{MSE}(\\hat{\\theta}) = E[(\\hat{\\theta} - \\theta)^2] = \\mathrm{Var}(\\hat{\\theta}) + [\\mathrm{Bias}(\\hat{\\theta})]^2$. This fundamental equation captures the bias-variance trade-off in modern predictive modeling."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Solving an MLE problem step-by-step"
+              steps={[
+                { text: "Write the joint likelihood function: $L(\\theta) = f(x_1;\\theta) \\cdot f(x_2;\\theta) \\cdots f(x_n;\\theta)$." },
+                { text: "Take the natural logarithm: $\\ell(\\theta) = \\ln L(\\theta) = \\sum_{i=1}^n \\ln f(x_i; \\theta)$." },
+                { text: "Differentiate with respect to $\\theta$ and set equal to zero: $\\frac{d\\ell(\\theta)}{d\\theta} = 0$." },
+                { text: "Solve for $\\hat{\\theta}$ in terms of the sample values $x_i$ and check $\\frac{d^2\\ell}{d\\theta^2} < 0$ to confirm a local maximum." }
+              ]}
+            />
+          </section>
 
           <Divider />
           <PsCertificateBoost topic="descriptive" part={2} />

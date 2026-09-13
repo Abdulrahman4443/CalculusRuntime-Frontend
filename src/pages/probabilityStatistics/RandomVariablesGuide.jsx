@@ -28,6 +28,8 @@ function RandomVariablesGuide({ part = 1 }) {
           <a className="sb-link" href="#ps-rv-named">Named families</a>
           <a className="sb-link" href="#ps-rv-named-ex">Examples</a>
           <a className="sb-link" href="#quiz-ps-rv-named">Quiz</a>
+          <a className="sb-link" href="#ps-rv-joint">Joint &amp; Covariance</a>
+          <a className="sb-link" href="#ps-rv-clt">LLN &amp; CLT</a>
           <a className="sb-link" href="#ps-cert-randomvars-p2">Eight examples</a>
         </nav>
         <main className="main">
@@ -201,6 +203,66 @@ function RandomVariablesGuide({ part = 1 }) {
           />
 
           <Divider />
+          <section className="section" id="ps-rv-joint">
+            <div className="sec-badge">Section 2.5</div>
+            <h2 className="sec-title">Joint Distributions, Covariance &amp; Correlation</h2>
+            <TheoryBox title="Bivariate random vectors">
+              <p>
+                {"When two variables $X$ and $Y$ are observed simultaneously, their joint behavior is described by a joint PDF $f(x,y)$ (continuous) or joint PMF $p(x,y)$ (discrete). For continuous variables, normalization requires $\\int_{-\\infty}^\\infty \\int_{-\\infty}^\\infty f(x,y)\\,dx\\,dy = 1$, and probabilities correspond to volumes over 2D regions: $P((X,Y) \\in R) = \\iint_R f(x,y)\\,dx\\,dy$."}
+              </p>
+              <p>
+                {"Marginal densities collapse out the other variable by integration: $f_X(x) = \\int_{-\\infty}^\\infty f(x,y)\\,dy$ and $f_Y(y) = \\int_{-\\infty}^\\infty f(x,y)\\,dx$. The conditional distribution of $Y$ given $X = x$ is $f_{Y\\mid X}(y\\mid x) = \\frac{f(x,y)}{f_X(x)}$ for $f_X(x) > 0$."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Independence, Covariance &amp; Correlation">
+              <p>
+                {"$X$ and $Y$ are independent if and only if $f(x,y) = f_X(x) f_Y(y)$ everywhere. When independent, $E[XY] = E[X]E[Y]$."}
+              </p>
+              <p>
+                {"Covariance measures joint linear variability: $\\mathrm{Cov}(X,Y) = E[(X-\\mu_X)(Y-\\mu_Y)] = E[XY] - E[X]E[Y]$. Pearson's correlation coefficient normalizes covariance: $\\rho = \\frac{\\mathrm{Cov}(X,Y)}{\\sigma_X \\sigma_Y} \\in [-1, 1]$. For linear combinations: $\\mathrm{Var}(aX + bY) = a^2 \\mathrm{Var}(X) + b^2 \\mathrm{Var}(Y) + 2ab\\,\\mathrm{Cov}(X,Y)$."}
+              </p>
+            </TheoremBox>
+            <ProcedureBox
+              title="Bivariate continuous workflow"
+              steps={[
+                { text: "Verify or solve the normalizing constant $c$ such that $\\iint f(x,y)\\,dx\\,dy = 1$." },
+                { text: "Find marginal densities $f_X(x)$ and $f_Y(y)$ by integrating over the support of the complementary variable." },
+                { text: "Test independence: check if $f(x,y) \\equiv f_X(x)f_Y(y)$ for all $(x,y)$ and verify the joint support is a rectangular Cartesian product." },
+                { text: "Compute $E[XY] = \\iint xy f(x,y)\\,dx\\,dy$ and evaluate $\\mathrm{Cov}(X,Y) = E[XY] - E[X]E[Y]$." }
+              ]}
+            />
+          </section>
+
+          <Divider />
+          <section className="section" id="ps-rv-clt">
+            <div className="sec-badge">Section 2.6</div>
+            <h2 className="sec-title">Law of Large Numbers &amp; Central Limit Theorem</h2>
+            <TheoryBox title="Asymptotic convergence of sample averages">
+              <p>
+                {"Let $X_1, X_2, \\dots, X_n$ be independent and identically distributed (i.i.d.) random variables with finite population mean $\\mu$ and variance $\\sigma^2$. The sample mean is $\\bar{X}_n = \\frac{1}{n}\\sum_{i=1}^n X_i$. Linearity guarantees $E[\\bar{X}_n] = \\mu$ and $\\mathrm{Var}(\\bar{X}_n) = \\frac{\\sigma^2}{n}$."}
+              </p>
+            </TheoryBox>
+            <TheoremBox title="Weak Law of Large Numbers (WLLN)">
+              <p>
+                {"By Chebyshev's inequality, $P(|\\bar{X}_n - \\mu| \\ge \\epsilon) \\le \\frac{\\mathrm{Var}(\\bar{X}_n)}{\\epsilon^2} = \\frac{\\sigma^2}{n\\epsilon^2} \\xrightarrow{n \\to \\infty} 0$. The sample mean converges in probability to the true population mean $\\mu$."}
+              </p>
+            </TheoremBox>
+            <TheoremBox title="The Central Limit Theorem (CLT)">
+              <p>
+                {"Regardless of the underlying population distribution (symmetric, skewed, continuous, or discrete), as $n \\to \\infty$, the standardized sample mean converges in distribution to the standard normal distribution:"}
+              </p>
+              <p>
+                {"$$Z_n = \\frac{\\bar{X}_n - \\mu}{\\sigma / \\sqrt{n}} = \\frac{\\sum_{i=1}^n X_i - n\\mu}{\\sigma\\sqrt{n}} \\xrightarrow{d} N(0, 1)$$"}
+              </p>
+            </TheoremBox>
+            <PracticalTheory title="Why CLT is the engine of statistics">
+              <p>
+                {"In polling, scientific testing, and engineering, you rarely know the exact distribution of individual outcomes. The CLT proves that whenever you average $n \\ge 30$ independent measurements, the error distribution is Gaussian, enabling universal Z-tests and confidence intervals."}
+              </p>
+            </PracticalTheory>
+          </section>
+
+          <Divider />
           <PsCertificateBoost topic="randomvars" part={2} />
 
           <section className="section" id="summary">
@@ -224,6 +286,7 @@ function RandomVariablesGuide({ part = 1 }) {
         <a className="sb-link" href="#quiz-ps-rv-intro">Quiz</a>
         <a className="sb-link" href="#ps-rv-moments">Mean &amp; variance</a>
         <a className="sb-link" href="#quiz-ps-rv-moments">Quiz</a>
+        <a className="sb-link" href="#ps-rv-mgf">MGF &amp; Moments</a>
         <a className="sb-link" href="#ps-cert-randomvars-p1">Eight examples</a>
       </nav>
       <main className="main">
@@ -351,6 +414,45 @@ function RandomVariablesGuide({ part = 1 }) {
           section="ps-rv-moments"
           questions={PS_RV_MOMENTS_QUIZ}
         />
+
+        <Divider />
+        <section className="section" id="ps-rv-mgf">
+          <div className="sec-badge">Section 2.2B</div>
+          <h2 className="sec-title">Moment Generating Functions (MGFs)</h2>
+          <TheoryBox title="Definition &amp; moment generation">
+            <p>
+              {"The Moment Generating Function of a random variable $X$ is defined as $M_X(t) = E[e^{tX}]$, provided this expectation exists in an open neighborhood around $t = 0$. Using the Maclaurin series for $e^{tX}$:"}
+            </p>
+            <p>
+              {"$$M_X(t) = E\\left[1 + tX + \\frac{t^2 X^2}{2!} + \\frac{t^3 X^3}{3!} + \\dots\\right] = 1 + t E[X] + \\frac{t^2}{2!} E[X^2] + \\frac{t^3}{3!} E[X^3] + \\dots$$"}
+            </p>
+            <p>
+              {"Differentiating $k$ times and evaluating at $t = 0$ yields the $k$-th raw moment: $E[X^k] = M_X^{(k)}(0) = \\left.\\frac{d^k M_X(t)}{dt^k}\\right|_{t=0}$."}
+            </p>
+          </TheoryBox>
+          <TheoremBox title="Uniqueness &amp; Sum of Independent Variables">
+            <p>
+              {"Uniqueness Theorem: If two random variables have identical MGFs in an open interval around $t = 0$, they possess identical cumulative distribution functions."}
+            </p>
+            <p>
+              {"Sums of Independent Variables: If $X_1, X_2, \\dots, X_n$ are independent with MGFs $M_{X_i}(t)$, then $M_{\\sum X_i}(t) = \\prod_{i=1}^n M_{X_i}(t)$. This convolution property turns complex distribution integrations into simple algebraic multiplication."}
+            </p>
+          </TheoremBox>
+          <PracticalTheory title="Catalog of common MGFs">
+            <p>
+              {"Bernoulli$(p)$: $M_X(t) = (1-p) + pe^t$. Binomial$(n,p)$: $M_X(t) = (1 - p + pe^t)^n$. Poisson$(\\lambda)$: $M_X(t) = e^{\\lambda(e^t - 1)}$. Exponential$(\\lambda)$: $M_X(t) = \\frac{\\lambda}{\\lambda - t}$ for $t < \\lambda$. Normal$(\\mu, \\sigma^2)$: $M_X(t) = e^{\\mu t + \\frac{1}{2}\\sigma^2 t^2}$."}
+            </p>
+          </PracticalTheory>
+          <ProcedureBox
+            title="Moment derivation algorithm"
+            steps={[
+              { text: "Write the distribution's MGF $M_X(t)$ or derive it via $E[e^{tX}]$." },
+              { text: "Compute the first derivative $M_X'(t)$ and evaluate at $t = 0$ to get the mean $\\mu = E[X]$." },
+              { text: "Compute the second derivative $M_X''(t)$ and evaluate at $t = 0$ to get $E[X^2]$." },
+              { text: "Find the variance using $\\mathrm{Var}(X) = M_X''(0) - [M_X'(0)]^2$." }
+            ]}
+          />
+        </section>
 
         <Divider />
         <PsCertificateBoost topic="randomvars" part={1} />

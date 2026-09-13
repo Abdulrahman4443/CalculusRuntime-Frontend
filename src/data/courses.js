@@ -31,6 +31,15 @@ export const COURSES = [
     },
     modules: [
       {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/calculus/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">∫ f(x) dx Roadmap</span>,
+        start: true,
+      },
+      {
         title: "Limits & Continuity",
         description: "Limits, path tests, continuity — with certificate-depth theory and worked examples.",
         path: "/limits-continuity/1",
@@ -176,6 +185,15 @@ export const COURSES = [
       prerequisites: "Single-variable calculus (limits, derivatives, integrals) and basic linear algebra.",
     },
     modules: [
+      {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/multivariable-calculus/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">∇ &amp; ∭ Roadmap</span>,
+        start: true,
+      },
       {
         title: "Partial Derivatives",
         description: "Limits, gradients, tangent planes, differentials, and optimization.",
@@ -410,6 +428,15 @@ export const COURSES = [
       prerequisites: "Basic algebra and single-variable calculus.",
     },
     modules: [
+      {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/probability-statistics/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">P(A|B) &amp; N(μ,σ²) Roadmap</span>,
+        start: true,
+      },
       {
         title: "Probability Basics",
         description: "Sample spaces, axioms, conditional probability, and Bayes' Theorem.",

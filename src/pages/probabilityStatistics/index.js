@@ -7,4 +7,5 @@ export { default as RandomVariablesGuide } from "./RandomVariablesGuide";
 export { default as RegressionGuide } from "./RegressionGuide";
 export { default as PsTopicPart } from "./PsTopicPart";
 export { default as PsCertificateBoost } from "./PsCertificateBoost";
+export { default as ProbabilityStatisticsOverview } from "./ProbabilityStatisticsOverview";
 export * from "./probabilityStatisticsData";
