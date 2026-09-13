@@ -22,6 +22,7 @@ const TOPIC_PROGRESS_KEYS = {
   "divergence-curl":     ["divergence-1", "divergence-2"],
   "stokes-theorem":      ["stokes-1", "stokes-2"],
   "la-equations":        ["la-eq-1", "la-eq-2"],
+  "la-subspaces":        ["la-sys-2", "la-vec-2"],
   "la-vectors":          ["la-vec-1", "la-vec-2"],
   "la-matrices":         ["la-mat-1", "la-mat-2"],
   "la-systems":          ["la-sys-1", "la-sys-2"],

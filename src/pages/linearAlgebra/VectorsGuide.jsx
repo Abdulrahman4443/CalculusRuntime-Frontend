@@ -64,6 +64,99 @@ function VectorsGuide({ part = 1 }) {
             <RealLifeUse>{"Computer graphics rotates and scales meshes with vectors and bases; GPS and robotics express positions in local frames; data science treats each feature column as a vector and studies the subspace those features span."}</RealLifeUse>
           </section>
 
+          <Divider />
+
+          <section className="section" id="la-v-subspaces">
+            <div className="sec-badge">Module H · Subspaces</div>
+            <h2 className="sec-title">Subspaces and the Subspace Test</h2>
+
+            <TheoryBox title="What is a subspace?">
+              <p>
+                {
+                  "A subset $W$ of a vector space $V$ is called a subspace when $W$ is itself a vector space under the same vector addition and scalar multiplication used in $V$. In $\\mathbb{R}^n$, a subspace must pass through the origin and must remain closed when its vectors are added or multiplied by scalars."
+                }
+              </p>
+              <p>
+                {
+                  "Examples include the zero subspace $\\{0\\}$, lines through the origin, planes through the origin, $\\mathbb{R}^n$ itself, column spaces, row spaces, and null spaces. A line or plane that does not pass through the origin cannot be a subspace of $\\mathbb{R}^n$."
+                }
+              </p>
+            </TheoryBox>
+
+            <TheoremBox title="The Subspace Test">
+              <p>
+                {
+                  "A nonempty subset $W\\subseteq V$ is a subspace of $V$ if it satisfies the following conditions:"
+                }
+              </p>
+
+              <ol>
+                <li>
+                  {"The zero vector belongs to the set: $0\\in W$."}
+                </li>
+
+                <li>
+                  {
+                    "Closure under addition: if $u,v\\in W$, then $u+v\\in W$."
+                  }
+                </li>
+
+                <li>
+                  {
+                    "Closure under scalar multiplication: if $u\\in W$ and $c\\in\\mathbb{R}$, then $cu\\in W$."
+                  }
+                </li>
+              </ol>
+
+              <p>
+                {
+                  "Equivalently, after confirming that $W$ is nonempty, one may use the combined condition: for every $u,v\\in W$ and scalars $a,b$, the vector $au+bv$ must also belong to $W$."
+                }
+              </p>
+            </TheoremBox>
+
+            <PracticalTheory title="How to recognize subspaces quickly">
+              <p>
+                {
+                  "Start with the zero-vector test because it can reject many sets immediately. If the set passes, test closure using general vectors rather than isolated numerical examples. Sets defined by homogeneous linear equations such as $Ax=0$ naturally form subspaces because linear combinations of solutions remain solutions. By contrast, equations such as $Ax=b$ with $b\\neq0$ generally describe translated sets that do not contain the origin."
+                }
+              </p>
+            </PracticalTheory>
+
+            <ProcedureBox
+              title="Checklist: deciding whether a set is a subspace"
+              steps={[
+                {
+                  text: "Identify the ambient vector space and the proposed subset $W$.",
+                  why: "The subspace must use the same addition and scalar multiplication as the larger vector space."
+                },
+                {
+                  text: "Check whether the zero vector belongs to $W$.",
+                  why: "Every vector space must contain an additive identity."
+                },
+                {
+                  text: "Take arbitrary $u,v\\in W$ and verify that $u+v\\in W$.",
+                  why: "This establishes closure under vector addition."
+                },
+                {
+                  text: "Take arbitrary $u\\in W$ and scalar $c$ and verify that $cu\\in W$.",
+                  why: "This establishes closure under scalar multiplication."
+                },
+                {
+                  text: "If all three conditions hold, conclude that $W$ is a subspace; if even one fails, it is not.",
+                  why: "A subspace must satisfy every vector-space closure requirement."
+                }
+              ]}
+            />
+            <RealLifeUse>
+              {
+                "Subspaces organize the meaningful directions available in a linear system. In engineering and data analysis, solution spaces, null spaces, signal spaces, and feature spaces are all modeled as subspaces because linear combinations of valid directions must remain valid."
+              }
+            </RealLifeUse>
+          </section>
+
+          <Divider />
+
           <section className="section" id="la-v-proc2">
             <div className="sec-badge">Procedure</div>
             <h2 className="sec-title">How to work with span and bases</h2>
@@ -169,6 +262,70 @@ function VectorsGuide({ part = 1 }) {
               ]}
               result={"Dimension of the span of the columns is $2$."}
               check={"Rank–nullity: $n=4$, rank $2$, so nullity $2$ as well."}
+            />
+             <WorkedExample
+              number={7}
+              title="Verify that a plane through the origin is a subspace"
+              setup={
+                "Let $W=\\{(x,y,z)\\in\\mathbb{R}^3:x+2y-z=0\\}$. Determine whether $W$ is a subspace of $\\mathbb{R}^3$."
+              }
+              steps={[
+                {
+                  text: "Check the zero vector: $0+2(0)-0=0$, so $(0,0,0)\\in W$.",
+                  why: "A subspace must contain the zero vector."
+                },
+                {
+                  text: "Let $u=(x_1,y_1,z_1)$ and $v=(x_2,y_2,z_2)$ belong to $W$.",
+                  why: "Use arbitrary vectors so the proof applies to the whole set."
+                },
+                {
+                  text: "Because $u,v\\in W$, we have $x_1+2y_1-z_1=0$ and $x_2+2y_2-z_2=0$."
+                },
+                {
+                  text: "For $u+v$, the defining expression becomes $(x_1+x_2)+2(y_1+y_2)-(z_1+z_2)=0+0=0$.",
+                  why: "This proves closure under addition."
+                },
+                {
+                  text: "For any scalar $c$, $cx_1+2cy_1-cz_1=c(x_1+2y_1-z_1)=0$.",
+                  why: "This proves closure under scalar multiplication."
+                }
+              ]}
+              result={
+                "$W$ satisfies all three conditions, so it is a subspace of $\\mathbb{R}^3$."
+              }
+              check={
+                "The equation is homogeneous, so geometrically $W$ is a plane passing through the origin."
+              }
+            />
+
+            <WorkedExample
+              number={8}
+              title="A plane that is not a subspace"
+              setup={
+                "Let $S=\\{(x,y,z)\\in\\mathbb{R}^3:x+2y-z=1\\}$. Is $S$ a subspace?"
+              }
+              steps={[
+                {
+                  text: "Test the zero vector first.",
+                  why: "A failed zero-vector test immediately disproves the subspace property."
+                },
+                {
+                  text: "Substituting $(0,0,0)$ gives $0+2(0)-0=0$."
+                },
+                {
+                  text: "But vectors in $S$ must satisfy $x+2y-z=1$, so the zero vector is not in $S$."
+                },
+                {
+                  text: "Therefore there is no need to test the remaining closure properties.",
+                  why: "Failing any one subspace condition is sufficient."
+                }
+              ]}
+              result={
+                "$S$ is not a subspace of $\\mathbb{R}^3$."
+              }
+              check={
+                "Geometrically, this plane is shifted away from the origin."
+              }
             />
           </section>
 
