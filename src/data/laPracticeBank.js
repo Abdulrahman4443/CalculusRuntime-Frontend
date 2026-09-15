@@ -1,4 +1,4 @@
-/** Linear Algebra Practice Arena — 15 Easy / 15 Medium / 15 Hard per topic (Obj 8 / Dev 3). */
+/** Linear Algebra Practice Arena — core banks plus curriculum-aligned extension questions (Obj 8 / Dev 3). */
 import { LA_NEW_TOPICS_PRACTICE_BANK } from "./laNewTopicsPracticeBank";
 function pack(startId, topic, difficulty, rows) {
   return rows.map(([question, options, correctAnswer, explanation], i) => ({
@@ -226,6 +226,22 @@ const eigen = [
     ["Normal matrices are unitarily", ["diagonalizable", "never diagonalizable", "only nilpotent"], 0, "A*A=AA*."],
     ["Structured eigen (palindromic, Hamiltonian) need", ["structure-preserving algorithms", "dense QR only always", "power method only"], 0, "Specialized numerics."],
   ]),
+  ...pack(995, "Eigenvalues & Eigenvectors", "Easy", [
+    ["For A=diag(4,4,1), the algebraic multiplicity of λ=4 is", ["1", "2", "3"], 1, "The characteristic polynomial contains (4−λ)², so λ=4 is a double root."],
+    ["Geometric multiplicity of an eigenvalue λ is", ["the trace of A", "the multiplicity of λ as a polynomial root", "dim Nul(A−λI)"], 2, "Geometric multiplicity is the dimension of the eigenspace."],
+    ["A real symmetric matrix always has", ["an orthonormal eigenbasis", "only positive eigenvalues", "distinct eigenvalues"], 0, "The Spectral Theorem gives an orthonormal basis of eigenvectors; repeated or negative eigenvalues are allowed."],
+  ]),
+  ...pack(998, "Eigenvalues & Eigenvectors", "Medium", [
+    ["If the characteristic polynomial splits, a matrix is diagonalizable iff", ["det(A)=1", "GM(λ)=AM(λ) for every eigenvalue", "all eigenvalues are nonzero"], 1, "Matching multiplicities provides exactly n independent eigenvectors."],
+    ["For real symmetric A with orthonormal eigenvectors qᵢ, spectral decomposition is", ["A=Σ λᵢ qᵢqᵢᵀ", "A=Σ qᵢqᵢᵀ", "A=Σ λᵢ² qᵢqᵢᵀ"], 0, "Each λᵢ weights the orthogonal projector qᵢqᵢᵀ."],
+    ["If A=QΛQᵀ is a real symmetric diagonalization, then Aᵏ equals", ["QᵏΛQᵀ", "Λᵏ only", "QΛᵏQᵀ"], 2, "Orthogonality gives Q⁻¹=Qᵀ, so powers act on Λ."],
+  ]),
+  ...pack(1001, "Eigenvalues & Eigenvectors", "Hard", [
+    ["A 4×4 matrix has a repeated eigenvalue λ with AM=3 and GM=2, while its remaining eigenvalue has GM=1. Then A is", ["not diagonalizable", "orthogonally diagonalizable", "guaranteed positive definite"], 0, "The eigenspaces supply only 2+1=3 independent eigenvectors, fewer than 4."],
+    ["For a unit eigenvector q, the matrix qqᵀ in a spectral decomposition is", ["a nilpotent matrix", "the orthogonal projector onto span{q}", "the inverse of A"], 1, "For unit q, qqᵀ projects vectors onto the line spanned by q."],
+    ["A real symmetric matrix has a repeated eigenvalue. Inside that eigenspace one may", ["never choose orthogonal eigenvectors", "choose only one eigenvector", "choose an orthonormal basis of eigenvectors"], 2, "Every eigenspace is a subspace, and an orthonormal basis can be chosen within it."],
+  ]),
+
 ];
 
 export const LA_PRACTICE_BANK = [...vectors, ...matrices, ...systems, ...eigen, ...LA_NEW_TOPICS_PRACTICE_BANK];
