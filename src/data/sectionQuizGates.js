@@ -28,8 +28,8 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   // Multivariable Calculus
   "partial-1": ["141", "142", "143"],
   "partial-2": ["144", "145", "146", "147"],
-  "vector-1": [],
-  "vector-2": [],
+  "vector-1": ["vector-p1"],
+  "vector-2": ["vector-p2"],
   "integrals-1": ["integrals-p1"],
   "integrals-2": ["integrals-p2"],
   "lagrange-1": ["lagrange-geometry", "lagrange-math", "lagrange-fields"],
