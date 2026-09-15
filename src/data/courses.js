@@ -217,6 +217,14 @@ export const COURSES = [
         logo: <span className="math-logo">∮<sub>∂S</sub> F·dr = ∬<sub>S</sub> (∇×F)·dS</span>,
       },
       {
+        title: "3D Analytical Geometry & Quadric Surfaces",
+        description: "Direction cosines, planes and lines in 3D, skew lines, and the six standard quadric surfaces.",
+        path: "/3d-geometry/1",
+        meta: "2 parts · MCQ practice",
+        icon: "⬡",
+        logo: <span className="math-logo">x²/a² + y²/b² − z²/c² = 1</span>,
+      },
+      {
         title: "Certification Quiz",
         description: "30 MCQs covering the full course. Score 80%+ to unlock your certificate.",
         path: "/quiz/multivariable-calculus",
