@@ -91,6 +91,18 @@ export const MV_INTEGRALS_P1_QUIZ = [
     answer: "B",
     explanation: "Inner: $e^2-e^y$; then $\\int_0^2(e^2-e^y)\\,dy=e^2+1$.",
   },
+  {
+    prompt: "To find the global maximum of $f(x,y)$ on a closed, bounded region, you must check:",
+    options: ["Only the interior critical points", "Interior critical points AND the boundary", "Only where $f_{xx} f_{yy} - f_{xy}^2 > 0$"],
+    answer: "B",
+    explanation: "By the Extreme Value Theorem, the absolute extrema can occur on the boundary, exactly like endpoints in single-variable calculus.",
+  },
+  {
+    prompt: "If $f(x,y) = x^2+y^2$ is evaluated on the domain $-1 \\le x \\le 1, -1 \\le y \\le 1$, the global maximum occurs at:",
+    options: ["$(0,0)$", "The four corners $(\\pm 1, \\pm 1)$", "The midpoints of the edges"],
+    answer: "B",
+    explanation: "The value is $1^2+1^2=2$ at the corners, which is higher than the interior minimum $0$ and edge midpoints $1$.",
+  }
 ];
 
 export const MV_INTEGRALS_P2_QUIZ = [
@@ -184,6 +196,18 @@ export const MV_INTEGRALS_P2_QUIZ = [
     answer: "A",
     explanation: "Same polar integral as $\\iint_D r^2\\,dA$ over the unit disk.",
   },
+  {
+    prompt: "For a general parametric surface $\\mathbf{r}(u,v)$, the flux integral $\\iint_S \\mathbf{F} \\cdot d\\mathbf{S}$ expands to:",
+    options: ["$\\iint_D \\mathbf{F} \\cdot (\\mathbf{r}_u \\times \\mathbf{r}_v) \\, dA$", "$\\iint_D (\\mathbf{F} \\times \\mathbf{r}_u) \\cdot \\mathbf{r}_v \\, dA$", "$\\iint_D |\\mathbf{r}_u \\times \\mathbf{r}_v| \\, dA$"],
+    answer: "A",
+    explanation: "The vector surface element is $d\\mathbf{S} = (\\mathbf{r}_u \\times \\mathbf{r}_v) \\, du \\, dv$.",
+  },
+  {
+    prompt: "When computing flux, if the cross product $\\mathbf{r}_u \\times \\mathbf{r}_v$ points opposite to the desired orientation, you should:",
+    options: ["Multiply the final integral by $-1$", "Square the integral", "Divide by the magnitude"],
+    answer: "A",
+    explanation: "Reversing the orientation of a surface merely negates the total flux across it.",
+  }
 ];
 
 export const MV_STOKES_F_QUIZ = [
