@@ -866,14 +866,29 @@ const formulaData = {
         note: "Roots of the n-th degree characteristic polynomial give the eigenvalues",
       },
       {
+        name: "Algebraic vs Geometric Multiplicity",
+        formula: "AM(λ) = root multiplicity;  GM(λ) = dim Nul(A - λI);  1 ≤ GM(λ) ≤ AM(λ)",
+        note: "AM counts repeated roots; GM counts independent eigenvector directions for that eigenvalue",
+      },
+      {
+        name: "Diagonalizability Criterion",
+        formula: "A diagonalizable ⇔ Σ GM(λ) = n ⇔ GM(λ) = AM(λ) for every λ (when the characteristic polynomial splits)",
+        note: "Distinct eigenvalues are sufficient; repeated eigenvalues require enough independent eigenvectors",
+      },
+      {
         name: "Matrix Diagonalization",
         formula: "A = P D P⁻¹  ⟹  Aᵏ = P Dᵏ P⁻¹",
         note: "P columns are linearly independent eigenvectors; D is diagonal matrix of eigenvalues",
       },
       {
         name: "Spectral Theorem for Symmetric Matrices",
-        formula: "If A = Aᵀ ⟹ A is orthogonally diagonalizable: A = Q D Qᵀ  (Qᵀ = Q⁻¹)",
+        formula: "If A = Aᵀ ⟹ A is orthogonally diagonalizable: A = Q Λ Qᵀ  (Qᵀ = Q⁻¹)",
         note: "All eigenvalues of real symmetric matrices are real; eigenvectors can be chosen orthonormal",
+      },
+      {
+        name: "Spectral Decomposition & Powers",
+        formula: "A = Σ λ_i q_i q_iᵀ;  Aᵏ = Q Λᵏ Qᵀ = Σ λ_iᵏ q_i q_iᵀ",
+        note: "For real symmetric A, q_i are orthonormal eigenvectors and q_i q_iᵀ are orthogonal projectors",
       },
       {
         name: "Trace and Determinant Invariants",
