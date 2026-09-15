@@ -509,7 +509,7 @@ function Geometry3DContent({ part = 1 }) {
 function Geometry3DGuide({ part = 1 }) {
   return (
     <StudyGuideShell
-      guideClass="geometry-3d-guide"
+      guideClass="partial-derivatives-guide"
       title={`3D Analytical Geometry & Quadric Surfaces — Part ${part}`}
     >
       <Geometry3DContent part={part} />
