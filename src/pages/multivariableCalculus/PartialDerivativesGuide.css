@@ -1050,6 +1050,15 @@
   color: #ffffff !important;
 }
 
+[data-theme="dark"] .opening-note-box {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .opening-note {
+  color: #334155 !important;
+}
+
 [data-theme="dark"] .lb-submit {
   background: #111827 !important;
   border-color: #1e293b !important;

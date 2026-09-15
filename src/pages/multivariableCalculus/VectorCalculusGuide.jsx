@@ -1,11 +1,1039 @@
 import React from "react";
 import StudyGuideShell from "../courses/StudyGuideShell";
+import { GuideMcqSection } from "../../components/GuideMcq";
+import {
+  MV_VECTOR_P1_QUIZ,
+  MV_VECTOR_P2_QUIZ
+} from "../../data/mvVectorQuizzes";
 
 const styles = ".vector-calculus-guide{ --ink: #0f172a; --cream: #ffffff; --gold: #0284c7; --gold-light: #38bdf8; --rust: #0284c7; --forest: #059669; --slate: #0f172a; --muted: #64748b; --rule: #e2e8f0; --card: #ffffff; --highlight: #f0f9ff; } .vector-calculus-guide *{ box-sizing: border-box; } .vector-calculus-guide{ scroll-behavior: smooth; font-family: Inter, -apple-system, sans-serif; background: #ffffff !important; color: var(--ink); line-height: 1.75; font-size: 16px; } .vector-calculus-guide header{ background: #0B1120 !important; color: #ffffff; padding: 3rem 2rem 2.5rem; text-align: center; position: relative; border-bottom: 1px solid rgba(255,255,255,0.08); } .vector-calculus-guide header h1{ font-family: Inter, sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 850; letter-spacing: -0.02em; color: #ffffff; } .vector-calculus-guide nav{ background: #0B1120 !important; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0.5rem 1.5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; position: sticky; top: var(--header-h, 70px); z-index: 100; } .vector-calculus-guide nav a{ color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.15s; } .vector-calculus-guide nav a:hover{ color: #ffffff; background: rgba(255,255,255,0.08); } .vector-calculus-guide main{ max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; } .vector-calculus-guide .section-title{ font-family: Inter, sans-serif; font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; } .vector-calculus-guide .def-box{ border-left: 4px solid #0284c7; background: #f8fafc; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-radius: 8px; border: 1px solid #e2e8f0; border-left-width: 4px; } .vector-calculus-guide .formula{ background: #0B1120; color: #38bdf8; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; padding: 1rem 1.4rem; margin: 1.2rem 0; border-radius: 8px; border-left: 3px solid #0284c7; } .vector-calculus-guide .example{ border: 1px solid #e2e8f0; background: #ffffff; border-radius: 10px; margin: 2rem 0; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); } .vector-calculus-guide .example-header{ background: #0B1120; color: #ffffff; padding: 0.75rem 1.4rem; font-size: 0.85rem; font-weight: 600; } .vector-calculus-guide .example-body{ padding: 1.4rem; } .vector-calculus-guide .step-num{ background: #0056D2; color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; } .vector-calculus-guide .answer-box{ background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 0.8rem 1.2rem; margin-top: 1rem; font-weight: 600; color: #166534; } .vector-calculus-guide .key-idea{ background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 8px; padding: 1.1rem 1.4rem; margin: 1.5rem 0; } .vector-calculus-guide .toc{ background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1.5rem 1.8rem; margin-bottom: 3.5rem; } .vector-calculus-guide #top-btn{ position: fixed; bottom: 2rem; right: 2rem; background: #0056D2; color: #ffffff; border: none; width: 42px; height: 42px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 14px rgba(0,86,210,0.3); }";
 
-const markup = "<!-- HEADER -->\n<header>\n  <div class=\"header-inner\">\n    <span class=\"uni-tag\">Multivariable Calculus Studio</span>\n    <h1>Multivariable <span>Calculus</span></h1>\n    <p class=\"subtitle\">Complete Study Guide</p>\n    <span class=\"course-badge\">Vector Calculus</span>\n  </div>\n</header>\n\n<!-- NAV -->\n<nav>\n  <a href=\"#ch13\">Vector Functions</a>\n  <a href=\"#ch16-1\">Line Integrals</a>\n  <a href=\"#ch16-3\">Path Independence</a>\n  <a href=\"#ch16-4\">Green's Theorem</a>\n  <a href=\"#ch16-5\">Surfaces & Area</a>\n</nav>\n\n<!-- MAIN -->\n<main>\n\n  <!-- BEGINNER INTRO BOX -->\n  <div class=\"def-box\" style=\"border-left-color:#0284c7;background:#f8fafc;margin-bottom:2.5rem;\">\n    <div class=\"def-title\" style=\"color:#0284c7;\">👋 Hey — Read This First!</div>\n    <p style=\"margin-bottom:0.7rem;\">This guide assumes you know <strong>absolutely nothing</strong> about advanced calculus. Every word, every symbol, every idea will be explained from scratch — in plain everyday language. No jargon without explanation. No formula without a story behind it.</p>\n    <p style=\"margin-bottom:0.7rem;\">Think of this as a friend sitting next to you explaining it at a coffee shop, not a professor lecturing at a chalkboard.</p>\n    <p style=\"margin:0;\">Whenever you see a scary-looking formula, <strong>slow down</strong>. Read the explanation above it first. The formula is just a shorthand for something you already understand.</p>\n  </div>\n\n  <!-- TABLE OF CONTENTS -->\n  <div class=\"toc\">\n    <h3>📖 Course Contents — Quick Navigation</h3>\n    <ol>\n      <li><a href=\"#ch13\">Vector-Valued Functions</a></li>\n      <li><a href=\"#ch16-1\">§16.1–16.2 · Line Integrals, Vector Fields, Work, Circulation & Flux</a></li>\n      <li><a href=\"#ch16-3\">§16.3 · Path Independence, Conservative Fields & Potential Functions</a></li>\n      <li><a href=\"#ch16-4\">§16.4 · Green's Theorem in the Plane</a></li>\n      <li><a href=\"#ch16-5\">§16.5 · Surfaces & Area</a></li>\n    </ol>\n  </div>\n\n  <!-- ═══════════════════════════════════════════════════ -->\n  <!-- CHAPTER 13 -->\n  <!-- ═══════════════════════════════════════════════════ -->\n  <div class=\"key-idea\"><div class=\"ki-title\">Real-life use</div><p>Robotics, animation, and GPS tracking all use vector-valued paths $\\mathbf{r}(t)$ — position as a function of time — exactly the objects in this chapter.</p></div><section id=\"ch13\">\n    <div class=\"section-label\">Vector Functions</div>\n    <h2 class=\"section-title\">Vector-Valued Functions</h2>\n    \n\n    <!-- WHAT IS A FUNCTION? GROUND ZERO -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;\">Step 0 — What Even Is a Function?</h3>\n    <p>\n      Before anything else, let's make sure we understand what a \"function\" means. A <strong>function</strong> is just a <em>machine</em>. You put a number in. You get a number out. That's it.\n    </p>\n    <p>\n      For example, \\(f(x) = x^2\\) is a function. You put in \\(3\\), you get out \\(9\\). You put in \\(5\\), you get out \\(25\\). One number in → one number out. This is what you've done in regular calculus.\n    </p>\n    <div class=\"analogy\">\n      Think of it like a vending machine. You press button \"3\" (the input). Out comes a bag of chips labeled \"9\" (the output). Simple.\n    </div>\n\n    <!-- WHAT IS A VECTOR? -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 1 — What Is a Vector?</h3>\n    <p>\n      A <strong>vector</strong> is just a way to describe something that has both a <em>size</em> (how much) and a <em>direction</em> (which way). Regular numbers only have size. Vectors have both.\n    </p>\n    <p>\n      In everyday life: \"Walk 5 steps\" is just a number (a <em>scalar</em>). But \"Walk 5 steps <strong>north</strong>\" is a vector — it tells you how much AND which direction.\n    </p>\n    <div class=\"analogy\">\n      Imagine giving directions to your friend on the phone. Saying \"drive 10 km\" is useless — 10 km which way? But saying \"drive 10 km east\" is a vector. It has magnitude (10 km) and direction (east). That extra direction information is what makes a vector a vector.\n    </div>\n    <p>\n      In 3D space (our world), a vector has three components — one for each direction: left-right (x), front-back (y), and up-down (z). We write it as:\n    </p>\n    \\[\n      \\mathbf{v} = \\langle 3,\\; -1,\\; 5 \\rangle\n    \\]\n    <p>\n      This means: move 3 in the x-direction, move −1 in the y-direction (so backward 1), and move 5 in the z-direction (up 5). The three numbers together describe one complete \"arrow\" in space.\n    </p>\n\n    <!-- WHAT IS A VECTOR-VALUED FUNCTION? -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 2 — A Vector-Valued Function: The Machine That Outputs Arrows</h3>\n    <p>\n      Now combine the two ideas. A <strong>vector-valued function</strong> is a machine where you put a number in, and you get a <em>vector</em> (an arrow) out instead of a plain number.\n    </p>\n    <div class=\"analogy\">\n      Picture a GPS tracker on a drone. Every second (the input = time \\(t\\)), the tracker outputs the drone's current position as three numbers: how far east, how far north, how high up. That output — three numbers bundled together — is a vector. The whole GPS tracker is the vector-valued function \\(\\mathbf{r}(t)\\).\n    </div>\n    <p>\n      Mathematically, we write this as:\n    </p>\n\n    <div class=\"def-box\">\n      <div class=\"def-title\">Definition — Vector-Valued Function</div>\n      <p style=\"margin-bottom:0.8rem;\">A <strong>vector-valued function</strong> \\(\\mathbf{r}(t)\\) takes in a single number \\(t\\) (usually time) and outputs a position vector:</p>\n      \\[\n        \\mathbf{r}(t) = f(t)\\,\\mathbf{i} + g(t)\\,\\mathbf{j} + h(t)\\,\\mathbf{k} = \\langle f(t),\\; g(t),\\; h(t) \\rangle\n      \\]\n      <p style=\"margin-top:0.8rem;margin-bottom:0;\">Here, \\(f(t)\\) tells you the x-position at time \\(t\\), \\(g(t)\\) tells you the y-position, and \\(h(t)\\) tells you the z-position. The bold letters \\(\\mathbf{i}, \\mathbf{j}, \\mathbf{k}\\) are just shorthand labels meaning \"x-direction\", \"y-direction\", \"z-direction\".</p>\n    </div>\n\n    <div class=\"analogy\">\n      Imagine tracking a rollercoaster car. At time \\(t = 0\\) seconds it's at position (0, 0, 0) — the starting point. At \\(t = 1\\) second it's at (3, 1, 2) — 3 meters right, 1 meter forward, 2 meters up. At \\(t = 2\\) seconds it's somewhere else. The function \\(\\mathbf{r}(t)\\) records this position at every single moment. As \\(t\\) increases, the tip of the position vector traces the <em>path</em> of the rollercoaster — a curve winding through 3D space.\n    </div>\n\n    <!-- WHAT IS A SPACE CURVE? -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 3 — The Space Curve: The Path Left Behind</h3>\n    <p>\n      As \\(t\\) changes (time passes), \\(\\mathbf{r}(t)\\) traces out a path. This path is called a <strong>space curve</strong>. It's just the trail left by a moving point in 3D space.\n    </p>\n    <div class=\"analogy\">\n      Think of a sparkler on New Year's Eve. As someone waves it around in the dark, it leaves a glowing trail in the air. That glowing trail — whatever shape it makes — is the \"space curve.\" The sparkler is the moving point. The function \\(\\mathbf{r}(t)\\) describes where the sparkler is at every moment. The visible trail is the curve.\n    </div>\n    <p>\n      A helix (like a spring or a DNA strand) is one of the most common examples. If you set:\n    </p>\n    \\[\n      \\mathbf{r}(t) = \\langle \\cos t,\\; \\sin t,\\; t \\rangle\n    \\]\n    <p>\n      …then as \\(t\\) increases, the x and y components go in circles (because cosine and sine make circles), while the z component just keeps going up. The result is a spiral that keeps rising — exactly like a spring or a screw thread.\n    </p>\n\n    <!-- LIMITS AND CONTINUITY -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 4 — Limits: What Happens \"Just Before\"?</h3>\n    <p>\n      A <strong>limit</strong> asks: \"As the input gets really close to some value, what does the output get close to?\" It's about <em>approaching</em> a value, not necessarily hitting it exactly.\n    </p>\n    <div class=\"analogy\">\n      Imagine driving toward a red light. As you get closer and closer, your distance to the light approaches zero. The \"limit\" of your distance as you approach the light is zero — even if you eventually stop just before reaching it. The limit describes the <em>trend</em>, the destination you're heading toward.\n    </div>\n    <p>\n      For vector-valued functions, taking a limit is easy: just take the limit of <em>each piece separately</em>. Since \\(\\mathbf{r}(t)\\) has three components (x, y, z), just find the limit of each one:\n    </p>\n    \\[\n      \\lim_{t \\to a} \\mathbf{r}(t) = \\left\\langle \\lim_{t\\to a} f(t),\\;\\; \\lim_{t\\to a} g(t),\\;\\; \\lim_{t\\to a} h(t) \\right\\rangle\n    \\]\n    <p>\n      <strong>Continuity</strong> means there are no sudden jumps. If a function is continuous, its graph is one smooth, unbroken line — no teleporting. For \\(\\mathbf{r}(t)\\), continuity just means all three component functions are continuous.\n    </p>\n    <div class=\"analogy\">\n      A continuous path is like a road with no gaps. You can drive along it without ever leaving the ground. A discontinuous function would be like the road suddenly ending — you'd have to teleport to a different spot to continue. In calculus, we usually insist our paths are continuous (no teleporting).\n    </div>\n\n    <!-- THE DERIVATIVE -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 5 — The Derivative: How Fast and Which Way Are You Going?</h3>\n    <p>\n      The <strong>derivative</strong> is one of the two big ideas of calculus. In regular calculus, the derivative of \\(f(x)\\) tells you the <em>slope</em> of the curve at a point — how steep it is.\n    </p>\n    <p>\n      For a vector-valued function, the derivative \\(\\mathbf{r}'(t)\\) tells you something much more physical and intuitive: it tells you the object's <strong>velocity</strong> — both <em>how fast</em> it is moving AND <em>in which direction</em> it is moving at that instant.\n    </p>\n    <div class=\"analogy\">\n      You're in a car. The speedometer tells you how fast you're going — but not which way. The velocity combines both: \"60 km/h going northeast.\" The derivative \\(\\mathbf{r}'(t)\\) is the velocity. It's an <em>arrow</em> (a vector) that points in the direction of motion, and whose length tells you the speed.\n    </div>\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 The Most Important Idea About the Derivative</div>\n      <p style=\"margin-bottom:0.5rem;\">If you know where something is at every time \\(t\\) (that's \\(\\mathbf{r}(t)\\)), then the derivative \\(\\mathbf{r}'(t)\\) tells you the <strong>direction it is heading</strong> and <strong>how fast</strong> at each moment. This is the velocity vector.</p>\n      <p style=\"margin:0;\">Geometrically: draw the path. At any point on the path, draw a straight line that just barely \"grazes\" (touches) the curve without crossing it. That line is called the <strong>tangent line</strong>. The derivative vector points along that tangent line.</p>\n    </div>\n\n    <p>\n      The mathematical definition looks scary but the idea is simple: compare where you are now vs where you were a tiny moment ago, then divide by that tiny time gap. As the time gap shrinks toward zero, you get the instantaneous velocity:\n    </p>\n    \\[\n      \\mathbf{r}'(t) = \\lim_{\\Delta t \\to 0} \\frac{\\mathbf{r}(t+\\Delta t) - \\mathbf{r}(t)}{\\Delta t}\n    \\]\n    <p>\n      The beautiful shortcut: since \\(\\mathbf{r}(t) = \\langle f(t), g(t), h(t) \\rangle\\), just differentiate each component on its own:\n    </p>\n    \\[\n      \\mathbf{r}'(t) = \\langle f'(t),\\; g'(t),\\; h'(t) \\rangle\n    \\]\n    <div class=\"analogy\">\n      If the drone's east-west position is \\(f(t) = 3t^2\\), then \\(f'(t) = 6t\\) is how fast it's moving east-west at time \\(t\\). Same for the other directions. The three speeds together form the velocity vector. Simple!\n    </div>\n\n    <!-- SPEED VS VELOCITY -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 6 — Speed vs Velocity: A Crucial Difference</h3>\n    <p>\n      <strong>Velocity</strong> is a vector — it has direction. \"Going 60 km/h northeast\" is velocity.\n    </p>\n    <p>\n      <strong>Speed</strong> is just a number — the <em>magnitude</em> (length) of the velocity vector. It tells you how fast, ignoring direction. Speed is always positive or zero; velocity can point any way.\n    </p>\n    \\[\n      \\text{Speed} = |\\mathbf{r}'(t)| = \\sqrt{[f'(t)]^2 + [g'(t)]^2 + [h'(t)]^2}\n    \\]\n    <p>\n      The formula for the magnitude (length) of a vector is just the 3D version of the Pythagorean theorem — square each component, add them up, take the square root. That's it.\n    </p>\n\n    <!-- UNIT TANGENT VECTOR -->\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Step 7 — The Unit Tangent Vector: Pure Direction, No Noise</h3>\n    <p>\n      Sometimes we only care about <em>which way</em> something is moving, not how fast. For example, if you just want to know \"which direction is the road going at this point on a highway map,\" you don't care about speed.\n    </p>\n    <p>\n      The <strong>unit tangent vector</strong> strips away the speed and leaves only direction. We get it by taking the velocity vector and dividing by its own length (which makes the length exactly 1):\n    </p>\n    \\[\n      \\mathbf{T}(t) = \\frac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|}\n    \\]\n    <div class=\"analogy\">\n      Imagine an arrow pointing northeast with length 10. If you shrink it to length 1 while keeping it pointing northeast, you now have the \"unit\" vector in that direction. Dividing by the magnitude is just scaling it down (or up) to length exactly 1. The word \"unit\" in math always means \"length = 1.\"\n    </div>\n\n    <div class=\"grid-2\">\n      <div class=\"mini-card\">\n        <h4>🚗 Velocity Vector \\(\\mathbf{r}'(t)\\)</h4>\n        <p>Like the arrow on a car's dashboard compass that shows both speed and direction. Longer arrow = faster. Direction = which way you're heading.</p>\n      </div>\n      <div class=\"mini-card\">\n        <h4>🧭 Unit Tangent \\(\\mathbf{T}(t)\\)</h4>\n        <p>Like the compass needle alone — always length 1, just pointing in the direction of travel. No speed information, pure direction only.</p>\n      </div>\n    </div>\n\n    <!-- CONSTANT LENGTH THEOREM -->\n    <div class=\"theorem\">\n      <span class=\"thm-tag\">Theorem — Constant Length = Perpendicular Derivative</span>\n      <p style=\"margin-top:0.5rem;\">If \\(|\\mathbf{r}(t)| = \\text{constant}\\) for all \\(t\\), then \\(\\mathbf{r}(t) \\cdot \\mathbf{r}'(t) = 0\\).</p>\n      <p style=\"margin-top:0.8rem; font-size:0.95rem;\"><strong>What does this mean in plain English?</strong> If the length (size) of the vector never changes — like a planet orbiting the sun at a fixed distance — then the velocity arrow must always point <em>sideways</em> (perpendicular) to the position. The planet can't move toward or away from the sun, so it can only move sideways.</p>\n      <p style=\"margin-top:0.6rem; font-size:0.93rem; color:var(--muted);\">The dot product \\(\\mathbf{r} \\cdot \\mathbf{r}' = 0\\) is the mathematical way of saying \"these two vectors are perpendicular.\" Two vectors are perpendicular if their dot product is zero — this is a standard fact from geometry.</p>\n    </div>\n\n    <!-- EXAMPLE 1 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 1</span> Finding the Velocity and Unit Tangent of a Helix</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Given \\(\\mathbf{r}(t) = \\cos t\\,\\mathbf{i} + \\sin t\\,\\mathbf{j} + t\\,\\mathbf{k}\\), find the velocity vector and the unit tangent vector at \\(t = 0\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">This is a helix — imagine a screw thread or a spiral staircase. The x and y go around in a circle (that's what cos and sin do), while z just steadily increases (that's the \"+t\" part — climbing upward at a steady rate).</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Differentiate each component separately.</strong><br>\n          The derivative of \\(\\cos t\\) is \\(-\\sin t\\). The derivative of \\(\\sin t\\) is \\(\\cos t\\). The derivative of \\(t\\) is \\(1\\).<br>\n          So: \\(\\mathbf{r}'(t) = \\langle -\\sin t,\\; \\cos t,\\; 1 \\rangle\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Plug in \\(t = 0\\) to find the velocity at that moment.</strong><br>\n          \\(\\sin(0) = 0\\) and \\(\\cos(0) = 1\\), so:<br>\n          \\(\\mathbf{r}'(0) = \\langle -0,\\; 1,\\; 1 \\rangle = \\langle 0,\\; 1,\\; 1 \\rangle\\)<br>\n          This arrow points: \"0 in x, 1 in y, 1 in z\" — diagonally forward and up.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Find the speed (length of the velocity vector).</strong><br>\n          Use the Pythagorean theorem in 3D: \\(|\\mathbf{r}'(0)| = \\sqrt{0^2 + 1^2 + 1^2} = \\sqrt{0+1+1} = \\sqrt{2}\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Divide velocity by speed to get pure direction (unit tangent).</strong><br>\n          \\(\\mathbf{T}(0) = \\dfrac{\\langle 0,1,1\\rangle}{\\sqrt{2}} = \\left\\langle 0,\\;\\dfrac{1}{\\sqrt{2}},\\;\\dfrac{1}{\\sqrt{2}} \\right\\rangle\\)<br>\n          This has length exactly 1 (you can verify: \\(\\sqrt{0 + \\frac{1}{2} + \\frac{1}{2}} = \\sqrt{1} = 1\\) ✓)\n        </div></div>\n        <div class=\"answer-box\">✓ At \\(t=0\\), the helix is moving in direction \\(\\left\\langle 0,\\,\\tfrac{1}{\\sqrt{2}},\\,\\tfrac{1}{\\sqrt{2}}\\right\\rangle\\) — forward and upward at 45°.</div>\n      </div>\n    </div>\n\n    <!-- EXAMPLE 2 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 2</span> Finding the Tangent Line to a Space Curve</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Find the equation of the tangent line to \\(\\mathbf{r}(t) = \\langle t^2,\\, t,\\, t^3 \\rangle\\) at \\(t = 1\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">A tangent line is the straight line that \"hugs\" the curve at one specific point. Imagine pressing a ruler against a curved road so it just touches the road without crossing it — that ruler is the tangent line.</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Find the point where the tangent line touches the curve.</strong><br>\n          Plug \\(t=1\\) into \\(\\mathbf{r}(t)\\): \\(\\mathbf{r}(1) = \\langle 1^2,\\; 1,\\; 1^3 \\rangle = \\langle 1, 1, 1 \\rangle\\)<br>\n          So the point is \\(P = (1, 1, 1)\\) in 3D space.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Find the direction of the tangent line (the velocity at that point).</strong><br>\n          First differentiate: \\(\\mathbf{r}'(t) = \\langle 2t,\\; 1,\\; 3t^2 \\rangle\\)<br>\n          Then plug in \\(t=1\\): \\(\\mathbf{r}'(1) = \\langle 2, 1, 3 \\rangle\\)<br>\n          This is our direction vector — the tangent line goes in this direction.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Write the tangent line equation.</strong><br>\n          A line in 3D needs a <em>starting point</em> and a <em>direction</em>. We have both:<br>\n          Start: \\((1,1,1)\\) &nbsp;&nbsp; Direction: \\(\\langle 2,1,3 \\rangle\\)<br>\n          Line: \\(\\mathbf{L}(s) = \\langle 1,1,1 \\rangle + s\\langle 2,1,3 \\rangle\\)<br>\n          Or written out: \\(x = 1+2s,\\quad y = 1+s,\\quad z = 1+3s\\)\n        </div></div>\n        <div class=\"answer-box\">✓ Tangent line: \\(x = 1+2s,\\quad y = 1+s,\\quad z = 1+3s\\) &nbsp; (As \\(s\\) varies, this traces out the tangent line)</div>\n      </div>\n    </div>\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 Vector Functions — The Complete Picture in Plain English</div>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Vector-valued function \\(\\mathbf{r}(t)\\):</strong> A position tracker. Input = time, Output = location in 3D space.</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Space curve:</strong> The path traced out as time passes.</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Derivative \\(\\mathbf{r}'(t)\\):</strong> The velocity — which way you're going and how fast.</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Speed \\(|\\mathbf{r}'(t)|\\):</strong> Just how fast, without direction.</p>\n      <p style=\"margin:0;\"><strong>Unit tangent \\(\\mathbf{T}(t)\\):</strong> Pure direction — which way, without how fast.</p>\n    </div>\n  </section>\n\n  <hr>\n\n  <!-- ═══════════════════════════════════════════════════ -->\n  <!-- 16.1 & 16.2 -->\n  <!-- ═══════════════════════════════════════════════════ -->\n  <section id=\"ch16-1\">\n    <div class=\"section-label\">Line Integrals and Vector Fields</div>\n    <h2 class=\"section-title\">Line Integrals, Vector Fields · Work, Circulation &amp; Flux</h2>\n    \n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;\">First — What Is an Integral? (Ground Zero)</h3>\n    <p>\n      An <strong>integral</strong> is a way to add up infinitely many tiny pieces. That's literally it. The integral sign \\(\\int\\) is just a stretched \"S\" — it stands for \"Sum.\" You're summing up tiny, tiny little contributions to find a total.\n    </p>\n    <div class=\"analogy\">\n      You want to know how much rain fell in your city over an entire day. You can't just measure at one moment — rain changes every minute. So you measure tiny amounts every second and add them all up. That process of \"measuring tiny amounts and summing them continuously\" is an integral. The result is the total rainfall for the day. That's all an integral is — a continuous running total of tiny contributions.\n    </div>\n    <p>\n      The regular integral \\(\\int_a^b f(x)\\, dx\\) adds up tiny values of a function along a <em>straight line</em> from \\(a\\) to \\(b\\). But what if the path isn't straight? That's where line integrals come in.\n    </p>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">What Is a Line Integral? Adding Along a Curved Path</h3>\n    <p>\n      A <strong>line integral</strong> does the exact same \"add up tiny pieces\" idea, but now along a <em>curved path</em> through space. The word \"line\" here really means \"curve\" — we're integrating along any path, no matter how twisty.\n    </p>\n    <div class=\"analogy\">\n      You're hiking along a winding mountain trail. The elevation (height above sea level) is different at every step along the trail. A line integral would let you calculate the total \"altitude accumulated\" over your entire hike — weighting every tiny bit of trail by how high up it is. A straight integral can't do this because your trail twists and turns. That's exactly the problem line integrals solve.\n    </div>\n    <p>\n      The key ingredient is \\(ds\\) — the arc-length element. Think of \\(ds\\) as a grain-of-sand-sized piece of the curved path. It tells you \"how much of the curve are you covering right now?\" We then multiply by the function value at that point and sum everything up:\n    </p>\n    \\[\n      \\int_C f\\, ds = \\int_a^b f\\!\\left(\\mathbf{r}(t)\\right) \\left|\\mathbf{r}'(t)\\right|\\, dt\n    \\]\n    <p>\n      The \\(|\\mathbf{r}'(t)|\\) — the speed — appears because when you move faster along the curve, each unit of time \\(dt\\) corresponds to a longer piece of curve. You must account for how much path is covered per unit of time.\n    </p>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">What Is a Vector Field? Arrows Everywhere!</h3>\n    <p>\n      A <strong>vector field</strong> is what you get when you assign an arrow (vector) to every single point in space. At every location there's a vector telling you the direction and strength of something.\n    </p>\n    <div class=\"analogy\">\n      <strong>Weather wind map:</strong> Open a weather app. The wind forecast shows little arrows all over the map. Each arrow points in the direction wind is blowing, and its size shows strength. Some arrows point north, some east. Some are long (strong wind), some short (gentle breeze). That entire picture — arrows at every location — is a vector field. You can have vector fields for gravity, electric fields, magnetic fields, water current, air pressure — any quantity that has both direction and magnitude at every point.\n    </div>\n    \\[\n      \\mathbf{F}(x,y,z) = M(x,y,z)\\,\\mathbf{i} + N(x,y,z)\\,\\mathbf{j} + P(x,y,z)\\,\\mathbf{k}\n    \\]\n    <p>\n      The three functions \\(M\\), \\(N\\), \\(P\\) give the x, y, z components of the arrow at each point \\((x,y,z)\\). Different locations have different arrows — that's the whole point. The field <em>varies</em> in space.\n    </p>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Work: How Much Does a Force Help or Hinder Your Journey?</h3>\n    <p>\n      In physics, <strong>work</strong> is the energy transferred by a force to a moving object. But here's the critical point: <em>only the component of the force in the direction of motion counts.</em>\n    </p>\n    <div class=\"analogy\">\n      Picture pushing a shopping cart in a parking lot. If you push it directly forward (same direction it moves), all your effort goes into moving it — maximum work done. If you push it at a diagonal (partly forward, partly sideways), only the forward component contributes to moving the cart forward. The sideways component is completely wasted. And if somehow you push it perfectly sideways while it rolls forward, you do absolutely zero work on its forward motion. This \"how aligned are force and motion\" is exactly what the dot product captures.\n    </div>\n    <p>\n      The dot product \\(\\mathbf{F} \\cdot d\\mathbf{r}\\) does this automatically: it multiplies the force components by the matching movement components and adds them up. Result is positive if force helps, negative if force fights, zero if they're perpendicular.\n    </p>\n    \\[\n      W = \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = \\int_a^b \\mathbf{F}(\\mathbf{r}(t)) \\cdot \\mathbf{r}'(t)\\, dt\n    \\]\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 Three Scenarios for Work — The Physical Intuition</div>\n      <p style=\"margin-bottom:0.6rem;\">🟢 <strong>Force and motion in same direction:</strong> Dot product \\(&gt; 0\\) → Positive work. Force is helping you. Energy flows into the object. (Like wind pushing you while you run with it.)</p>\n      <p style=\"margin-bottom:0.6rem;\">🔴 <strong>Force and motion in opposite directions:</strong> Dot product \\(&lt; 0\\) → Negative work. Force is fighting you. Energy is being removed from the object. (Like brakes slowing a car — friction does negative work on the car's motion.)</p>\n      <p style=\"margin:0;\">⚪ <strong>Force perpendicular to motion:</strong> Dot product \\(= 0\\) → Zero work. Force doesn't help or hurt motion. (Like a satellite in orbit — gravity pulls it downward, but it moves sideways, so gravity does zero work on its speed.)</p>\n    </div>\n\n    <!-- EXAMPLE 3 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 3</span> Computing Work Along a Curved Path — Full Walkthrough</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Find the work done by \\(\\mathbf{F} = xy\\,\\mathbf{i} + y^2\\,\\mathbf{j}\\) along the parabola \\(y = x^2\\) from \\((0,0)\\) to \\((1,1)\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">Scenario: A force acts on a particle. At any point \\((x,y)\\), the force vector is \\(\\langle xy,\\, y^2\\rangle\\). The particle moves along the curved path \\(y = x^2\\). How much total energy does the force transfer?</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Parameterize — rewrite the path as one function of time \\(t\\).</strong><br>\n          The path is the parabola \\(y = x^2\\). The simplest way: let \\(x = t\\), then \\(y = t^2\\).<br>\n          Position at time \\(t\\): \\(\\mathbf{r}(t) = \\langle t,\\; t^2 \\rangle\\), where \\(t\\) goes from \\(0\\) to \\(1\\).<br>\n          Velocity (derivative): \\(\\mathbf{r}'(t) = \\langle 1,\\; 2t \\rangle\\) &nbsp;←&nbsp; differentiate each component.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Express the force \\(\\mathbf{F}\\) purely in terms of \\(t\\).</strong><br>\n          The force is \\(\\mathbf{F} = \\langle xy,\\; y^2 \\rangle\\). Substitute \\(x=t, y=t^2\\):<br>\n          \\(xy = t \\cdot t^2 = t^3\\) &nbsp;&nbsp;&nbsp; and &nbsp;&nbsp;&nbsp; \\(y^2 = (t^2)^2 = t^4\\)<br>\n          So the force at time \\(t\\) is: \\(\\mathbf{F} = \\langle t^3,\\; t^4 \\rangle\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Dot product: multiply matching components and add.</strong><br>\n          \\(\\mathbf{F} \\cdot \\mathbf{r}'(t) = (\\text{x-force})(\\text{x-velocity}) + (\\text{y-force})(\\text{y-velocity})\\)<br>\n          \\(= t^3 \\cdot 1 + t^4 \\cdot 2t = t^3 + 2t^5\\)<br>\n          This is the \"instantaneous rate of work\" at time \\(t\\).\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Integrate to get total work accumulated over the whole journey.</strong><br>\n          \\(W = \\displaystyle\\int_0^1 (t^3 + 2t^5)\\, dt = \\left[\\frac{t^4}{4} + \\frac{2t^6}{6}\\right]_0^1 = \\frac{1}{4} + \\frac{1}{3} = \\frac{3+4}{12} = \\frac{7}{12}\\)\n        </div></div>\n        <div class=\"answer-box\">\\(\\displaystyle W = \\frac{7}{12}\\) &nbsp; ← This much energy was transferred by the force along this specific curved path.</div>\n      </div>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Circulation: Does the Field \"Spin\" With You Around a Loop?</h3>\n    <p>\n      <strong>Circulation</strong> asks a very specific question: if you walk all the way around a closed loop (starting and ending at the same point), does the vector field mostly push you forward, backward, or neither?\n    </p>\n    <div class=\"analogy\">\n      Imagine walking in a circle around a whirlpool drain. If the water spins in the same direction as your walk (both counterclockwise), it helps you the whole time — high positive circulation. If the water spins the other way (clockwise against your counterclockwise walk), it fights you — negative circulation. If the water is perfectly still, you get zero. Circulation is the mathematical \"score\" of how well the field's spin matches your loop direction.\n    </div>\n    \\[\n      \\text{Circulation} = \\oint_C \\mathbf{F} \\cdot d\\mathbf{r}\n    \\]\n    <p>\n      The symbol \\(\\oint\\) (integral sign with a circle) simply means: \"integrate around a <em>closed</em> loop — a path that ends exactly where it started.\"\n    </p>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Flux: How Much Passes <em>Through</em> a Curve?</h3>\n    <p>\n      While circulation measures flow <em>along</em> a curve (in the tangent direction), <strong>flux</strong> measures how much of the field passes <em>through</em> (crosses) the curve perpendicularly.\n    </p>\n    <div class=\"analogy\">\n      Imagine a window screen. Wind is blowing. <strong>Flux</strong> is how much air passes <em>through</em> the screen — the part of the wind that actually crosses from one side to the other. If the wind blows exactly parallel to the screen (along it, not through it), zero air crosses — zero flux. If the wind blows perpendicular to the screen (straight into it), maximum air passes through — maximum flux. The \"normal\" (perpendicular) component is what matters for flux.\n    </div>\n    \\[\n      \\text{Flux} = \\oint_C \\mathbf{F} \\cdot \\mathbf{n}\\, ds = \\oint_C M\\, dy - N\\, dx\n    \\]\n\n    <table>\n      <thead><tr><th>Concept</th><th>Physical meaning</th><th>Formula</th><th>Direction measured</th></tr></thead>\n      <tbody>\n        <tr><td><strong>Work / Circulation</strong></td><td>Force pushing you along your path</td><td>\\(\\oint M\\,dx + N\\,dy\\)</td><td>Tangential (along curve)</td></tr>\n        <tr><td><strong>Flux</strong></td><td>Field crossing through your path</td><td>\\(\\oint M\\,dy - N\\,dx\\)</td><td>Normal (across curve)</td></tr>\n      </tbody>\n    </table>\n\n    <!-- EXAMPLE 4 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 4</span> Flux Across a Circle — How Much Flows Out?</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Find the flux of \\(\\mathbf{F} = x\\,\\mathbf{i} + y\\,\\mathbf{j}\\) outward across the unit circle \\(x^2 + y^2 = 1\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">The field \\(\\mathbf{F} = \\langle x, y \\rangle\\) points directly away from the origin at every point — like a perfect outward explosion from the center. We want: how much of this outward field crosses the unit circle boundary?</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Parameterize the unit circle (walk around it).</strong><br>\n          Going counterclockwise: \\(x = \\cos t,\\; y = \\sin t,\\; t \\in [0, 2\\pi]\\)<br>\n          The tiny movements: \\(dx = -\\sin t\\, dt\\) and \\(dy = \\cos t\\, dt\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Set up the flux integral \\(\\oint M\\,dy - N\\,dx\\).</strong><br>\n          Here \\(M = x = \\cos t\\) and \\(N = y = \\sin t\\):<br>\n          \\(\\text{Flux} = \\displaystyle\\int_0^{2\\pi} (\\cos t)(\\cos t\\, dt) - (\\sin t)(-\\sin t\\, dt)\\)<br>\n          \\(\\displaystyle= \\int_0^{2\\pi} (\\cos^2 t + \\sin^2 t)\\, dt\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Use the golden identity: \\(\\cos^2 t + \\sin^2 t = 1\\) always.</strong><br>\n          \\(\\displaystyle= \\int_0^{2\\pi} 1\\, dt = 2\\pi\\)\n        </div></div>\n        <div class=\"answer-box\">✓ Flux \\(= 2\\pi\\). The field radiates perfectly outward at every point of the circle, so every bit of it crosses the boundary — giving the maximum possible flux (equal to the circle's circumference).</div>\n      </div>\n    </div>\n  </section>\n\n  <hr>\n\n  <!-- ═══════════════════════════════════════════════════ -->\n  <!-- 16.3 -->\n  <!-- ═══════════════════════════════════════════════════ -->\n  <section id=\"ch16-3\">\n    <div class=\"section-label\">Path Independence</div>\n    <h2 class=\"section-title\">Path Independence, Conservative Fields &amp; Potential Functions</h2>\n    \n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;\">The Big Question: Does the Path Matter?</h3>\n    <p>\n      Here's the profound question of this entire section: if you want to travel from city A to city B, and a force field (like gravity or wind) is acting on you the whole time — does the <em>route</em> you take matter for the total work done? Or does only the start and end point matter?\n    </p>\n    <p>\n      The answer depends on the type of field. Some fields are \"fair\" — they don't care about your route. Others are \"path-hungry\" — take a longer or different route, and the work changes.\n    </p>\n    <div class=\"analogy\">\n      <strong>Gravity on a slope:</strong> Climb a mountain. It doesn't matter if you take the steep direct route or the long winding road — if you start at the same base and end at the same peak, gravity does the exact same amount of work on you (negative work, since it fights your upward movement). Gravity is <em>path-independent</em>. It only cares about where you started and where you ended up (specifically, the change in height).\n    </div>\n    <div class=\"analogy\">\n      <strong>Friction on a road:</strong> Now imagine sliding on a frictional surface. Take the direct short path → less friction work. Take the long winding path → way more friction work. Friction is <em>path-dependent</em>. The longer you travel, the more work friction does. You can't just look at start and end points.\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Path Independence — The Formal Definition</h3>\n\n    <div class=\"def-box\">\n      <div class=\"def-title\">Path Independence</div>\n      <p style=\"margin-bottom:0.8rem;\">A line integral \\(\\displaystyle\\int_C \\mathbf{F} \\cdot d\\mathbf{r}\\) is called <strong>path-independent</strong> if its value depends <em>only</em> on the starting point \\(A\\) and ending point \\(B\\), regardless of which curve \\(C\\) you use to get there.</p>\n      \\[\n        \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = f(B) - f(A)\n      \\]\n      <p style=\"margin-top:0.8rem;margin-bottom:0;\">Here \\(f\\) is called a <strong>potential function</strong>. To compute the line integral, you just evaluate \\(f\\) at the two endpoints and subtract. No integration needed! Just like how the change in height determines gravitational work regardless of path.</p>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">What Is a Conservative Field? The Gradient Connection</h3>\n    <p>\n      A vector field \\(\\mathbf{F}\\) is called <strong>conservative</strong> if it is path-independent. It turns out this happens when \\(\\mathbf{F}\\) can be written as the <em>gradient</em> of some scalar function \\(f\\).\n    </p>\n    <p>\n      First — what is a gradient? The <strong>gradient</strong> \\(\\nabla f\\) (read \"del f\") of a scalar function \\(f\\) is a vector whose components are the partial derivatives of \\(f\\):\n    </p>\n    \\[\n      \\nabla f = \\left\\langle \\frac{\\partial f}{\\partial x},\\;\\frac{\\partial f}{\\partial y},\\;\\frac{\\partial f}{\\partial z} \\right\\rangle\n    \\]\n    <p>\n      Each component tells you how fast \\(f\\) changes in that direction. The gradient vector always points in the direction of <em>steepest increase</em> of \\(f\\).\n    </p>\n    <div class=\"analogy\">\n      Think of the function \\(f\\) as a landscape (a terrain map). The gradient \\(\\nabla f\\) at any point is the arrow pointing straight uphill — in the direction where the slope is steepest. If you're standing on a hill, \\(\\nabla f\\) points straight up the hill. A ball rolling downhill would roll in the direction of \\(-\\nabla f\\).\n    </div>\n\n    <div class=\"def-box\">\n      <div class=\"def-title\">Conservative Vector Field</div>\n      <p style=\"margin-bottom:0.8rem;\">\\(\\mathbf{F}\\) is <strong>conservative</strong> if there exists a scalar function \\(f\\) (the potential function) such that:</p>\n      \\[\n        \\mathbf{F} = \\nabla f = \\left\\langle \\frac{\\partial f}{\\partial x},\\;\\frac{\\partial f}{\\partial y},\\;\\frac{\\partial f}{\\partial z} \\right\\rangle\n      \\]\n      <p style=\"margin-top:0.8rem;margin-bottom:0;\">In other words, every arrow in the field is pointing \"uphill\" on some invisible landscape \\(f\\). Gravity and electrostatic fields are common examples of conservative fields when modeled by a time-independent potential. Magnetic fields are not generally conservative in the sense used here. Friction and air resistance are common examples of non-conservative forces.</p>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">How to Test if a Field Is Conservative — The Cross-Partial Test</h3>\n    <p>\n      We need a quick test to check conservativity without finding \\(f\\). Here's the key insight: if \\(\\mathbf{F} = \\nabla f\\), then \\(M = \\partial f/\\partial x\\) and \\(N = \\partial f/\\partial y\\). Taking another derivative of each:\n    </p>\n    <p>\n      \\(\\partial M/\\partial y = \\partial^2 f/\\partial y\\partial x\\) and \\(\\partial N/\\partial x = \\partial^2 f/\\partial x\\partial y\\). These mixed second derivatives are always equal (when \\(f\\) is nice enough). So:\n    </p>\n    \\[\n      \\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}\n    \\]\n    <div class=\"analogy\">\n      This is a useful cross-check for a conservative field. If \\(\\mathbf{F}\\) truly comes from a landscape \\(f\\), then the mixed partial derivatives must agree. If they are not equal, the field cannot be conservative. However, equality alone is not always enough: on a suitable <strong>simply connected domain</strong>, with the required partial derivatives continuous, this condition is also sufficient. Domains with holes or excluded points require extra care.\n    </div>\n\n    <div class=\"theorem\">\n      <span class=\"thm-tag\">Fundamental Theorem for Line Integrals</span>\n      <p style=\"margin-top:0.5rem;\"><strong>What it says in plain English:</strong> If the field is conservative (comes from a potential function \\(f\\)), then all the messy path integration collapses into simply evaluating \\(f\\) at two points:</p>\n      \\[\n        \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = f(B) - f(A)\n      \\]\n      <p style=\"margin-top:0.8rem;\">This is huge. Instead of integrating along a complicated curve, you just plug in coordinates. Like how gravitational potential energy only depends on height — not on the path you took to get there.</p>\n      <p style=\"margin-top:0.6rem;\"><strong>Bonus consequence:</strong> For a closed loop (A = B, you end where you started): \\(\\displaystyle\\oint_C \\mathbf{F} \\cdot d\\mathbf{r} = f(A) - f(A) = 0\\). Conservative fields do zero net work around any closed loop.</p>\n    </div>\n\n    <!-- EXAMPLE 5 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 5</span> Finding the Potential Function — Step by Step</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Show that \\(\\mathbf{F} = 2xy\\,\\mathbf{i} + (x^2 + 1)\\,\\mathbf{j}\\) is conservative, then find its potential function \\(f\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">We need to find a \"landscape\" function \\(f(x,y)\\) such that the slope of \\(f\\) in the x-direction equals \\(2xy\\), and the slope in the y-direction equals \\(x^2+1\\).</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Run the cross-partial test to confirm conservativity.</strong><br>\n          \\(M = 2xy\\) → differentiate with respect to \\(y\\): \\(\\;\\dfrac{\\partial M}{\\partial y} = 2x\\)<br>\n          \\(N = x^2+1\\) → differentiate with respect to \\(x\\): \\(\\;\\dfrac{\\partial N}{\\partial x} = 2x\\)<br>\n          Both equal \\(2x\\) ✓ → <strong>The field is conservative!</strong>\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Find \\(f\\) by integrating \\(M\\) with respect to \\(x\\).</strong><br>\n          We need \\(\\dfrac{\\partial f}{\\partial x} = M = 2xy\\). Integrate with respect to \\(x\\) (treat \\(y\\) as a constant):<br>\n          \\(f = \\int 2xy\\, dx = x^2 y + g(y)\\)<br>\n          Why \\(g(y)\\)? Because when we differentiate with respect to \\(x\\), any function of \\(y\\) alone disappears. It's the \"unknown y-part\" we must determine.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Use \\(\\dfrac{\\partial f}{\\partial y} = N\\) to find \\(g(y)\\).</strong><br>\n          We have \\(f = x^2 y + g(y)\\). Differentiate with respect to \\(y\\):<br>\n          \\(\\dfrac{\\partial f}{\\partial y} = x^2 + g'(y)\\)<br>\n          Set this equal to \\(N = x^2 + 1\\):<br>\n          \\(x^2 + g'(y) = x^2 + 1\\) → \\(g'(y) = 1\\) → \\(g(y) = y + C\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Assemble the final potential function.</strong><br>\n          \\(f(x,y) = x^2 y + y + C\\)<br>\n          You can verify: \\(\\nabla f = \\langle 2xy,\\; x^2+1 \\rangle = \\mathbf{F}\\) ✓\n        </div></div>\n        <div class=\"answer-box\">✓ Potential function: \\(f(x,y) = x^2 y + y + C\\) — this is the \"invisible landscape\" that \\(\\mathbf{F}\\) is the gradient of.</div>\n      </div>\n    </div>\n\n    <!-- EXAMPLE 6 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 6</span> Path Independence in Action — No Path Needed!</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Using the result from Example 5, evaluate \\(\\displaystyle\\int_C \\mathbf{F} \\cdot d\\mathbf{r}\\) from \\((0,0)\\) to \\((2,3)\\) along <em>any path whatsoever</em>.\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Since \\(\\mathbf{F}\\) is conservative with potential \\(f(x,y) = x^2y + y\\), we can use the shortcut formula.</strong><br>\n          We don't need to know or describe the path \\(C\\) at all. We just need the endpoints.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Evaluate \\(f\\) at the endpoint \\(B = (2,3)\\):</strong><br>\n          \\(f(2,3) = (2)^2(3) + (3) = 4 \\cdot 3 + 3 = 12 + 3 = 15\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Evaluate \\(f\\) at the starting point \\(A = (0,0)\\):</strong><br>\n          \\(f(0,0) = (0)^2(0) + 0 = 0\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Subtract: \\(f(B) - f(A)\\).</strong><br>\n          \\(\\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} = f(2,3) - f(0,0) = 15 - 0 = 15\\)\n        </div></div>\n        <div class=\"answer-box\">✓ Answer = 15, no matter which path you took — straight line, spiral, zigzag, anything. Conservative fields simply don't care.</div>\n      </div>\n    </div>\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 How the Conservative-Field Tests Fit Together</div>\n      <p style=\"margin-bottom:0.7rem;\">For a sufficiently smooth vector field on a suitable <strong>simply connected domain</strong>, the following conditions are equivalent:</p>\n      <p style=\"margin-bottom:0.4rem;\">1. \\(\\mathbf{F} = \\nabla f\\) for some scalar function \\(f\\) — a potential function exists.</p>\n      <p style=\"margin-bottom:0.4rem;\">2. The line integral is <strong>path-independent</strong>: every path from \\(A\\) to \\(B\\) gives the same value.</p>\n      <p style=\"margin-bottom:0.4rem;\">3. The work around every closed loop is zero: \\(\\displaystyle\\oint_C \\mathbf{F}\\cdot d\\mathbf{r}=0\\).</p>\n      <p style=\"margin-bottom:0.4rem;\">4. In 2D, the cross-partials agree: \\(\\partial M/\\partial y = \\partial N/\\partial x\\).</p>\n      <p style=\"margin-bottom:0.4rem;\">5. In 3D, the curl is zero: \\(\\nabla\\times\\mathbf{F}=\\mathbf{0}\\).</p>\n      <p style=\"margin:0;\"><strong>Important:</strong> The curl/cross-partial tests are especially useful because they can show that a field is conservative without requiring us to find the potential function first. The domain conditions matter.</p>\n    </div>\n  </section>\n\n  <hr>\n\n  <section id=\"ch16-4\">\n    <div class=\"section-label\">Green's Theorem</div>\n    <h2 class=\"section-title\">Green's Theorem in the Plane</h2>\n    \n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;\">The Core Idea: The Edge Tells You About the Inside</h3>\n    <p>\n      Green's Theorem is one of the most surprising and beautiful shortcuts in all of mathematics. It says: <strong>what happens on the boundary of a 2D region is perfectly equivalent to what happens throughout the entire interior</strong>.\n    </p>\n    <p>\n      In other words, instead of integrating over a complicated closed curve (the boundary), you can switch to a double integral over the enclosed region — or the other way around. Pick whichever is easier!\n    </p>\n    <div class=\"analogy\">\n      Imagine a shallow lake filled with tiny spinning whirlpools. You want to measure the total \"spinning energy\" of the entire lake. Method 1: Swim to every point and measure — exhausting. Method 2: Just measure the water current flowing around the <em>shoreline</em>. Green's Theorem guarantees these give the same answer. The boundary current perfectly summarizes everything happening inside.\n    </div>\n    <div class=\"analogy\">\n      Here's another way to see it: imagine a room full of tiny ceiling fans, each spinning. Neighboring fans whose edges touch will spin against each other and cancel out. Only the fans along the outermost wall contribute a net spin in the boundary direction. So the sum of all interior spins equals what you measure at the outer boundary only.\n    </div>\n\n    <div class=\"theorem\">\n      <span class=\"thm-tag\">Green's Theorem</span>\n      <p style=\"margin-top:0.5rem;\"><strong>Setup requirements:</strong> \\(C\\) is a simple closed curve, traversed <em>counterclockwise</em> (the region \\(R\\) stays on your left as you walk). \\(M(x,y)\\) and \\(N(x,y)\\) have continuous partial derivatives throughout \\(R\\).</p>\n      \\[\n        \\oint_C M\\, dx + N\\, dy \\;=\\; \\iint_R \\left(\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}\\right) dA\n      \\]\n      <p style=\"margin-top:0.8rem;\"><strong>Left side = Line integral.</strong> Walk around the boundary curve \\(C\\), accumulating \\(M\\,dx + N\\,dy\\) at each step. This is potentially a messy trigonometric or algebraic computation.</p>\n      <p style=\"margin-top:0.4rem;\"><strong>Right side = Double integral.</strong> Integrate the \"curl\" expression \\(\\partial N/\\partial x - \\partial M/\\partial y\\) over the flat 2D region \\(R\\). Often much simpler — especially when the curl simplifies to a constant!</p>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">What Is \\(\\partial N/\\partial x - \\partial M/\\partial y\\)? The Local Spin Detector</h3>\n    <p>\n      The quantity \\(\\dfrac{\\partial N}{\\partial x} - \\dfrac{\\partial M}{\\partial y}\\) measures how much the vector field \\(\\mathbf{F} = M\\mathbf{i} + N\\mathbf{j}\\) \"spins\" or \"rotates\" at each individual point. This is called the <strong>2D curl</strong>.\n    </p>\n    <div class=\"analogy\">\n      Drop a tiny pinwheel into a moving fluid at some point. Does it spin? If yes: the curl is nonzero there. Spins counterclockwise: positive curl. Clockwise: negative curl. Doesn't spin at all: zero curl. The curl is essentially a \"local rotation meter\" for the vector field.\n    </div>\n    <p>\n      Green's Theorem says: <em>add up all the local spins throughout the entire region</em> (the double integral) and you get the same total as measuring how strongly the field pushes you <em>along the boundary</em> (the line integral). They're two views of the same thing.\n    </p>\n\n    <div class=\"grid-2\">\n      <div class=\"mini-card\">\n        <h4>🔄 Circulation Form</h4>\n        <p>Total interior spin = flow around the boundary.</p>\n        \\[\\oint_C M\\,dx + N\\,dy = \\iint_R\\!\\left(\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}\\right)\\!dA\\]\n      </div>\n      <div class=\"mini-card\">\n        <h4>💨 Flux-Divergence Form</h4>\n        <p>Total outward spreading inside = flow crossing the boundary outward.</p>\n        \\[\\oint_C M\\,dy - N\\,dx = \\iint_R\\!\\left(\\frac{\\partial M}{\\partial x} + \\frac{\\partial N}{\\partial y}\\right)\\!dA\\]\n      </div>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Bonus Application: Computing Area by Walking the Boundary</h3>\n    <p>\n      Choose \\(M\\) and \\(N\\) cleverly so that \\(\\partial N/\\partial x - \\partial M/\\partial y = 1\\), and the double integral becomes just the area of the region. This means you can calculate the area of any shape just by walking around its perimeter!\n    </p>\n    \\[\n      \\text{Area of } R = \\oint_C x\\, dy = -\\oint_C y\\, dx = \\frac{1}{2}\\oint_C \\left(x\\, dy - y\\, dx\\right)\n    \\]\n\n    <div class=\"warning\">\n      ⚠️ <strong>Counterclockwise is mandatory.</strong> Green's Theorem assumes you traverse \\(C\\) counterclockwise — so the region is always to your left. Walking clockwise gives you the negative of the right answer. This \"positive orientation\" convention is standard across all of vector calculus.\n    </div>\n\n    <!-- EXAMPLE 7 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 7</span> Green's Theorem Shortcut — A Messy Integral Made Easy</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Evaluate \\(\\displaystyle\\oint_C (x^2 - y)\\,dx + (x + y^2)\\,dy\\) where \\(C\\) is the circle \\(x^2 + y^2 = 4\\), counterclockwise.\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">Without Green's Theorem, you'd need to parameterize the circle, substitute, and grind through messy trig integrals. With Green's Theorem — watch how fast this goes.</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Read off \\(M\\) and \\(N\\) from the integrand \\(M\\,dx + N\\,dy\\).</strong><br>\n          \\(M = x^2 - y\\qquad N = x + y^2\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Compute the curl \\(\\partial N/\\partial x - \\partial M/\\partial y\\).</strong><br>\n          \\(\\dfrac{\\partial N}{\\partial x} = \\dfrac{\\partial(x+y^2)}{\\partial x} = 1\\)<br>\n          \\(\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial(x^2-y)}{\\partial y} = -1\\)<br>\n          Curl \\(= 1 - (-1) = 2\\) &nbsp; — constant! Every point inside the circle has the same local spin.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Apply Green's Theorem: line integral = double integral of the curl over the disk.</strong><br>\n          The disk \\(x^2+y^2 \\le 4\\) has radius 2, so area \\(= \\pi(2^2) = 4\\pi\\).<br>\n          \\(\\displaystyle\\iint_R 2\\, dA = 2 \\times \\text{Area} = 2 \\times 4\\pi = 8\\pi\\)\n        </div></div>\n        <div class=\"answer-box\">✓ Answer \\(= 8\\pi\\). What might have taken a page of trig computation took three lines with Green's Theorem.</div>\n      </div>\n    </div>\n\n    <!-- EXAMPLE 8 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 8</span> Area of an Ellipse — Walk the Boundary, Find the Area</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Use Green's Theorem to prove the area of the ellipse \\(\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1\\) is \\(\\pi ab\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">An ellipse is an oval — width \\(2a\\), height \\(2b\\). If \\(a = b = r\\), it's a circle of radius \\(r\\) with area \\(\\pi r^2\\). We'll prove the general formula by integrating around the boundary.</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Parameterize the ellipse boundary.</strong><br>\n          Going counterclockwise: \\(x = a\\cos t,\\; y = b\\sin t,\\; t \\in [0,2\\pi]\\)<br>\n          \\(dx = -a\\sin t\\, dt,\\quad dy = b\\cos t\\, dt\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Apply area formula: Area \\(= \\frac{1}{2}\\oint(x\\,dy - y\\,dx)\\).</strong><br>\n          \\(\\displaystyle = \\frac{1}{2}\\int_0^{2\\pi}\\!\\big[(a\\cos t)(b\\cos t) - (b\\sin t)(-a\\sin t)\\big]\\,dt\\)<br>\n          \\(\\displaystyle = \\frac{1}{2}\\int_0^{2\\pi}(ab\\cos^2 t + ab\\sin^2 t)\\,dt = \\frac{ab}{2}\\int_0^{2\\pi}(\\cos^2 t + \\sin^2 t)\\,dt\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Apply \\(\\cos^2 t + \\sin^2 t = 1\\):</strong><br>\n          \\(\\displaystyle = \\frac{ab}{2}\\int_0^{2\\pi} 1\\,dt = \\frac{ab}{2} \\cdot 2\\pi = \\pi ab\\)\n        </div></div>\n        <div class=\"answer-box\">✓ Area of ellipse \\(= \\pi ab\\). Special case \\(a = b = r\\): gives \\(\\pi r^2\\) ✓</div>\n      </div>\n    </div>\n  </section>\n\n  <hr>\n\n  <!-- ═══════════════════════════════════════════════════ -->\n  <!-- 16.5 -->\n  <!-- ═══════════════════════════════════════════════════ -->\n  <div class=\"key-idea\"><div class=\"ki-title\">Real-life use</div><p>Green's Theorem turns a hard boundary circulation into an easier area integral — the same swap used when checking planar flow balance from edge measurements alone.</p></div><section id=\"ch16-5\">\n    <div class=\"section-label\">Surfaces and Area</div>\n    <h2 class=\"section-title\">Surfaces and Surface Area</h2>\n    \n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;\">What Is a Surface? From Curves to Sheets</h3>\n    <p>\n      So far, we've worked with <em>curves</em> — 1D paths through space. A <strong>surface</strong> is the next level up: it's a 2D \"sheet\" living inside 3D space. Think of a sphere, a bowl, a saddle, a crumpled piece of paper, or any curved two-dimensional object floating in three-dimensional space.\n    </p>\n    <div class=\"analogy\">\n      A curve is like a piece of string stretched through the air — 1D, has length. A surface is like a bedsheet or a soap bubble — 2D, has area. Both live in 3D space. When we talk about \"surface area\" in this section, we're asking: how much material would you need to cover a curved surface? Like asking how many square meters of fabric you need to make a tent.\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Parametric Surfaces — Two Inputs, One Point in Space</h3>\n    <p>\n      Just like we used one parameter \\(t\\) to trace a curve, we need <em>two</em> parameters to describe a surface. Makes sense — a surface is 2D, so it needs two \"coordinates\" to navigate it.\n    </p>\n    <div class=\"analogy\">\n      Think of a globe. To specify any point on Earth's surface, you need two numbers: latitude and longitude. That's exactly what parameters \\(u\\) and \\(v\\) do for a surface. You give two numbers, you get one point on the surface. The whole surface is swept out as \\((u,v)\\) ranges over some 2D region.\n    </div>\n    \\[\n      \\mathbf{r}(u,v) = f(u,v)\\,\\mathbf{i} + g(u,v)\\,\\mathbf{j} + h(u,v)\\,\\mathbf{k}\n    \\]\n    <p>\n      As the pair \\((u,v)\\) varies over a flat region \\(D\\) in the \\(uv\\)-plane, the output \\(\\mathbf{r}(u,v)\\) traces out the surface in 3D space. You're mapping a flat 2D region onto a curved 3D surface.\n    </p>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">How to Find Surface Area — Tiny Parallelogram Patches</h3>\n    <p>\n      The idea is the same as regular area, just adapted for curved surfaces. Divide the surface into tiny patches. Find the area of each patch. Sum them all up.\n    </p>\n    <p>\n      The trick: each tiny patch of the surface is approximately a tiny <em>parallelogram</em>. The two sides of this parallelogram are given by the partial derivative vectors \\(\\mathbf{r}_u\\) and \\(\\mathbf{r}_v\\):\n    </p>\n    <div class=\"analogy\">\n      Take a rubber sheet lying flat. Push one end to stretch it in the \\(u\\)-direction a tiny bit — that gives vector \\(\\mathbf{r}_u\\). Push a different edge in the \\(v\\)-direction — that gives \\(\\mathbf{r}_v\\). These two tiny vectors form a tiny parallelogram on the surface. The area of a parallelogram formed by two vectors is given by the magnitude of their cross product. Add up all such tiny parallelogram areas over the whole surface, and you have the total surface area.\n    </div>\n\n    <div class=\"def-box\">\n      <div class=\"def-title\">Surface Area Formula (Parametric Form)</div>\n      \\[\n        \\text{Surface Area} = \\iint_D \\left|\\mathbf{r}_u \\times \\mathbf{r}_v\\right|\\, dA\n      \\]\n      <p style=\"margin-top:0.8rem;margin-bottom:0;\"><strong>Breaking it down:</strong> \\(\\mathbf{r}_u = \\partial \\mathbf{r}/\\partial u\\) and \\(\\mathbf{r}_v = \\partial \\mathbf{r}/\\partial v\\) are vectors tangent to the surface. Their cross product \\(\\mathbf{r}_u \\times \\mathbf{r}_v\\) is a vector perpendicular (normal) to the surface. Its magnitude \\(|\\mathbf{r}_u \\times \\mathbf{r}_v|\\) is the area of the tiny parallelogram patch at that point. Integrate over the parameter region \\(D\\) to sum all patches.</p>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">Simpler Formula When \\(z = g(x,y)\\)</h3>\n    <p>\n      When the surface is given in the form \\(z = g(x,y)\\) — meaning for each \\((x,y)\\) pair, the height \\(z\\) is determined by a formula — there's a simpler, ready-to-use formula. Parameterize with \\(x=u, y=v, z=g(u,v)\\), do the cross product, and simplify:\n    </p>\n    \\[\n      \\text{Surface Area} = \\iint_R \\sqrt{1 + \\left(\\frac{\\partial g}{\\partial x}\\right)^2 + \\left(\\frac{\\partial g}{\\partial y}\\right)^2}\\; dA\n    \\]\n    <p>\n      Here \\(R\\) is the region on the \\(xy\\)-plane directly below (or above) the surface — its \"shadow.\"\n    </p>\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 Why Is There a Square Root? The Tilt Factor Explained</div>\n      <p style=\"margin-bottom:0.6rem;\">Imagine a tile floor. If you lay the tiles perfectly flat: 1 square meter of floor = 1 square meter of tile. But what if you tilt the floor? A tilted surface covers more area than its flat shadow below it — just like a tilted ramp covers more actual surface than the floor length it sits above.</p>\n      <p style=\"margin-bottom:0.6rem;\">The partial derivatives \\(\\partial g/\\partial x\\) and \\(\\partial g/\\partial y\\) measure how steeply the surface tilts in each direction. The \\(\\sqrt{1 + (\\partial g/\\partial x)^2 + (\\partial g/\\partial y)^2}\\) is the \"tilt correction factor\" — always \\(\\ge 1\\).</p>\n      <p style=\"margin:0;\">Flat surface (\\(z = \\)constant, no tilt) → both partials = 0 → \\(\\sqrt{1+0+0} = 1\\) → area of surface = area of its shadow. Perfect. As tilt increases, the factor grows above 1, giving more surface area than the flat shadow.</p>\n    </div>\n\n    <!-- EXAMPLE 9 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 9</span> Surface Area of a Paraboloid — Full Walkthrough</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Find the surface area of the portion of \\(z = x^2 + y^2\\) that lies below the plane \\(z = 1\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">This surface is a bowl shape (paraboloid) opening upward. We want the area of the part of the bowl up to height \\(z = 1\\).</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Identify the surface and its shadow region \\(R\\).</strong><br>\n          Surface: \\(z = g(x,y) = x^2 + y^2\\).<br>\n          Below \\(z=1\\) means \\(x^2 + y^2 \\le 1\\) — a disk of radius 1 in the \\(xy\\)-plane.\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Compute the partial derivatives (how steep is the surface?).</strong><br>\n          \\(\\dfrac{\\partial g}{\\partial x} = 2x\\qquad\\) and \\(\\qquad\\dfrac{\\partial g}{\\partial y} = 2y\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Set up the surface area integral using the formula.</strong><br>\n          \\(SA = \\displaystyle\\iint_{x^2+y^2\\le 1} \\sqrt{1 + (2x)^2 + (2y)^2}\\; dA = \\iint \\sqrt{1 + 4x^2 + 4y^2}\\; dA\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Switch to polar coordinates</strong> — perfect for circular regions.<br>\n          In polar: \\(x = r\\cos\\theta,\\; y = r\\sin\\theta,\\; x^2+y^2 = r^2,\\; dA = r\\, dr\\, d\\theta\\)<br>\n          \\(SA = \\displaystyle\\int_0^{2\\pi}\\!\\int_0^1 \\sqrt{1+4r^2}\\cdot r\\; dr\\; d\\theta\\)<br>\n          Let \\(u = 1+4r^2\\), then \\(du = 8r\\,dr\\), so \\(r\\,dr = du/8\\). Limits: \\(r=0 \\to u=1\\), \\(r=1 \\to u=5\\).<br>\n          \\(\\displaystyle= \\int_0^{2\\pi}\\frac{1}{8}\\int_1^5 \\sqrt{u}\\; du\\; d\\theta = \\int_0^{2\\pi}\\frac{1}{8}\\cdot\\frac{2}{3}\\Big[u^{3/2}\\Big]_1^5 d\\theta\\)<br>\n          \\(\\displaystyle= \\int_0^{2\\pi} \\frac{1}{12}(5\\sqrt{5}-1)\\; d\\theta = \\frac{\\pi(5\\sqrt{5}-1)}{6}\\)\n        </div></div>\n        <div class=\"answer-box\">\\(\\displaystyle SA = \\frac{\\pi(5\\sqrt{5}-1)}{6} \\approx 5.33\\) square units</div>\n      </div>\n    </div>\n\n    <!-- EXAMPLE 10 -->\n    <div class=\"example\">\n      <div class=\"example-header\"><span class=\"ex-num\">Ex 10</span> Surface Area of a Sphere — Verifying the Classic Formula</div>\n      <div class=\"example-body\">\n        <div class=\"question\">\n          Use the surface area formula to verify that a sphere of radius \\(a\\) has surface area \\(4\\pi a^2\\).\n          <br><br>\n          <em style=\"color:var(--muted);font-size:0.93rem;\">You know this formula from school. Now we'll actually prove it from scratch using calculus — no magic, just the machinery we've built.</em>\n        </div>\n        <div class=\"step\"><div class=\"step-num\">1</div><div class=\"step-body\">\n          <strong>Use the upper hemisphere</strong> (by symmetry, multiply by 2 at the end).<br>\n          Upper half of sphere: \\(z = \\sqrt{a^2 - x^2 - y^2}\\) over the disk \\(x^2+y^2 \\le a^2\\).\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">2</div><div class=\"step-body\">\n          <strong>Compute the partial derivatives of \\(z\\).</strong><br>\n          \\(\\dfrac{\\partial z}{\\partial x} = \\dfrac{-x}{\\sqrt{a^2-x^2-y^2}}\\qquad\\) and \\(\\qquad\\dfrac{\\partial z}{\\partial y} = \\dfrac{-y}{\\sqrt{a^2-x^2-y^2}}\\)<br>\n          After squaring and adding with 1:<br>\n          \\(1 + \\left(\\dfrac{\\partial z}{\\partial x}\\right)^2 + \\left(\\dfrac{\\partial z}{\\partial y}\\right)^2 = 1 + \\dfrac{x^2+y^2}{a^2-x^2-y^2} = \\dfrac{a^2}{a^2-r^2}\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">3</div><div class=\"step-body\">\n          <strong>Set up the integral in polar.</strong><br>\n          \\(\\displaystyle SA_{\\text{upper}} = \\int_0^{2\\pi}\\!\\int_0^a \\frac{a}{\\sqrt{a^2-r^2}}\\cdot r\\; dr\\; d\\theta\\)<br>\n          Let \\(u = a^2 - r^2\\), \\(du = -2r\\, dr\\). When \\(r=0: u=a^2\\). When \\(r=a: u=0\\).<br>\n          \\(\\displaystyle= \\int_0^{2\\pi} a\\int_0^{a^2}\\frac{1}{2\\sqrt{u}}\\,du\\; d\\theta = \\int_0^{2\\pi} a\\Big[\\sqrt{u}\\Big]_0^{a^2} d\\theta = \\int_0^{2\\pi} a \\cdot a\\; d\\theta = 2\\pi a^2\\)\n        </div></div>\n        <div class=\"step\"><div class=\"step-num\">4</div><div class=\"step-body\">\n          <strong>Double it for the full sphere:</strong><br>\n          \\(SA = 2 \\times 2\\pi a^2 = 4\\pi a^2\\) ✓\n        </div></div>\n        <div class=\"answer-box\">✓ Surface area of sphere \\(= 4\\pi a^2\\) — the formula you memorized in school, now proven from first principles!</div>\n      </div>\n    </div>\n\n    <h3 style=\"font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;\">The Normal Vector — Pointing Away From the Surface</h3>\n    <p>\n      At every point of a surface, there's a direction that's perpendicular (sticking straight out) — called the <strong>normal vector</strong>. This is extremely important for surface integrals (integrating over surfaces in future topics).\n    </p>\n    <div class=\"analogy\">\n      Stand on a grassy hill. The normal vector at your feet points straight up away from the hillside — not along the slope, but perpendicular to it. On a sphere, the normal at every point points radially outward from the center. On a flat floor, all normals point straight up. The normal is always \"perpendicular to the surface at that point.\"\n    </div>\n    \\[\n      \\text{Unit Normal: }\\mathbf{n} = \\frac{\\mathbf{r}_u \\times \\mathbf{r}_v}{|\\mathbf{r}_u \\times \\mathbf{r}_v|}\n      \\qquad\\qquad\n      d\\mathbf{S} = (\\mathbf{r}_u \\times \\mathbf{r}_v)\\, dA \\quad \\text{(vector surface element)}\n    \\]\n\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🔑 The Big Picture — Where Are We Headed?</div>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Line integrals</strong> → add things up along curves (1D paths in space).</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Surface integrals</strong> → add things up over surfaces (2D sheets in space).</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Green's Theorem</strong> → links 1D boundary integral to 2D area integral (in a plane).</p>\n      <p style=\"margin-bottom:0.5rem;\"><strong>Stokes' Theorem</strong> (coming later) → links 1D boundary integral to 2D surface integral (in 3D).</p>\n      <p style=\"margin:0;\"><strong>Divergence Theorem</strong> (coming later) → links 2D surface integral to 3D volume integral. These theorems are all the same deep idea: <em>boundary information determines interior information</em>.</p>\n    </div>\n  </section>\n\n  <!-- FORMULA REFERENCE -->\n  <section style=\"margin-bottom:2rem;\">\n    <div class=\"section-label\">Quick Reference</div>\n    <h2 class=\"section-title\">All Key Formulas at a Glance</h2>\n    <table>\n      <thead><tr><th>Topic</th><th>Formula (LaTeX rendered)</th></tr></thead>\n      <tbody>\n        <tr><td>Derivative of \\(\\mathbf{r}(t)\\)</td><td>\\(\\mathbf{r}'(t) = \\langle f'(t),\\, g'(t),\\, h'(t) \\rangle\\)</td></tr>\n        <tr><td>Unit Tangent</td><td>\\(\\mathbf{T} = \\dfrac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|}\\)</td></tr>\n        <tr><td>Line Integral (scalar)</td><td>\\(\\displaystyle\\int_C f\\, ds = \\int_a^b f(\\mathbf{r}(t))|\\mathbf{r}'(t)|\\, dt\\)</td></tr>\n        <tr><td>Work</td><td>\\(\\displaystyle W = \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\int_a^b \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t)\\, dt\\)</td></tr>\n        <tr><td>Flux (2D)</td><td>\\(\\displaystyle\\oint_C \\mathbf{F}\\cdot\\mathbf{n}\\, ds = \\oint_C M\\, dy - N\\, dx\\)</td></tr>\n        <tr><td>Conservative test (2D)</td><td>\\(\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}\\)</td></tr>\n        <tr><td>FTC for Line Integrals</td><td>\\(\\displaystyle\\int_C \\nabla f \\cdot d\\mathbf{r} = f(B) - f(A)\\)</td></tr>\n        <tr><td>Green's Theorem</td><td>\\(\\displaystyle\\oint_C M\\, dx + N\\, dy = \\iint_R\\!\\left(\\frac{\\partial N}{\\partial x}-\\frac{\\partial M}{\\partial y}\\right)dA\\)</td></tr>\n        <tr><td>Surface Area \\((z=g)\\)</td><td>\\(\\displaystyle\\iint_R \\sqrt{1+g_x^2+g_y^2}\\; dA\\)</td></tr>\n        <tr><td>Surface Area (parametric)</td><td>\\(\\displaystyle\\iint_D |\\mathbf{r}_u \\times \\mathbf{r}_v|\\; dA\\)</td></tr>\n      </tbody>\n    </table>\n  </section>\n\n  <section style=\"margin-bottom:2rem;\">\n    <div class=\"section-label\">Applications</div>\n    <h2 class=\"section-title\">Where This Shows Up in Real Life</h2>\n    <div class=\"key-idea\">\n      <div class=\"ki-title\">🌍 Real-World Use</div>\n      <p style=\"margin-bottom:0.6rem;\">GPS navigation systems track your <strong>position as a vector-valued function of time</strong> exactly as we did with $\\mathbf{r}(t)$ \u2014 your phone differentiates that path in real time to report your current speed and heading. Drone flight controllers use the same math to compute velocity and acceleration from raw position sensor data dozens of times per second.</p>\n      <p style=\"margin:0;\">Engineers computing the <strong>work done by a force</strong> along a curved path \u2014 a roller coaster car, a robotic arm, a satellite's orbit \u2014 use exactly the line integral $\\int_C \\mathbf{F}\\cdot d\\mathbf{r}$ from this guide. Green's Theorem underlies how CAD software computes the area of arbitrarily complex 2D shapes by walking only their outline, and weather forecasters use divergence and curl (previewed here, developed fully in the next guide) to spot storm systems from wind-vector satellite data.</p>\n    </div>\n  </section>\n\n</main>\n\n<footer>\n  <p><strong>Vector Calculus Study Guide</strong></p>\n  <p style=\"margin-top:0.4rem;\">Vector functions, line integrals, Green's theorem, and surfaces</p>\n</footer>\n\n<button id=\"top-btn\" title=\"Back to top\">↑</button>";
+const markup = `<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <span class="uni-tag">Multivariable Calculus Studio</span>
+    <h1>Multivariable <span>Calculus</span></h1>
+    <p class="subtitle">Complete Study Guide</p>
+    <span class="course-badge">Vector Calculus</span>
+  </div>
+</header>
 
-// Split point: Part 1 = ch13 + ch16-1 + ch16-3, Part 2 = ch16-4 + ch16-5
+<!-- NAV -->
+<nav>
+  <a href="#ch13">Vector Functions</a>
+  <a href="#tnb-frame">TNB Frame & Curvature</a>
+  <a href="#ch16-1">Line Integrals</a>
+  <a href="#ch16-3">Path Independence</a>
+  <a href="#ch16-4">Green's Theorem</a>
+  <a href="#ch16-5">Surfaces & Area</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- BEGINNER INTRO BOX -->
+  <div class="def-box" style="border-left-color:#0284c7;background:#f8fafc;margin-bottom:2.5rem;">
+    <div class="def-title" style="color:#0284c7;">👋 Hey — Read This First!</div>
+    <p style="margin-bottom:0.7rem;">This guide assumes you know <strong>absolutely nothing</strong> about advanced calculus. Every word, every symbol, every idea will be explained from scratch — in plain everyday language. No jargon without explanation. No formula without a story behind it.</p>
+    <p style="margin-bottom:0.7rem;">Think of this as a friend sitting next to you explaining it at a coffee shop, not a professor lecturing at a chalkboard.</p>
+    <p style="margin:0;">Whenever you see a scary-looking formula, <strong>slow down</strong>. Read the explanation above it first. The formula is just a shorthand for something you already understand.</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3>📖 Course Contents — Quick Navigation</h3>
+    <ol>
+      <li><a href="#ch13">Vector-Valued Functions</a></li>
+      <li><a href="#tnb-frame">The TNB Frame, Curvature, and Torsion</a></li>
+      <li><a href="#ch16-1">§16.1–16.2 · Line Integrals, Vector Fields, Work, Circulation & Flux</a></li>
+      <li><a href="#ch16-3">§16.3 · Path Independence, Conservative Fields & Potential Functions</a></li>
+      <li><a href="#ch16-4">§16.4 · Green's Theorem in the Plane</a></li>
+      <li><a href="#ch16-5">§16.5 · Surfaces & Area</a></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- CHAPTER 13 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="key-idea"><div class="ki-title">Real-life use</div><p>Robotics, animation, and GPS tracking all use vector-valued paths $\\mathbf{r}(t)$ — position as a function of time — exactly the objects in this chapter.</p></div><section id="ch13">
+    <div class="section-label">Vector Functions</div>
+    <h2 class="section-title">Vector-Valued Functions</h2>
+    
+
+    <!-- WHAT IS A FUNCTION? GROUND ZERO -->
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;">Step 0 — What Even Is a Function?</h3>
+    <p>
+      Before anything else, let's make sure we understand what a "function" means. A <strong>function</strong> is just a <em>machine</em>. You put a number in. You get a number out. That's it.
+    </p>
+    <p>
+      For example, $f(x) = x^2$ is a function. You put in $3$, you get out $9$. You put in $5$, you get out $25$. One number in → one number out. This is what you've done in regular calculus.
+    </p>
+    <div class="analogy">
+      Think of it like a vending machine. You press button "3" (the input). Out comes a bag of chips labeled "9" (the output). Simple.
+    </div>
+
+    <!-- WHAT IS A VECTOR? -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 1 — What Is a Vector?</h3>
+    <p>
+      A <strong>vector</strong> is just a way to describe something that has both a <em>size</em> (how much) and a <em>direction</em> (which way). Regular numbers only have size. Vectors have both.
+    </p>
+    <p>
+      In everyday life: "Walk 5 steps" is just a number (a <em>scalar</em>). But "Walk 5 steps <strong>north</strong>" is a vector — it tells you how much AND which direction.
+    </p>
+    <div class="analogy">
+      Imagine giving directions to your friend on the phone. Saying "drive 10 km" is useless — 10 km which way? But saying "drive 10 km east" is a vector. It has magnitude (10 km) and direction (east). That extra direction information is what makes a vector a vector.
+    </div>
+    <p>
+      In 3D space (our world), a vector has three components — one for each direction: left-right (x), front-back (y), and up-down (z). We write it as:
+    </p>
+    \\[
+      \\mathbf{v} = \\langle 3,\\; -1,\\; 5 \\rangle
+    \\]
+    <p>
+      This means: move 3 in the x-direction, move −1 in the y-direction (so backward 1), and move 5 in the z-direction (up 5). The three numbers together describe one complete "arrow" in space.
+    </p>
+
+    <!-- WHAT IS A VECTOR-VALUED FUNCTION? -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 2 — A Vector-Valued Function: The Machine That Outputs Arrows</h3>
+    <p>
+      Now combine the two ideas. A <strong>vector-valued function</strong> is a machine where you put a number in, and you get a <em>vector</em> (an arrow) out instead of a plain number.
+    </p>
+    <div class="analogy">
+      Picture a GPS tracker on a drone. Every second (the input = time $t$), the tracker outputs the drone's current position as three numbers: how far east, how far north, how high up. That output — three numbers bundled together — is a vector. The whole GPS tracker is the vector-valued function $\\mathbf{r}(t)$.
+    </div>
+    <p>
+      Mathematically, we write this as:
+    </p>
+
+    <div class="def-box">
+      <div class="def-title">Definition — Vector-Valued Function</div>
+      <p style="margin-bottom:0.8rem;">A <strong>vector-valued function</strong> $\\mathbf{r}(t)$ takes in a single number $t$ (usually time) and outputs a position vector:</p>
+      \\[
+        \\mathbf{r}(t) = f(t)\\,\\mathbf{i} + g(t)\\,\\mathbf{j} + h(t)\\,\\mathbf{k} = \\langle f(t),\\; g(t),\\; h(t) \\rangle
+      \\]
+      <p style="margin-top:0.8rem;margin-bottom:0;">Here, $f(t)$ tells you the x-position at time $t$, $g(t)$ tells you the y-position, and $h(t)$ tells you the z-position. The bold letters $\\mathbf{i}, \\mathbf{j}, \\mathbf{k}$ are just shorthand labels meaning "x-direction", "y-direction", "z-direction".</p>
+    </div>
+
+    <div class="analogy">
+      Imagine tracking a rollercoaster car. At time $t = 0$ seconds it's at position (0, 0, 0) — the starting point. At $t = 1$ second it's at (3, 1, 2) — 3 meters right, 1 meter forward, 2 meters up. At $t = 2$ seconds it's somewhere else. The function $\\mathbf{r}(t)$ records this position at every single moment. As $t$ increases, the tip of the position vector traces the <em>path</em> of the rollercoaster — a curve winding through 3D space.
+    </div>
+
+    <!-- WHAT IS A SPACE CURVE? -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 3 — The Space Curve: The Path Left Behind</h3>
+    <p>
+      As $t$ changes (time passes), $\\mathbf{r}(t)$ traces out a path. This path is called a <strong>space curve</strong>. It's just the trail left by a moving point in 3D space.
+    </p>
+    <div class="analogy">
+      Think of a sparkler on New Year's Eve. As someone waves it around in the dark, it leaves a glowing trail in the air. That glowing trail — whatever shape it makes — is the "space curve." The sparkler is the moving point. The function $\\mathbf{r}(t)$ describes where the sparkler is at every moment. The visible trail is the curve.
+    </div>
+    <p>
+      A helix (like a spring or a DNA strand) is one of the most common examples. If you set:
+    </p>
+    \\[
+      \\mathbf{r}(t) = \\langle \\cos t,\\; \\sin t,\\; t \\rangle
+    \\]
+    <p>
+      …then as $t$ increases, the x and y components go in circles (because cosine and sine make circles), while the z component just keeps going up. The result is a spiral that keeps rising — exactly like a spring or a screw thread.
+    </p>
+
+    <!-- LIMITS AND CONTINUITY -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 4 — Limits: What Happens "Just Before"?</h3>
+    <p>
+      A <strong>limit</strong> asks: "As the input gets really close to some value, what does the output get close to?" It's about <em>approaching</em> a value, not necessarily hitting it exactly.
+    </p>
+    <div class="analogy">
+      Imagine driving toward a red light. As you get closer and closer, your distance to the light approaches zero. The "limit" of your distance as you approach the light is zero — even if you eventually stop just before reaching it. The limit describes the <em>trend</em>, the destination you're heading toward.
+    </div>
+    <p>
+      For vector-valued functions, taking a limit is easy: just take the limit of <em>each piece separately</em>. Since $\\mathbf{r}(t)$ has three components (x, y, z), just find the limit of each one:
+    </p>
+    \\[
+      \\lim_{t \\to a} \\mathbf{r}(t) = \\left\\langle \\lim_{t\\to a} f(t),\\;\\; \\lim_{t\\to a} g(t),\\;\\; \\lim_{t\\to a} h(t) \\right\\rangle
+    \\]
+    <p>
+      <strong>Continuity</strong> means there are no sudden jumps. If a function is continuous, its graph is one smooth, unbroken line — no teleporting. For $\\mathbf{r}(t)$, continuity just means all three component functions are continuous.
+    </p>
+    <div class="analogy">
+      A continuous path is like a road with no gaps. You can drive along it without ever leaving the ground. A discontinuous function would be like the road suddenly ending — you'd have to teleport to a different spot to continue. In calculus, we usually insist our paths are continuous (no teleporting).
+    </div>
+
+    <!-- THE DERIVATIVE -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 5 — The Derivative: How Fast and Which Way Are You Going?</h3>
+    <p>
+      The <strong>derivative</strong> is one of the two big ideas of calculus. In regular calculus, the derivative of $f(x)$ tells you the <em>slope</em> of the curve at a point — how steep it is.
+    </p>
+    <p>
+      For a vector-valued function, the derivative $\\mathbf{r}'(t)$ tells you something much more physical and intuitive: it tells you the object's <strong>velocity</strong> — both <em>how fast</em> it is moving AND <em>in which direction</em> it is moving at that instant.
+    </p>
+    <div class="analogy">
+      You're in a car. The speedometer tells you how fast you're going — but not which way. The velocity combines both: "60 km/h going northeast." The derivative $\\mathbf{r}'(t)$ is the velocity. It's an <em>arrow</em> (a vector) that points in the direction of motion, and whose length tells you the speed.
+    </div>
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 The Most Important Idea About the Derivative</div>
+      <p style="margin-bottom:0.5rem;">If you know where something is at every time $t$ (that's $\\mathbf{r}(t)$), then the derivative $\\mathbf{r}'(t)$ tells you the <strong>direction it is heading</strong> and <strong>how fast</strong> at each moment. This is the velocity vector.</p>
+      <p style="margin:0;">Geometrically: draw the path. At any point on the path, draw a straight line that just barely "grazes" (touches) the curve without crossing it. That line is called the <strong>tangent line</strong>. The derivative vector points along that tangent line.</p>
+    </div>
+
+    <p>
+      The mathematical definition looks scary but the idea is simple: compare where you are now vs where you were a tiny moment ago, then divide by that tiny time gap. As the time gap shrinks toward zero, you get the instantaneous velocity:
+    </p>
+    \\[
+      \\mathbf{r}'(t) = \\lim_{\\Delta t \\to 0} \\frac{\\mathbf{r}(t+\\Delta t) - \\mathbf{r}(t)}{\\Delta t}
+    \\]
+    <p>
+      The beautiful shortcut: since $\\mathbf{r}(t) = \\langle f(t), g(t), h(t) \\rangle$, just differentiate each component on its own:
+    </p>
+    \\[
+      \\mathbf{r}'(t) = \\langle f'(t),\\; g'(t),\\; h'(t) \\rangle
+    \\]
+    <div class="analogy">
+      If the drone's east-west position is $f(t) = 3t^2$, then $f'(t) = 6t$ is how fast it's moving east-west at time $t$. Same for the other directions. The three speeds together form the velocity vector. Simple!
+    </div>
+
+    <!-- SPEED VS VELOCITY -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 6 — Speed vs Velocity: A Crucial Difference</h3>
+    <p>
+      <strong>Velocity</strong> is a vector — it has direction. "Going 60 km/h northeast" is velocity.
+    </p>
+    <p>
+      <strong>Speed</strong> is just a number — the <em>magnitude</em> (length) of the velocity vector. It tells you how fast, ignoring direction. Speed is always positive or zero; velocity can point any way.
+    </p>
+    \\[
+      \\text{Speed} = |\\mathbf{r}'(t)| = \\sqrt{[f'(t)]^2 + [g'(t)]^2 + [h'(t)]^2}
+    \\]
+    <p>
+      The formula for the magnitude (length) of a vector is just the 3D version of the Pythagorean theorem — square each component, add them up, take the square root. That's it.
+    </p>
+
+    <!-- UNIT TANGENT VECTOR -->
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Step 7 — The Unit Tangent Vector: Pure Direction, No Noise</h3>
+    <p>
+      Sometimes we only care about <em>which way</em> something is moving, not how fast. For example, if you just want to know "which direction is the road going at this point on a highway map," you don't care about speed.
+    </p>
+    <p>
+      The <strong>unit tangent vector</strong> strips away the speed and leaves only direction. We get it by taking the velocity vector and dividing by its own length (which makes the length exactly 1):
+    </p>
+    \\[
+      \\mathbf{T}(t) = \\frac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|}
+    \\]
+    <div class="analogy">
+      Imagine an arrow pointing northeast with length 10. If you shrink it to length 1 while keeping it pointing northeast, you now have the "unit" vector in that direction. Dividing by the magnitude is just scaling it down (or up) to length exactly 1. The word "unit" in math always means "length = 1."
+    </div>
+
+    <div class="grid-2">
+      <div class="mini-card">
+        <h4>🚗 Velocity Vector $\\mathbf{r}'(t)$</h4>
+        <p>Like the arrow on a car's dashboard compass that shows both speed and direction. Longer arrow = faster. Direction = which way you're heading.</p>
+      </div>
+      <div class="mini-card">
+        <h4>🧭 Unit Tangent $\\mathbf{T}(t)$</h4>
+        <p>Like the compass needle alone — always length 1, just pointing in the direction of travel. No speed information, pure direction only.</p>
+      </div>
+    </div>
+
+    <!-- CONSTANT LENGTH THEOREM -->
+    <div class="theorem">
+      <span class="thm-tag">Theorem — Constant Length = Perpendicular Derivative</span>
+      <p style="margin-top:0.5rem;">If $|\\mathbf{r}(t)| = \\text{constant}$ for all $t$, then $\\mathbf{r}(t) \\cdot \\mathbf{r}'(t) = 0$.</p>
+      <p style="margin-top:0.8rem; font-size:0.95rem;"><strong>What does this mean in plain English?</strong> If the length (size) of the vector never changes — like a planet orbiting the sun at a fixed distance — then the velocity arrow must always point <em>sideways</em> (perpendicular) to the position. The planet can't move toward or away from the sun, so it can only move sideways.</p>
+      <p style="margin-top:0.6rem; font-size:0.93rem; color:var(--muted);">The dot product $\\mathbf{r} \\cdot \\mathbf{r}' = 0$ is the mathematical way of saying "these two vectors are perpendicular." Two vectors are perpendicular if their dot product is zero — this is a standard fact from geometry.</p>
+    </div>
+
+    <!-- EXAMPLE 1 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 1</span> Finding the Velocity and Unit Tangent of a Helix</div>
+      <div class="example-body">
+        <div class="question">
+          Given $\\mathbf{r}(t) = \\cos t\\,\\mathbf{i} + \\sin t\\,\\mathbf{j} + t\\,\\mathbf{k}$, find the velocity vector and the unit tangent vector at $t = 0$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">This is a helix — imagine a screw thread or a spiral staircase. The x and y go around in a circle (that's what cos and sin do), while z just steadily increases (that's the "+t" part — climbing upward at a steady rate).</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Differentiate each component separately.</strong><br>
+          The derivative of $\\cos t$ is $-\\sin t$. The derivative of $\\sin t$ is $\\cos t$. The derivative of $t$ is $1$.<br>
+          So: $\\mathbf{r}'(t) = \\langle -\\sin t,\\; \\cos t,\\; 1 \\rangle$
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Plug in $t = 0$ to find the velocity at that moment.</strong><br>
+          $\\sin(0) = 0$ and $\\cos(0) = 1$, so:<br>
+          $\\mathbf{r}'(0) = \\langle -0,\\; 1,\\; 1 \\rangle = \\langle 0,\\; 1,\\; 1 \\rangle$<br>
+          This arrow points: "0 in x, 1 in y, 1 in z" — diagonally forward and up.
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Find the speed (length of the velocity vector).</strong><br>
+          Use the Pythagorean theorem in 3D: $|\\mathbf{r}'(0)| = \\sqrt{0^2 + 1^2 + 1^2} = \\sqrt{0+1+1} = \\sqrt{2}$
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Divide velocity by speed to get pure direction (unit tangent).</strong><br>
+          $\\mathbf{T}(0) = \\dfrac{\\langle 0,1,1\\rangle}{\\sqrt{2}} = \\left\\langle 0,\\;\\dfrac{1}{\\sqrt{2}},\\;\\dfrac{1}{\\sqrt{2}} \\right\\rangle$<br>
+          This has length exactly 1 (you can verify: $\\sqrt{0 + \\frac{1}{2} + \\frac{1}{2}} = \\sqrt{1} = 1$ ✓)
+        </div></div>
+        <div class="answer-box">✓ At $t=0$, the helix is moving in direction $\\left\\langle 0,\\,\\tfrac{1}{\\sqrt{2}},\\,\\tfrac{1}{\\sqrt{2}}\\right\\rangle$ — forward and upward at 45°.</div>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 2 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 2</span> Finding the Tangent Line to a Space Curve</div>
+      <div class="example-body">
+        <div class="question">
+          Find the equation of the tangent line to $\\mathbf{r}(t) = \\langle t^2,\\, t,\\, t^3 \\rangle$ at $t = 1$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">A tangent line is the straight line that "hugs" the curve at one specific point. Imagine pressing a ruler against a curved road so it just touches the road without crossing it — that ruler is the tangent line.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Find the point where the tangent line touches the curve.</strong><br>
+          Plug $t=1$ into $\\mathbf{r}(t)$: $\\mathbf{r}(1) = \\langle 1^2,\\; 1,\\; 1^3 \\rangle = \\langle 1, 1, 1 \\rangle$<br>
+          So the point is $P = (1, 1, 1)$ in 3D space.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Find the direction of the tangent line (the velocity at that point).</strong><br>
+          First differentiate: $\\mathbf{r}'(t) = \\langle 2t,\\; 1,\\; 3t^2 \\rangle$<br>
+          Then plug in $t=1$: $\\mathbf{r}'(1) = \\langle 2, 1, 3 \\rangle$<br>
+          This is our direction vector — the tangent line goes in this direction.
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Write the tangent line equation.</strong><br>
+          A line in 3D needs a <em>starting point</em> and a <em>direction</em>. We have both:<br>
+          Start: $(1,1,1)$ &nbsp;&nbsp; Direction: $\\langle 2,1,3 \\rangle$<br>
+          Line: $\\mathbf{L}(s) = \\langle 1,1,1 \\rangle + s\\langle 2,1,3 \\rangle$<br>
+          Or written out: $x = 1+2s,\\quad y = 1+s,\\quad z = 1+3s$
+        </div></div>
+        <div class="answer-box">✓ Tangent line: $x = 1+2s,\\quad y = 1+s,\\quad z = 1+3s$ &nbsp; (As $s$ varies, this traces out the tangent line)</div>
+      </div>
+    </div>
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 Vector Functions — The Complete Picture in Plain English</div>
+      <p style="margin-bottom:0.5rem;"><strong>Vector-valued function $\\mathbf{r}(t)$:</strong> A position tracker. Input = time, Output = location in 3D space.</p>
+      <p style="margin-bottom:0.5rem;"><strong>Space curve:</strong> The path traced out as time passes.</p>
+      <p style="margin-bottom:0.5rem;"><strong>Derivative $\\mathbf{r}'(t)$:</strong> The velocity — which way you're going and how fast.</p>
+      <p style="margin-bottom:0.5rem;"><strong>Speed $|\\mathbf{r}'(t)|$:</strong> Just how fast, without direction.</p>
+      <p style="margin:0;"><strong>Unit tangent $\\mathbf{T}(t)$:</strong> Pure direction — which way, without how fast.</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- TNB FRAME SECTION START -->
+  <section id="tnb-frame">
+    <div class="section-label">Vector Functions</div>
+    <h2 class="section-title">The TNB Frame, Curvature, and Torsion</h2>
+    <p>When analyzing the motion of a particle along a smooth space curve $\\mathbf{r}(t)$, we often need a coordinate system that travels <em>with</em> the particle. This is the <strong>Frenet-Serret Frame</strong> (or TNB frame), consisting of three mutually orthogonal unit vectors.</p>
+
+    <div class="def-box">
+      <div class="def-title">The Three Vectors of the TNB Frame</div>
+      <p><strong>1. Unit Tangent Vector $\\mathbf{T}(t)$</strong><br/>
+      Indicates the direction of instantaneous motion. It is simply the normalized velocity vector.</p>
+      <div class="formula">$$\\mathbf{T}(t) = \\frac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|}$$</div>
+      
+      <p><strong>2. Principal Unit Normal Vector $\\mathbf{N}(t)$</strong><br/>
+      Because $\\mathbf{T}(t)$ has a constant length of 1, its derivative $\\mathbf{T}'(t)$ is always orthogonal to $\\mathbf{T}(t)$. $\\mathbf{N}(t)$ points in the direction the curve is turning (toward the concave side).</p>
+      <div class="formula">$$\\mathbf{N}(t) = \\frac{\\mathbf{T}'(t)}{|\\mathbf{T}'(t)|}$$</div>
+      
+      <p><strong>3. Binormal Vector $\\mathbf{B}(t)$</strong><br/>
+      Completes the right-handed orthogonal system. It is perpendicular to the plane formed by $\\mathbf{T}$ and $\\mathbf{N}$ (the osculating plane).</p>
+      <div class="formula">$$\\mathbf{B}(t) = \\mathbf{T}(t) \\times \\mathbf{N}(t)$$</div>
+    </div>
+
+    <div class="def-box">
+      <div class="def-title">Curvature ($\\kappa$) and Torsion ($\\tau$)</div>
+      <p><strong>Curvature ($\\kappa$)</strong> measures how sharply a curve bends. It is the rate of change of the unit tangent vector with respect to arc length $s$. For a general parameter $t$, we use:</p>
+      <div class="formula">$$\\kappa = \\frac{|\\mathbf{T}'(t)|}{|\\mathbf{r}'(t)|} = \\frac{|\\mathbf{r}'(t) \\times \\mathbf{r}''(t)|}{|\\mathbf{r}'(t)|^3}$$</div>
+      <p><em>Special Case for 2D functions $y = f(x)$:</em> $\\kappa = \\frac{|f''(x)|}{[1 + (f'(x))^2]^{3/2}}$</p>
+      
+      <p><strong>Torsion ($\\tau$)</strong> measures how sharply the curve twists out of the $\\mathbf{T}$-$\\mathbf{N}$ plane. A planar curve has a torsion of 0.</p>
+      <div class="formula">$$\\tau = \\frac{(\\mathbf{r}'(t) \\times \\mathbf{r}''(t)) \\cdot \\mathbf{r}'''(t)}{|\\mathbf{r}'(t) \\times \\mathbf{r}''(t)|^2}$$</div>
+    </div>
+
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 3</span> TNB Frame and Curvature of a Circular Helix</div>
+      <div class="example-body">
+        <div class="question">
+          <strong>Problem:</strong> Find $\\mathbf{T}$, $\\mathbf{N}$, $\\mathbf{B}$, and $\\kappa$ for the helix $\\mathbf{r}(t) = \\langle 3\\cos t, 3\\sin t, 4t \\rangle$.
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Step 1: Find Velocity and its Magnitude</strong><br/>
+          $\\mathbf{r}'(t) = \\langle -3\\sin t, 3\\cos t, 4 \\rangle$<br/>
+          $|\\mathbf{r}'(t)| = \\sqrt{(-3\\sin t)^2 + (3\\cos t)^2 + 4^2} = \\sqrt{9(\\sin^2 t + \\cos^2 t) + 16} = \\sqrt{25} = 5$
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Step 2: Find the Unit Tangent $\\mathbf{T}(t)$</strong><br/>
+          $\\mathbf{T}(t) = \\frac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|} = \\langle -\\frac{3}{5}\\sin t, \\frac{3}{5}\\cos t, \\frac{4}{5} \\rangle$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Step 3: Find the Principal Unit Normal $\\mathbf{N}(t)$</strong><br/>
+          $\\mathbf{T}'(t) = \\langle -\\frac{3}{5}\\cos t, -\\frac{3}{5}\\sin t, 0 \\rangle$<br/>
+          $|\\mathbf{T}'(t)| = \\sqrt{\\frac{9}{25}\\cos^2 t + \\frac{9}{25}\\sin^2 t + 0} = \\frac{3}{5}$<br/>
+          $\\mathbf{N}(t) = \\frac{\\mathbf{T}'(t)}{|\\mathbf{T}'(t)|} = \\langle -\\cos t, -\\sin t, 0 \\rangle$<br/>
+          <em>Notice $\\mathbf{N}$ points straight toward the z-axis, showing the curve is always turning inward.</em>
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Step 4: Find the Binormal $\\mathbf{B}(t)$</strong><br/>
+          $\\mathbf{B}(t) = \\mathbf{T}(t) \\times \\mathbf{N}(t) = \\langle \\frac{4}{5}\\sin t, -\\frac{4}{5}\\cos t, \\frac{3}{5} \\rangle$
+        </div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body">
+          <strong>Step 5: Find Curvature $\\kappa$</strong><br/>
+          $\\kappa = \\frac{|\\mathbf{T}'(t)|}{|\\mathbf{r}'(t)|} = \\frac{3/5}{5} = \\frac{3}{25}$
+        </div></div>
+        <div class="answer-box">✓ Computed all TNB frame components and confirmed constant curvature.</div>
+      </div>
+    </div>
+  </section>
+  <!-- TNB FRAME SECTION END -->
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- 16.1 & 16.2 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="ch16-1">
+    <div class="section-label">Line Integrals and Vector Fields</div>
+    <h2 class="section-title">Line Integrals, Vector Fields · Work, Circulation &amp; Flux</h2>
+    
+
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;">First — What Is an Integral? (Ground Zero)</h3>
+    <p>
+      An <strong>integral</strong> is a way to add up infinitely many tiny pieces. That's literally it. The integral sign $\\int$ is just a stretched "S" — it stands for "Sum." You're summing up tiny, tiny little contributions to find a total.
+    </p>
+    <div class="analogy">
+      You want to know how much rain fell in your city over an entire day. You can't just measure at one moment — rain changes every minute. So you measure tiny amounts every second and add them all up. That process of "measuring tiny amounts and summing them continuously" is an integral. The result is the total rainfall for the day. That's all an integral is — a continuous running total of tiny contributions.
+    </div>
+    <p>
+      The regular integral $\\int_a^b f(x)\\, dx$ adds up tiny values of a function along a <em>straight line</em> from $a$ to $b$. But what if the path isn't straight? That's where line integrals come in.
+    </p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">What Is a Line Integral? Adding Along a Curved Path</h3>
+    <p>
+      A <strong>line integral</strong> does the exact same "add up tiny pieces" idea, but now along a <em>curved path</em> through space. The word "line" here really means "curve" — we're integrating along any path, no matter how twisty.
+    </p>
+    <div class="analogy">
+      You're hiking along a winding mountain trail. The elevation (height above sea level) is different at every step along the trail. A line integral would let you calculate the total "altitude accumulated" over your entire hike — weighting every tiny bit of trail by how high up it is. A straight integral can't do this because your trail twists and turns. That's exactly the problem line integrals solve.
+    </div>
+    <p>
+      The key ingredient is $ds$ — the arc-length element. Think of $ds$ as a grain-of-sand-sized piece of the curved path. It tells you "how much of the curve are you covering right now?" We then multiply by the function value at that point and sum everything up:
+    </p>
+    \\[
+      \\int_C f\\, ds = \\int_a^b f\\!\\left(\\mathbf{r}(t)\\right) \\left|\\mathbf{r}'(t)\\right|\\, dt
+    \\]
+    <p>
+      The $|\\mathbf{r}'(t)|$ — the speed — appears because when you move faster along the curve, each unit of time $dt$ corresponds to a longer piece of curve. You must account for how much path is covered per unit of time.
+    </p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">What Is a Vector Field? Arrows Everywhere!</h3>
+    <p>
+      A <strong>vector field</strong> is what you get when you assign an arrow (vector) to every single point in space. At every location there's a vector telling you the direction and strength of something.
+    </p>
+    <div class="analogy">
+      <strong>Weather wind map:</strong> Open a weather app. The wind forecast shows little arrows all over the map. Each arrow points in the direction wind is blowing, and its size shows strength. Some arrows point north, some east. Some are long (strong wind), some short (gentle breeze). That entire picture — arrows at every location — is a vector field. You can have vector fields for gravity, electric fields, magnetic fields, water current, air pressure — any quantity that has both direction and magnitude at every point.
+    </div>
+    \\[
+      \\mathbf{F}(x,y,z) = M(x,y,z)\\,\\mathbf{i} + N(x,y,z)\\,\\mathbf{j} + P(x,y,z)\\,\\mathbf{k}
+    \\]
+    <p>
+      The three functions $M$, $N$, $P$ give the x, y, z components of the arrow at each point $(x,y,z)$. Different locations have different arrows — that's the whole point. The field <em>varies</em> in space.
+    </p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Work: How Much Does a Force Help or Hinder Your Journey?</h3>
+    <p>
+      In physics, <strong>work</strong> is the energy transferred by a force to a moving object. But here's the critical point: <em>only the component of the force in the direction of motion counts.</em>
+    </p>
+    <div class="analogy">
+      Picture pushing a shopping cart in a parking lot. If you push it directly forward (same direction it moves), all your effort goes into moving it — maximum work done. If you push it at a diagonal (partly forward, partly sideways), only the forward component contributes to moving the cart forward. The sideways component is completely wasted. And if somehow you push it perfectly sideways while it rolls forward, you do absolutely zero work on its forward motion. This "how aligned are force and motion" is exactly what the dot product captures.
+    </div>
+    <p>
+      The dot product $\\mathbf{F} \\cdot d\\mathbf{r}$ does this automatically: it multiplies the force components by the matching movement components and adds them up. Result is positive if force helps, negative if force fights, zero if they're perpendicular.
+    </p>
+    \\[
+      W = \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = \\int_a^b \\mathbf{F}(\\mathbf{r}(t)) \\cdot \\mathbf{r}'(t)\\, dt
+    \\]
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 Three Scenarios for Work — The Physical Intuition</div>
+      <p style="margin-bottom:0.6rem;">🟢 <strong>Force and motion in same direction:</strong> Dot product $&gt; 0$ → Positive work. Force is helping you. Energy flows into the object. (Like wind pushing you while you run with it.)</p>
+      <p style="margin-bottom:0.6rem;">🔴 <strong>Force and motion in opposite directions:</strong> Dot product $&lt; 0$ → Negative work. Force is fighting you. Energy is being removed from the object. (Like brakes slowing a car — friction does negative work on the car's motion.)</p>
+      <p style="margin:0;">⚪ <strong>Force perpendicular to motion:</strong> Dot product $= 0$ → Zero work. Force doesn't help or hurt motion. (Like a satellite in orbit — gravity pulls it downward, but it moves sideways, so gravity does zero work on its speed.)</p>
+    </div>
+
+    <!-- EXAMPLE 3 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 4</span> Computing Work Along a Curved Path — Full Walkthrough</div>
+      <div class="example-body">
+        <div class="question">
+          Find the work done by $\\mathbf{F} = xy\\,\\mathbf{i} + y^2\\,\\mathbf{j}$ along the parabola $y = x^2$ from $(0,0)$ to $(1,1)$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">Scenario: A force acts on a particle. At any point $(x,y)$, the force vector is $\\langle xy,\\, y^2\\rangle$. The particle moves along the curved path $y = x^2$. How much total energy does the force transfer?</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Parameterize — rewrite the path as one function of time $t$.</strong><br>
+          The path is the parabola $y = x^2$. The simplest way: let $x = t$, then $y = t^2$.<br>
+          Position at time $t$: $\\mathbf{r}(t) = \\langle t,\\; t^2 \\rangle$, where $t$ goes from $0$ to $1$.<br>
+          Velocity (derivative): $\\mathbf{r}'(t) = \\langle 1,\\; 2t \\rangle$ &nbsp;←&nbsp; differentiate each component.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Express the force $\\mathbf{F}$ purely in terms of $t$.</strong><br>
+          The force is $\\mathbf{F} = \\langle xy,\\; y^2 \\rangle$. Substitute $x=t, y=t^2$:<br>
+          $xy = t \\cdot t^2 = t^3$ &nbsp;&nbsp;&nbsp; and &nbsp;&nbsp;&nbsp; $y^2 = (t^2)^2 = t^4$<br>
+          So the force at time $t$ is: $\\mathbf{F} = \\langle t^3,\\; t^4 \\rangle$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Dot product: multiply matching components and add.</strong><br>
+          $\\mathbf{F} \\cdot \\mathbf{r}'(t) = (\\text{x-force})(\\text{x-velocity}) + (\\text{y-force})(\\text{y-velocity})$<br>
+          $= t^3 \\cdot 1 + t^4 \\cdot 2t = t^3 + 2t^5$<br>
+          This is the "instantaneous rate of work" at time $t$.
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Integrate to get total work accumulated over the whole journey.</strong><br>
+          $W = \\displaystyle\\int_0^1 (t^3 + 2t^5)\\, dt = \\left[\\frac{t^4}{4} + \\frac{2t^6}{6}\\right]_0^1 = \\frac{1}{4} + \\frac{1}{3} = \\frac{3+4}{12} = \\frac{7}{12}$
+        </div></div>
+        <div class="answer-box">$\\displaystyle W = \\frac{7}{12}$ &nbsp; ← This much energy was transferred by the force along this specific curved path.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Circulation: Does the Field "Spin" With You Around a Loop?</h3>
+    <p>
+      <strong>Circulation</strong> asks a very specific question: if you walk all the way around a closed loop (starting and ending at the same point), does the vector field mostly push you forward, backward, or neither?
+    </p>
+    <div class="analogy">
+      Imagine walking in a circle around a whirlpool drain. If the water spins in the same direction as your walk (both counterclockwise), it helps you the whole time — high positive circulation. If the water spins the other way (clockwise against your counterclockwise walk), it fights you — negative circulation. If the water is perfectly still, you get zero. Circulation is the mathematical "score" of how well the field's spin matches your loop direction.
+    </div>
+    \\[
+      \\text{Circulation} = \\oint_C \\mathbf{F} \\cdot d\\mathbf{r}
+    \\]
+    <p>
+      The symbol $\\oint$ (integral sign with a circle) simply means: "integrate around a <em>closed</em> loop — a path that ends exactly where it started."
+    </p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Flux: How Much Passes <em>Through</em> a Curve?</h3>
+    <p>
+      While circulation measures flow <em>along</em> a curve (in the tangent direction), <strong>flux</strong> measures how much of the field passes <em>through</em> (crosses) the curve perpendicularly.
+    </p>
+    <div class="analogy">
+      Imagine a window screen. Wind is blowing. <strong>Flux</strong> is how much air passes <em>through</em> the screen — the part of the wind that actually crosses from one side to the other. If the wind blows exactly parallel to the screen (along it, not through it), zero air crosses — zero flux. If the wind blows perpendicular to the screen (straight into it), maximum air passes through — maximum flux. The "normal" (perpendicular) component is what matters for flux.
+    </div>
+    \\[
+      \\text{Flux} = \\oint_C \\mathbf{F} \\cdot \\mathbf{n}\\, ds = \\oint_C M\\, dy - N\\, dx
+    \\]
+
+    <table>
+      <thead><tr><th>Concept</th><th>Physical meaning</th><th>Formula</th><th>Direction measured</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Work / Circulation</strong></td><td>Force pushing you along your path</td><td>$\\oint M\\,dx + N\\,dy$</td><td>Tangential (along curve)</td></tr>
+        <tr><td><strong>Flux</strong></td><td>Field crossing through your path</td><td>$\\oint M\\,dy - N\\,dx$</td><td>Normal (across curve)</td></tr>
+      </tbody>
+    </table>
+
+    <!-- EXAMPLE 4 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 5</span> Flux Across a Circle — How Much Flows Out?</div>
+      <div class="example-body">
+        <div class="question">
+          Find the flux of $\\mathbf{F} = x\\,\\mathbf{i} + y\\,\\mathbf{j}$ outward across the unit circle $x^2 + y^2 = 1$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">The field $\\mathbf{F} = \\langle x, y \\rangle$ points directly away from the origin at every point — like a perfect outward explosion from the center. We want: how much of this outward field crosses the unit circle boundary?</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Parameterize the unit circle (walk around it).</strong><br>
+          Going counterclockwise: $x = \\cos t,\\; y = \\sin t,\\; t \\in [0, 2\\pi]$<br>
+          The tiny movements: $dx = -\\sin t\\, dt$ and $dy = \\cos t\\, dt$
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Set up the flux integral $\\oint M\\,dy - N\\,dx$.</strong><br>
+          Here $M = x = \\cos t$ and $N = y = \\sin t$:<br>
+          $\\text{Flux} = \\displaystyle\\int_0^{2\\pi} (\\cos t)(\\cos t\\, dt) - (\\sin t)(-\\sin t\\, dt)$<br>
+          $\\displaystyle= \\int_0^{2\\pi} (\\cos^2 t + \\sin^2 t)\\, dt$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Use the golden identity: $\\cos^2 t + \\sin^2 t = 1$ always.</strong><br>
+          $\\displaystyle= \\int_0^{2\\pi} 1\\, dt = 2\\pi$
+        </div></div>
+        <div class="answer-box">✓ Flux $= 2\\pi$. The field radiates perfectly outward at every point of the circle, so every bit of it crosses the boundary — giving the maximum possible flux (equal to the circle's circumference).</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- 16.3 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="ch16-3">
+    <div class="section-label">Path Independence</div>
+    <h2 class="section-title">Path Independence, Conservative Fields &amp; Potential Functions</h2>
+    
+
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;">The Big Question: Does the Path Matter?</h3>
+    <p>
+      Here's the profound question of this entire section: if you want to travel from city A to city B, and a force field (like gravity or wind) is acting on you the whole time — does the <em>route</em> you take matter for the total work done? Or does only the start and end point matter?
+    </p>
+    <p>
+      The answer depends on the type of field. Some fields are "fair" — they don't care about your route. Others are "path-hungry" — take a longer or different route, and the work changes.
+    </p>
+    <div class="analogy">
+      <strong>Gravity on a slope:</strong> Climb a mountain. It doesn't matter if you take the steep direct route or the long winding road — if you start at the same base and end at the same peak, gravity does the exact same amount of work on you (negative work, since it fights your upward movement). Gravity is <em>path-independent</em>. It only cares about where you started and where you ended up (specifically, the change in height).
+    </div>
+    <div class="analogy">
+      <strong>Friction on a road:</strong> Now imagine sliding on a frictional surface. Take the direct short path → less friction work. Take the long winding path → way more friction work. Friction is <em>path-dependent</em>. The longer you travel, the more work friction does. You can't just look at start and end points.
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Path Independence — The Formal Definition</h3>
+
+    <div class="def-box">
+      <div class="def-title">Path Independence</div>
+      <p style="margin-bottom:0.8rem;">A line integral $\\displaystyle\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ is called <strong>path-independent</strong> if its value depends <em>only</em> on the starting point $A$ and ending point $B$, regardless of which curve $C$ you use to get there.</p>
+      \\[
+        \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = f(B) - f(A)
+      \\]
+      <p style="margin-top:0.8rem;margin-bottom:0;">Here $f$ is called a <strong>potential function</strong>. To compute the line integral, you just evaluate $f$ at the two endpoints and subtract. No integration needed! Just like how the change in height determines gravitational work regardless of path.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">What Is a Conservative Field? The Gradient Connection</h3>
+    <p>
+      A vector field $\\mathbf{F}$ is called <strong>conservative</strong> if it is path-independent. It turns out this happens when $\\mathbf{F}$ can be written as the <em>gradient</em> of some scalar function $f$.
+    </p>
+    <p>
+      First — what is a gradient? The <strong>gradient</strong> $\\nabla f$ (read "del f") of a scalar function $f$ is a vector whose components are the partial derivatives of $f$:
+    </p>
+    \\[
+      \\nabla f = \\left\\langle \\frac{\\partial f}{\\partial x},\\;\\frac{\\partial f}{\\partial y},\\;\\frac{\\partial f}{\\partial z} \\right\\rangle
+    \\]
+    <p>
+      Each component tells you how fast $f$ changes in that direction. The gradient vector always points in the direction of <em>steepest increase</em> of $f$.
+    </p>
+    <div class="analogy">
+      Think of the function $f$ as a landscape (a terrain map). The gradient $\\nabla f$ at any point is the arrow pointing straight uphill — in the direction where the slope is steepest. If you're standing on a hill, $\\nabla f$ points straight up the hill. A ball rolling downhill would roll in the direction of $-\\nabla f$.
+    </div>
+
+    <div class="def-box">
+      <div class="def-title">Conservative Vector Field</div>
+      <p style="margin-bottom:0.8rem;">$\\mathbf{F}$ is <strong>conservative</strong> if there exists a scalar function $f$ (the potential function) such that:</p>
+      \\[
+        \\mathbf{F} = \\nabla f = \\left\\langle \\frac{\\partial f}{\\partial x},\\;\\frac{\\partial f}{\\partial y},\\;\\frac{\\partial f}{\\partial z} \\right\\rangle
+      \\]
+      <p style="margin-top:0.8rem;margin-bottom:0;">In other words, every arrow in the field is pointing "uphill" on some invisible landscape $f$. Gravity, electric fields, and magnetic fields are all conservative. Friction and air resistance are not.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">How to Test if a Field Is Conservative — The Cross-Partial Test</h3>
+    <p>
+      We need a quick test to check conservativity without finding $f$. Here's the key insight: if $\\mathbf{F} = \\nabla f$, then $M = \\partial f/\\partial x$ and $N = \\partial f/\\partial y$. Taking another derivative of each:
+    </p>
+    <p>
+      $\\partial M/\\partial y = \\partial^2 f/\\partial y\\partial x$ and $\\partial N/\\partial x = \\partial^2 f/\\partial x\\partial y$. These mixed second derivatives are always equal (when $f$ is nice enough). So:
+    </p>
+    \\[
+      \\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x} \\qquad \\longleftarrow \\text{ this must hold for } \\mathbf{F} \\text{ to be conservative (in 2D)}
+    \\]
+    <div class="analogy">
+      Think of it as a cross-check. If $\\mathbf{F}$ truly comes from a landscape $f$, then mixing the partial derivatives should give the same answer regardless of order. It's like saying "if you climb east then north, you get to the same height as climbing north then east." If this isn't true, no such landscape $f$ exists — the field isn't conservative.
+    </div>
+
+    <div class="theorem">
+      <span class="thm-tag">Fundamental Theorem for Line Integrals</span>
+      <p style="margin-top:0.5rem;"><strong>What it says in plain English:</strong> If the field is conservative (comes from a potential function $f$), then all the messy path integration collapses into simply evaluating $f$ at two points:</p>
+      \\[
+        \\int_C \\mathbf{F} \\cdot d\\mathbf{r} = f(B) - f(A)
+      \\]
+      <p style="margin-top:0.8rem;">This is huge. Instead of integrating along a complicated curve, you just plug in coordinates. Like how gravitational potential energy only depends on height — not on the path you took to get there.</p>
+      <p style="margin-top:0.6rem;"><strong>Bonus consequence:</strong> For a closed loop (A = B, you end where you started): $\\displaystyle\\oint_C \\mathbf{F} \\cdot d\\mathbf{r} = f(A) - f(A) = 0$. Conservative fields do zero net work around any closed loop.</p>
+    </div>
+
+    <!-- EXAMPLE 5 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 6</span> Finding the Potential Function — Step by Step</div>
+      <div class="example-body">
+        <div class="question">
+          Show that $\\mathbf{F} = 2xy\\,\\mathbf{i} + (x^2 + 1)\\,\\mathbf{j}$ is conservative, then find its potential function $f$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">We need to find a "landscape" function $f(x,y)$ such that the slope of $f$ in the x-direction equals $2xy$, and the slope in the y-direction equals $x^2+1$.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Run the cross-partial test to confirm conservativity.</strong><br>
+          $M = 2xy$ → differentiate with respect to $y$: $\\;\\dfrac{\\partial M}{\\partial y} = 2x$<br>
+          $N = x^2+1$ → differentiate with respect to $x$: $\\;\\dfrac{\\partial N}{\\partial x} = 2x$<br>
+          Both equal $2x$ ✓ → <strong>The field is conservative!</strong>
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Find $f$ by integrating $M$ with respect to $x$.</strong><br>
+          We need $\\dfrac{\\partial f}{\\partial x} = M = 2xy$. Integrate with respect to $x$ (treat $y$ as a constant):<br>
+          $f = \\int 2xy\\, dx = x^2 y + g(y)$<br>
+          Why $g(y)$? Because when we differentiate with respect to $x$, any function of $y$ alone disappears. It's the "unknown y-part" we must determine.
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Use $\\dfrac{\\partial f}{\\partial y} = N$ to find $g(y)$.</strong><br>
+          We have $f = x^2 y + g(y)$. Differentiate with respect to $y$:<br>
+          $\\dfrac{\\partial f}{\\partial y} = x^2 + g'(y)$<br>
+          Set this equal to $N = x^2 + 1$:<br>
+          $x^2 + g'(y) = x^2 + 1$ → $g'(y) = 1$ → $g(y) = y + C$
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Assemble the final potential function.</strong><br>
+          $f(x,y) = x^2 y + y + C$<br>
+          You can verify: $\\nabla f = \\langle 2xy,\\; x^2+1 \\rangle = \\mathbf{F}$ ✓
+        </div></div>
+        <div class="answer-box">✓ Potential function: $f(x,y) = x^2 y + y + C$ — this is the "invisible landscape" that $\\mathbf{F}$ is the gradient of.</div>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 6 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 7</span> Path Independence in Action — No Path Needed!</div>
+      <div class="example-body">
+        <div class="question">
+          Using the result from Example 6, evaluate $\\displaystyle\\int_C \\mathbf{F} \\cdot d\\mathbf{r}$ from $(0,0)$ to $(2,3)$ along <em>any path whatsoever</em>.
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Since $\\mathbf{F}$ is conservative with potential $f(x,y) = x^2y + y$, we can use the shortcut formula.</strong><br>
+          We don't need to know or describe the path $C$ at all. We just need the endpoints.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Evaluate $f$ at the endpoint $B = (2,3)$:</strong><br>
+          $f(2,3) = (2)^2(3) + (3) = 4 \\cdot 3 + 3 = 12 + 3 = 15$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Evaluate $f$ at the starting point $A = (0,0)$:</strong><br>
+          $f(0,0) = (0)^2(0) + 0 = 0$
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Subtract: $f(B) - f(A)$.</strong><br>
+          $\\displaystyle\\int_C \\mathbf{F}\\cdot d\\mathbf{r} = f(2,3) - f(0,0) = 15 - 0 = 15$
+        </div></div>
+        <div class="answer-box">✓ Answer = 15, no matter which path you took — straight line, spiral, zigzag, anything. Conservative fields simply don't care.</div>
+      </div>
+    </div>
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 The Five Equivalent Conditions for a Conservative Field</div>
+      <p style="margin-bottom:0.5rem;">All five of these statements mean the exact same thing. If one is true, all are true:</p>
+      <p style="margin-bottom:0.4rem;">1. $\\mathbf{F} = \\nabla f$ for some scalar function $f$ (potential function exists)</p>
+      <p style="margin-bottom:0.4rem;">2. Cross-partials are equal: $\\partial M/\\partial y = \\partial N/\\partial x$ (in 2D)</p>
+      <p style="margin-bottom:0.4rem;">3. The line integral is path-independent (same value on all paths from A to B)</p>
+      <p style="margin-bottom:0.4rem;">4. The work around <em>every</em> closed loop is zero: $\\oint \\mathbf{F}\\cdot d\\mathbf{r} = 0$</p>
+      <p style="margin:0;">5. The field has no "rotation" or "spin" — the curl is zero: $\\nabla \\times \\mathbf{F} = \\mathbf{0}$</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="ch16-4">
+    <div class="section-label">Green's Theorem</div>
+    <h2 class="section-title">Green's Theorem in the Plane</h2>
+    
+
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;">The Core Idea: The Edge Tells You About the Inside</h3>
+    <p>
+      Green's Theorem is one of the most surprising and beautiful shortcuts in all of mathematics. It says: <strong>what happens on the boundary of a 2D region is perfectly equivalent to what happens throughout the entire interior</strong>.
+    </p>
+    <p>
+      In other words, instead of integrating over a complicated closed curve (the boundary), you can switch to a double integral over the enclosed region — or the other way around. Pick whichever is easier!
+    </p>
+    <div class="analogy">
+      Imagine a shallow lake filled with tiny spinning whirlpools. You want to measure the total "spinning energy" of the entire lake. Method 1: Swim to every point and measure — exhausting. Method 2: Just measure the water current flowing around the <em>shoreline</em>. Green's Theorem guarantees these give the same answer. The boundary current perfectly summarizes everything happening inside.
+    </div>
+    <div class="analogy">
+      Here's another way to see it: imagine a room full of tiny ceiling fans, each spinning. Neighboring fans whose edges touch will spin against each other and cancel out. Only the fans along the outermost wall contribute a net spin in the boundary direction. So the sum of all interior spins equals what you measure at the outer boundary only.
+    </div>
+
+    <div class="theorem">
+      <span class="thm-tag">Green's Theorem</span>
+      <p style="margin-top:0.5rem;"><strong>Setup requirements:</strong> $C$ is a simple closed curve, traversed <em>counterclockwise</em> (the region $R$ stays on your left as you walk). $M(x,y)$ and $N(x,y)$ have continuous partial derivatives throughout $R$.</p>
+      \\[
+        \\oint_C M\\, dx + N\\, dy \\;=\\; \\iint_R \\left(\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}\\right) dA
+      \\]
+      <p style="margin-top:0.8rem;"><strong>Left side = Line integral.</strong> Walk around the boundary curve $C$, accumulating $M\\,dx + N\\,dy$ at each step. This is potentially a messy trigonometric or algebraic computation.</p>
+      <p style="margin-top:0.4rem;"><strong>Right side = Double integral.</strong> Integrate the "curl" expression $\\partial N/\\partial x - \\partial M/\\partial y$ over the flat 2D region $R$. Often much simpler — especially when the curl simplifies to a constant!</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">What Is $\\partial N/\\partial x - \\partial M/\\partial y$? The Local Spin Detector</h3>
+    <p>
+      The quantity $\\dfrac{\\partial N}{\\partial x} - \\dfrac{\\partial M}{\\partial y}$ measures how much the vector field $\\mathbf{F} = M\\mathbf{i} + N\\mathbf{j}$ "spins" or "rotates" at each individual point. This is called the <strong>2D curl</strong>.
+    </p>
+    <div class="analogy">
+      Drop a tiny pinwheel into a moving fluid at some point. Does it spin? If yes: the curl is nonzero there. Spins counterclockwise: positive curl. Clockwise: negative curl. Doesn't spin at all: zero curl. The curl is essentially a "local rotation meter" for the vector field.
+    </div>
+    <p>
+      Green's Theorem says: <em>add up all the local spins throughout the entire region</em> (the double integral) and you get the same total as measuring how strongly the field pushes you <em>along the boundary</em> (the line integral). They're two views of the same thing.
+    </p>
+
+    <div class="grid-2">
+      <div class="mini-card">
+        <h4>🔄 Circulation Form</h4>
+        <p>Total interior spin = flow around the boundary.</p>
+        \\[\\oint_C M\\,dx + N\\,dy = \\iint_R\\!\\left(\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}\\right)\\!dA\\]
+      </div>
+      <div class="mini-card">
+        <h4>💨 Flux-Divergence Form</h4>
+        <p>Total outward spreading inside = flow crossing the boundary outward.</p>
+        \\[\\oint_C M\\,dy - N\\,dx = \\iint_R\\!\\left(\\frac{\\partial M}{\\partial x} + \\frac{\\partial N}{\\partial y}\\right)\\!dA\\]
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Bonus Application: Computing Area by Walking the Boundary</h3>
+    <p>
+      Choose $M$ and $N$ cleverly so that $\\partial N/\\partial x - \\partial M/\\partial y = 1$, and the double integral becomes just the area of the region. This means you can calculate the area of any shape just by walking around its perimeter!
+    </p>
+    \\[
+      \\text{Area of } R = \\oint_C x\\, dy = -\\oint_C y\\, dx = \\frac{1}{2}\\oint_C \\left(x\\, dy - y\\, dx\\right)
+    \\]
+
+    <div class="warning">
+      ⚠️ <strong>Counterclockwise is mandatory.</strong> Green's Theorem assumes you traverse $C$ counterclockwise — so the region is always to your left. Walking clockwise gives you the negative of the right answer. This "positive orientation" convention is standard across all of vector calculus.
+    </div>
+
+    <!-- EXAMPLE 7 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 8</span> Green's Theorem Shortcut — A Messy Integral Made Easy</div>
+      <div class="example-body">
+        <div class="question">
+          Evaluate $\\displaystyle\\oint_C (x^2 - y)\\,dx + (x + y^2)\\,dy$ where $C$ is the circle $x^2 + y^2 = 4$, counterclockwise.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">Without Green's Theorem, you'd need to parameterize the circle, substitute, and grind through messy trig integrals. With Green's Theorem — watch how fast this goes.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Read off $M$ and $N$ from the integrand $M\\,dx + N\\,dy$.</strong><br>
+          $M = x^2 - y\\qquad N = x + y^2$
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Compute the curl $\\partial N/\\partial x - \\partial M/\\partial y$.</strong><br>
+          $\\dfrac{\\partial N}{\\partial x} = \\dfrac{\\partial(x+y^2)}{\\partial x} = 1$<br>
+          $\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial(x^2-y)}{\\partial y} = -1$<br>
+          Curl $= 1 - (-1) = 2$ &nbsp; — constant! Every point inside the circle has the same local spin.
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Apply Green's Theorem: line integral = double integral of the curl over the disk.</strong><br>
+          The disk $x^2+y^2 \\le 4$ has radius 2, so area $= \\pi(2^2) = 4\\pi$.<br>
+          $\\displaystyle\\iint_R 2\\, dA = 2 \\times \\text{Area} = 2 \\times 4\\pi = 8\\pi$
+        </div></div>
+        <div class="answer-box">✓ Answer $= 8\\pi$. What might have taken a page of trig computation took three lines with Green's Theorem.</div>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 8 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 9</span> Area of an Ellipse — Walk the Boundary, Find the Area</div>
+      <div class="example-body">
+        <div class="question">
+          Use Green's Theorem to prove the area of the ellipse $\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1$ is $\\pi ab$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">An ellipse is an oval — width $2a$, height $2b$. If $a = b = r$, it's a circle of radius $r$ with area $\\pi r^2$. We'll prove the general formula by integrating around the boundary.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Parameterize the ellipse boundary.</strong><br>
+          Going counterclockwise: $x = a\\cos t,\\; y = b\\sin t,\\; t \\in [0,2\\pi]$<br>
+          $dx = -a\\sin t\\, dt,\\quad dy = b\\cos t\\, dt$
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Apply area formula: Area $= \\frac{1}{2}\\oint(x\\,dy - y\\,dx)$.</strong><br>
+          $\\displaystyle = \\frac{1}{2}\\int_0^{2\\pi}\\!\\big[(a\\cos t)(b\\cos t) - (b\\sin t)(-a\\sin t)\\big]\\,dt$<br>
+          $\\displaystyle = \\frac{1}{2}\\int_0^{2\\pi}(ab\\cos^2 t + ab\\sin^2 t)\\,dt = \\frac{ab}{2}\\int_0^{2\\pi}(\\cos^2 t + \\sin^2 t)\\,dt$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Apply $\\cos^2 t + \\sin^2 t = 1$:</strong><br>
+          $\\displaystyle = \\frac{ab}{2}\\int_0^{2\\pi} 1\\,dt = \\frac{ab}{2} \\cdot 2\\pi = \\pi ab$
+        </div></div>
+        <div class="answer-box">✓ Area of ellipse $= \\pi ab$. Special case $a = b = r$: gives $\\pi r^2$ ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- 16.5 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="key-idea"><div class="ki-title">Real-life use</div><p>Green's Theorem turns a hard boundary circulation into an easier area integral — the same swap used when checking planar flow balance from edge measurements alone.</p></div><section id="ch16-5">
+    <div class="section-label">Surfaces and Area</div>
+    <h2 class="section-title">Surfaces and Surface Area</h2>
+    
+
+    <h3 style="font-family:'Playfair Display',serif;margin:0 0 0.8rem;font-size:1.3rem;">What Is a Surface? From Curves to Sheets</h3>
+    <p>
+      So far, we've worked with <em>curves</em> — 1D paths through space. A <strong>surface</strong> is the next level up: it's a 2D "sheet" living inside 3D space. Think of a sphere, a bowl, a saddle, a crumpled piece of paper, or any curved two-dimensional object floating in three-dimensional space.
+    </p>
+    <div class="analogy">
+      A curve is like a piece of string stretched through the air — 1D, has length. A surface is like a bedsheet or a soap bubble — 2D, has area. Both live in 3D space. When we talk about "surface area" in this section, we're asking: how much material would you need to cover a curved surface? Like asking how many square meters of fabric you need to make a tent.
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Parametric Surfaces — Two Inputs, One Point in Space</h3>
+    <p>
+      Just like we used one parameter $t$ to trace a curve, we need <em>two</em> parameters to describe a surface. Makes sense — a surface is 2D, so it needs two "coordinates" to navigate it.
+    </p>
+    <div class="analogy">
+      Think of a globe. To specify any point on Earth's surface, you need two numbers: latitude and longitude. That's exactly what parameters $u$ and $v$ do for a surface. You give two numbers, you get one point on the surface. The whole surface is swept out as $(u,v)$ ranges over some 2D region.
+    </div>
+    \\[
+      \\mathbf{r}(u,v) = f(u,v)\\,\\mathbf{i} + g(u,v)\\,\\mathbf{j} + h(u,v)\\,\\mathbf{k}
+    \\]
+    <p>
+      As the pair $(u,v)$ varies over a flat region $D$ in the $uv$-plane, the output $\\mathbf{r}(u,v)$ traces out the surface in 3D space. You're mapping a flat 2D region onto a curved 3D surface.
+    </p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">How to Find Surface Area — Tiny Parallelogram Patches</h3>
+    <p>
+      The idea is the same as regular area, just adapted for curved surfaces. Divide the surface into tiny patches. Find the area of each patch. Sum them all up.
+    </p>
+    <p>
+      The trick: each tiny patch of the surface is approximately a tiny <em>parallelogram</em>. The two sides of this parallelogram are given by the partial derivative vectors $\\mathbf{r}_u$ and $\\mathbf{r}_v$:
+    </p>
+    <div class="analogy">
+      Take a rubber sheet lying flat. Push one end to stretch it in the $u$-direction a tiny bit — that gives vector $\\mathbf{r}_u$. Push a different edge in the $v$-direction — that gives $\\mathbf{r}_v$. These two tiny vectors form a tiny parallelogram on the surface. The area of a parallelogram formed by two vectors is given by the magnitude of their cross product. Add up all such tiny parallelogram areas over the whole surface, and you have the total surface area.
+    </div>
+
+    <div class="def-box">
+      <div class="def-title">Surface Area Formula (Parametric Form)</div>
+      \\[
+        \\text{Surface Area} = \\iint_D \\left|\\mathbf{r}_u \\times \\mathbf{r}_v\\right|\\, dA
+      \\]
+      <p style="margin-top:0.8rem;margin-bottom:0;"><strong>Breaking it down:</strong> $\\mathbf{r}_u = \\partial \\mathbf{r}/\\partial u$ and $\\mathbf{r}_v = \\partial \\mathbf{r}/\\partial v$ are vectors tangent to the surface. Their cross product $\\mathbf{r}_u \\times \\mathbf{r}_v$ is a vector perpendicular (normal) to the surface. Its magnitude $|\\mathbf{r}_u \\times \\mathbf{r}_v|$ is the area of the tiny parallelogram patch at that point. Integrate over the parameter region $D$ to sum all patches.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">Simpler Formula When $z = g(x,y)$</h3>
+    <p>
+      When the surface is given in the form $z = g(x,y)$ — meaning for each $(x,y)$ pair, the height $z$ is determined by a formula — there's a simpler, ready-to-use formula. Parameterize with $x=u, y=v, z=g(u,v)$, do the cross product, and simplify:
+    </p>
+    \\[
+      \\text{Surface Area} = \\iint_R \\sqrt{1 + \\left(\\frac{\\partial g}{\\partial x}\\right)^2 + \\left(\\frac{\\partial g}{\\partial y}\\right)^2}\\; dA
+    \\]
+    <p>
+      Here $R$ is the region on the $xy$-plane directly below (or above) the surface — its "shadow."
+    </p>
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 Why Is There a Square Root? The Tilt Factor Explained</div>
+      <p style="margin-bottom:0.6rem;">Imagine a tile floor. If you lay the tiles perfectly flat: 1 square meter of floor = 1 square meter of tile. But what if you tilt the floor? A tilted surface covers more area than its flat shadow below it — just like a tilted ramp covers more actual surface than the floor length it sits above.</p>
+      <p style="margin-bottom:0.6rem;">The partial derivatives $\\partial g/\\partial x$ and $\\partial g/\\partial y$ measure how steeply the surface tilts in each direction. The $\\sqrt{1 + (\\partial g/\\partial x)^2 + (\\partial g/\\partial y)^2}$ is the "tilt correction factor" — always $\\ge 1$.</p>
+      <p style="margin:0;">Flat surface ($z = $constant, no tilt) → both partials = 0 → $\\sqrt{1+0+0} = 1$ → area of surface = area of its shadow. Perfect. As tilt increases, the factor grows above 1, giving more surface area than the flat shadow.</p>
+    </div>
+
+    <!-- EXAMPLE 9 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 10</span> Surface Area of a Paraboloid — Full Walkthrough</div>
+      <div class="example-body">
+        <div class="question">
+          Find the surface area of the portion of $z = x^2 + y^2$ that lies below the plane $z = 1$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">This surface is a bowl shape (paraboloid) opening upward. We want the area of the part of the bowl up to height $z = 1$.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Identify the surface and its shadow region $R$.</strong><br>
+          Surface: $z = g(x,y) = x^2 + y^2$.<br>
+          Below $z=1$ means $x^2 + y^2 \\le 1$ — a disk of radius 1 in the $xy$-plane.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Compute the partial derivatives (how steep is the surface?).</strong><br>
+          $\\dfrac{\\partial g}{\\partial x} = 2x\\qquad$ and $\\qquad\\dfrac{\\partial g}{\\partial y} = 2y$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Set up the surface area integral using the formula.</strong><br>
+          $SA = \\displaystyle\\iint_{x^2+y^2\\le 1} \\sqrt{1 + (2x)^2 + (2y)^2}\\; dA = \\iint \\sqrt{1 + 4x^2 + 4y^2}\\; dA$
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Switch to polar coordinates</strong> — perfect for circular regions.<br>
+          In polar: $x = r\\cos\\theta,\\; y = r\\sin\\theta,\\; x^2+y^2 = r^2,\\; dA = r\\, dr\\, d\\theta$<br>
+          $SA = \\displaystyle\\int_0^{2\\pi}\\!\\int_0^1 \\sqrt{1+4r^2}\\cdot r\\; dr\\; d\\theta$<br>
+          Let $u = 1+4r^2$, then $du = 8r\\,dr$, so $r\\,dr = du/8$. Limits: $r=0 \\to u=1$, $r=1 \\to u=5$.<br>
+          $\\displaystyle= \\int_0^{2\\pi}\\frac{1}{8}\\int_1^5 \\sqrt{u}\\; du\\; d\\theta = \\int_0^{2\\pi}\\frac{1}{8}\\cdot\\frac{2}{3}\\Big[u^{3/2}\\Big]_1^5 d\\theta$<br>
+          $\\displaystyle= \\int_0^{2\\pi} \\frac{1}{12}(5\\sqrt{5}-1)\\; d\\theta = \\frac{\\pi(5\\sqrt{5}-1)}{6}$
+        </div></div>
+        <div class="answer-box">$\\displaystyle SA = \\frac{\\pi(5\\sqrt{5}-1)}{6} \\approx 5.33$ square units</div>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 10 -->
+    <div class="example">
+      <div class="example-header"><span class="ex-num">Ex 11</span> Surface Area of a Sphere — Verifying the Classic Formula</div>
+      <div class="example-body">
+        <div class="question">
+          Use the surface area formula to verify that a sphere of radius $a$ has surface area $4\\pi a^2$.
+          <br><br>
+          <em style="color:var(--muted);font-size:0.93rem;">You know this formula from school. Now we'll actually prove it from scratch using calculus — no magic, just the machinery we've built.</em>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-body">
+          <strong>Use the upper hemisphere</strong> (by symmetry, multiply by 2 at the end).<br>
+          Upper half of sphere: $z = \\sqrt{a^2 - x^2 - y^2}$ over the disk $x^2+y^2 \\le a^2$.
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body">
+          <strong>Compute the partial derivatives of $z$.</strong><br>
+          $\\dfrac{\\partial z}{\\partial x} = \\dfrac{-x}{\\sqrt{a^2-x^2-y^2}}\\qquad$ and $\\qquad\\dfrac{\\partial z}{\\partial y} = \\dfrac{-y}{\\sqrt{a^2-x^2-y^2}}$<br>
+          After squaring and adding with 1:<br>
+          $1 + \\left(\\dfrac{\\partial z}{\\partial x}\\right)^2 + \\left(\\dfrac{\\partial z}{\\partial y}\\right)^2 = 1 + \\dfrac{x^2+y^2}{a^2-x^2-y^2} = \\dfrac{a^2}{a^2-r^2}$
+        </div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body">
+          <strong>Set up the integral in polar.</strong><br>
+          $\\displaystyle SA_{\\text{upper}} = \\int_0^{2\\pi}\\!\\int_0^a \\frac{a}{\\sqrt{a^2-r^2}}\\cdot r\\; dr\\; d\\theta$<br>
+          Let $u = a^2 - r^2$, $du = -2r\\, dr$. When $r=0: u=a^2$. When $r=a: u=0$.<br>
+          $\\displaystyle= \\int_0^{2\\pi} a\\int_0^{a^2}\\frac{1}{2\\sqrt{u}}\\,du\\; d\\theta = \\int_0^{2\\pi} a\\Big[\\sqrt{u}\\Big]_0^{a^2} d\\theta = \\int_0^{2\\pi} a \\cdot a\\; d\\theta = 2\\pi a^2$
+        </div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body">
+          <strong>Double it for the full sphere:</strong><br>
+          $SA = 2 \\times 2\\pi a^2 = 4\\pi a^2$ ✓
+        </div></div>
+        <div class="answer-box">✓ Surface area of sphere $= 4\\pi a^2$ — the formula you memorized in school, now proven from first principles!</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin:1.8rem 0 0.8rem;font-size:1.3rem;">The Normal Vector — Pointing Away From the Surface</h3>
+    <p>
+      At every point of a surface, there's a direction that's perpendicular (sticking straight out) — called the <strong>normal vector</strong>. This is extremely important for surface integrals (integrating over surfaces in future topics).
+    </p>
+    <div class="analogy">
+      Stand on a grassy hill. The normal vector at your feet points straight up away from the hillside — not along the slope, but perpendicular to it. On a sphere, the normal at every point points radially outward from the center. On a flat floor, all normals point straight up. The normal is always "perpendicular to the surface at that point."
+    </div>
+    \\[
+      \\text{Unit Normal: }\\mathbf{n} = \\frac{\\mathbf{r}_u \\times \\mathbf{r}_v}{|\\mathbf{r}_u \\times \\mathbf{r}_v|}
+      \\qquad\\qquad
+      d\\mathbf{S} = (\\mathbf{r}_u \\times \\mathbf{r}_v)\\, dA \\quad \\text{(vector surface element)}
+    \\]
+
+    <div class="key-idea">
+      <div class="ki-title">🔑 The Big Picture — Where Are We Headed?</div>
+      <p style="margin-bottom:0.5rem;"><strong>Line integrals</strong> → add things up along curves (1D paths in space).</p>
+      <p style="margin-bottom:0.5rem;"><strong>Surface integrals</strong> → add things up over surfaces (2D sheets in space).</p>
+      <p style="margin-bottom:0.5rem;"><strong>Green's Theorem</strong> → links 1D boundary integral to 2D area integral (in a plane).</p>
+      <p style="margin-bottom:0.5rem;"><strong>Stokes' Theorem</strong> (coming later) → links 1D boundary integral to 2D surface integral (in 3D).</p>
+      <p style="margin:0;"><strong>Divergence Theorem</strong> (coming later) → links 2D surface integral to 3D volume integral. These theorems are all the same deep idea: <em>boundary information determines interior information</em>.</p>
+    </div>
+  </section>
+
+  <!-- FORMULA REFERENCE -->
+  <section style="margin-bottom:2rem;">
+    <div class="section-label">Quick Reference</div>
+    <h2 class="section-title">All Key Formulas at a Glance</h2>
+    <table>
+      <thead><tr><th>Topic</th><th>Formula (LaTeX rendered)</th></tr></thead>
+      <tbody>
+        <tr><td>Derivative of $\\mathbf{r}(t)$</td><td>$\\mathbf{r}'(t) = \\langle f'(t),\\, g'(t),\\, h'(t) \\rangle$</td></tr>
+        <tr><td>Unit Tangent</td><td>$\\mathbf{T} = \\dfrac{\\mathbf{r}'(t)}{|\\mathbf{r}'(t)|}$</td></tr>
+        <tr><td>Line Integral (scalar)</td><td>$\\displaystyle\\int_C f\\, ds = \\int_a^b f(\\mathbf{r}(t))|\\mathbf{r}'(t)|\\, dt$</td></tr>
+        <tr><td>Work</td><td>$\\displaystyle W = \\int_C \\mathbf{F}\\cdot d\\mathbf{r} = \\int_a^b \\mathbf{F}(\\mathbf{r}(t))\\cdot\\mathbf{r}'(t)\\, dt$</td></tr>
+        <tr><td>Flux (2D)</td><td>$\\displaystyle\\oint_C \\mathbf{F}\\cdot\\mathbf{n}\\, ds = \\oint_C M\\, dy - N\\, dx$</td></tr>
+        <tr><td>Conservative test (2D)</td><td>$\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}$</td></tr>
+        <tr><td>FTC for Line Integrals</td><td>$\\displaystyle\\int_C \\nabla f \\cdot d\\mathbf{r} = f(B) - f(A)$</td></tr>
+        <tr><td>Green's Theorem</td><td>$\\displaystyle\\oint_C M\\, dx + N\\, dy = \\iint_R\\!\\left(\\frac{\\partial N}{\\partial x}-\\frac{\\partial M}{\\partial y}\\right)dA$</td></tr>
+        <tr><td>Surface Area $(z=g)$</td><td>$\\displaystyle\\iint_R \\sqrt{1+g_x^2+g_y^2}\\; dA$</td></tr>
+        <tr><td>Surface Area (parametric)</td><td>$\\displaystyle\\iint_D |\\mathbf{r}_u \\times \\mathbf{r}_v|\\; dA$</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section style="margin-bottom:2rem;">
+    <div class="section-label">Applications</div>
+    <h2 class="section-title">Where This Shows Up in Real Life</h2>
+    <div class="key-idea">
+      <div class="ki-title">🌍 Real-World Use</div>
+      <p style="margin-bottom:0.6rem;">GPS navigation systems track your <strong>position as a vector-valued function of time</strong> exactly as we did with $\\mathbf{r}(t)$ \u2014 your phone differentiates that path in real time to report your current speed and heading. Drone flight controllers use the same math to compute velocity and acceleration from raw position sensor data dozens of times per second.</p>
+      <p style="margin:0;">Engineers computing the <strong>work done by a force</strong> along a curved path \u2014 a roller coaster car, a robotic arm, a satellite's orbit \u2014 use exactly the line integral $\\int_C \\mathbf{F}\\cdot d\\mathbf{r}$ from this guide. Green's Theorem underlies how CAD software computes the area of arbitrarily complex 2D shapes by walking only their outline, and weather forecasters use divergence and curl (previewed here, developed fully in the next guide) to spot storm systems from wind-vector satellite data.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Vector Calculus Study Guide</strong></p>
+  <p style="margin-top:0.4rem;">Vector functions, line integrals, Green's theorem, and surfaces</p>
+</footer>
+`;
+
 const SPLIT_MARKER = '<section id="ch16-4">';
 
 function getPartMarkup(part) {
@@ -16,10 +1044,7 @@ function getPartMarkup(part) {
   const mainCloseTag = "</main>";
   const mainEnd = markup.lastIndexOf(mainCloseTag);
   if (part === 1) {
-    return (
-      markup.substring(0, splitIdx) +
-      '\n</main>\n<button id="top-btn" title="Back to top">↑</button>'
-    );
+    return markup.substring(0, splitIdx) + "\n</main>";
   }
 
   const headerEnd = markup.indexOf(mainOpenTag) + mainOpenTag.length;
@@ -27,19 +1052,34 @@ function getPartMarkup(part) {
   return (
     headerPart +
     "\n" +
-    markup.substring(splitIdx, mainEnd + mainCloseTag.length) +
-    '\n<button id="top-btn" title="Back to top">↑</button>'
+    markup.substring(splitIdx, mainEnd + mainCloseTag.length)
   );
 }
 
 function VectorCalculusGuide({ part = 0 }) {
   const partMarkup = React.useMemo(() => getPartMarkup(part), [part]);
+  
   return (
-    <StudyGuideShell
-      guideClass="vector-calculus-guide"
-      styles={styles}
-      markup={partMarkup}
-    />
+    <StudyGuideShell guideClass="vector-calculus-guide" styles={styles}>
+      <div dangerouslySetInnerHTML={{ __html: partMarkup }} />
+      <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 1.5rem 3rem' }}>
+        <hr className="divider" style={{ margin: '2rem 0', borderColor: '#e2e8f0' }} />
+        {part === 1 && (
+          <GuideMcqSection id="vc-quiz1" badge="Practice" title="Vector Functions & Line Integrals Quiz" scoreId="scorevector-p1" section="vector-p1" questions={MV_VECTOR_P1_QUIZ} />
+        )}
+        {part === 2 && (
+          <GuideMcqSection id="vc-quiz2" badge="Practice" title="Green's Theorem & Surfaces Quiz" scoreId="scorevector-p2" section="vector-p2" questions={MV_VECTOR_P2_QUIZ} />
+        )}
+        {part === 0 && (
+          <>
+            <GuideMcqSection id="vc-quiz1" badge="Practice" title="Vector Functions & Line Integrals Quiz" scoreId="scorevector-p1" section="vector-p1" questions={MV_VECTOR_P1_QUIZ} />
+            <hr className="divider" style={{ margin: '3rem 0', borderColor: '#e2e8f0' }} />
+            <GuideMcqSection id="vc-quiz2" badge="Practice" title="Green's Theorem & Surfaces Quiz" scoreId="scorevector-p2" section="vector-p2" questions={MV_VECTOR_P2_QUIZ} />
+          </>
+        )}
+      </div>
+      <button id="top-btn" title="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>↑</button>
+    </StudyGuideShell>
   );
 }
 

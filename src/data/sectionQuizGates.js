@@ -36,8 +36,8 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   // Multivariable Calculus
   "partial-1": ["141", "142", "143"],
   "partial-2": ["144", "145", "146", "147"],
-  "vector-1": [],
-  "vector-2": [],
+  "vector-1": ["vector-p1"],
+  "vector-2": ["vector-p2"],
   "integrals-1": ["integrals-p1"],
   "integrals-2": ["integrals-p2"],
   "lagrange-1": ["lagrange-geometry", "lagrange-math", "lagrange-fields"],
@@ -58,6 +58,8 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   ],
   "stokes-1": ["stokes-f"],
   "stokes-2": ["stokes-a"],
+  "geo3d-1": ["geo-dircos", "geo-angle3d", "geo-plane", "geo-ptplane"],
+  "geo3d-2": ["geo-line3d", "geo-skew", "geo-quadric"],
 
   // Linear Algebra
   "la-lineq-1": ["la-le-forms", "la-le-graph"],

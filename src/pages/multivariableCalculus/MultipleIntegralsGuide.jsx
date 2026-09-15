@@ -36,6 +36,7 @@ function GuideSidebarPart1() {
       <a className="sb-link" href="#mi-1">{"Double Integrals"}</a>
       <a className="sb-link" href="#mi-2">{"Fubini's Theorem"}</a>
       <a className="sb-link" href="#mi-3">{"Changing Order"}</a>
+      <a className="sb-link" href="#mi-extrema">{"Global Extrema"}</a>
       <a className="sb-link" href="#mi-quiz1">{"Practice Quiz"}</a>
     </nav>
   );
@@ -51,6 +52,7 @@ function GuideSidebarPart2() {
       <a className="sb-link" href="#mi-5">{"Polar Coordinates"}</a>
       <a className="sb-link" href="#mi-6">{"Cylindrical Coordinates"}</a>
       <a className="sb-link" href="#mi-7">{"Spherical Coordinates"}</a>
+      <a className="sb-link" href="#mi-flux">{"Parametric Flux"}</a>
       <a className="sb-link" href="#mi-quiz2">{"Practice Quiz"}</a>
     </nav>
   );
@@ -86,6 +88,7 @@ function TableOfContentsPart1() {
         <a className="toc-a" href="#mi-1">{"Double Integrals"}</a>
         <a className="toc-a" href="#mi-2">{"Fubini's Theorem"}</a>
         <a className="toc-a" href="#mi-3">{"Changing Order of Integration"}</a>
+        <a className="toc-a" href="#mi-extrema">{"Global Extrema"}</a>
         <a className="toc-a" href="#mi-quiz1">{"Practice Quiz"}</a>
       </div>
     </div>
@@ -101,6 +104,7 @@ function TableOfContentsPart2() {
         <a className="toc-a" href="#mi-5">{"Polar Coordinates"}</a>
         <a className="toc-a" href="#mi-6">{"Cylindrical Coordinates"}</a>
         <a className="toc-a" href="#mi-7">{"Spherical Coordinates"}</a>
+        <a className="toc-a" href="#mi-flux">{"Parametric Surface Flux"}</a>
         <a className="toc-a" href="#mi-quiz2">{"Practice Quiz"}</a>
       </div>
     </div>
@@ -129,7 +133,7 @@ function SectionMI1() {
       </div>
 
       <RealLifeUse>
-        Double integrals compute mass from density on a plate, average rainfall over a region, and totals in image processing — volume under $z=f(x,y)$ is the geometric picture.
+        {"Double integrals compute mass from density on a plate, average rainfall over a region, and totals in image processing — volume under $z=f(x,y)$ is the geometric picture."}
       </RealLifeUse>
       <h3 className="subsec">{"Geometric Interpretation"}</h3>
       <p>
@@ -214,6 +218,64 @@ function SectionMI3() {
   );
 }
 
+function SectionMIGlobalExtrema() {
+  return (
+    <section className="section" id="mi-extrema">
+      <div className="sec-badge">{"Section"}</div>
+      <h2 className="sec-title">{"Global Extrema on Bounded Domains"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Theorem \u2014 Extreme Value Theorem"}</div>
+        <p>{"The Extreme Value Theorem for functions of two variables states that if $f(x,y)$ is continuous on a closed and bounded set $D$ in $\\mathbb{R}^2$, then $f$ will absolutely attain both a global maximum and a global minimum on $D$."}</p>
+        <p>{"Unlike finding local extrema where we only look at interior critical points and use the Second Derivatives Test, finding global extrema requires us to thoroughly investigate the "}<strong>{"boundary"}</strong>{" of the domain, much like checking the endpoints of an interval $[a,b]$ in single-variable calculus."}</p>
+      </div>
+
+      <div className="box thm">
+        <div className="box-lbl">{"Steps to Find Global Extrema"}</div>
+        <ol className="steps">
+          <li><strong>{"Interior:"}</strong>{" Find all critical points of $f$ that lie strictly "}<em>{"inside"}</em>{" the region $D$ (where $f_x = 0$ and $f_y = 0$). Evaluate $f$ at these points."}</li>
+          <li><strong>{"Boundary:"}</strong>{" Find the extreme values of $f$ on the boundary of $D$. This usually involves parameterizing the boundary segments to reduce $f(x,y)$ to a single-variable function, or using Lagrange Multipliers."}</li>
+          <li><strong>{"Compare:"}</strong>{" The largest value found in steps 1 and 2 is the global maximum. The smallest value is the global minimum."}</li>
+        </ol>
+      </div>
+
+      <div className="box exm">
+        <div className="box-lbl">{"Example"}</div>
+        <div className="exm-title">{"Global Extrema on a Rectangular Domain"}</div>
+        <p><strong>{"Problem:"}</strong>{" Find the absolute maximum and minimum of $f(x,y) = x^2 - 2xy + 2y$ on the rectangular region $D = \\{(x,y) \\mid 0 \\le x \\le 3, 0 \\le y \\le 2\\}$."}</p>
+        <div className="sol">
+          <div className="sol-lbl">{"Solution"}</div>
+          <p>
+            <strong>{"Step 1: Evaluate interior critical points."}</strong><br/>
+            {"$f_x = 2x - 2y = 0 \\implies x = y$"}<br/>
+            {"$f_y = -2x + 2 = 0 \\implies x = 1$"}<br/>
+            {"The only critical point is $(1,1)$, which is inside $D$."}<br/>
+            {"$f(1,1) = (1)^2 - 2(1)(1) + 2(1) = 1$."}
+          </p>
+
+          <p>
+            <strong>{"Step 2: Evaluate the four boundary segments."}</strong><br/>
+            <em>{"Boundary 1 (Bottom, $y=0$ for $0 \\le x \\le 3$):"}</em><br/>
+            {"$f(x,0) = x^2$. On $[0,3]$, this goes from $0$ to $9$."}<br/>
+            <em>{"Boundary 2 (Right, $x=3$ for $0 \\le y \\le 2$):"}</em><br/>
+            {"$f(3,y) = 9 - 6y + 2y = 9 - 4y$. On $[0,2]$, this is a decreasing line. Max is $9$, Min is $1$."}<br/>
+            <em>{"Boundary 3 (Top, $y=2$ for $0 \\le x \\le 3$):"}</em><br/>
+            {"$f(x,2) = x^2 - 4x + 4 = (x-2)^2$. On $[0,3]$, this is a parabola with a critical point at $x=2$. Values: $f(0,2) = 4$, $f(2,2) = 0$, $f(3,2) = 1$."}<br/>
+            <em>{"Boundary 4 (Left, $x=0$ for $0 \\le y \\le 2$):"}</em><br/>
+            {"$f(0,y) = 2y$. On $[0,2]$, this goes from $0$ to $4$."}
+          </p>
+
+          <p>
+            <strong>{"Step 3: Compare all values."}</strong><br/>
+            {"The values we gathered are: 1 (interior), 0, 9, 4, 1, 0."}<br/>
+            <strong>{"Global Maximum:"}</strong> {"$9$ at the point $(3,0)$."}<br/>
+            <strong>{"Global Minimum:"}</strong> {"$0$ at the points $(0,0)$ and $(2,2)$."}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SectionMI4() {
   return (
     <section className="section" id="mi-4">
@@ -229,7 +291,7 @@ function SectionMI4() {
         </div>
       </div>
       <RealLifeUse>
-        Triple integrals weigh a 3D ore body from density $\rho(x,y,z)$, compute center of mass of a machine part, and accumulate charge in a volume — density times volume, added up.
+        {"Triple integrals weigh a 3D ore body from density $\\rho(x,y,z)$, compute center of mass of a machine part, and accumulate charge in a volume — density times volume, added up."}
       </RealLifeUse>
       <div className="box exm">
         <div className="box-lbl">{"Example"}</div>
@@ -246,83 +308,54 @@ function SectionMI4() {
           </div>
         </div>
       </div>
-            <div className="guide-subsection">
-        <h3>Triple Integrals in Cartesian Coordinates</h3>
-
+      <div className="guide-subsection">
+        <h3>{"Triple Integrals in Cartesian Coordinates"}</h3>
         <p>
-          A triple integral extends the idea of a double integral into three
-          dimensions. It can be used to calculate quantities such as volume,
-          mass, and charge distributed throughout a three-dimensional region.
+          {"A triple integral extends the idea of a double integral into three dimensions. It can be used to calculate quantities such as volume, mass, and charge distributed throughout a three-dimensional region."}
         </p>
-
         <p>
-          In Cartesian coordinates, the differential volume element is
-          <strong> dV = dx dy dz</strong>. Thus, a triple integral over a region
-          E can be written as
+          {"In Cartesian coordinates, the differential volume element is "}<strong>{"dV = dx dy dz"}</strong>{". Thus, a triple integral over a region E can be written as"}
         </p>
-
         <div className="formula">
-          ∭<sub>E</sub> f(x, y, z) dV
+          {"∭_E f(x, y, z) dV"}
         </div>
-
         <p>
-          For a region described by rectangular bounds, the integral can be
-          evaluated as
+          {"For a region described by rectangular bounds, the integral can be evaluated as"}
         </p>
-
         <div className="formula">
-          ∫<sub>a</sub><sup>b</sup> ∫<sub>c</sub><sup>d</sup> ∫<sub>e</sub><sup>f</sup>
-          f(x, y, z) dz dy dx
+          {"∫_a^b ∫_c^d ∫_e^f f(x, y, z) dz dy dx"}
         </div>
-
-        <h4>How to Set Up a Triple Integral</h4>
-
+        <h4>{"How to Set Up a Triple Integral"}</h4>
         <ol>
-          <li>Identify the three-dimensional region of integration.</li>
-          <li>Choose the order of integration.</li>
-          <li>Determine the limits for the innermost variable.</li>
-          <li>Determine the limits for the middle variable.</li>
-          <li>Determine the limits for the outermost variable.</li>
-          <li>Write the integrand together with the appropriate volume element dV.</li>
+          <li>{"Identify the three-dimensional region of integration."}</li>
+          <li>{"Choose the order of integration."}</li>
+          <li>{"Determine the limits for the innermost variable."}</li>
+          <li>{"Determine the limits for the middle variable."}</li>
+          <li>{"Determine the limits for the outermost variable."}</li>
+          <li>{"Write the integrand together with the appropriate volume element dV."}</li>
         </ol>
-
-        <h4>Worked Example</h4>
-
+        <h4>{"Worked Example"}</h4>
         <p>
-          Find the volume of the rectangular box
-          <strong> 0 ≤ x ≤ 2, 0 ≤ y ≤ 3, 0 ≤ z ≤ 4</strong>.
+          {"Find the volume of the rectangular box "}<strong>{"0 ≤ x ≤ 2, 0 ≤ y ≤ 3, 0 ≤ z ≤ 4"}</strong>{"."}
         </p>
-
         <div className="formula">
-          V = ∫<sub>0</sub><sup>2</sup> ∫<sub>0</sub><sup>3</sup> ∫<sub>0</sub><sup>4</sup>
-          1 dz dy dx
+          {"V = ∫_0^2 ∫_0^3 ∫_0^4 1 dz dy dx"}
         </div>
-
-        <p>Evaluate from the inside outward:</p>
-
+        <p>{"Evaluate from the inside outward:"}</p>
         <div className="formula">
-          ∫<sub>0</sub><sup>4</sup> 1 dz = 4
+          {"∫_0^4 1 dz = 4"}
         </div>
-
         <div className="formula">
-          ∫<sub>0</sub><sup>3</sup> 4 dy = 12
+          {"∫_0^3 4 dy = 12"}
         </div>
-
         <div className="formula">
-          ∫<sub>0</sub><sup>2</sup> 12 dx = 24
+          {"∫_0^2 12 dx = 24"}
         </div>
-
         <p>
-          Therefore, the volume of the box is <strong>24 cubic units</strong>.
-          This agrees with the geometric formula
-          <strong> 2 × 3 × 4 = 24</strong>.
+          {"Therefore, the volume of the box is "}<strong>{"24 cubic units"}</strong>{". This agrees with the geometric formula "}<strong>{"2 × 3 × 4 = 24"}</strong>{"."}
         </p>
-
         <div className="callout">
-          <strong>Key idea:</strong> In Cartesian coordinates, the volume
-          element is simply <strong>dV = dx dy dz</strong>. The main challenge
-          is usually describing the region correctly and choosing appropriate
-          limits of integration.
+          <strong>{"Key idea:"}</strong>{" In Cartesian coordinates, the volume element is simply "}<strong>{"dV = dx dy dz"}</strong>{". The main challenge is usually describing the region correctly and choosing appropriate limits of integration."}
         </div>
       </div>
     </section>
@@ -430,236 +463,185 @@ function SectionMI7() {
           <li>{"A cone $z = \\sqrt{x^2+y^2}$ becomes the simple equation $\\phi = \\pi/4$ in spherical — often the deciding factor."}</li>
         </ul>
       </div>
-            <div className="guide-subsection">
-        <h3>Jacobians and Change of Variables</h3>
-
+      <div className="guide-subsection">
+        <h3>{"Jacobians and Change of Variables"}</h3>
         <p>
-          A Jacobian describes how a change of variables stretches or
-          compresses area or volume. It is especially useful when changing
-          from Cartesian coordinates to polar, cylindrical, or spherical
-          coordinates.
+          {"A Jacobian describes how a change of variables stretches or compresses area or volume. It is especially useful when changing from Cartesian coordinates to polar, cylindrical, or spherical coordinates."}
         </p>
-
-        <h4>The Jacobian Determinant</h4>
-
-        <p>
-          Suppose x and y are functions of new variables u and v:
-        </p>
-
+        <h4>{"The Jacobian Determinant"}</h4>
+        <p>{"Suppose x and y are functions of new variables u and v:"}</p>
         <div className="formula">
-          x = x(u, v), &nbsp;&nbsp; y = y(u, v)
+          {"x = x(u, v),    y = y(u, v)"}
         </div>
-
-        <p>
-          The two-dimensional Jacobian determinant is
-        </p>
-
+        <p>{"The two-dimensional Jacobian determinant is"}</p>
         <div className="formula">
-          J = ∂(x,y)/∂(u,v) =
-          | ∂x/∂u &nbsp; ∂x/∂v |
-          | ∂y/∂u &nbsp; ∂y/∂v |
+          {"J = ∂(x,y)/∂(u,v) = | ∂x/∂u   ∂x/∂v | | ∂y/∂u   ∂y/∂v |"}
         </div>
-
-        <p>
-          Therefore,
-        </p>
-
+        <p>{"Therefore,"}</p>
         <div className="formula">
-          J = (∂x/∂u)(∂y/∂v) − (∂x/∂v)(∂y/∂u)
+          {"J = (∂x/∂u)(∂y/∂v) − (∂x/∂v)(∂y/∂u)"}
         </div>
-
-        <h4>Change-of-Variables Formula</h4>
-
+        <h4>{"Change-of-Variables Formula"}</h4>
         <p>
-          When changing variables in a double integral, the area element
-          changes according to the absolute value of the Jacobian:
+          {"When changing variables in a double integral, the area element changes according to the absolute value of the Jacobian:"}
         </p>
-
         <div className="formula">
-          dA = |J| du dv
+          {"dA = |J| du dv"}
         </div>
-
-        <p>
-          Thus,
-        </p>
-
+        <p>{"Thus,"}</p>
         <div className="formula">
-          ∬<sub>R</sub> f(x,y) dA
-          = ∬<sub>S</sub> f(x(u,v), y(u,v)) |J| du dv
+          {"∬_R f(x,y) dA = ∬_S f(x(u,v), y(u,v)) |J| du dv"}
         </div>
-
         <div className="callout">
-          <strong>Why the absolute value?</strong> The Jacobian can be
-          negative when the transformation reverses orientation, but area
-          and volume must remain nonnegative. Therefore, the change-of-
-          variables formula uses <strong>|J|</strong>.
+          <strong>{"Why the absolute value?"}</strong>{" The Jacobian can be negative when the transformation reverses orientation, but area and volume must remain nonnegative. Therefore, the change-of-variables formula uses "}<strong>{"|J|"}</strong>{"."}
         </div>
-
-        <h4>Worked Example — Polar Coordinates</h4>
-
-        <p>
-          For polar coordinates,
-        </p>
-
+        <h4>{"Worked Example — Polar Coordinates"}</h4>
+        <p>{"For polar coordinates,"}</p>
         <div className="formula">
-          x = r cos(θ), &nbsp;&nbsp; y = r sin(θ)
+          {"x = r cos(θ),    y = r sin(θ)"}
         </div>
-
-        <p>
-          The Jacobian is
-        </p>
-
+        <p>{"The Jacobian is"}</p>
         <div className="formula">
-          J = ∂(x,y)/∂(r,θ)
-          = | cos(θ) &nbsp; −r sin(θ) |
-          | sin(θ) &nbsp;&nbsp; r cos(θ) |
+          {"J = ∂(x,y)/∂(r,θ) = | cos(θ)   −r sin(θ) | | sin(θ)    r cos(θ) |"}
         </div>
-
-        <p>
-          Computing the determinant gives
-        </p>
-
+        <p>{"Computing the determinant gives"}</p>
         <div className="formula">
-          J = r cos²(θ) + r sin²(θ) = r
+          {"J = r cos²(θ) + r sin²(θ) = r"}
         </div>
-
-        <p>
-          Therefore,
-        </p>
-
+        <p>{"Therefore,"}</p>
         <div className="formula">
-          dA = r dr dθ
+          {"dA = r dr dθ"}
         </div>
-
         <p>
-          This explains why the factor <strong>r</strong> appears in polar
-          coordinate double integrals.
+          {"This explains why the factor "}<strong>{"r"}</strong>{" appears in polar coordinate double integrals."}
         </p>
-
-        <h4>Jacobian Workflow</h4>
-
+        <h4>{"Jacobian Workflow"}</h4>
         <ol>
-          <li>Define the transformation between the old and new variables.</li>
-          <li>Compute all required partial derivatives.</li>
-          <li>Form the Jacobian determinant.</li>
-          <li>Take its absolute value when applying the change-of-variables formula.</li>
-          <li>Transform the region of integration into the new variables.</li>
-          <li>Replace the original area or volume element with the transformed element.</li>
+          <li>{"Define the transformation between the old and new variables."}</li>
+          <li>{"Compute all required partial derivatives."}</li>
+          <li>{"Form the Jacobian determinant."}</li>
+          <li>{"Take its absolute value when applying the change-of-variables formula."}</li>
+          <li>{"Transform the region of integration into the new variables."}</li>
+          <li>{"Replace the original area or volume element with the transformed element."}</li>
         </ol>
-
         <div className="callout">
-          <strong>Key idea:</strong> A Jacobian is the scaling factor that
-          accounts for how a coordinate transformation changes area or
-          volume. In polar coordinates, it produces the familiar factor
-          <strong> r</strong>; in cylindrical and spherical coordinates,
-          the corresponding volume factors arise from the three-dimensional
-          Jacobian.
+          <strong>{"Key idea:"}</strong>{" A Jacobian is the scaling factor that accounts for how a coordinate transformation changes area or volume. In polar coordinates, it produces the familiar factor "}<strong>{"r"}</strong>{"; in cylindrical and spherical coordinates, the corresponding volume factors arise from the three-dimensional Jacobian."}
         </div>
       </div>
-            <div className="guide-subsection">
-        <h3>Three-Dimensional Jacobians</h3>
-
+      <div className="guide-subsection">
+        <h3>{"Three-Dimensional Jacobians"}</h3>
         <p>
-          The same change-of-variables idea extends to triple integrals.
-          When transforming from Cartesian coordinates to another coordinate
-          system, the three-dimensional Jacobian determines how the volume
-          element changes.
+          {"The same change-of-variables idea extends to triple integrals. When transforming from Cartesian coordinates to another coordinate system, the three-dimensional Jacobian determines how the volume element changes."}
         </p>
-
-        <h4>Cylindrical Coordinates</h4>
-
-        <p>
-          The transformation from Cartesian to cylindrical coordinates is
-        </p>
-
+        <h4>{"Cylindrical Coordinates"}</h4>
+        <p>{"The transformation from Cartesian to cylindrical coordinates is"}</p>
         <div className="formula">
-          x = r cos(θ), &nbsp;&nbsp; y = r sin(θ), &nbsp;&nbsp; z = z
+          {"x = r cos(θ),    y = r sin(θ),    z = z"}
         </div>
-
-        <p>
-          The corresponding three-dimensional Jacobian is
-        </p>
-
+        <p>{"The corresponding three-dimensional Jacobian is"}</p>
         <div className="formula">
-          ∂(x,y,z)/∂(r,θ,z) = r
+          {"∂(x,y,z)/∂(r,θ,z) = r"}
         </div>
-
-        <p>
-          Therefore, the Cartesian volume element becomes
-        </p>
-
+        <p>{"Therefore, the Cartesian volume element becomes"}</p>
         <div className="formula">
-          dV = r dr dθ dz
+          {"dV = r dr dθ dz"}
         </div>
-
-        <h4>Spherical Coordinates</h4>
-
-        <p>
-          In spherical coordinates,
-        </p>
-
+        <h4>{"Spherical Coordinates"}</h4>
+        <p>{"In spherical coordinates,"}</p>
+        <div className="formula">{"x = ρ sin(φ) cos(θ)"}</div>
+        <div className="formula">{"y = ρ sin(φ) sin(θ)"}</div>
+        <div className="formula">{"z = ρ cos(φ)"}</div>
+        <p>{"The three-dimensional Jacobian for this transformation is"}</p>
         <div className="formula">
-          x = ρ sin(φ) cos(θ)
+          {"∂(x,y,z)/∂(ρ,φ,θ) = ρ² sin(φ)"}
         </div>
-
+        <p>{"Therefore, the volume element becomes"}</p>
         <div className="formula">
-          y = ρ sin(φ) sin(θ)
+          {"dV = ρ² sin(φ) dρ dφ dθ"}
         </div>
-
-        <div className="formula">
-          z = ρ cos(φ)
-        </div>
-
-        <p>
-          The three-dimensional Jacobian for this transformation is
-        </p>
-
-        <div className="formula">
-          ∂(x,y,z)/∂(ρ,φ,θ) = ρ² sin(φ)
-        </div>
-
-        <p>
-          Therefore, the volume element becomes
-        </p>
-
-        <div className="formula">
-          dV = ρ² sin(φ) dρ dφ dθ
-        </div>
-
-        <h4>Choosing the Coordinate System</h4>
-
+        <h4>{"Choosing the Coordinate System"}</h4>
         <ul>
           <li>
-            <strong>Cartesian:</strong> Best for boxes and regions bounded by
-            planes such as x = a, y = b, and z = c.
+            <strong>{"Cartesian:"}</strong>{" Best for boxes and regions bounded by planes such as x = a, y = b, and z = c."}
           </li>
           <li>
-            <strong>Cylindrical:</strong> Useful for regions with circular
-            symmetry around the z-axis, such as cylinders and circular
-            paraboloids.
+            <strong>{"Cylindrical:"}</strong>{" Useful for regions with circular symmetry around the z-axis, such as cylinders and circular paraboloids."}
           </li>
           <li>
-            <strong>Spherical:</strong> Useful for regions with spherical
-            symmetry, such as spheres and spherical shells.
+            <strong>{"Spherical:"}</strong>{" Useful for regions with spherical symmetry, such as spheres and spherical shells."}
           </li>
         </ul>
-
-        <h4>Coordinate Transformation Workflow</h4>
-
+        <h4>{"Coordinate Transformation Workflow"}</h4>
         <ol>
-          <li>Identify the geometric symmetry of the region.</li>
-          <li>Choose Cartesian, cylindrical, or spherical coordinates.</li>
-          <li>Transform the coordinates and the boundaries of the region.</li>
-          <li>Rewrite the integrand using the new variables.</li>
-          <li>Replace dV with the appropriate Jacobian factor.</li>
-          <li>Evaluate the transformed triple integral.</li>
+          <li>{"Identify the geometric symmetry of the region."}</li>
+          <li>{"Choose Cartesian, cylindrical, or spherical coordinates."}</li>
+          <li>{"Transform the coordinates and the boundaries of the region."}</li>
+          <li>{"Rewrite the integrand using the new variables."}</li>
+          <li>{"Replace dV with the appropriate Jacobian factor."}</li>
+          <li>{"Evaluate the transformed triple integral."}</li>
         </ol>
-
         <div className="callout">
-          <strong>Key idea:</strong> A coordinate transformation changes not
-          only the variables and the limits of integration, but also the
-          differential volume element. The Jacobian supplies the required
-          scaling factor.
+          <strong>{"Key idea:"}</strong>{" A coordinate transformation changes not only the variables and the limits of integration, but also the differential volume element. The Jacobian supplies the required scaling factor."}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SectionMIParametricFlux() {
+  return (
+    <section className="section" id="mi-flux">
+      <div className="sec-badge">{"Section"}</div>
+      <h2 className="sec-title">{"Parametric Surface Flux"}</h2>
+      <div className="box def">
+        <div className="box-lbl">{"Flux Over General Parametric Surfaces"}</div>
+        <p>{"When calculating the surface integral of a vector field (Flux) $\\iint_S \\mathbf{F} \\cdot d\\mathbf{S}$, if the surface $S$ is given by a general parameterization $\\mathbf{r}(u,v)$ on a domain $D$, the vector differential area element expands to:"}</p>
+        <div className="fml">
+          {"$$d\\mathbf{S} = (\\mathbf{r}_u \\times \\mathbf{r}_v) \\, du \\, dv$$"}
+        </div>
+        <p>{"Therefore, the flux integral becomes a standard double integral over $D$:"}</p>
+        <div className="fml">
+          {"$$\\iint_S \\mathbf{F} \\cdot d\\mathbf{S} = \\iint_D \\mathbf{F}(\\mathbf{r}(u,v)) \\cdot (\\mathbf{r}_u \\times \\mathbf{r}_v) \\, dA$$"}
+        </div>
+        <p><strong>{"Orientation Check:"}</strong>{" The normal vector $\\mathbf{r}_u \\times \\mathbf{r}_v$ determines the orientation. If the problem specifies an \"upward\" or \"outward\" orientation and your cross product points the opposite way, you must multiply the integral by $-1$ (or swap to $\\mathbf{r}_v \\times \\mathbf{r}_u$)."}</p>
+      </div>
+
+      <div className="box exm">
+        <div className="box-lbl">{"Example"}</div>
+        <div className="exm-title">{"Calculating Flux through a Parametric Surface"}</div>
+        <p><strong>{"Problem:"}</strong>{" Evaluate the flux of $\\mathbf{F}(x,y,z) = \\langle 0, 0, z \\rangle$ across the portion of the paraboloid $z = 4 - x^2 - y^2$ that lies above the xy-plane, oriented upward."}</p>
+        <div className="sol">
+          <div className="sol-lbl">{"Solution"}</div>
+          <p>
+            <strong>{"Step 1: Parameterize the surface."}</strong><br/>
+            {"We can use $x$ and $y$ as parameters directly. Let $u=x, v=y$."}<br/>
+            {"$\\mathbf{r}(x,y) = \\langle x, y, 4 - x^2 - y^2 \\rangle$."}<br/>
+            {"The domain $D$ is where $z \\ge 0$, which is the disk $x^2 + y^2 \\le 4$."}
+          </p>
+
+          <p>
+            <strong>{"Step 2: Find the normal vector $\\mathbf{r}_x \\times \\mathbf{r}_y$."}</strong><br/>
+            {"$\\mathbf{r}_x = \\langle 1, 0, -2x \\rangle$"}<br/>
+            {"$\\mathbf{r}_y = \\langle 0, 1, -2y \\rangle$"}<br/>
+            {"$\\mathbf{r}_x \\times \\mathbf{r}_y = \\langle 2x, 2y, 1 \\rangle$."}<br/>
+            <em>{"Check orientation:"}</em>{" The z-component is positive (1), so this correctly points upward."}
+          </p>
+
+          <p>
+            <strong>{"Step 3: Setup the dot product."}</strong><br/>
+            {"Substitute the parameterization into $\\mathbf{F}$:"}<br/>
+            {"$\\mathbf{F}(\\mathbf{r}(x,y)) = \\langle 0, 0, 4 - x^2 - y^2 \\rangle$"}<br/>
+            {"$\\mathbf{F} \\cdot (\\mathbf{r}_x \\times \\mathbf{r}_y) = (0)(2x) + (0)(2y) + (4 - x^2 - y^2)(1) = 4 - x^2 - y^2$."}
+          </p>
+
+          <p>
+            <strong>{"Step 4: Evaluate the double integral over $D$."}</strong><br/>
+            {"Because the domain $D$ is the disk $x^2 + y^2 \\le 4$, we switch to polar coordinates ($x^2 + y^2 = r^2$, $dA = r \\, dr \\, d\\theta$):"}<br/>
+            {"$$\\iint_D (4 - x^2 - y^2) \\, dA = \\int_0^{2\\pi} \\int_0^2 (4 - r^2) r \\, dr \\, d\\theta$$"}<br/>
+            {"Inner integral: $\\int_0^2 (4r - r^3) \\, dr = [2r^2 - \\frac{1}{4}r^4]_0^2 = 4$."}<br/>
+            {"Outer integral: $\\int_0^{2\\pi} 4 \\, d\\theta = 8\\pi$."}<br/>
+            <strong>{"Total Flux:"}</strong>{" $8\\pi$."}
+          </p>
         </div>
       </div>
     </section>
@@ -735,6 +717,8 @@ function IntegralsContent({ part }) {
           <Divider />
           <SectionMI3 />
           <Divider />
+          <SectionMIGlobalExtrema />
+          <Divider />
           <SectionMIEnrichment />
           <Divider />
           <IntegralsExtendedPart1 />
@@ -763,6 +747,8 @@ function IntegralsContent({ part }) {
         <SectionMI6 />
         <Divider />
         <SectionMI7 />
+        <Divider />
+        <SectionMIParametricFlux />
         <Divider />
         <SectionMIEnrichment />
         <Divider />

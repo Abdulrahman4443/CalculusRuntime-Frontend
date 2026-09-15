@@ -23,5 +23,7 @@ export { default as StokesPart1 } from "./StokesPart1";
 export { default as StokesPart2 } from "./StokesPart2";
 export { default as DivergencePart1 } from "./DivergencePart1";
 export { default as DivergencePart2 } from "./DivergencePart2";
+export { default as Geometry3DPart1 } from "./Geometry3DPart1";
+export { default as Geometry3DPart2 } from "./Geometry3DPart2";
 export { default as MvCertificateBoost } from "./MvCertificateBoost";
 export { default as MultivariableOverview } from "./MultivariableOverview";
