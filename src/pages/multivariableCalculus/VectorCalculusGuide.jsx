@@ -1043,7 +1043,6 @@ function getPartMarkup(part) {
   const mainOpenTag = "<main>";
   const mainCloseTag = "</main>";
   const mainEnd = markup.lastIndexOf(mainCloseTag);
-
   if (part === 1) {
     return markup.substring(0, splitIdx) + "\n</main>";
   }

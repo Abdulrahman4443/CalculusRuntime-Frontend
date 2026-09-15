@@ -24,6 +24,7 @@ function EigenGuide({ part = 1 }) {
           <div className="sb-brand"><div className="sb-title">Eigen · Part 2</div></div>
           <a className="sb-link" href="#la-e-diag">Diagonalization</a>
           <a className="sb-link" href="#la-e-proc2">Method</a>
+          <a className="sb-link" href="#la-e-spectral">Spectral theorem</a>
           <a className="sb-link" href="#la-e-ex-p2">Examples</a>
           <a className="sb-link" href="#quiz-la-e-diag">Quiz</a>
           <a className="sb-link" href="#la-e-apps">Applications</a>
@@ -34,7 +35,7 @@ function EigenGuide({ part = 1 }) {
           <header className="ch-hdr">
             <div className="ch-eye">Linear Algebra · Part 2 of 2</div>
             <h1 className="ch-title">Eigenvalues &amp; Eigenvectors</h1>
-            <p className="ch-sub">Diagonalization and applications — theory plus calculations</p>
+            <p className="ch-sub">Diagonalization, matrix powers, the Spectral Theorem, and applications — theory plus calculations</p>
             <span className="ch-orn">✦ &nbsp; ✦ &nbsp; ✦</span>
           </header>
 
@@ -93,9 +94,43 @@ function EigenGuide({ part = 1 }) {
             />
           </section>
 
+
+          <section className="section" id="la-e-spectral">
+            <div className="sec-badge">Spectral Theorem</div>
+            <h2 className="sec-title">Real symmetric matrices — orthogonal diagonalization</h2>
+            <TheoremBox title="Spectral Theorem for real symmetric matrices">
+              <p>
+                {"If $A\\in\\mathbb{R}^{n\\times n}$ is symmetric ($A=A^T$), then every eigenvalue of $A$ is real and $\\mathbb{R}^n$ has an orthonormal basis of eigenvectors of $A$. Equivalently, there is an orthogonal matrix $Q$ and a real diagonal matrix $\\Lambda$ such that $A=Q\\Lambda Q^T$. Conversely, any real matrix of the form $Q\\Lambda Q^T$ with $Q$ orthogonal and $\\Lambda$ real diagonal is symmetric."}
+              </p>
+              <p>
+                {"Eigenvectors belonging to distinct eigenvalues are automatically orthogonal. If an eigenvalue is repeated, choose an orthonormal basis inside its eigenspace; combining those bases gives the orthogonal matrix $Q$. Repeated eigenvalues therefore do not prevent diagonalization of a real symmetric matrix."}
+              </p>
+            </TheoremBox>
+            <TheoryBox title="Spectral decomposition and matrix functions">
+              <p>
+                {"Write the orthonormal eigenvectors as $q_1,\\ldots,q_n$ with matching eigenvalues $\\lambda_1,\\ldots,\\lambda_n$. Then $A=\\sum_{i=1}^{n}\\lambda_i q_iq_i^T$. Each matrix $q_iq_i^T$ is the orthogonal projector onto the eigenvector direction $q_i$."}
+              </p>
+              <p>
+                {"Because $Q^{-1}=Q^T$, powers become $A^k=Q\\Lambda^kQ^T=\\sum_i\\lambda_i^k q_iq_i^T$. More generally, whenever a scalar function $f$ is defined on the eigenvalues, $f(A)=Qf(\\Lambda)Q^T$. This is why symmetric eigenproblems are especially powerful in engineering and data analysis."}
+              </p>
+            </TheoryBox>
+            <ProcedureBox
+              title="How to orthogonally diagonalize a real symmetric matrix"
+              steps={[
+                { text: "Verify $A=A^T$.", why: "The real Spectral Theorem applies to symmetric matrices." },
+                { text: "Find the eigenvalues from the characteristic equation.", why: "A real symmetric matrix has only real eigenvalues." },
+                { text: "Find a basis for each eigenspace $\\operatorname{Nul}(A-\\lambda I)$.", why: "Each basis vector is an eigenvector for that eigenvalue." },
+                { text: "Normalize the eigenvectors; if an eigenspace has dimension greater than $1$, orthonormalize within that eigenspace if necessary.", why: "Columns of $Q$ must be orthonormal." },
+                { text: "Place the orthonormal eigenvectors in $Q$ and the matching eigenvalues in $\\Lambda$.", why: "Column order in $Q$ must match diagonal order in $\\Lambda$." },
+                { text: "Verify $Q^TQ=I$ and $AQ=Q\\Lambda$; then $A=Q\\Lambda Q^T$.", why: "These checks verify both orthogonality and the eigenpair matching." }
+              ]}
+            />
+            <RealLifeUse>{"For vibration and modal analysis, symmetric mass-normalized models separate motion into orthogonal modes. For PCA, a covariance matrix is symmetric, so its orthonormal eigenvectors give mutually perpendicular principal directions and its eigenvalues measure variance along those directions."}</RealLifeUse>
+          </section>
+
           <section className="section" id="la-e-ex-p2">
             <div className="sec-badge">Large examples</div>
-            <h2 className="sec-title">Six detailed worked examples</h2>
+            <h2 className="sec-title">Eight detailed worked examples</h2>
 
             <WorkedExample
               number={1}
@@ -187,12 +222,43 @@ function EigenGuide({ part = 1 }) {
               result={"$A$ acts as independent scalings in the eigenbasis of $P$."}
               check={"$A(1,1)^T=(3,3)^T=3(1,1)^T$."}
             />
+
+            <WorkedExample
+              number={7}
+              title="Orthogonally diagonalize a 3×3 symmetric matrix"
+              setup={"$A=\\begin{pmatrix}2&1&0\\\\1&2&0\\\\0&0&4\\end{pmatrix}$. Find $Q$ and $\\Lambda$ with $A=Q\\Lambda Q^T$."}
+              steps={[
+                { text: "$A=A^T$, so the Spectral Theorem guarantees an orthonormal eigenbasis." },
+                { text: "$\\det(A-\\lambda I)=(4-\\lambda)[(2-\\lambda)^2-1]$, so the eigenvalues are $1,3,4$.", why: "Factor the $2\\times2$ symmetric block and the isolated third coordinate." },
+                { text: "For $\\lambda=1$, take $v_1=(1,-1,0)$; for $\\lambda=3$, take $v_2=(1,1,0)$; for $\\lambda=4$, take $v_3=(0,0,1)$." },
+                { text: "The three eigenvectors are mutually orthogonal: $v_1\\cdot v_2=0$, and both are orthogonal to $v_3$." },
+                { text: "Normalize: $q_1=\\frac{1}{\\sqrt2}(1,-1,0)$, $q_2=\\frac{1}{\\sqrt2}(1,1,0)$, $q_3=(0,0,1)$." },
+                { text: "Set $Q=[q_1\\ q_2\\ q_3]$ and $\\Lambda=\\operatorname{diag}(1,3,4)$. Then $Q^TQ=I$ and $AQ=Q\\Lambda$." }
+              ]}
+              result={"$A=Q\\operatorname{diag}(1,3,4)Q^T$ with orthonormal eigenvector columns $q_1,q_2,q_3$."}
+              check={"Trace check: $1+3+4=8=\\operatorname{tr}(A)$; determinant check: $1\\cdot3\\cdot4=12=\\det(A)$."}
+            />
+            <WorkedExample
+              number={8}
+              title="Closed formula for Aᵏ using the Spectral Theorem"
+              setup={"For $A=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}$, derive a formula for $A^k$ for integers $k\\ge 0$."}
+              steps={[
+                { text: "From the symmetric eigenproblem, $q_1=\\frac{1}{\\sqrt2}(1,-1)$ has eigenvalue $1$ and $q_2=\\frac{1}{\\sqrt2}(1,1)$ has eigenvalue $3$." },
+                { text: "Thus $A=Q\\operatorname{diag}(1,3)Q^T$ and $A^k=Q\\operatorname{diag}(1,3^k)Q^T$.", why: "Powers act only on the diagonal eigenvalues." },
+                { text: "Using spectral projectors, $A^k=1^k q_1q_1^T+3^k q_2q_2^T$." },
+                { text: "$q_1q_1^T=\\frac12\\begin{pmatrix}1&-1\\\\-1&1\\end{pmatrix}$ and $q_2q_2^T=\\frac12\\begin{pmatrix}1&1\\\\1&1\\end{pmatrix}$." },
+                { text: "Add the two terms to get $A^k=\\frac12\\begin{pmatrix}3^k+1&3^k-1\\\\3^k-1&3^k+1\\end{pmatrix}$." },
+                { text: "For $k=0$ the formula gives $I$; for $k=1$ it gives $A$, providing two quick checks." }
+              ]}
+              result={"$A^k=\\frac12\\begin{pmatrix}3^k+1&3^k-1\\\\3^k-1&3^k+1\\end{pmatrix}$ for $k\\ge0$."}
+              check={"At $k=2$, the formula gives $\\begin{pmatrix}5&4\\\\4&5\\end{pmatrix}$, which equals $A^2$."}
+            />
           </section>
 
           <LaMcqSection
             id="quiz-la-e-diag"
             badge="Quiz 4.3"
-            title="Diagonalization"
+            title="Diagonalization & Spectral Theorem"
             scoreId="score-la-e-diag"
             section="la-e-diag"
             questions={LA_E_DIAG_QUIZ}
@@ -258,6 +324,7 @@ function EigenGuide({ part = 1 }) {
         <a className="sb-link" href="#la-e-ex-p1">Examples</a>
         <a className="sb-link" href="#quiz-la-e-intro">Quiz</a>
         <a className="sb-link" href="#la-e-char">Characteristic poly</a>
+        <a className="sb-link" href="#la-e-multiplicity">Multiplicity</a>
         <a className="sb-link" href="#quiz-la-e-char">Quiz</a>
         <a className="sb-link" href="#la-cert-eigen-p1">Eight examples</a>
       </nav>
@@ -314,7 +381,7 @@ function EigenGuide({ part = 1 }) {
 
         <section className="section" id="la-e-ex-p1">
           <div className="sec-badge">Large examples</div>
-          <h2 className="sec-title">Six detailed worked examples</h2>
+          <h2 className="sec-title">Eight detailed worked examples</h2>
 
           <WorkedExample
             number={1}
@@ -406,6 +473,37 @@ function EigenGuide({ part = 1 }) {
             result={"No real eigenvalues or eigenvectors for $R$."}
             check={"$\\lambda^2+1=0$ has discriminant $-4<0$."}
           />
+
+          <WorkedExample
+            number={7}
+            title="Repeated eigenvalue with enough eigenvectors"
+            setup={"$A=\\operatorname{diag}(2,2,5)$. Compare algebraic and geometric multiplicities and decide whether $A$ is diagonalizable."}
+            steps={[
+                { text: "$\\det(A-\\lambda I)=(2-\\lambda)^2(5-\\lambda)$, so $\\lambda=2$ has algebraic multiplicity $2$ and $\\lambda=5$ has algebraic multiplicity $1$." },
+                { text: "$A-2I=\\operatorname{diag}(0,0,3)$, so $E_2=\\operatorname{Nul}(A-2I)=\\operatorname{Span}\\{e_1,e_2\\}$." },
+                { text: "Therefore the geometric multiplicity of $\\lambda=2$ is $2$, equal to its algebraic multiplicity." },
+                { text: "$E_5=\\operatorname{Span}\\{e_3\\}$, so the geometric multiplicity of $5$ is $1$." },
+                { text: "The total number of independent eigenvectors is $2+1=3$, which equals the matrix size." },
+                { text: "Hence $A$ is diagonalizable; in fact it is already diagonal." }
+              ]}
+            result={"For $\\lambda=2$, $AM=GM=2$; for $\\lambda=5$, $AM=GM=1$. The matrix is diagonalizable."}
+            check={"A repeated eigenvalue does not cause a problem when its eigenspace has the required dimension."}
+          />
+          <WorkedExample
+            number={8}
+            title="Same eigenvalues, but a defective matrix"
+            setup={"$B=\\begin{pmatrix}2&1&0\\\\0&2&0\\\\0&0&5\\end{pmatrix}$. Compare its multiplicities with Example 7."}
+            steps={[
+                { text: "$B$ is triangular, so $\\det(B-\\lambda I)=(2-\\lambda)^2(5-\\lambda)$. The algebraic multiplicities are unchanged." },
+                { text: "$B-2I=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&3\\end{pmatrix}$, so $y=0$ and $z=0$ while $x$ is free." },
+                { text: "Thus $E_2=\\operatorname{Span}\\{(1,0,0)\\}$ and $GM(2)=1<2=AM(2)$." },
+                { text: "For $\\lambda=5$, the eigenspace is $E_5=\\operatorname{Span}\\{(0,0,1)\\}$, so $GM(5)=1$." },
+                { text: "Only $1+1=2$ independent eigenvectors are available for a $3\\times3$ matrix." },
+                { text: "Therefore $B$ is defective and cannot be diagonalized, even though it has the same eigenvalues and algebraic multiplicities as Example 7." }
+              ]}
+            result={"$GM(2)=1<AM(2)=2$, so $B$ is not diagonalizable."}
+            check={"The comparison isolates the real issue: diagonalizability depends on eigenspace dimensions, not merely on repeated roots."}
+          />
         </section>
 
         <LaMcqSection
@@ -424,7 +522,7 @@ function EigenGuide({ part = 1 }) {
           <h2 className="sec-title">Characteristic polynomial — deep theory</h2>
           <TheoryBox title="p(λ) = det(A − λI)">
             <p>
-              {"The characteristic polynomial $p(\\lambda)=\\det(A-\\lambda I)$ is a degree-$n$ monic polynomial (up to sign conventions on $(\\lambda I-A)$ vs $(A-\\lambda I)$ — be consistent with your course). Its roots are the eigenvalues. For each root $\\lambda$, the eigenspace is $\\mathrm{Nul}(A-\\lambda I)$."}
+              {"Using the convention $p_A(\\lambda)=\\det(A-\\lambda I)$, the characteristic polynomial has degree $n$ and leading coefficient $(-1)^n$. The alternative convention $\\chi_A(\\lambda)=\\det(\\lambda I-A)=(-1)^n p_A(\\lambda)$ is monic. Both have exactly the same roots, so either convention gives the same eigenvalues. For each root $\\lambda$, the eigenspace is $\\mathrm{Nul}(A-\\lambda I)$."}
             </p>
             <p>
               {"Algebraic multiplicity is the root’s multiplicity in $p$. Geometric multiplicity is $\\dim\\mathrm{Nul}(A-\\lambda I)$, always at least $1$ for an eigenvalue and at most the algebraic multiplicity. The gap between them is exactly what obstructs diagonalization."}
@@ -436,11 +534,35 @@ function EigenGuide({ part = 1 }) {
             </p>
           </TheoremBox>
         </section>
+        <section className="section" id="la-e-multiplicity">
+          <div className="sec-badge">Multiplicity</div>
+          <h2 className="sec-title">Algebraic vs. geometric multiplicity</h2>
+          <TheoryBox title="Two different multiplicities">
+            <p>
+              {"For an eigenvalue $\\lambda$, the algebraic multiplicity $AM(\\lambda)$ is its multiplicity as a root of the characteristic polynomial. The geometric multiplicity $GM(\\lambda)$ is the dimension of its eigenspace: $GM(\\lambda)=\\dim\\operatorname{Nul}(A-\\lambda I)$."}
+            </p>
+            <p>
+              {"Every eigenvalue satisfies $1\\le GM(\\lambda)\\le AM(\\lambda)$. Algebraic multiplicity counts how many times the root occurs; geometric multiplicity counts how many independent eigenvector directions are actually available for that eigenvalue."}
+            </p>
+          </TheoryBox>
+          <TheoremBox title="Multiplicity test for diagonalizability">
+            <p>
+              {"Suppose the characteristic polynomial of an $n\\times n$ matrix splits into linear factors over the field being used. Then $A$ is diagonalizable exactly when the geometric multiplicity equals the algebraic multiplicity for every eigenvalue. Equivalently, the sum of all eigenspace dimensions is $n$. Distinct eigenvalues automatically give independent eigenvectors, but repeated eigenvalues require this dimension check."}
+            </p>
+          </TheoremBox>
+          <PracticalTheory title="Fast repeated-eigenvalue check">
+            <p>
+              {"After factoring the characteristic polynomial, record each eigenvalue and its algebraic multiplicity. For every repeated eigenvalue, row-reduce $A-\\lambda I$ and count free variables; that nullity is the geometric multiplicity. If any $GM<AM$, the matrix is defective. If all multiplicities match and the polynomial splits, an eigenbasis exists."}
+            </p>
+          </PracticalTheory>
+          <RealLifeUse>{"Repeated modes occur in symmetric engineering models when a system has geometric symmetry. Symmetry does not automatically create a defect: for real symmetric matrices the Spectral Theorem guarantees enough orthogonal eigenvectors even when eigenvalues repeat."}</RealLifeUse>
+        </section>
+
 
         <LaMcqSection
           id="quiz-la-e-char"
           badge="Quiz 4.2"
-          title="Characteristic polynomial"
+          title="Characteristic polynomial & multiplicity"
           scoreId="score-la-e-char"
           section="la-e-char"
           questions={LA_E_CHAR_QUIZ}

@@ -14,6 +14,8 @@ export const COURSES = [
     meta: "6 guides · Tools + practice",
     icon: "∫",
     color: "gold",
+    heroImage: "/images/courses/calc-geometry-hero.svg",
+    heroImageAlt: "Calculus and Analytical Geometry Curves and Tangents Visual",
     overview: {
       longDescription: [
         "Calculus and Analytical Geometry forms the mathematical bedrock for modern science, engineering, and computational modeling. This rigorous curriculum establishes first principles of limits and continuity via epsilon-delta formulations, the Squeeze Theorem, and intermediate value properties. We develop differential calculus from difference quotients through product, quotient, and chain rules, analyzing curve optimization, related rates, and Mean Value Theorems. Integral calculus bridges accumulation via Riemann sums to the Fundamental Theorem of Calculus, improper integrals, and geometric volume applications. The course advances through infinite series convergence tests, Taylor and Maclaurin expansions, and concludes with Cartesian coordinate geometry and complete conic section classifications."
@@ -30,6 +32,15 @@ export const COURSES = [
       prerequisites: "Algebra, basic trigonometry, and function notation.",
     },
     modules: [
+      {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/calculus/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">∫ f(x) dx Roadmap</span>,
+        start: true,
+      },
       {
         title: "Limits & Continuity",
         description: "Limits, path tests, continuity — with certificate-depth theory and worked examples.",
@@ -69,6 +80,38 @@ export const COURSES = [
         meta: "2 parts · 8 examples each",
         icon: "◯",
         logo: <span className="math-logo">x²/a² + y²/b² = 1</span>,
+      },
+      {
+        title: "Straight Lines & Systems of Lines",
+        description: "Slope, intercepts, normal form, angle between lines, concurrency, and homogeneous pairs of lines (F.Sc Ch. 4 + Math-101).",
+        path: "/lines-geometry/1",
+        meta: "2 parts · 16 lengthy examples · 30 MCQs",
+        icon: "📏",
+        logo: <span className="math-logo">Ax + By + C = 0 &amp; ax² + 2hxy + by² = 0</span>,
+      },
+      {
+        title: "Circle & Conic Tangents/Normals",
+        description: "Standard/general circles, 3-point circles, parametric forms, T = 0 operator, tangency conditions, and director circles (F.Sc Ch. 6 + Math-101).",
+        path: "/circles-tangents/1",
+        meta: "2 parts · 16 lengthy examples · 30 MCQs",
+        icon: "⭕",
+        logo: <span className="math-logo">x² + y² + 2gx + 2fy + c = 0 &amp; T = 0</span>,
+      },
+      {
+        title: "Advanced Single-Variable Calculus",
+        description: "Epsilon-delta limit proofs, discontinuity classification, IVT/EVT/MVT, logarithmic/parametric differentiation, hyperbolics, and curvature (F.Sc Ch. 1-3 + Math-101).",
+        path: "/advanced-calculus/1",
+        meta: "2 parts · 16 lengthy examples · 30 MCQs",
+        icon: "∂",
+        logo: <span className="math-logo">(ε, δ) &amp; κ = |y''| / (1+y'²)^(3/2)</span>,
+      },
+      {
+        title: "Ordinary Differential Equations",
+        description: "Separable, homogeneous, integrating factor, exact, Bernoulli, and 2nd-order constant coefficient ODEs (F.Sc Ch. 3 + Math-201).",
+        path: "/differential-equations/1",
+        meta: "2 parts · 16 lengthy examples · 30 MCQs",
+        icon: "⚡",
+        logo: <span className="math-logo">y' + P(x)y = Q(x) &amp; ay'' + by' + cy = 0</span>,
       },
       {
         title: "Analytic & 3D Vector Lab",
@@ -128,6 +171,8 @@ export const COURSES = [
     meta: "Full study path · Guides + tools",
     icon: "∇",
     color: "teal",
+    heroImage: "/images/courses/multivariable-calc-hero.svg",
+    heroImageAlt: "Multivariable Calculus 3D Surface and Gradient Field",
     overview: {
       longDescription: [
         "Multivariable Calculus extends single-variable analysis to multidimensional coordinate spaces and physical vector field theory. The curriculum begins with functions of several variables, level surfaces, and partial derivatives, formalizing tangent planes, total differentials, gradient vectors, and directional derivatives. We analyze unconstrained multivariable optimization alongside Lagrange Multipliers for constrained systems. The course develops multiple integration across Cartesian, polar, cylindrical, and spherical coordinates using Fubini's Theorem and Jacobian transformations. Finally, vector calculus formalizes line and surface integrals, conservative work fields, and the cornerstone integral theorems—Green's, Gauss's Divergence, and Stokes' Theorems—connecting differential field divergence and curl to macro-scale boundary fluxes across science."
@@ -144,6 +189,15 @@ export const COURSES = [
       prerequisites: "Single-variable calculus (limits, derivatives, integrals) and basic linear algebra.",
     },
     modules: [
+      {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/multivariable-calculus/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">∇ &amp; ∭ Roadmap</span>,
+        start: true,
+      },
       {
         title: "Partial Derivatives",
         description: "Limits, gradients, tangent planes, differentials, and optimization.",
@@ -248,6 +302,8 @@ export const COURSES = [
     meta: "4 modules · Guides + practice",
     icon: "A",
     color: "blue",
+    heroImage: "/images/courses/linear-algebra-hero.svg",
+    heroImageAlt: "Linear Algebra Vectors and Matrix Transformation Visual",
     overview: {
       longDescription: [
         "Linear Algebra provides the universal mathematical framework for modern computation, machine learning, data science, and quantum physics. We establish vector space algebra in n-dimensional Euclidean space, investigating linear combinations, span, basis sets, dimensions, and fundamental subspaces. Matrix operations, Gaussian elimination, row reduction, rank-nullity invariants, and determinant volumes characterize linear system solvability and matrix invertibility. The curriculum explores linear transformations, spectral eigenvalue decompositions, and the Spectral Theorem for symmetric operators. Advanced modules formalize inner product orthogonality, Gram-Schmidt QR factorizations, and least-squares normal equations, culminating in the Singular Value Decomposition (SVD) and Principal Component Analysis for optimal high-dimensional data reduction and modeling."
@@ -308,7 +364,7 @@ export const COURSES = [
       },
       {
         title: "Eigenvalues & Eigenvectors",
-        description: "Characteristic polynomials, eigenspaces, and diagonalization.",
+        description: "Characteristic polynomials, eigenspaces, algebraic vs geometric multiplicity, diagonalization, matrix powers, and the Spectral Theorem.",
         path: "/linear-algebra/eigen/1",
         meta: "2 parts · MCQ practice",
         icon: "λ",
@@ -370,6 +426,8 @@ export const COURSES = [
     meta: "6 modules · Guides + tools",
     icon: "P",
     color: "purple",
+    heroImage: "/images/courses/prob-stats-hero.svg",
+    heroImageAlt: "Probability and Statistics Gaussian Bell Curve and Regression Visual",
     overview: {
       longDescription: [
         "Probability and Statistics bridges mathematical theory and real-world empirical inference. Master sample spaces, probability axioms, conditional probability, and Bayes' Theorem. Explore discrete and continuous random variables, probability mass and density functions, expected values, variance, and fundamental distributions (Binomial, Poisson, Normal, Exponential). Learn descriptive statistics, central limit theorem, hypothesis testing (z-tests, t-tests, p-values), and linear regression with residual analysis."
@@ -386,6 +444,15 @@ export const COURSES = [
       prerequisites: "Basic algebra and single-variable calculus.",
     },
     modules: [
+      {
+        title: "Overview",
+        description: "What you'll learn, the order to learn it in, and how the course and certificate are structured.",
+        path: "/probability-statistics/overview",
+        meta: "Start here",
+        icon: "★",
+        logo: <span className="math-logo">P(A|B) &amp; N(μ,σ²) Roadmap</span>,
+        start: true,
+      },
       {
         title: "Probability Basics",
         description: "Sample spaces, axioms, conditional probability, and Bayes' Theorem.",

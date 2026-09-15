@@ -36,6 +36,33 @@
   line-height: 1.75;
 }
 
+[data-theme="dark"] .partial-derivatives-guide {
+  background: #0B1120 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .partial-derivatives-guide p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .partial-derivatives-guide .ch-title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .partial-derivatives-guide .sec-title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .partial-derivatives-guide .sec-badge {
+  background: rgba(56, 189, 248, 0.15) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+[data-theme="dark"] .partial-derivatives-guide .divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* ── Fixed Sidebar ──────────────────────────────────────────────────────── */
 .partial-derivatives-guide .sidebar {
   position: fixed;

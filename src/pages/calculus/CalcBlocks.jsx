@@ -71,7 +71,8 @@ export function RealLifeUse({ children }) {
   );
 }
 
-export function ProcedureBox({ title, steps }) {
+export function ProcedureBox({ title, steps, children }) {
+  const list = Array.isArray(steps) ? steps : [];
   return (
     <div className="box thm">
       <div className="box-lbl">Method - step by step</div>
@@ -80,13 +81,17 @@ export function ProcedureBox({ title, steps }) {
           <MathLine text={title} />
         </div>
       ) : null}
-      <ol style={{ margin: "0.5rem 0 0 1.15rem", padding: 0 }}>
-        {steps.map((step, i) => (
-          <li key={i} style={{ marginBottom: "0.55rem", lineHeight: 1.55 }}>
-            {typeof step === "string" ? <MathLine text={step} /> : step}
-          </li>
-        ))}
-      </ol>
+      {list.length > 0 ? (
+        <ol style={{ margin: "0.5rem 0 0 1.15rem", padding: 0 }}>
+          {list.map((step, i) => (
+            <li key={i} style={{ marginBottom: "0.55rem", lineHeight: 1.55 }}>
+              {typeof step === "string" ? <MathLine text={step} /> : step}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        withMath(children)
+      )}
     </div>
   );
 }

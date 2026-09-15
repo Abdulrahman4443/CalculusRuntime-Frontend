@@ -1,3 +1,5 @@
+import { CALC_AG_NEW_TOPICS_PRACTICE_BANK } from "./calcAgNewTopicsPracticeBank.js";
+
 /** Auto-generated practice bank: 100 Easy + 100 Medium + 100 Hard per topic.
  *  Every question is unique across the entire site and requires real work to solve.
  *  Regenerate with: python _pgen_build.py
@@ -25202,5 +25204,7 @@ export const CALC_AG_PRACTICE_BANK = [
     ],
     "correctAnswer": 3,
     "explanation": "f(0,0) = 0, f_x = 5cos(5x)cos(3y) → 5, f_y = 0 at the origin."
-  }
+  },
+  ...CALC_AG_NEW_TOPICS_PRACTICE_BANK,
 ];
+

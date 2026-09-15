@@ -8,7 +8,7 @@ const PAGES = [
   { title: "Simple Concepts", path: "/simple-concepts", description: "Plain-language explanations of the core ideas." },
   { title: "AI Solver", path: "/ai-solver", description: "Step-by-step solutions from the calculus assistant." },
   { title: "Cheat Sheet", path: "/cheatsheet", description: "Every formula grouped by topic." },
-  { title: "Practice Arena", path: "/practice", description: "100 Easy, Medium and Hard questions per topic." },
+  { title: "Practice Arena", path: "/practice", description: "Easy, Medium and Hard practice questions across supported topics." },
   { title: "Saved Examples", path: "/saved", description: "Examples you bookmarked while reading a guide." },
   { title: "Leaderboard", path: "/leaderboard", description: "Quiz scores across all learners." },
   { title: "Certificates", path: "/certificates", description: "Certificates you have unlocked." },
@@ -17,12 +17,14 @@ const PAGES = [
 
 const PRACTICE_TOPICS = [
   "Lagrange Multipliers", "Divergence & Curl", "Stokes' Theorem",
-  "Taylor Series for Multivariable Functions", "Partial Derivatives", "Vector Calculus",
-  "Limits and Continuity", "Differentiation", "Integration", "Sequences and Infinite Series",
-  "Conic Sections and Analytic Geometry", "Multiple Integrals", "Vectors & Vector Spaces",
-  "Matrices & Determinants", "Systems of Linear Equations", "Eigenvalues & Eigenvectors",
-  "Probability Basics", "Random Variables & Distributions", "Descriptive Statistics",
-  "Hypothesis Testing", "Regression & Correlation",
+  "Taylor & Maclaurin Series", "Maclaurin Series", "Taylor Series for Multivariable Functions",
+  "Partial Derivatives", "Vector Calculus", "Limits and Continuity", "Differentiation",
+  "Integration", "Sequences and Infinite Series", "Conic Sections and Analytic Geometry",
+  "Multiple Integrals", "Vectors & Vector Spaces", "Matrices & Determinants",
+  "Systems of Linear Equations", "Fundamental Subspaces & Rank-Nullity",
+  "Eigenvalues & Eigenvectors", "Linear Transformations", "Orthogonality & Least Squares",
+  "Singular Value Decomposition", "Probability Basics", "Random Variables & Distributions",
+  "Descriptive Statistics", "Hypothesis Testing", "Regression & Correlation",
 ];
 
 function build() {
@@ -62,7 +64,7 @@ function build() {
     entries.push({
       title: `Practice: ${topic}`,
       path: "/practice",
-      description: `300 generated questions across Easy, Medium and Hard for ${topic}.`,
+      description: `Practice questions across Easy, Medium and Hard for ${topic}.`,
       kind: "Practice",
     });
   });

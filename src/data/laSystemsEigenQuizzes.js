@@ -279,6 +279,100 @@ export const LA_S_RANK_QUIZ = [
   },
 ];
 
+export const LA_S_SUBSPACES_QUIZ = [
+  {
+    prompt: "Which condition is required for a nonempty subset $W$ of $\\mathbb{R}^n$ to be a subspace?",
+    options: ["Closed under vector addition and scalar multiplication", "Contains exactly one basis", "Every vector has length $1$"],
+    answer: "A",
+    explanation: "Together with containing the zero vector, closure under addition and scalar multiplication gives the standard subspace test.",
+  },
+  {
+    prompt: "The plane $x+2y-z=0$ in $\\mathbb{R}^3$ is:",
+    options: ["Not a subspace because it is two-dimensional", "A subspace", "Not a subspace because it contains the origin"],
+    answer: "B",
+    explanation: "It is the solution set of a homogeneous linear equation, so it contains $0$ and is closed under linear combinations.",
+  },
+  {
+    prompt: "The plane $x+2y-z=1$ is not a subspace because:",
+    options: ["It contains too many vectors", "Its normal vector is nonzero", "It does not contain the zero vector"],
+    answer: "C",
+    explanation: "Subspaces must contain the origin; substituting $(0,0,0)$ gives $0\\neq1$.",
+  },
+  {
+    prompt: "For an $m\\times n$ matrix $A$, $\\operatorname{Col}(A)$ is a subspace of:",
+    options: ["$\\mathbb{R}^n$", "$\\mathbb{R}^m$", "$\\mathbb{R}^{m+n}$"],
+    answer: "B",
+    explanation: "Each column and every output $Ax$ has $m$ entries.",
+  },
+  {
+    prompt: "For an $m\\times n$ matrix $A$, $\\operatorname{Row}(A)$ is a subspace of:",
+    options: ["$\\mathbb{R}^m$", "$\\mathbb{R}^{mn}$", "$\\mathbb{R}^n$"],
+    answer: "C",
+    explanation: "Every row has $n$ entries.",
+  },
+  {
+    prompt: "A basis for $\\operatorname{Col}(A)$ should be taken from:",
+    options: ["The pivot columns of the original matrix $A$", "The pivot columns of the RREF only", "The free columns of the RREF"],
+    answer: "A",
+    explanation: "Row reduction locates pivot columns, but it changes the column space, so the basis columns must come from the original matrix.",
+  },
+  {
+    prompt: "A convenient basis for $\\operatorname{Row}(A)$ is given by:",
+    options: ["The zero rows of RREF", "The original pivot columns", "The nonzero rows of an echelon form of $A$"],
+    answer: "C",
+    explanation: "Elementary row operations preserve the row space, and the nonzero echelon rows are independent.",
+  },
+  {
+    prompt: "The left null space of $A$ is:",
+    options: ["$\\operatorname{Nul}(A)$", "$\\operatorname{Nul}(A^T)$", "$\\operatorname{Col}(A)$"],
+    answer: "B",
+    explanation: "By definition, the left null space consists of vectors $y$ with $A^Ty=0$.",
+  },
+  {
+    prompt: "If $A$ is $5\\times 8$ with rank $3$, then $\\dim\\operatorname{Nul}(A)$ is:",
+    options: ["$5$", "$3$", "$2$"],
+    answer: "A",
+    explanation: "Rank–nullity gives $8-3=5$.",
+  },
+  {
+    prompt: "If $A$ is $5\\times 8$ with rank $3$, then $\\dim\\operatorname{Nul}(A^T)$ is:",
+    options: ["$5$", "$3$", "$2$"],
+    answer: "C",
+    explanation: "The left-null dimension is $m-r=5-3=2$.",
+  },
+  {
+    prompt: "Which identity relates the row space to the null space?",
+    options: ["$\\operatorname{Row}(A)^\\perp=\\operatorname{Col}(A)$", "$\\operatorname{Row}(A)^\\perp=\\operatorname{Nul}(A)$", "$\\operatorname{Nul}(A)^\\perp=\\operatorname{Nul}(A^T)$"],
+    answer: "B",
+    explanation: "A vector is in the null space exactly when it is orthogonal to every row of $A$.",
+  },
+  {
+    prompt: "Which identity relates the column space to the left null space?",
+    options: ["$\\operatorname{Col}(A)^\\perp=\\operatorname{Nul}(A^T)$", "$\\operatorname{Col}(A)^\\perp=\\operatorname{Row}(A)$", "$\\operatorname{Col}(A)=\\operatorname{Nul}(A^T)$"],
+    answer: "A",
+    explanation: "Left-null vectors are orthogonal to every column of $A$.",
+  },
+  {
+    prompt: "If $A$ has $n$ columns and rank $n$, rank–nullity implies:",
+    options: ["$\\operatorname{nullity}(A)=n$", "$A$ must have more columns than rows", "$\\operatorname{Nul}(A)=\\{0\\}$"],
+    answer: "C",
+    explanation: "Nullity is $n-n=0$, so the homogeneous system has only the trivial solution.",
+  },
+  {
+    prompt: "For a consistent system $Ax=b$, if $\\operatorname{nullity}(A)=2$, the solution set has:",
+    options: ["Exactly two points", "Two independent free directions", "No free variables"],
+    answer: "B",
+    explanation: "Every solution is one particular solution plus the two-dimensional null space.",
+  },
+  {
+    prompt: "The pivot/free-variable proof of rank–nullity works because $r$ pivots among $n$ columns leave:",
+    options: ["$n-r$ free variables", "$m-r$ free variables", "$r-n$ free variables"],
+    answer: "A",
+    explanation: "The remaining $n-r$ non-pivot columns correspond to free variables, so nullity is $n-r$.",
+  },
+];
+
+
 export const LA_S_GEO_QUIZ = [
   {
     prompt: "The solution set of a consistent $2\\times 2$ system with one free variable is geometrically:",
@@ -452,6 +546,42 @@ export const LA_S_LU_QUIZ = [
     options: ["The identity matrix", "The original matrix A (or PA if rows were swapped)", "The zero matrix", "U squared"],
     answer: "B",
     explanation: "LU is a factorization of A, so recombining L and U must reconstruct A exactly (or PA if a permutation was used).",
+  },
+  {
+    prompt: "For $A=\\begin{pmatrix}2&1\\4&3\\end{pmatrix}$, the first elimination multiplier is:",
+    options: ["$2$", "$1/2$", "$4$", "$3$"],
+    answer: "A",
+    explanation: "Use $R_2\\leftarrow R_2-2R_1$, so the multiplier stored in $L_{21}$ is $2$.",
+  },
+  {
+    prompt: "If $A=LU$ and $L$ and $U$ are both invertible, then $A^{-1}$ equals:",
+    options: ["$U^{-1}L^{-1}$", "$L^{-1}U^{-1}$", "$LU^{-1}$", "$L^TU$"],
+    answer: "A",
+    explanation: "The inverse of a product reverses order: $(LU)^{-1}=U^{-1}L^{-1}$.",
+  },
+  {
+    prompt: "A unit lower-triangular matrix $L$ has determinant:",
+    options: ["$1$", "$0$", "The product of elimination multipliers", "Always $-1$"],
+    answer: "A",
+    explanation: "The determinant of a triangular matrix is the product of diagonal entries; every diagonal entry of unit $L$ is $1$.",
+  },
+  {
+    prompt: "Which factor contains the pivot values produced during elimination?",
+    options: ["$U$", "$L$ only", "$P$ only", "Neither $L$ nor $U$"],
+    answer: "A",
+    explanation: "$U$ is the upper-triangular matrix produced by forward elimination, so its diagonal contains the resulting pivots.",
+  },
+  {
+    prompt: "Why is solving triangular systems cheaper than repeating Gaussian elimination?",
+    options: ["Forward/back substitution needs about $O(n^2)$ work instead of $O(n^3)$ elimination", "Triangular systems need no arithmetic", "They always have integer solutions", "They avoid storing matrices"],
+    answer: "A",
+    explanation: "Once the factorization is available, each new right-hand side requires only forward and back substitution.",
+  },
+  {
+    prompt: "If row swaps are required, the standard pivoted LU relationship is:",
+    options: ["$PA=LU$", "$AP=LU$", "$A=PLU^{-1}$", "$P=L+U$"],
+    answer: "A",
+    explanation: "The permutation matrix $P$ records the row reordering, giving $PA=LU$.",
   },
 ];
 
@@ -639,6 +769,25 @@ export const LA_E_CHAR_QUIZ = [
     answer: "A",
     explanation: "$\\det\\begin{pmatrix}-\\lambda&-2\\\\1&3-\\lambda\\end{pmatrix}=\\lambda(\\lambda-3)+2=\\lambda^2-3\\lambda+2$.",
   },
+  {
+    prompt: "If $\\lambda=4$ has algebraic multiplicity $3$ and $\\dim\\operatorname{Nul}(A-4I)=2$, its geometric multiplicity is:",
+    options: ["$3$", "$2$", "$1$"],
+    answer: "B",
+    explanation: "Geometric multiplicity is the dimension of the eigenspace, so it is $2$.",
+  },
+  {
+    prompt: "For every eigenvalue $\\lambda$, which relation must hold?",
+    options: ["$1\\le GM(\\lambda)\\le AM(\\lambda)$", "$GM(\\lambda)>AM(\\lambda)$", "$GM(\\lambda)=AM(\\lambda)$ always"],
+    answer: "A",
+    explanation: "An eigenspace is nonzero and its dimension cannot exceed the root's algebraic multiplicity.",
+  },
+  {
+    prompt: "For $A=\\operatorname{diag}(2,2,5)$, the eigenvalue $2$ has:",
+    options: ["$AM=1,\\ GM=2$", "$AM=2,\\ GM=1$", "$AM=2,\\ GM=2$"],
+    answer: "C",
+    explanation: "$2$ is a double root and its eigenspace is $\\operatorname{Span}\\{e_1,e_2\\}$.",
+  },
+
 ];
 
 export const LA_E_DIAG_QUIZ = [
@@ -732,6 +881,25 @@ export const LA_E_DIAG_QUIZ = [
     answer: "C",
     explanation: "Diagonal powers are entrywise.",
   },
+  {
+    prompt: "If the characteristic polynomial splits, $A$ is diagonalizable exactly when:",
+    options: ["$GM(\\lambda)=AM(\\lambda)$ for every eigenvalue", "$\\det A=1$", "All eigenvalues are positive"],
+    answer: "A",
+    explanation: "Matching algebraic and geometric multiplicities supplies a full eigenbasis.",
+  },
+  {
+    prompt: "For a real symmetric matrix $A$, the Spectral Theorem guarantees:",
+    options: ["$A=PDP^{-1}$ for an arbitrary invertible $P$", "$A=Q\\Lambda Q^T$ for an orthogonal $Q$", "$A=LU$ with $L=U^T$"],
+    answer: "B",
+    explanation: "Real symmetric matrices admit an orthonormal eigenbasis, giving orthogonal diagonalization.",
+  },
+  {
+    prompt: "If $A=Q\\Lambda Q^T$ has orthonormal eigenvectors $q_i$, its spectral decomposition is:",
+    options: ["$A=\\sum_i q_iq_i^T$", "$A=\\sum_i \\lambda_i^2 q_iq_i^T$", "$A=\\sum_i \\lambda_i q_iq_i^T$"],
+    answer: "C",
+    explanation: "Each eigenvalue weights the orthogonal projector $q_iq_i^T$ onto its eigenvector direction.",
+  },
+
 ];
 
 export const LA_E_APPS_QUIZ = [

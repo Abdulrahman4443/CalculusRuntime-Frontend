@@ -243,6 +243,208 @@ const formulaData = {
     ],
   },
 
+  "lines-geometry": {
+    title: "2D Lines & Systems of Lines",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Section Formula (Internal & External)",
+        formula: "Internal: P = ((k₁x₂ + k₂x₁)/(k₁ + k₂), (k₁y₂ + k₂y₁)/(k₁ + k₂)) · External: Q = ((k₁x₂ - k₂x₁)/(k₁ - k₂), (k₁y₂ - k₂y₁)/(k₁ - k₂))",
+        note: "Divides line segment joining (x₁, y₁) and (x₂, y₂) in ratio k₁ : k₂",
+      },
+      {
+        name: "Triangle Centers",
+        formula: "Centroid G = ((Σxᵢ)/3, (Σyᵢ)/3) · Incenter I = ((ax₁ + bx₂ + cx₃)/(a+b+c), (ay₁ + by₂ + cy₃)/(a+b+c))",
+        note: "Euler Line: Centroid G divides segment HO (Orthocenter to Circumcenter) in ratio 2 : 1",
+      },
+      {
+        name: "Six Standard Forms of a Line",
+        formula: "Slope-Int: y = mx + c · Pt-Slope: y - y₁ = m(x - x₁) · 2-Pt: (y - y₁)/(y₂ - y₁) = (x - x₁)/(x₂ - x₁) · Int: x/a + y/b = 1 · Normal: x cos α + y sin α = p · Parametric: (x - x₁)/cos θ = (y - y₁)/sin θ = r",
+        note: "Complete representation across Cartesian, intercept, normal and distance forms",
+      },
+      {
+        name: "Perpendicular Distance & Parallel Separation",
+        formula: "d(pt, line) = |Ax₀ + By₀ + C| / √(A² + B²) · d(parallel lines) = |C₁ - C₂| / √(A² + B²)",
+        note: "Both parallel lines must be written with identical coefficients A and B",
+      },
+      {
+        name: "Angle Between Two Lines",
+        formula: "tan θ = |(m₂ - m₁) / (1 + m₁m₂)| · Parallel iff m₁ = m₂ · Perpendicular iff m₁m₂ = -1 (A₁A₂ + B₁B₂ = 0)",
+        note: "Computes the acute angle between intersecting lines",
+      },
+      {
+        name: "Condition of Concurrency of Three Lines",
+        formula: "det [ [A₁, B₁, C₁], [A₂, B₂, C₂], [A₃, B₃, C₃] ] = 0",
+        note: "Three lines intersect at a unique common point if and only if the coefficient determinant is zero",
+      },
+      {
+        name: "Homogeneous Pair of Straight Lines",
+        formula: "ax² + 2hxy + by² = 0 · Angle: tan θ = [2√(h² - ab)] / (a + b) · Perpendicular: a + b = 0 · Coincident: h² = ab",
+        note: "Represents two lines passing through the origin (0, 0)",
+      },
+      {
+        name: "General Second-Degree Pair of Lines",
+        formula: "ax² + 2hxy + by² + 2gx + 2fy + c = 0 represents lines iff Δ = abc + 2fgh - af² - bg² - ch² = 0",
+        note: "Intersection point is found by simultaneous solution of ∂F/∂x = 0 and ∂F/∂y = 0",
+      },
+      {
+        name: "Joint Equation of Angle Bisectors",
+        formula: "(x² - y²) / (a - b) = xy / h  or  h(x² - y²) = (a - b)xy",
+        note: "The pair of angle bisectors is always mutually perpendicular (coefficients of x² and y² sum to zero)",
+      },
+    ],
+  },
+
+  "circles-tangents": {
+    title: "Circles & Conic Tangents/Normals",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Standard & General Circle Equations",
+        formula: "Standard: (x - h)² + (y - k)² = r² · General: x² + y² + 2gx + 2fy + c = 0, Center (-g, -f), r = √(g² + f² - c)",
+        note: "Real circle requires g² + f² - c > 0; Point circle if = 0; Imaginary circle if < 0",
+      },
+      {
+        name: "Circle Through 3 Points & Diameter Form",
+        formula: "Diameter Form: (x - x₁)(x - x₂) + (y - y₁)(y - y₂) = 0",
+        note: "Subtends a 90° angle at every point on the circumference",
+      },
+      {
+        name: "Parametric Form of Circle",
+        formula: "x = h + r cos θ,  y = k + r sin θ  (0 ≤ θ < 2π)",
+        note: "Trigonometric representation with center (h, k) and radius r",
+      },
+      {
+        name: "Tangent at a Point via T = 0 Substitution Rule",
+        formula: "x² → xx₁,  y² → yy₁,  xy → (xy₁ + x₁y)/2,  x → (x + x₁)/2,  y → (y + y₁)/2",
+        note: "Universal tangent rule for any second-degree conic at point (x₁, y₁) lying on the curve",
+      },
+      {
+        name: "Conditions of Tangency (y = mx + c)",
+        formula: "Circle: c² = r²(1 + m²) · Parabola (y² = 4ax): c = a/m · Ellipse: c² = a²m² + b² · Hyperbola: c² = a²m² - b²",
+        note: "Determines the exact c value for a line of slope m to touch each standard conic",
+      },
+      {
+        name: "Length of Tangent from External Point",
+        formula: "L = √(x₁² + y₁² + 2gx₁ + 2fy₁ + c) = √S₁",
+        note: "Valid for points outside the circle (S₁ > 0)",
+      },
+      {
+        name: "Director Circles (Perpendicular Tangents Locus)",
+        formula: "Circle: x² + y² = 2r² · Ellipse: x² + y² = a² + b² · Hyperbola: x² + y² = a² - b² · Parabola: Directrix x = -a",
+        note: "Locus of intersection points of mutually perpendicular tangents",
+      },
+      {
+        name: "Chord of Contact of Tangents",
+        formula: "T = 0 ⟹ xx₁ + yy₁ + g(x + x₁) + f(y + y₁) + c = 0",
+        note: "Line connecting the two points of tangency from an external point (x₁, y₁)",
+      },
+    ],
+  },
+
+  "advanced-calculus": {
+    title: "Advanced Single-Variable Calculus",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Formal Epsilon-Delta Limit Definition",
+        formula: "∀ε > 0, ∃δ > 0 such that 0 < |x - c| < δ ⟹ |f(x) - L| < ε",
+        note: "Rigorous foundation for single-variable limits and analysis proofs",
+      },
+      {
+        name: "Classification of Discontinuities",
+        formula: "Removable (lim exists ≠ f(c)) · Jump (lim_left ≠ lim_right finite) · Infinite (lim = ±∞) · Essential/Oscillating (no limit)",
+        note: "Four canonical types of mathematical discontinuity",
+      },
+      {
+        name: "IVT, EVT & Rolle's Theorem",
+        formula: "IVT: f(c) = u for continuous f on [a,b] · Rolle's: f'(c) = 0 if f(a) = f(b) · Cauchy MVT: f'(c)/g'(c) = [f(b)-f(a)]/[g(b)-g(a)]",
+        note: "Cornerstone existence theorems of real analysis",
+      },
+      {
+        name: "Logarithmic & Parametric Differentiation",
+        formula: "Log: y = f(x)ᵍ⁽ˣ⁾ ⟹ y' = y [g'(x) ln f(x) + g(x) f'(x)/f(x)] · Parametric: dy/dx = y'(t)/x'(t) · d²y/dx² = [d/dt(dy/dx)] / x'(t)",
+        note: "Logarithmic differentiation handles variable towers; parametric chain rule avoids x-elimination",
+      },
+      {
+        name: "Hyperbolic Functions & Derivatives",
+        formula: "cosh² x - sinh² x = 1 · d/dx[sinh x] = cosh x · d/dx[cosh x] = sinh x · d/dx[tanh x] = sech² x · d/dx[arcsinh x] = 1/√(1 + x²)",
+        note: "Hyperbolic cosine derivative carries positive sign (unlike circular cosine)",
+      },
+      {
+        name: "Extended L'Hôpital's Rule (All Indeterminate Forms)",
+        formula: "0/0,  ∞/∞,  0 · ∞,  ∞ - ∞,  1^∞,  0⁰,  ∞⁰",
+        note: "Exponentials 1^∞, 0⁰, ∞⁰ are converted to 0/0 or ∞/∞ via natural logarithm transform ln L",
+      },
+      {
+        name: "Curvature & Radius of Curvature",
+        formula: "Explicit: κ(x) = |y''| / (1 + (y')²)^(3/2) · Parametric: κ(t) = |x'y'' - y'x''| / (x'² + y'²)^(3/2) · Radius ρ = 1/κ",
+        note: "Evolute center: α = x - y'(1 + (y')²)/y'', β = y + (1 + (y')²)/y''",
+      },
+      {
+        name: "Arc Length & Surface of Revolution",
+        formula: "Arc Length: s = ∫ₐᵇ √(1 + (f'(x))²) dx · Surface Area (x-axis): S = 2π ∫ₐᵇ y √(1 + (y')²) dx",
+        note: "Differential arc element ds = √(dx² + dy²)",
+      },
+      {
+        name: "Physical Applications of Integration",
+        formula: "Work: W = ∫ F(x) dx · Centroid: x̄ = (1/A)∫ x f(x) dx, ȳ = (1/2A)∫ [f(x)]² dx · Hydrostatic: F = ∫ ρ g h(y) w(y) dy",
+        note: "Applied single-variable mechanics, centroids of laminas, and fluid pressure forces",
+      },
+    ],
+  },
+
+  "differential-equations": {
+    title: "Ordinary Differential Equations (ODEs)",
+    category: "Calculus & Geometry",
+    color: "#0284c7",
+    formulas: [
+      {
+        name: "Separable Differential Equations",
+        formula: "dy/dx = g(x) h(y) ⟹ ∫ [1/h(y)] dy = ∫ g(x) dx + C",
+        note: "Separates dependent and independent variables directly into two single integrals",
+      },
+      {
+        name: "Homogeneous First-Order ODEs",
+        formula: "dy/dx = F(y/x) ⟹ substitute y = vx,  dy/dx = v + x (dv/dx) ⟹ dv / [F(v) - v] = dx / x",
+        note: "Converts degree-homogeneous first-order ODEs into separable form in variable v",
+      },
+      {
+        name: "First-Order Linear ODEs (Integrating Factor)",
+        formula: "dy/dx + P(x)y = Q(x) ⟹ Integrating Factor I(x) = e^(∫ P(x) dx) ⟹ y(x) = [1/I(x)] [∫ I(x) Q(x) dx + C]",
+        note: "Multiplies through by I(x) to condense LHS into exact derivative d/dx[I(x) y]",
+      },
+      {
+        name: "Exact Differential Equations",
+        formula: "M(x, y) dx + N(x, y) dy = 0 is exact iff ∂M/∂y = ∂N/∂x ⟹ Potential function Ψ(x, y) = C",
+        note: "Integrate M with respect to x, then determine g(y) by matching ∂Ψ/∂y = N",
+      },
+      {
+        name: "Bernoulli Equation Transformation",
+        formula: "dy/dx + P(x)y = Q(x)yⁿ ⟹ divide by yⁿ, substitute u = y^(1-n) ⟹ du/dx + (1-n)P(x)u = (1-n)Q(x)",
+        note: "Converts non-linear power equations into standard first-order linear ODEs in u",
+      },
+      {
+        name: "2nd-Order Linear Homogeneous ODEs",
+        formula: "ay'' + by' + cy = 0 · Char: ar² + br + c = 0 ⟹ Distinct: y = c₁e^(r₁x) + c₂e^(r₂x) · Repeated: y = (c₁ + c₂x)e^(rx) · Complex (α ± iβ): y = e^(αx)[c₁ cos(βx) + c₂ sin(βx)]",
+        note: "Classification according to discriminant b² - 4ac",
+      },
+      {
+        name: "Method of Undetermined Coefficients",
+        formula: "y(x) = y_c(x) + y_p(x) · Polynomial: A_n xⁿ + ... · Exponential: A e^(kx) · Sinusoidal: A cos(ωx) + B sin(ωx)",
+        note: "Multiply trial form by xˢ if forcing term duplicates a complementary homogeneous solution",
+      },
+      {
+        name: "Variation of Parameters & Wronskian",
+        formula: "W(y₁, y₂) = y₁y₂' - y₁'y₂ · y_p = -y₁ ∫ [y₂ g(x) / W] dx + y₂ ∫ [y₁ g(x) / W] dx",
+        note: "Universal particular solution method for any forcing term g(x), including tan x, sec x, 1/x",
+      },
+    ],
+  },
+
   // ═══════════════════════════════════════════════════════════════════════════
   // 2. Multivariable Calculus
   // ═══════════════════════════════════════════════════════════════════════════
@@ -482,8 +684,56 @@ const formulaData = {
       },
       {
         name: "Homogeneous System Ax = 0",
-        formula: "Always has trivial solution x = 0; non-trivial solutions exist iff det(A) = 0",
-        note: "Solution space forms the null space Null(A)",
+        formula: "Always has trivial solution x = 0; non-trivial solutions exist iff rank(A) < n",
+        note: "For square A, rank(A) < n is equivalent to det(A) = 0; the solution space is Null(A)",
+      },
+    ],
+  },
+
+  "la-subspaces": {
+    title: "Fundamental Subspaces & Rank-Nullity",
+    category: "Linear Algebra",
+    color: "#2563eb",
+    formulas: [
+      {
+        name: "Rank-Nullity Theorem",
+        formula: "rank(A) + nullity(A) = n  for A ∈ ℝ^(m×n)",
+        note: "nullity(A) = dim Null(A) = n - rank(A)",
+      },
+      {
+        name: "Dimensions of the Four Fundamental Subspaces",
+        formula: "dim Col(A) = r · dim Row(A) = r · dim Null(A) = n-r · dim Null(Aᵀ) = m-r",
+        note: "Here A is m×n and r = rank(A)",
+      },
+      {
+        name: "Orthogonal Complement Pairs",
+        formula: "Row(A)⊥ = Null(A)  ·  Col(A)⊥ = Null(Aᵀ)",
+        note: "Null-space vectors are orthogonal to rows; left-null vectors are orthogonal to columns",
+      },
+      {
+        name: "Column-Space Consistency Test",
+        formula: "Ax = b is consistent ⇔ b ∈ Col(A) ⇔ rank(A) = rank([A | b])",
+        note: "Equivalently, b must be orthogonal to every vector in Null(Aᵀ)",
+      },
+      {
+        name: "General Solution of a Consistent System",
+        formula: "x = x_p + v,  where v ∈ Null(A)",
+        note: "If nullity(A)=k, the solution family has k independent free directions",
+      },
+      {
+        name: "Injectivity / Independent Columns Test",
+        formula: "Null(A) = {0} ⇔ nullity(A)=0 ⇔ rank(A)=n",
+        note: "Equivalent to independent columns and a one-to-one linear map",
+      },
+      {
+        name: "Subspace Test",
+        formula: "0 ∈ W;  u,v ∈ W ⇒ u+v ∈ W;  c∈ℝ,u∈W ⇒ cu∈W",
+        note: "A nonempty subset W is a subspace exactly when it is closed under linear combinations",
+      },
+      {
+        name: "LU Factorization",
+        formula: "A = LU  (or PA = LU with pivoting); solve Ly=b then Ux=y",
+        note: "Factor once, then reuse the triangular solves for multiple right-hand sides",
       },
     ],
   },
@@ -510,7 +760,7 @@ const formulaData = {
       },
       {
         name: "Dot Product & Norm",
-        formula: "u · v = Σ u_i v_i = |u||v| cos θ · |v| = √(v · v)",
+        formula: "u · v = Σ u_i v_i = ||u|| ||v|| cos θ;  ||v|| = √(v · v)",
         note: "Vectors u, v are orthogonal iff u · v = 0",
       },
     ],
@@ -616,14 +866,29 @@ const formulaData = {
         note: "Roots of the n-th degree characteristic polynomial give the eigenvalues",
       },
       {
+        name: "Algebraic vs Geometric Multiplicity",
+        formula: "AM(λ) = root multiplicity;  GM(λ) = dim Nul(A - λI);  1 ≤ GM(λ) ≤ AM(λ)",
+        note: "AM counts repeated roots; GM counts independent eigenvector directions for that eigenvalue",
+      },
+      {
+        name: "Diagonalizability Criterion",
+        formula: "A diagonalizable ⇔ Σ GM(λ) = n ⇔ GM(λ) = AM(λ) for every λ (when the characteristic polynomial splits)",
+        note: "Distinct eigenvalues are sufficient; repeated eigenvalues require enough independent eigenvectors",
+      },
+      {
         name: "Matrix Diagonalization",
         formula: "A = P D P⁻¹  ⟹  Aᵏ = P Dᵏ P⁻¹",
         note: "P columns are linearly independent eigenvectors; D is diagonal matrix of eigenvalues",
       },
       {
         name: "Spectral Theorem for Symmetric Matrices",
-        formula: "If A = Aᵀ ⟹ A is orthogonally diagonalizable: A = Q D Qᵀ  (Qᵀ = Q⁻¹)",
+        formula: "If A = Aᵀ ⟹ A is orthogonally diagonalizable: A = Q Λ Qᵀ  (Qᵀ = Q⁻¹)",
         note: "All eigenvalues of real symmetric matrices are real; eigenvectors can be chosen orthonormal",
+      },
+      {
+        name: "Spectral Decomposition & Powers",
+        formula: "A = Σ λ_i q_i q_iᵀ;  Aᵏ = Q Λᵏ Qᵀ = Σ λ_iᵏ q_i q_iᵀ",
+        note: "For real symmetric A, q_i are orthonormal eigenvectors and q_i q_iᵀ are orthogonal projectors",
       },
       {
         name: "Trace and Determinant Invariants",
@@ -728,131 +993,176 @@ const formulaData = {
         note: "Always holds, regardless of whether X and Y are independent",
       },
       {
-        name: "Covariance & Independence",
-        formula: "Cov(X, Y) = E[(X - μ_X)(Y - μ_Y)] = E[XY] - E[X]E[Y]",
-        note: "If X, Y independent ⟹ Cov(X, Y) = 0 and Var(X + Y) = Var(X) + Var(Y)",
+        name: "Covariance & Correlation",
+        formula: "Cov(X, Y) = E[(X - μ_X)(Y - μ_Y)] = E[XY] - E[X]E[Y] · ρ = Cov(X,Y) / (σ_X σ_Y)",
+        note: "Measures linear association (-1 ≤ ρ ≤ 1). If independent ⟹ Cov(X,Y) = 0 and Var(X + Y) = Var(X) + Var(Y)",
+      },
+      {
+        name: "Moment Generating Function (MGF)",
+        formula: "M_X(t) = E[e^{tX}] · E[X^k] = M_X^{(k)}(0) = d^k M_X(t)/dt^k |_{t=0}",
+        note: "Generates all raw moments via derivatives; for independent sum M_{X+Y}(t) = M_X(t) M_Y(t)",
+      },
+      {
+        name: "Joint, Marginal & Conditional Densities",
+        formula: "f_X(x) = ∫_{-∞}^∞ f(x,y) dy · f(y|x) = f(x,y)/f_X(x) · P((X,Y) ∈ R) = ∬_R f(x,y) dx dy",
+        note: "Independence holds if and only if f(x,y) = f_X(x) f_Y(y) across the entire joint support",
+      },
+      {
+        name: "Variance of Linear Combinations",
+        formula: "Var(aX + bY) = a² Var(X) + b² Var(Y) + 2ab Cov(X, Y)",
+        note: "Crucial for portfolio variance and sampling error of linear contrasts",
       },
     ],
   },
 
   "prob-distributions": {
-    title: "Probability Distributions",
+    title: "Probability Distributions & Sampling Distributions",
     category: "Probability & Stats",
     color: "#7c3aed",
     formulas: [
       {
         name: "Binomial Distribution B(n, p)",
-        formula: "P(X = k) = (n choose k) pᵏ (1-p)ⁿ⁻ᵏ · E[X] = np · Var(X) = np(1-p)",
-        note: "Number of successes k in n independent Bernoulli trials with probability p",
+        formula: "P(X = k) = (n choose k) pᵏ (1-p)ⁿ⁻ᵏ · E[X] = np · Var(X) = np(1-p) · M_X(t) = (1 - p + pe^t)ⁿ",
+        note: "Counts successes in n independent Bernoulli trials; converges to Poisson for small p, large n",
       },
       {
         name: "Poisson Distribution Pois(λ)",
-        formula: "P(X = k) = (λᵏ e⁻λ) / k! · E[X] = λ · Var(X) = λ",
-        note: "Counts rare events occurring at constant average rate λ in continuous interval",
+        formula: "P(X = k) = (λᵏ e⁻λ) / k! · E[X] = λ · Var(X) = λ · M_X(t) = exp(λ(e^t - 1))",
+        note: "Models count of rare events in continuous interval; equidispersed (mean = variance)",
       },
       {
         name: "Normal (Gaussian) Distribution N(μ, σ²)",
-        formula: "f(x) = [1 / (σ√(2π))] exp(-½ [(x - μ)/σ]²) · Z = (X - μ) / σ ~ N(0, 1)",
-        note: "Empirical 68-95-99.7 rule for standard deviations around mean",
+        formula: "f(x) = [1 / (σ√(2π))] exp(-½ [(x - μ)/σ]²) · Z = (X - μ)/σ ~ N(0, 1) · M_X(t) = exp(μt + ½σ²t²)",
+        note: "Empirical rule: 68% in ±1σ, 95% in ±2σ, 99.7% in ±3σ; stable under linear combinations",
       },
       {
         name: "Exponential Distribution Exp(λ)",
-        formula: "f(x) = λ e⁻λx (x ≥ 0) · F(x) = 1 - e⁻λx · E[X] = 1/λ · Var(X) = 1/λ²",
-        note: "Models waiting time between Poisson events; exhibits memoryless property",
+        formula: "f(x) = λ e⁻λx (x ≥ 0) · F(x) = 1 - e⁻λx · E[X] = 1/λ · Var(X) = 1/λ² · M_X(t) = λ/(λ - t)",
+        note: "Continuous waiting time; uniquely memoryless: P(X > s + t | X > s) = P(X > t)",
       },
       {
-        name: "Uniform Distribution U(a, b)",
-        formula: "f(x) = 1/(b - a)  for a ≤ x ≤ b · E[X] = (a + b)/2 · Var(X) = (b - a)²/12",
-        note: "Constant probability density over interval [a, b]",
+        name: "Student's t-Distribution",
+        formula: "t = (x̄ - μ) / (s / √n) ~ t_{n-1} · Var(t) = ν / (ν - 2) for ν > 2",
+        note: "Heavier tails than standard normal; accounts for extra uncertainty of estimating σ by s; approaches N(0,1) as n → ∞",
+      },
+      {
+        name: "Chi-Square Distribution (χ²)",
+        formula: "V = (n - 1)s² / σ² ~ χ²_{n-1} · E[V] = ν · Var(V) = 2ν",
+        note: "Sum of ν squared independent standard normal variates; basis of variance testing and goodness-of-fit",
+      },
+      {
+        name: "Fisher-Snedecor F-Distribution",
+        formula: "F = (s₁² / σ₁²) / (s₂² / σ₂²) ~ F_{ν₁, ν₂}",
+        note: "Ratio of two independent scaled chi-square variates; foundation of ANOVA and regression significance",
       },
     ],
   },
 
   "prob-descriptive": {
-    title: "Descriptive Statistics",
+    title: "Descriptive Statistics & Point Estimation",
     category: "Probability & Stats",
     color: "#7c3aed",
     formulas: [
       {
         name: "Sample Mean & Trimmed Mean",
-        formula: "x̄ = (1/n) Σ_{i=1}^n x_i",
+        formula: "x̄ = (1/n) Σ_{i=1}^n x_i · E[x̄] = μ [Unbiased]",
         note: "Arithmetic center; sensitive to extreme outlier values",
       },
       {
-        name: "Sample Variance & Standard Deviation",
-        formula: "s² = [1 / (n - 1)] Σ_{i=1}^n (x_i - x̄)² · s = √(s²)",
-        note: "Bessel's correction (n - 1) in denominator provides unbiased estimator of σ²",
+        name: "Sample Variance & Bessel's Correction",
+        formula: "s² = [1 / (n - 1)] Σ_{i=1}^n (x_i - x̄)² · E[s²] = σ² [Unbiased] · s = √(s²)",
+        note: "Bessel's correction (n - 1) compensates for sample mean estimation, eliminating negative bias",
       },
       {
-        name: "Standard Score (Z-Score)",
-        formula: "z = (x - x̄) / s  or  z = (x - μ) / σ",
-        note: "Measures number of standard deviations a data point lies from the mean",
+        name: "Maximum Likelihood Estimation (MLE)",
+        formula: "L(θ) = ∏ f(x_i; θ) ⟹ ℓ(θ) = ln L(θ) ⟹ dℓ(θ)/dθ = 0 [Score Equation]",
+        note: "Asymptotically unbiased, efficient, and normally distributed: θ̂_MLE ~ N(θ, 1/I(θ))",
       },
       {
-        name: "Interquartile Range (IQR) & Outlier Fences",
-        formula: "IQR = Q₃ - Q₁ · Outliers: x < Q₁ - 1.5(IQR)  or  x > Q₃ + 1.5(IQR)",
-        note: "Robust measures of dispersion resisting extreme observations",
+        name: "Method of Moments (MoM)",
+        formula: "Sample Moment m_k = (1/n) Σ x_i^k = Theoretical Moment E[X^k; θ]",
+        note: "Equates sample empirical moments to theoretical moments to solve for unknown parameters",
+      },
+      {
+        name: "Estimator Bias & Mean Squared Error (MSE)",
+        formula: "Bias(θ̂) = E[θ̂] - θ · MSE(θ̂) = E[(θ̂ - θ)²] = Var(θ̂) + [Bias(θ̂)]²",
+        note: "Quantifies the fundamental bias-variance trade-off in point estimation",
+      },
+      {
+        name: "Standard Score & Outlier Fences",
+        formula: "z = (x - x̄) / s · IQR = Q₃ - Q₁ · Outliers: x < Q₁ - 1.5(IQR) or x > Q₃ + 1.5(IQR)",
+        note: "Measures relative position; boxplot whiskers span to most extreme non-outlier data points",
       },
     ],
   },
 
   "prob-hypothesis": {
-    title: "Hypothesis Testing & Inference",
+    title: "Hypothesis Testing & ANOVA",
     category: "Probability & Stats",
     color: "#7c3aed",
     formulas: [
       {
         name: "Central Limit Theorem (CLT)",
-        formula: "For sample mean x̄ with n ≥ 30: x̄ ~ N(μ, σ²/n)  ⟹  Z = (x̄ - μ) / (σ/√n)",
+        formula: "For sample mean x̄ with n ≥ 30: x̄ ~ N(μ, σ²/n) ⟹ Z = (x̄ - μ) / (σ/√n)",
         note: "Sampling distribution of mean approaches normal regardless of population shape",
       },
       {
-        name: "Confidence Interval for Mean",
-        formula: "x̄ ± z_{α/2} (σ / √n)  [known σ]  or  x̄ ± t_{α/2, n-1} (s / √n)  [unknown σ]",
-        note: "For 95% confidence, z_{0.025} ≈ 1.96",
+        name: "One-Sample & Two-Sample Tests",
+        formula: "1-sample: t = (x̄ - μ₀)/(s/√n) · 2-sample pooled: t = (x̄₁ - x̄₂)/[s_p √(1/n₁ + 1/n₂)]",
+        note: "Pooled variance s_p² = [(n₁-1)s₁² + (n₂-1)s₂²] / (n₁ + n₂ - 2) with df = n₁ + n₂ - 2",
       },
       {
-        name: "One-Sample Z-Test & T-Test",
-        formula: "z = (x̄ - μ₀) / (σ / √n)  or  t = (x̄ - μ₀) / (s / √n) with df = n - 1",
-        note: "Tests null hypothesis H₀: μ = μ₀ against two-tailed or one-tailed alternative",
+        name: "Paired Differences t-Test",
+        formula: "d_i = x_{1i} - x_{2i} ⟹ t = (d̄ - μ_{d0}) / (s_d / √n) with df = n - 1",
+        note: "Controls for subject-to-subject heterogeneity in before-and-after repeated measures",
       },
       {
-        name: "Type I & Type II Errors",
-        formula: "α = P(Reject H₀ | H₀ true) [Type I] · β = P(Fail to reject H₀ | H₀ false) [Type II]",
-        note: "Statistical Power = 1 - β (probability of correctly rejecting false H₀)",
+        name: "Type I & Type II Errors & Power",
+        formula: "α = P(Reject H₀ | H₀ true) · β = P(Fail to reject H₀ | H₀ false) · Power = 1 - β",
+        note: "Power increases with larger sample size n, larger effect size |μ - μ₀|, and larger α",
       },
       {
-        name: "Chi-Square Goodness-of-Fit",
-        formula: "χ² = Σ [(O_i - E_i)² / E_i]  with df = k - 1 - p",
-        note: "O_i observed counts, E_i expected counts under null hypothesis",
+        name: "One-Way ANOVA F-Test",
+        formula: "SST = SSB + SSW · F = MSB / MSW = [SSB / (k - 1)] / [SSW / (N - k)] ~ F_{k-1, N-k}",
+        note: "Omnibus test for H₀: μ₁ = ... = μ_k without inflating family-wise Type I error rate",
+      },
+      {
+        name: "Chi-Square Tests (Goodness-of-Fit & Independence)",
+        formula: "χ² = Σ [(O_i - E_i)² / E_i] (df = k-1-p) · Contingency Table: E_{ij} = (R_i · C_j) / N (df = (r-1)(c-1))",
+        note: "Requires all expected counts E ≥ 5; measures divergence between observed and expected frequencies",
       },
     ],
   },
 
   "prob-regression": {
-    title: "Linear Regression & Correlation",
+    title: "Linear Regression & OLS Inference",
     category: "Probability & Stats",
     color: "#7c3aed",
     formulas: [
       {
         name: "Pearson Correlation Coefficient (r)",
-        formula: "r = [Σ (x_i - x̄)(y_i - ȳ)] / [√(Σ(x_i - x̄)²) √(Σ(y_i - ȳ)²)] = Cov(X,Y)/(s_x s_y)",
-        note: "-1 ≤ r ≤ 1; measures strength and direction of linear relationship",
+        formula: "r = [Σ (x_i - x̄)(y_i - ȳ)] / [√(Σ(x_i - x̄)²) √(Σ(y_i - ȳ)²)] = SS_{xy} / √(SS_{xx} SS_{yy})",
+        note: "-1 ≤ r ≤ 1; measures strength and direction of linear relationship between variables",
       },
       {
-        name: "Ordinary Least Squares Regression Line",
-        formula: "ŷ = b₀ + b₁ x  where b₁ = r (s_y / s_x)  and  b₀ = ȳ - b₁ x̄",
-        note: "Minimizes sum of squared vertical residuals Σ (y_i - ŷ_i)²",
+        name: "Ordinary Least Squares (OLS) Normal Equations",
+        formula: "b₁ = SS_{xy} / SS_{xx} = r (s_y / s_x) · b₀ = ȳ - b₁ x̄",
+        note: "Derived by minimizing Σ (y_i - b₀ - b₁ x_i)²; regression line always passes through (x̄, ȳ)",
       },
       {
-        name: "Coefficient of Determination (R²)",
-        formula: "R² = (r)² = 1 - [SS_res / SS_tot] = [SS_reg / SS_tot]",
-        note: "Proportion of total variation in y explained by the linear regression on x",
+        name: "Standard Error of Slope & t-Test",
+        formula: "SE(b₁) = s_e / √SS_{xx} · t = (b₁ - 0) / SE(b₁) ~ t_{n-2} · s_e = √(SSE / (n - 2))",
+        note: "Tests null hypothesis H₀: β₁ = 0 (no linear relationship) against two-tailed alternative",
       },
       {
-        name: "Residuals & Standard Error of Estimate",
-        formula: "e_i = y_i - ŷ_i · s_e = √[Σ e_i² / (n - 2)]",
-        note: "Residuals must exhibit zero mean, constant variance, and no systematic curve pattern",
+        name: "Regression ANOVA & Determination (R²)",
+        formula: "SST = SSR + SSE · R² = SSR / SST = 1 - (SSE / SST) = r² · F = MSR / MSE ~ F_{1, n-2}",
+        note: "In simple linear regression, F = t² identically; R² gives fraction of total y variation explained by x",
+      },
+      {
+        name: "Confidence Interval vs. Prediction Interval",
+        formula: "Mean: ŷ₀ ± t_{α/2} s_e √(1/n + (x₀-x̄)²/SS_{xx}) · Indiv: ŷ₀ ± t_{α/2} s_e √(1 + 1/n + (x₀-x̄)²/SS_{xx})",
+        note: "Prediction interval for an individual is always wider due to added individual variance σ²",
       },
     ],
   },

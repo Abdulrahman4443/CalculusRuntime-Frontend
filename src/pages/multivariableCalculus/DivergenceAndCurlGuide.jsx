@@ -342,7 +342,7 @@ function SectionS165b() {
         <div className="fml">
           {"$$\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\iint_S \\mathbf{F}\\cdot\\mathbf{n}\\,dS = \\iint_D \\mathbf{F}(\\mathbf{r}(u,v))\\cdot(\\mathbf{r}_u \\times \\mathbf{r}_v)\\,dA$$"}
         </div>
-        <p>{"This is exactly the $d\\mathbf{S}$ that appears in the Divergence Theorem and Stokes' Theorem."}</p>
+        <p>{"This is exactly the $d\\mathbf{S}$ that appears in the Divergence Theorem and Stokes' Theorem. Note: $\\mathbf{r}_u \\times \\mathbf{r}_v$ is a vector, not a scalar — every component of it must be carried through the dot product with $\\mathbf{F}$."}</p>
       </div>
 
       {/* Fully Worked Example */}
@@ -359,38 +359,30 @@ function SectionS165b() {
               <em>{"Why: the unit sphere is most naturally described in spherical coordinates; this parametrization covers the entire surface exactly once."}</em>
             </li>
             <li>
-              {"Compute the cross product of the partial derivatives: $\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta = \\sin\\phi\\,\\mathbf{r}$ (the outward normal points in the radial direction and has magnitude $\\sin\\phi$). "}
-              <em>{"Why: for the unit sphere the position vector itself is the unit normal, and the factor $\\sin\\phi$ is the surface-element Jacobian."}</em>
+              {"Compute the cross product of the partial derivatives: $\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta = \\sin\\phi \\cdot \\mathbf{r}(\\phi,\\theta) = \\sin\\phi\\,(\\sin\\phi\\cos\\theta,\\, \\sin\\phi\\sin\\theta,\\, \\cos\\phi)$. "}
+              <em>{"Why: for the unit sphere the position vector itself is the (outward) unit normal direction, and the extra factor of $\\sin\\phi$ is the surface-element Jacobian. This is a full vector, not a single number — keep all three components."}</em>
             </li>
             <li>
-              {"Evaluate the field on the surface: $\\mathbf{F}(\\mathbf{r}) = (0, 0, z) = (0, 0, \\cos\\phi)$. Then $\\mathbf{F} \\cdot (\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta) = \\cos\\phi \\cdot \\sin\\phi$. "}
-              <em>{"Why: only the $z$-component of $\\mathbf{F}$ survives the dot product with the radial normal, and $z = \\cos\\phi$ on the unit sphere."}</em>
+              {"Evaluate the field on the surface: $\\mathbf{F}(\\mathbf{r}) = (0, 0, z) = (0, 0, \\cos\\phi)$. Take the dot product component-by-component: only the $z$-component of $\\mathbf{r}_\\phi\\times\\mathbf{r}_\\theta$ — which is $\\sin\\phi\\cos\\phi$ — survives, since the $x$- and $y$-components of $\\mathbf{F}$ are zero. "}
+              <em>{"Why: $\\mathbf{F}\\cdot(\\mathbf{r}_\\phi\\times\\mathbf{r}_\\theta) = (0)(\\sin\\phi\\sin\\phi\\cos\\theta) + (0)(\\sin\\phi\\sin\\phi\\sin\\theta) + (\\cos\\phi)(\\sin\\phi\\cos\\phi) = \\sin\\phi\\cos^2\\phi$. Both factors of $\\cos\\phi$ must appear: one from $\\mathbf{F}$ itself, one from the $z$-component of the normal vector."}</em>
             </li>
             <li>
-              {"Set up and evaluate the double integral: $\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\int_0^{2\\pi}\\int_0^\\pi \\cos\\phi\\sin\\phi\\,d\\phi\\,d\\theta$. "}
+              {"Set up and evaluate the double integral: $\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\int_0^{2\\pi}\\int_0^\\pi \\sin\\phi\\cos^2\\phi\\,d\\phi\\,d\\theta$. "}
               <em>{"Why: the integrand depends only on $\\phi$, so the $\\theta$-integral simply multiplies by $2\\pi$."}</em>
             </li>
             <li>
-              {"Compute the inner integral: let $u = \\cos\\phi$, $du = -\\sin\\phi\\,d\\phi$. When $\\phi = 0$, $u = 1$; when $\\phi = \\pi$, $u = -1$. So $\\int_0^\\pi \\cos\\phi\\sin\\phi\\,d\\phi = \\int_1^{-1} u(-du) = \\int_{-1}^1 u\\,du = 0$. Wait — that cannot be right for outward flux of a source-like field. "}
-              <em>{"Correction: $\\int_0^\\pi \\cos\\phi\\sin\\phi\\,d\\phi = \\frac12\\int_0^\\pi \\sin(2\\phi)\\,d\\phi = \\frac12\\Bigl[-\\frac12\\cos(2\\phi)\\Bigr]_0^\\pi = \\frac12\\bigl(-\\frac12(-1) - (-\\frac12(1))\\bigr) = \\frac12$. Actually the correct antiderivative evaluation yields $\\frac12$. Then multiplying by $2\\pi$ gives $\\pi$. (The earlier substitution sign error is a classic trap.)"}</em>
+              {"Compute the inner integral by substitution: let $u = \\cos\\phi$, $du = -\\sin\\phi\\,d\\phi$. When $\\phi = 0$, $u = 1$; when $\\phi = \\pi$, $u = -1$. So $\\int_0^\\pi \\sin\\phi\\cos^2\\phi\\,d\\phi = \\int_1^{-1} u^2\\,(-du) = \\int_{-1}^{1} u^2\\,du = \\left[\\frac{u^3}{3}\\right]_{-1}^{1} = \\frac{2}{3}$. "}
+              <em>{"Why: the substitution turns the trig integral into a simple polynomial one — a clean, direct evaluation with no sign traps."}</em>
             </li>
             <li>
-              {"Final result after correct evaluation: $2\\pi \\times \\frac12 = \\pi$. "}
-              <em>{"Why: the positive value matches the fact that $\\mathbf{F} = (0,0,z)$ points outward in the upper hemisphere and inward in the lower hemisphere, but the area element weighting produces net positive outward flux."}</em>
+              {"Multiply by the $\\theta$-integral: $2\\pi \\times \\dfrac{2}{3} = \\dfrac{4\\pi}{3}$. "}
+              <em>{"Why: this is the total outward flux, combining the constant $\\theta$-range with the $\\phi$-integral just computed."}</em>
             </li>
           </ol>
-          <div className="answer-box">{"Flux $= \\pi$"}</div>
+          <div className="answer-box">{"Flux $= \\dfrac{4\\pi}{3}$"}</div>
           <p>
-            <strong>{"Verification: "}</strong>
-            {"By the Divergence Theorem, $\\iint_S \\mathbf{F}\\cdot d\\mathbf{S} = \\iiint_V \\nabla\\cdot\\mathbf{F}\\,dV = \\iiint_V 1\\,dV = $ volume of the unit ball $= \\frac{4}{3}\\pi$. Wait — contradiction! "}
-            {"The field is $\\mathbf{F}=(0,0,z)$, so $\\nabla\\cdot\\mathbf{F}=1$, and the flux must equal the volume $\\frac{4}{3}\\pi$. The calculation above contained an arithmetic slip in the final step. Correct evaluation of $\\int_0^\\pi \\cos\\phi\\sin\\phi\\,d\\phi = \\bigl[\\frac12\\sin^2\\phi\\bigr]_0^\\pi = 0$? No:"}
-            {"Properly: $\\int_0^\\pi \\sin\\phi\\cos\\phi\\,d\\phi = \\frac12\\int_0^\\pi \\sin 2\\phi\\,d\\phi = \\frac12\\bigl[-\\frac12\\cos 2\\phi\\bigr]_0^\\pi = \\frac12\\bigl(-\\frac12(-1) + \\frac12(1)\\bigr) = \\frac12$. Then $2\\pi\\times\\frac12 = \\pi$. But Divergence Theorem demands $\\frac{4}{3}\\pi$. "}
-            {"The error is that $\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta = \\sin\\phi\\, (\\sin\\phi\\cos\\theta, \\sin\\phi\\sin\\theta, \\cos\\phi)$, so $\\mathbf{F}\\cdot(\\mathbf{r}_\\phi\\times\\mathbf{r}_\\theta) = z\\cdot(\\sin\\phi\\cos\\phi) = \\cos\\phi\\cdot\\sin\\phi\\cos\\phi = \\sin\\phi\\cos^2\\phi$. "}
-            {"Correct integrand is $\\sin\\phi\\cos^2\\phi$. Then $\\int_0^\\pi \\sin\\phi\\cos^2\\phi\\,d\\phi = \\int_1^{-1} u^2 (-du) = \\int_{-1}^1 u^2\\,du = \\frac{2}{3}$. Multiply by $2\\pi$: $\\frac{4\\pi}{3}$. Now it matches the Divergence Theorem perfectly."}
-          </p>
-          <p>
-            <strong>{"Correct final answer after verification: "}</strong>
-            {"$\\dfrac{4\\pi}{3}$"}
+            <strong>{"Verification via the Divergence Theorem: "}</strong>
+            {"$\\nabla\\cdot\\mathbf{F} = \\dfrac{\\partial}{\\partial z}(z) = 1$, so $\\iiint_V \\nabla\\cdot\\mathbf{F}\\,dV = \\iiint_V 1\\,dV = $ volume of the unit ball $= \\dfrac{4}{3}\\pi(1)^3 = \\dfrac{4\\pi}{3}$. This matches the direct surface computation exactly, confirming the result."}
           </p>
         </div>
       </div>
@@ -399,7 +391,7 @@ function SectionS165b() {
       <div className="box thm">
         <div className="box-lbl">{"Common Mistake"}</div>
         <p>
-          {"The most frequent error is forgetting the Jacobian factor $\\sin\\phi$ (or using the wrong normal direction). Another common slip is evaluating $\\mathbf{F}\\cdot\\mathbf{n}$ with the unit normal instead of the non-unit vector $\\mathbf{r}_u\\times\\mathbf{r}_v$. Always keep the magnitude inside the cross product; do not normalize unless the problem specifically asks for the unit normal form. Finally, always cross-check a flux calculation over a closed surface with the Divergence Theorem when possible — it is the fastest way to catch algebraic mistakes."}
+          {"The most frequent error is treating $\\mathbf{r}_\\phi \\times \\mathbf{r}_\\theta = \\sin\\phi\\,\\mathbf{r}$ as if it collapses to the scalar $\\sin\\phi$ when dotting with $\\mathbf{F}$ — dropping the extra factor that comes from the matching component of the normal vector itself. Always write out the normal as a full vector and take the dot product component-by-component before simplifying. Another common slip is evaluating $\\mathbf{F}\\cdot\\mathbf{n}$ with the unit normal instead of the non-unit vector $\\mathbf{r}_u\\times\\mathbf{r}_v$ — keep the magnitude inside the cross product; do not normalize unless the problem specifically asks for the unit normal form. Finally, always cross-check a flux calculation over a closed surface with the Divergence Theorem when possible — it is the fastest way to catch algebraic mistakes."}
         </p>
       </div>
     </section>

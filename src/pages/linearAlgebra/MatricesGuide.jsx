@@ -387,6 +387,7 @@ function MatricesGuide({ part = 1 }) {
       <nav className="sidebar">
         <div className="sb-brand"><div className="sb-title">Matrices · Part 1</div></div>
         <a className="sb-link" href="#la-m-intro">Theory</a>
+        <a className="sb-link" href="#la-m-types">Types</a>
         <a className="sb-link" href="#la-m-proc1">Method</a>
         <a className="sb-link" href="#la-m-ex-p1">Examples</a>
         <a className="sb-link" href="#quiz-la-m-intro">Quiz</a>
@@ -429,6 +430,103 @@ function MatricesGuide({ part = 1 }) {
               {"You can partition matrices into blocks (submatrices) and multiply blockwise when shapes agree, exactly as if the blocks were scalar entries. This viewpoint is invaluable for structured matrices (block diagonal, block triangular) and for organizing large calculations without losing the linear-map story."}
             </p>
           </TheoryBox>
+        </section>
+
+        <section className="section" id="la-m-types">
+          <div className="sec-badge">Types</div>
+          <h2 className="sec-title">Types of matrices — with an example of each</h2>
+          <p>
+            {"A matrix gets its name from two things: its shape, and any pattern in its numbers. The name is worth knowing because each type comes with a shortcut — a diagonal matrix is trivial to multiply, a triangular matrix has an easy determinant, an orthogonal matrix has its inverse for free. (Two matrices count as equal only when they have the same size and every matching entry agrees.)"}
+          </p>
+
+          <TheoryBox title="Named by shape">
+            <p>
+              <strong>Row matrix</strong>{" (row vector) — just one row, size $1\\times n$. Example: $\\begin{pmatrix}2&5&-1\\end{pmatrix}$."}
+            </p>
+            <p>
+              <strong>Column matrix</strong>{" (column vector) — just one column, size $m\\times 1$. Example: $\\begin{pmatrix}3\\\\0\\\\-4\\end{pmatrix}$."}
+            </p>
+            <p>
+              <strong>Square matrix</strong>{" — same number of rows and columns, size $n\\times n$. Example: $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$. Only square matrices have a determinant or an inverse."}
+            </p>
+            <p>
+              <strong>Rectangular matrix</strong>{" — the row and column counts differ ($m\\neq n$). Example: $\\begin{pmatrix}1&0&2\\\\4&1&5\\end{pmatrix}$ has 2 rows and 3 columns."}
+            </p>
+          </TheoryBox>
+
+          <TheoryBox title="The everyday special ones (square)">
+            <p>
+              <strong>Zero (null) matrix</strong>{", written $O$ — every entry is $0$, e.g. $\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$. It behaves like the number $0$: $A+O=A$."}
+            </p>
+            <p>
+              <strong>Diagonal matrix</strong>{" — the only non-zero entries sit on the main diagonal (top-left to bottom-right). Example: $\\begin{pmatrix}5&0\\\\0&-2\\end{pmatrix}$. Multiplying and inverting these is as easy as handling one number at a time."}
+            </p>
+            <p>
+              <strong>Scalar matrix</strong>{" — a diagonal matrix with the same number repeated down the diagonal. Example: $\\begin{pmatrix}3&0\\\\0&3\\end{pmatrix}$. Multiplying by it just scales every vector by that number."}
+            </p>
+            <p>
+              <strong>Identity (unit) matrix</strong>{", written $I_n$ — a scalar matrix made of $1$s: $\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$. It does nothing: $AI=IA=A$."}
+            </p>
+          </TheoryBox>
+
+          <TheoryBox title="Triangular matrices (square)">
+            <p>
+              <strong>Upper triangular</strong>{" — every entry below the diagonal is $0$. Example: $\\begin{pmatrix}1&2&3\\\\0&4&5\\\\0&0&6\\end{pmatrix}$."}
+            </p>
+            <p>
+              <strong>Lower triangular</strong>{" — every entry above the diagonal is $0$. Example: $\\begin{pmatrix}1&0&0\\\\2&3&0\\\\4&5&6\\end{pmatrix}$."}
+            </p>
+            <p>
+              {"For either kind, the determinant is just the product of the diagonal entries — $1\\cdot 4\\cdot 6=24$ for both examples above."}
+            </p>
+          </TheoryBox>
+
+          <TheoryBox title="Symmetric and skew-symmetric (square)">
+            <p>
+              {"The transpose $A^T$ flips a matrix across its main diagonal. Two types are defined by how $A$ compares with $A^T$."}
+            </p>
+            <p>
+              <strong>Symmetric</strong>{" — $A^T=A$, so the entry in row $i$, column $j$ equals the entry in row $j$, column $i$. Example: $\\begin{pmatrix}1&7\\\\7&3\\end{pmatrix}$."}
+            </p>
+            <p>
+              <strong>Skew-symmetric</strong>{" (anti-symmetric) — $A^T=-A$. This forces every diagonal entry to be $0$. Example: $\\begin{pmatrix}0&4\\\\-4&0\\end{pmatrix}$."}
+            </p>
+          </TheoryBox>
+
+          <TheoryBox title="Named by how they behave (square)">
+            <p>
+              <strong>Non-singular (invertible)</strong>{" — $\\det A\\neq 0$, so an inverse exists. Example: $\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$ has $\\det=-2$."}
+            </p>
+            <p>
+              <strong>Singular</strong>{" — $\\det A=0$, no inverse. Example: $\\begin{pmatrix}1&2\\\\2&4\\end{pmatrix}$ (row 2 is twice row 1)."}
+            </p>
+            <p>
+              <strong>Orthogonal</strong>{" — $A^T A=I$, so $A^{-1}=A^T$ for free. Its columns are perpendicular unit vectors, and it rotates or reflects without changing any lengths. Example: $\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}$ (a $90^\\circ$ rotation)."}
+            </p>
+            <p>
+              <strong>Idempotent</strong>{" — $A^2=A$: squaring it changes nothing. Projection matrices are like this. Example: $\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$."}
+            </p>
+            <p>
+              <strong>Involutory</strong>{" — $A^2=I$: the matrix is its own inverse. Example: $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ (it swaps the two coordinates)."}
+            </p>
+            <p>
+              <strong>Nilpotent</strong>{" — some power is the zero matrix ($A^k=O$). Example: $\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix}$, whose square is $O$."}
+            </p>
+          </TheoryBox>
+
+          <ProcedureBox
+            title="How to name a matrix you are handed"
+            steps={[
+              { text: "Check the shape first: one row is a row matrix, one column is a column matrix, equal row and column counts make it square, anything else is rectangular.", why: "Shape decides whether a determinant or inverse is even possible." },
+              { text: "If it is square, look at the entries off the main diagonal. All zero below the diagonal means upper triangular; all zero above means lower triangular; all zero on both sides means diagonal.", why: "Triangular and diagonal patterns unlock fast determinants and inverses." },
+              { text: "For a diagonal matrix, read the diagonal itself: one number repeated is a scalar matrix, and all $1$s is the identity. Every entry zero (any shape) is the zero matrix.", why: "These behave like a single number, so spotting them simplifies expressions." },
+              { text: "Compare $A$ with its transpose: $A^T=A$ is symmetric, and $A^T=-A$ is skew-symmetric.", why: "The transpose test is the quickest way to catch these two." },
+              { text: "If you know the determinant, $\\det A\\neq 0$ is non-singular (invertible) and $\\det A=0$ is singular.", why: "This is what you check before solving $Ax=b$ by inversion." },
+              { text: "For the behaviour-based names, test a product: $A^T A=I$ is orthogonal, $A^2=A$ is idempotent, $A^2=I$ is involutory, and $A^k=O$ for some power $k$ is nilpotent.", why: "These identities are exactly what the names mean." },
+            ]}
+          />
+
+          <RealLifeUse>{"Diagonal and triangular matrices are the forms that solvers try to reach, because they are cheap to work with. Symmetric matrices turn up as covariance matrices in statistics and stiffness matrices in engineering. Orthogonal matrices are the rotations used in computer graphics and robotics. Idempotent matrices are the projections behind least-squares fitting."}</RealLifeUse>
         </section>
 
         <section className="section" id="la-m-proc1">

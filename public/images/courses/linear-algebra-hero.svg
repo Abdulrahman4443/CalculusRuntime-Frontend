@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 440" width="100%" height="100%" fill="none" style="font-family: 'JetBrains Mono', 'Source Sans 3', monospace;">
+  <defs>
+    <!-- Technical Glows -->
+    <filter id="la-mat-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="la-mat-amber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="la-mat-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <linearGradient id="la-area-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.12" />
+    </linearGradient>
+
+    <radialGradient id="la-mat-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.16" />
+      <stop offset="70%" stop-color="#3b82f6" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <circle cx="290" cy="220" r="190" fill="url(#la-mat-aura)" />
+
+  <!-- Standard Cartesian Grid (Pre-Transformation) -->
+  <g stroke="#64748b" stroke-width="0.75" opacity="0.2" stroke-dasharray="3 4">
+    <line x1="80" y1="330" x2="500" y2="330" />
+    <line x1="80" y1="260" x2="500" y2="260" />
+    <line x1="80" y1="190" x2="500" y2="190" />
+    <line x1="80" y1="120" x2="500" y2="120" />
+
+    <line x1="150" y1="80" x2="150" y2="390" />
+    <line x1="220" y1="80" x2="220" y2="390" />
+    <line x1="290" y1="80" x2="290" y2="390" />
+    <line x1="360" y1="80" x2="360" y2="390" />
+    <line x1="430" y1="80" x2="430" y2="390" />
+  </g>
+
+  <!-- Warped Coordinate Grid (Post-Transformation T(x) = Ax) -->
+  <g stroke="#38bdf8" stroke-width="1" opacity="0.32">
+    <line x1="170" y1="380" x2="270" y2="100" />
+    <line x1="240" y1="380" x2="340" y2="100" />
+    <line x1="310" y1="380" x2="410" y2="100" />
+    <line x1="380" y1="380" x2="480" y2="100" />
+
+    <line x1="130" y1="355" x2="470" y2="255" />
+    <line x1="155" y1="285" x2="495" y2="185" />
+    <line x1="180" y1="215" x2="520" y2="115" />
+  </g>
+
+  <!-- Invariant Eigenspace Subspace Line: Av = λv -->
+  <line x1="110" y1="380" x2="470" y2="100" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.6" />
+  <text x="475" y="105" fill="#c084fc" font-size="11" font-weight="600">Av = λv</text>
+
+  <!-- Transformed Parallelogram Area: det(A) -->
+  <polygon points="200,330 340,290 410,150 270,190" fill="url(#la-area-grad)" stroke="#a855f7" stroke-width="2" />
+  <text x="285" y="245" fill="#c084fc" font-size="12" font-weight="700" opacity="0.9">Area = |det(A)|</text>
+
+  <!-- Original Unit Square (Pre-Transformation Basis e₁, e₂) -->
+  <polygon points="200,330 270,330 270,260 200,260" fill="#0284c7" fill-opacity="0.08" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3 3" />
+  <text x="215" y="295" fill="#64748b" font-size="10">Unit 1</text>
+
+  <!-- Main Coordinate Axes -->
+  <g stroke="#94a3b8" stroke-width="1.8" opacity="0.85">
+    <line x1="90" y1="330" x2="510" y2="330" />
+    <polygon points="516,330 506,326 506,334" fill="#94a3b8" />
+    <text x="522" y="334" fill="#94a3b8" font-size="12" font-weight="600">x₁</text>
+
+    <line x1="200" y1="390" x2="200" y2="70" />
+    <polygon points="200,64 196,74 204,74" fill="#94a3b8" />
+    <text x="196" y="58" fill="#94a3b8" font-size="12" font-weight="600">x₂</text>
+
+    <text x="186" y="345" fill="#64748b" font-size="11">0</text>
+  </g>
+
+  <!-- Original Basis Vectors (Dashed e₁, e₂) -->
+  <g stroke="#64748b" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7">
+    <line x1="200" y1="330" x2="270" y2="330" />
+    <line x1="200" y1="330" x2="200" y2="260" />
+  </g>
+  <text x="272" y="345" fill="#64748b" font-size="10">e₁</text>
+  <text x="182" y="260" fill="#64748b" font-size="10">e₂</text>
+
+  <!-- Transformed Basis Vector 1: T(e₁) = Ae₁ (Cyan Arrow) -->
+  <g filter="url(#la-mat-cyan)">
+    <line x1="200" y1="330" x2="340" y2="290" stroke="#00e5ff" stroke-width="3.5" stroke-linecap="round" />
+    <polygon points="348,288 334,282 338,296" fill="#00e5ff" />
+    <circle cx="340" cy="290" r="4" fill="#00e5ff" stroke="#ffffff" stroke-width="1.6" />
+  </g>
+  <text x="352" y="302" fill="#00e5ff" font-size="11" font-weight="700">T(e₁) = Ae₁</text>
+
+  <!-- Transformed Basis Vector 2: T(e₂) = Ae₂ (Amber Arrow) -->
+  <g filter="url(#la-mat-amber)">
+    <line x1="200" y1="330" x2="270" y2="190" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round" />
+    <polygon points="275,180 263,189 276,197" fill="#fbbf24" />
+    <circle cx="270" cy="190" r="4" fill="#fbbf24" stroke="#ffffff" stroke-width="1.6" />
+  </g>
+  <text x="245" y="175" fill="#fbbf24" font-size="11" font-weight="700">T(e₂) = Ae₂</text>
+
+  <!-- Eigenvector v & Scaled Eigenvector λv -->
+  <g filter="url(#la-mat-purple)">
+    <line x1="200" y1="330" x2="410" y2="150" stroke="#c084fc" stroke-width="3" stroke-linecap="round" />
+    <polygon points="418,143 404,148 412,158" fill="#c084fc" />
+    <circle cx="410" cy="150" r="4.5" fill="#c084fc" stroke="#ffffff" stroke-width="1.8" />
+  </g>
+  <text x="424" y="152" fill="#c084fc" font-size="11" font-weight="700">λv (Eigenvector)</text>
+
+  <!-- Origin Dot -->
+  <circle cx="200" cy="330" r="5" fill="#ffffff" stroke="#00e5ff" stroke-width="2" />
+</svg>

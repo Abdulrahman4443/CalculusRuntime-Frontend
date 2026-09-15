@@ -41,6 +41,13 @@ function LinearAlgebraOverview() {
             </Link>
           </div>
         </div>
+        <div className="hero-image-container course-hero-image-container">
+          <img
+            src="/images/courses/linear-algebra-hero.svg"
+            alt="Linear Algebra Vectors and Matrix Transformation Visual"
+            className="hero-graph-img course-hero-img"
+          />
+        </div>
       </section>
 
       <section className="guide-section" aria-labelledby="why-heading">

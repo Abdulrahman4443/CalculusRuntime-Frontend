@@ -3,8 +3,8 @@ import SubmitToLeaderboard from "../../components/SubmitToLeaderboard";
 import "../dashboard/Leaderboard.css";
 import "./PractiseSection.css";
 
-// Each bank holds 100 Easy + 100 Medium + 100 Hard questions per topic, so they
-// are fetched on demand instead of shipping ~2 MB of questions in the main bundle.
+// Practice banks are fetched on demand so the full question library does not ship
+// in the main bundle. Available question counts vary by topic.
 const BANK_LOADERS = {
   calcAg: () => import('../../data/calcAgPracticeBank').then((m) => m.CALC_AG_PRACTICE_BANK),
   mv: () => import('../../data/mvPracticeBank').then((m) => m.MV_PRACTICE_BANK),
@@ -28,10 +28,15 @@ const TOPICS = [
   'Integration',
   'Sequences and Infinite Series',
   'Conic Sections and Analytic Geometry',
+  '2D Lines & Systems of Lines',
+  'Circles & Conic Tangents',
+  'Advanced Single-Variable Calculus',
+  'Ordinary Differential Equations (ODEs)',
   'Multiple Integrals',
   'Vectors & Vector Spaces',
   'Matrices & Determinants',
   'Systems of Linear Equations',
+  'Fundamental Subspaces & Rank-Nullity',
   'Eigenvalues & Eigenvectors',
   'Linear Transformations',
   'Orthogonality & Least Squares',
@@ -49,6 +54,10 @@ const TOPIC_BANK = {
   Integration: 'calcAg',
   'Sequences and Infinite Series': 'calcAg',
   'Conic Sections and Analytic Geometry': 'calcAg',
+  '2D Lines & Systems of Lines': 'calcAg',
+  'Circles & Conic Tangents': 'calcAg',
+  'Advanced Single-Variable Calculus': 'calcAg',
+  'Ordinary Differential Equations (ODEs)': 'calcAg',
   'Taylor Series for Multivariable Functions': 'calcAg',
   'Taylor & Maclaurin Series': 'calcAg',
   'Maclaurin Series': 'calcAg',
@@ -61,6 +70,7 @@ const TOPIC_BANK = {
   'Vectors & Vector Spaces': 'la',
   'Matrices & Determinants': 'la',
   'Systems of Linear Equations': 'la',
+  'Fundamental Subspaces & Rank-Nullity': 'la',
   'Eigenvalues & Eigenvectors': 'la',
   'Linear Transformations': 'la',
   'Orthogonality & Least Squares': 'la',
@@ -79,6 +89,21 @@ function shuffled(list) {
     [out[i], out[j]] = [out[j], out[i]];
   }
   return out;
+}
+
+function shuffleQuestionOptions(question) {
+  const choices = question.options.map((option, originalIndex) => ({
+    option,
+    originalIndex,
+  }));
+  const randomizedChoices = shuffled(choices);
+  return {
+    ...question,
+    options: randomizedChoices.map((choice) => choice.option),
+    correctAnswer: randomizedChoices.findIndex(
+      (choice) => choice.originalIndex === question.correctAnswer
+    ),
+  };
 }
 
 export default function PractiseSection() {
@@ -137,9 +162,10 @@ export default function PractiseSection() {
           }
           return false;
         });
-        setPoolProblems(shuffled(filtered));
+        setPoolProblems(shuffled(filtered).map(shuffleQuestionOptions));
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Failed to load practice question bank:", error);
         if (!cancelled) setPoolProblems([]);
       })
       .finally(() => {
