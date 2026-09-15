@@ -50,6 +50,8 @@ export const SECTION_GUIDE_QUIZ_KEYS = {
   ],
   "stokes-1": ["stokes-f"],
   "stokes-2": ["stokes-a"],
+  "geo3d-1": ["geo-dircos", "geo-angle3d", "geo-plane", "geo-ptplane"],
+  "geo3d-2": ["geo-line3d", "geo-skew", "geo-quadric"],
 
   // Linear Algebra
   "la-lineq-1": ["la-le-forms", "la-le-graph"],
