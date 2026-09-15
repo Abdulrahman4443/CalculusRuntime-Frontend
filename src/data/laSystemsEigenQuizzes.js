@@ -769,6 +769,25 @@ export const LA_E_CHAR_QUIZ = [
     answer: "A",
     explanation: "$\\det\\begin{pmatrix}-\\lambda&-2\\\\1&3-\\lambda\\end{pmatrix}=\\lambda(\\lambda-3)+2=\\lambda^2-3\\lambda+2$.",
   },
+  {
+    prompt: "If $\\lambda=4$ has algebraic multiplicity $3$ and $\\dim\\operatorname{Nul}(A-4I)=2$, its geometric multiplicity is:",
+    options: ["$3$", "$2$", "$1$"],
+    answer: "B",
+    explanation: "Geometric multiplicity is the dimension of the eigenspace, so it is $2$.",
+  },
+  {
+    prompt: "For every eigenvalue $\\lambda$, which relation must hold?",
+    options: ["$1\\le GM(\\lambda)\\le AM(\\lambda)$", "$GM(\\lambda)>AM(\\lambda)$", "$GM(\\lambda)=AM(\\lambda)$ always"],
+    answer: "A",
+    explanation: "An eigenspace is nonzero and its dimension cannot exceed the root's algebraic multiplicity.",
+  },
+  {
+    prompt: "For $A=\\operatorname{diag}(2,2,5)$, the eigenvalue $2$ has:",
+    options: ["$AM=1,\\ GM=2$", "$AM=2,\\ GM=1$", "$AM=2,\\ GM=2$"],
+    answer: "C",
+    explanation: "$2$ is a double root and its eigenspace is $\\operatorname{Span}\\{e_1,e_2\\}$.",
+  },
+
 ];
 
 export const LA_E_DIAG_QUIZ = [
@@ -862,6 +881,25 @@ export const LA_E_DIAG_QUIZ = [
     answer: "C",
     explanation: "Diagonal powers are entrywise.",
   },
+  {
+    prompt: "If the characteristic polynomial splits, $A$ is diagonalizable exactly when:",
+    options: ["$GM(\\lambda)=AM(\\lambda)$ for every eigenvalue", "$\\det A=1$", "All eigenvalues are positive"],
+    answer: "A",
+    explanation: "Matching algebraic and geometric multiplicities supplies a full eigenbasis.",
+  },
+  {
+    prompt: "For a real symmetric matrix $A$, the Spectral Theorem guarantees:",
+    options: ["$A=PDP^{-1}$ for an arbitrary invertible $P$", "$A=Q\\Lambda Q^T$ for an orthogonal $Q$", "$A=LU$ with $L=U^T$"],
+    answer: "B",
+    explanation: "Real symmetric matrices admit an orthonormal eigenbasis, giving orthogonal diagonalization.",
+  },
+  {
+    prompt: "If $A=Q\\Lambda Q^T$ has orthonormal eigenvectors $q_i$, its spectral decomposition is:",
+    options: ["$A=\\sum_i q_iq_i^T$", "$A=\\sum_i \\lambda_i^2 q_iq_i^T$", "$A=\\sum_i \\lambda_i q_iq_i^T$"],
+    answer: "C",
+    explanation: "Each eigenvalue weights the orthogonal projector $q_iq_i^T$ onto its eigenvector direction.",
+  },
+
 ];
 
 export const LA_E_APPS_QUIZ = [
