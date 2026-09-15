@@ -356,7 +356,7 @@ export const COURSES = [
       },
       {
         title: "Eigenvalues & Eigenvectors",
-        description: "Characteristic polynomials, eigenspaces, and diagonalization.",
+        description: "Characteristic polynomials, eigenspaces, algebraic vs geometric multiplicity, diagonalization, matrix powers, and the Spectral Theorem.",
         path: "/linear-algebra/eigen/1",
         meta: "2 parts · MCQ practice",
         icon: "λ",
