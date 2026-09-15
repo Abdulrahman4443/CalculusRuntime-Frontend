@@ -33,6 +33,8 @@ import StokesPart1 from "./pages/multivariableCalculus/StokesPart1";
 import StokesPart2 from "./pages/multivariableCalculus/StokesPart2";
 import DivergencePart1 from "./pages/multivariableCalculus/DivergencePart1";
 import DivergencePart2 from "./pages/multivariableCalculus/DivergencePart2";
+import Geometry3DPart1 from "./pages/multivariableCalculus/Geometry3DPart1";
+import Geometry3DPart2 from "./pages/multivariableCalculus/Geometry3DPart2";
 import PractiseSection from "./pages/courses/PractiseSection";
 import PersonalizedStudyPlan from "./pages/courses/PersonalizedStudyPlan";
 import ContinuityFinder from "./pages/tools/ContinuityFinder";
@@ -182,6 +184,11 @@ function App() {
               <Route path="/lagrange-multipliers" element={<Navigate to="/lagrange-multipliers/1" replace />} />
               <Route path="/lagrange-multipliers/1" element={<Layout body={<LagrangePart1 />} />} />
               <Route path="/lagrange-multipliers/2" element={<Layout body={<LagrangePart2 />} />} />
+
+              {/* 3D Analytical Geometry & Quadric Surfaces */}
+              <Route path="/3d-geometry" element={<Navigate to="/3d-geometry/1" replace />} />
+              <Route path="/3d-geometry/1" element={<Layout body={<Geometry3DPart1 />} />} />
+              <Route path="/3d-geometry/2" element={<Layout body={<Geometry3DPart2 />} />} />
 
               {/* Stokes Theorem */}
               <Route path="/stokes-theorem" element={<Navigate to="/stokes-theorem/1" replace />} />
